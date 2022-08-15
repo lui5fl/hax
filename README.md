@@ -1,6 +1,8 @@
 # Hax
 Hax is a **Hacker News client for iPhone**, planned for all Apple devices. It aims to provide a browsing experience that is both native and akin to the website's. The app is built from the ground up using SwiftUI, so it's got many features out of the box such as Dark Mode and Dynamic Type.
 
+[Download on the App Store](https://apps.apple.com/us/app/hax-for-hacker-news/id1635164814)
+
 ## Screenshots
 ![Screenshots](/Assets/screenshots.png)
 
