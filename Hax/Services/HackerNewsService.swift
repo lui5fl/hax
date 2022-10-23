@@ -258,7 +258,7 @@ private extension HackerNewsService {
             return Fail(error: HackerNewsServiceError.unknown)
                 .eraseToAnyPublisher()
         }
-        
+
         let identifiers: AnyPublisher<[Int], Error>
         if resetCache {
             cachedIdentifiers = []
@@ -275,7 +275,7 @@ private extension HackerNewsService {
                     }
 
                     self.cachedIdentifiers = ids
-                    
+
                     return ids
                 }
                 .eraseToAnyPublisher()

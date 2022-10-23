@@ -7,7 +7,19 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  swiftlint:
+    name: SwiftLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
+        with:
+          args: --strict
+
+  test:
     name: Test
     runs-on: macos-latest
 

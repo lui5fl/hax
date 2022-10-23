@@ -1,0 +1,5 @@
+# https://github.com/realm/SwiftLint#configuration
+# https://realm.github.io/SwiftLint/rule-directory.html
+
+line_length:
+  ignores_urls: true

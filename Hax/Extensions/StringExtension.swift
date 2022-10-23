@@ -9,11 +9,13 @@ import Foundation
 
 extension String {
 
+    // swiftlint:disable function_body_length
     /// Returns the result of converting any HTML content in the string into Markdown.
     func htmlToMarkdown() -> String {
         var string = self
 
         [
+            // swiftlint:disable colon
             "&#x27;"    : "'",
             "&#x2F;"    : "/",
             "&amp;"     : "&",
@@ -27,6 +29,7 @@ extension String {
             "<i>"       : "*",
             "<p>"       : "\n\n",
             "<pre>"     : ""
+            // swiftlint:enable colon
         ]
             .forEach {
                 string = string.replacingOccurrences(
@@ -87,4 +90,5 @@ extension String {
 
         return string
     }
+    // swiftlint:enable function_body_length
 }
