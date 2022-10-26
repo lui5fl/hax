@@ -101,6 +101,7 @@ struct Item: Hashable {
 
 extension Item: Decodable {
 
+    // swiftlint:disable function_body_length
     init(from decoder: Decoder) throws {
         let container = try decoder.container(
             keyedBy: CodingKeys.self
@@ -178,6 +179,7 @@ extension Item: Decodable {
             descendants: descendants
         )
     }
+    // swiftlint:enable function_body_length
 }
 
 // MARK: - Example data
