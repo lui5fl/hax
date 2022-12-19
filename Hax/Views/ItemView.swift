@@ -47,7 +47,7 @@ struct ItemView: View {
                             }
                         )
                     )
-                        .id(comment.id)
+                        .id(comment)
                         .onAppear {
                             if comment.id == viewModel.comments.last?.id {
                                 viewModel.fetchMoreComments()

@@ -5,7 +5,7 @@
 //  Created by Luis Fariña on 19/5/22.
 //
 
-struct Comment {
+struct Comment: Hashable {
 
     /// The item corresponding to the comment.
     let item: Item
