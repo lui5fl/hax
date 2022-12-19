@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct CommentRowView: View {
+struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
 
     // MARK: Properties
 
-    let viewModel: CommentRowViewModel
+    let model: Model
 
     // MARK: Body
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
-            if viewModel.comment.depth > 0 {
+            if model.comment.depth > 0 {
                 Rectangle()
                     .cornerRadius(1.5)
                     .foregroundColor(lineColor)
@@ -26,23 +26,23 @@ struct CommentRowView: View {
             }
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    if let author = viewModel.comment.item.author {
+                    if let author = model.comment.item.author {
                         Text(author)
                             .bold()
                     }
                     Spacer()
-                    if let elapsedTimeString = viewModel.comment.item.elapsedTimeString {
+                    if let elapsedTimeString = model.comment.item.elapsedTimeString {
                         Text(elapsedTimeString)
                             .foregroundColor(.secondary)
                     }
                 }
-                if !viewModel.comment.isCollapsed,
-                   let body = viewModel.comment.item.markdownBody {
+                if !model.comment.isCollapsed,
+                   let body = model.comment.item.markdownBody {
                     Text(LocalizedStringKey(body))
                         .environment(
                             \.openURL,
                              OpenURLAction { url in
-                                 viewModel.onLinkTap?(url)
+                                 model.onLinkTap?(url)
                                  return .handled
                              }
                         )
@@ -63,12 +63,12 @@ private extension CommentRowView {
 
     /// The leading padding to apply to the view.
     var leadingPadding: CGFloat {
-        CGFloat(max(viewModel.comment.depth - 1, 0) * 10)
+        CGFloat(max(model.comment.depth - 1, 0) * 10)
     }
 
     /// The color of the line on the leading side of the view.
     var lineColor: Color {
-        let value = Double(viewModel.comment.depth) * 0.04
+        let value = Double(model.comment.depth) * 0.04
 
         return Color(
             red: 1 - value,
@@ -79,7 +79,7 @@ private extension CommentRowView {
 
     /// The opacity of the view.
     var opacity: Double {
-        viewModel.comment.isCollapsed ? 0.4 : 1
+        model.comment.isCollapsed ? 0.4 : 1
     }
 }
 
@@ -98,7 +98,7 @@ struct CommentView_Previews: PreviewProvider {
         ForEach(isCollapsedValues, id: \.self) { isCollapsed in
             ForEach(depths, id: \.self) { depth in
                 CommentRowView(
-                    viewModel: CommentRowViewModel(
+                    model: CommentRowViewModel(
                         comment: .example(
                             depth: depth,
                             isCollapsed: isCollapsed

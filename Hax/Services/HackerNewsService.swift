@@ -33,7 +33,7 @@ enum HackerNewsServiceError: LocalizedError {
     }
 }
 
-protocol HackerNewsServiceType {
+protocol HackerNewsServiceProtocol {
 
     /// Returns a publisher that resolves to a specific page of comments in an item.
     ///
@@ -62,7 +62,7 @@ protocol HackerNewsServiceType {
     ///   - feed:The feed whose items are to be fetched
     ///   - page: The page of items to fetch
     ///   - pageSize: The size of each page
-    ///   - resetCache: Whether to reset the array of cached item identifiers or not
+    ///   - resetCache: Whether to reset the array of cached item identifiers
     func items(
         in feed: Feed,
         page: Int,
@@ -71,7 +71,7 @@ protocol HackerNewsServiceType {
     ) -> AnyPublisher<[Item], Error>
 }
 
-final class HackerNewsService: HackerNewsServiceType {
+final class HackerNewsService: HackerNewsServiceProtocol {
 
     // MARK: Properties
 
@@ -89,7 +89,7 @@ final class HackerNewsService: HackerNewsServiceType {
         return decoder
     }()
 
-    // MARK: HackerNewsServiceType
+    // MARK: HackerNewsServiceProtocol
 
     func comments(
         in item: Item,

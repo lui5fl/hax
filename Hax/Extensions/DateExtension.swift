@@ -34,12 +34,7 @@ extension Date {
             return "\(Int(days))d"
         }
 
-        let weeks = floor(days / 7)
-        if weeks < 4 {
-            return "\(Int(weeks))w"
-        }
-
-        let months = floor(days / 12)
+        let months = floor(days / 30)
         if months < 12 {
             return "\(Int(months))mo"
         }

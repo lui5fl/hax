@@ -7,14 +7,22 @@
 
 import Foundation
 
-struct CommentRowViewModel {
+protocol CommentRowViewModelProtocol {
 
     // MARK: Properties
 
     /// The comment whose information is to be displayed on the row.
-    let comment: Comment
+    var comment: Comment { get }
 
     /// The action to be carried out when tapping a link in the body of the comment.
+    var onLinkTap: ((URL) -> Void)? { get }
+}
+
+struct CommentRowViewModel: CommentRowViewModelProtocol {
+
+    // MARK: Properties
+
+    let comment: Comment
     let onLinkTap: ((URL) -> Void)?
 
     // MARK: Initialization

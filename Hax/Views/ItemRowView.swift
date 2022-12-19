@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct ItemRowView: View {
+struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
 
     // MARK: Properties
 
-    let viewModel: ItemRowViewModel
+    let model: Model
 
     // MARK: Body
 
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(alignment: .center, spacing: 15) {
-                if viewModel.shouldDisplayIndex {
-                    Text(String(viewModel.index))
+                if model.shouldDisplayIndex {
+                    Text(String(model.index))
                         .font(.footnote)
                         .foregroundColor(.secondary)
                         .frame(width: 15, alignment: .trailing)
@@ -28,40 +28,40 @@ struct ItemRowView: View {
                     Divider()
                 }
                 VStack(alignment: .leading, spacing: 10) {
-                    if let title = viewModel.item.title {
+                    if let title = model.item.title {
                         Text(title)
                             .font(titleFont)
                             .fontWeight(titleFontWeight)
                     }
-                    if viewModel.shouldDisplayBody,
-                       let body = viewModel.item.markdownBody {
+                    if model.shouldDisplayBody,
+                       let body = model.item.markdownBody {
                         Text(LocalizedStringKey(body))
                             .environment(
                                 \.openURL,
                                  OpenURLAction { url in
-                                     viewModel.onLinkTap?(url)
+                                     model.onLinkTap?(url)
                                      return .handled
                                  }
                             )
                             .font(.subheadline)
                     }
                     HStack(spacing: 3) {
-                        if let urlSimpleString = viewModel.item.urlSimpleString {
+                        if let urlSimpleString = model.item.urlSimpleString {
                             Text(urlSimpleString)
                                 .lineLimit(1)
                             Text("⸱")
                         }
-                        if viewModel.shouldDisplayAuthor,
-                           let author = viewModel.item.author {
+                        if model.shouldDisplayAuthor,
+                           let author = model.item.author {
                             Text(author)
                             Text("⸱")
                         }
-                        if viewModel.shouldDisplayScore,
-                           let score = viewModel.item.score {
+                        if model.shouldDisplayScore,
+                           let score = model.item.score {
                             Text("\(Image(systemName: "arrow.up"))\(score)")
                             Text("⸱")
                         }
-                        if let elapsedTimeString = viewModel.item.elapsedTimeString {
+                        if let elapsedTimeString = model.item.elapsedTimeString {
                             Text(elapsedTimeString)
                         }
                     }
@@ -69,13 +69,13 @@ struct ItemRowView: View {
                     .foregroundColor(.secondary)
                 }
                 Spacer()
-                if viewModel.shouldDisplayNumberOfComments,
-                   let descendants = viewModel.item.descendants {
+                if model.shouldDisplayNumberOfComments,
+                   let descendants = model.item.descendants {
                     Text("\(Image(systemName: "bubble.right")) \(descendants)")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .onTapGesture {
-                            viewModel.onNumberOfCommentsTap?()
+                            model.onNumberOfCommentsTap?()
                         }
                 }
             }
@@ -90,12 +90,12 @@ private extension ItemRowView {
 
     /// The font for the title label.
     var titleFont: Font {
-        viewModel.view == .feed ? .subheadline : .body
+        model.view == .feed ? .subheadline : .body
     }
 
     /// The weight of the font for the title label.
     var titleFontWeight: Font.Weight {
-        viewModel.view == .feed ? .regular : .medium
+        model.view == .feed ? .regular : .medium
     }
 }
 
@@ -105,14 +105,14 @@ struct ItemRowView_Previews: PreviewProvider {
 
     // MARK: Properties
 
-    static let views = ItemRowViewModel.View.allCases
+    static let views = ItemRowViewModelView.allCases
 
     // MARK: Previews
 
     static var previews: some View {
         ForEach(views, id: \.self) { view in
             ItemRowView(
-                viewModel: ItemRowViewModel(
+                model: ItemRowViewModel(
                     in: view,
                     item: .example
                 )

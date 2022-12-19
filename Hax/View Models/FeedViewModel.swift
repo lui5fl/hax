@@ -8,29 +8,59 @@
 import Combine
 import UIKit
 
-@MainActor class FeedViewModel: ObservableObject {
+@MainActor
+protocol FeedViewModelProtocol: ObservableObject {
 
     // MARK: Properties
 
-    /// Whether the view model is fetching items or not.
-    @Published var isLoading = true
+    /// The feed whose items are to be fetched.
+    var feed: Feed { get }
+
+    /// Whether the view model is fetching items.
+    var isLoading: Bool { get }
 
     /// The error to display in the view.
-    @Published var error: Error?
+    var error: Error? { get set }
 
     /// The array of items to display in the list.
-    @Published var items: [Item] = []
+    var items: [Item] { get }
 
     /// The selected item.
-    @Published var item: Item?
+    var selectedItem: Item? { get set }
 
     /// The URL to navigate to.
+    var url: IdentifiableURL? { get set }
+
+    // MARK: Methods
+
+    /// Called when the view appears.
+    func onViewAppear()
+
+    /// Called when an item appears.
+    func onItemAppear(item: Item)
+
+    /// Called when the button of an item is triggered.
+    func onItemButtonTrigger(item: Item)
+
+    /// Called when the number of comments of an item is tapped.
+    func onNumberOfCommentsTap(item: Item)
+}
+
+class FeedViewModel: FeedViewModelProtocol {
+
+    // MARK: Properties
+
+    let feed: Feed
+    @Published var isLoading = true
+    @Published var error: Error?
+    @Published var items: [Item] = []
+    @Published var selectedItem: Item?
     @Published var url: IdentifiableURL?
 
-    /// The feed whose items are to be fetched.
-    let feed: Feed
+    /// The service to use for fetching Hacker News data.
+    private let hackerNewsService: HackerNewsServiceProtocol
 
-    /// Whether it is the first time the view model is fetching items or not.
+    /// Whether it is the first time the view model is fetching items.
     private var isFirstTimeFetchingItems = true
 
     /// The page of items to be fetched.
@@ -41,14 +71,17 @@ import UIKit
 
     // MARK: Initialization
 
-    init(feed: Feed) {
+    init(
+        feed: Feed,
+        hackerNewsService: HackerNewsServiceProtocol = HackerNewsService.shared
+    ) {
         self.feed = feed
+        self.hackerNewsService = hackerNewsService
     }
 
     // MARK: Methods
 
-    /// Fetches the items in the feed for the first time.
-    func fetchItems() {
+    func onViewAppear() {
         guard isFirstTimeFetchingItems else {
             return
         }
@@ -57,24 +90,25 @@ import UIKit
         fetchItems(resetCache: true)
     }
 
-    /// Fetches the next page of items in the feed.
-    func fetchMoreItems() {
+    func onItemAppear(item: Item) {
+        guard item == items.last else {
+            return
+        }
+
         page += 1
         fetchItems(resetCache: false)
     }
 
-    /// Pushes an item view for the item.
-    func pushItemView(for item: Item) {
-        self.item = item
-    }
-
-    /// Either presents Safari or pushes an item view depending on the properties of the item.
-    func select(item: Item) {
+    func onItemButtonTrigger(item: Item) {
         if let url = item.url {
             self.url = IdentifiableURL(url)
         } else {
-            pushItemView(for: item)
+            onNumberOfCommentsTap(item: item)
         }
+    }
+
+    func onNumberOfCommentsTap(item: Item) {
+        selectedItem = item
     }
 }
 
@@ -85,11 +119,12 @@ private extension FeedViewModel {
     /// Fetches the current page of items in the feed.
     ///
     /// - Parameters:
-    ///   - resetCache: Whether the cache of item identifiers should be cleared or not
+    ///   - resetCache: Whether the cache of item identifiers should be cleared
     func fetchItems(resetCache: Bool) {
-        cancellable = HackerNewsService.shared.items(
+        cancellable = hackerNewsService.items(
             in: feed,
             page: page,
+            pageSize: 10,
             resetCache: resetCache
         )
             .receive(on: DispatchQueue.main)

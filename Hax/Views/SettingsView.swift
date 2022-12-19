@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct SettingsView<Model: SettingsViewModelProtocol>: View {
 
     // MARK: Properties
 
-    @StateObject private var viewModel = SettingsViewModel()
+    @StateObject var model: Model
 
     // MARK: Body
 
     var body: some View {
         Form {
             Section {
-                Picker(selection: $viewModel.defaultFeed) {
+                Picker(selection: $model.defaultFeed) {
                     Text("None")
                         .tag(nil as Feed?)
-                    ForEach(viewModel.feeds, id: \.self) { feed in
+                    ForEach(model.feeds, id: \.self) { feed in
                         Text(feed.title)
                             .tag(feed as Feed?)
                     }
@@ -31,9 +31,9 @@ struct SettingsView: View {
             }
             Section("About") {
                 Button("Privacy Policy") {
-                    viewModel.presentPrivacyPolicy()
+                    model.onPrivacyPolicyButtonTrigger()
                 }
-                if let version = viewModel.version {
+                if let version = model.version {
                     HStack {
                         Text("Version")
                         Spacer()
@@ -45,7 +45,7 @@ struct SettingsView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Settings")
-        .safari(url: $viewModel.url)
+        .safari(url: $model.url)
     }
 }
 
@@ -55,7 +55,7 @@ struct SettingsView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationView {
-            SettingsView()
+            SettingsView(model: SettingsViewModel())
         }
     }
 }

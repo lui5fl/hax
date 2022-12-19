@@ -7,70 +7,89 @@
 
 import Foundation
 
-struct ItemRowViewModel {
+enum ItemRowViewModelView: CaseIterable {
 
-    // MARK: Types
+    // MARK: Cases
 
-    enum View: CaseIterable {
+    case feed, item
 
-        // MARK: Cases
+    // MARK: Properties
 
-        case feed, item
-
-        // MARK: Properties
-
-        /// The name for the SwiftUI preview.
-        var previewDisplayName: String {
-            let previewDisplayName: String
-            switch self {
-            case .feed:
-                previewDisplayName = "Feed"
-            case .item:
-                previewDisplayName = "Item"
-            }
-
-            return previewDisplayName
+    /// The name for the SwiftUI preview.
+    var previewDisplayName: String {
+        let previewDisplayName: String
+        switch self {
+        case .feed:
+            previewDisplayName = "Feed"
+        case .item:
+            previewDisplayName = "Item"
         }
+
+        return previewDisplayName
     }
+}
+
+protocol ItemRowViewModelProtocol {
 
     // MARK: Properties
 
     /// The type of view the row is being displayed on.
-    let view: View
+    var view: ItemRowViewModelView { get }
 
     /// The index of the item in the feed.
-    let index: Int
+    var index: Int { get }
 
     /// The item whose information is to be displayed on the row.
-    let item: Item
+    var item: Item { get }
 
     /// The action to be carried out when tapping the number of comments.
-    let onNumberOfCommentsTap: (() -> Void)?
+    var onNumberOfCommentsTap: (() -> Void)? { get }
 
     /// The action to be carried out when tapping a link in the body of the item.
+    var onLinkTap: ((URL) -> Void)? { get }
+
+    /// Whether the index of the item should be displayed.
+    var shouldDisplayIndex: Bool { get }
+
+    /// Whether the body of the item should be displayed.
+    var shouldDisplayBody: Bool { get }
+
+    /// Whether the author of the item should be displayed.
+    var shouldDisplayAuthor: Bool { get }
+
+    /// Whether the score of the item should be displayed.
+    var shouldDisplayScore: Bool { get }
+
+    /// Whether the number of comments should be displayed.
+    var shouldDisplayNumberOfComments: Bool { get }
+}
+
+struct ItemRowViewModel: ItemRowViewModelProtocol {
+
+    // MARK: Properties
+
+    let view: ItemRowViewModelView
+    let index: Int
+    let item: Item
+    let onNumberOfCommentsTap: (() -> Void)?
     let onLinkTap: ((URL) -> Void)?
 
-    /// Whether the index of the item should be displayed or not.
     var shouldDisplayIndex: Bool {
         view == .feed
     }
 
-    /// Whether the body of the item should be displayed or not.
     var shouldDisplayBody: Bool {
         view == .item
     }
 
-    /// Whether the author of the item should be displayed or not.
     var shouldDisplayAuthor: Bool {
         view == .item
     }
 
-    /// Whether the score of the item should be displayed or not.
     var shouldDisplayScore: Bool {
         item.kind != .job
     }
 
-    /// Whether the number of comments should be displayed or not.
     var shouldDisplayNumberOfComments: Bool {
         view == .feed && item.kind != .job
     }
@@ -78,7 +97,7 @@ struct ItemRowViewModel {
     // MARK: Initialization
 
     init(
-        in view: View,
+        in view: ItemRowViewModelView,
         index: Int = 1,
         item: Item,
         onNumberOfCommentsTap: (() -> Void)? = nil,

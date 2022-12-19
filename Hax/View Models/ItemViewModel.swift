@@ -8,26 +8,51 @@
 import Combine
 import UIKit
 
-@MainActor class ItemViewModel: ObservableObject {
+@MainActor
+protocol ItemViewModelProtocol: ObservableObject {
 
     // MARK: Properties
 
-    /// Whether the view model is fetching items or not.
-    @Published var isLoading = true
+    /// Whether the view model is fetching items.
+    var isLoading: Bool { get }
 
     /// The error to display in the view.
-    @Published var error: Error?
+    var error: Error? { get set }
 
     /// The item whose information and comments are to be displayed on the view.
-    @Published var item: Item
+    var item: Item { get }
 
     /// The array of comments to display in the list.
-    @Published var comments: [Comment] = []
+    var comments: [Comment] { get }
 
     /// The URL to navigate to.
-    @Published var url: IdentifiableURL?
+    var url: IdentifiableURL? { get set }
 
     /// The title for the view.
+    var title: String { get }
+
+    // MARK: Methods
+
+    /// Called when the view appears.
+    func onViewAppear()
+
+    /// Called when a comment appears.
+    func onCommentAppear(comment: Comment)
+
+    /// Called when a comment is tapped.
+    func onCommentTap(comment: Comment)
+}
+
+class ItemViewModel: ItemViewModelProtocol {
+
+    // MARK: Properties
+
+    @Published var isLoading = true
+    @Published var error: Error?
+    @Published var item: Item
+    @Published var comments: [Comment] = []
+    @Published var url: IdentifiableURL?
+
     var title: String {
         guard let descendants = item.descendants else {
             return ""
@@ -35,6 +60,9 @@ import UIKit
 
         return "\(descendants) comment\(descendants != 1 ? "s" : "")"
     }
+
+    /// The service to use for fetching Hacker News data.
+    private let hackerNewsService: HackerNewsServiceProtocol
 
     /// The page of comments to be fetched.
     private var page = 1
@@ -47,15 +75,18 @@ import UIKit
 
     // MARK: Initialization
 
-    init(item: Item) {
+    init(
+        item: Item,
+        hackerNewsService: HackerNewsServiceProtocol = HackerNewsService.shared
+    ) {
         self.item = item
+        self.hackerNewsService = hackerNewsService
     }
 
     // MARK: Methods
 
-    /// Fetches the item and then fetches its comments.
-    func fetchItem() {
-        HackerNewsService.shared.item(id: item.id)
+    func onViewAppear() {
+        hackerNewsService.item(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in
@@ -63,6 +94,7 @@ import UIKit
                     case .finished:
                         self?.fetchComments()
                     case .failure(let error):
+                        self?.isLoading = false
                         self?.error = error
                     }
                 },
@@ -73,14 +105,16 @@ import UIKit
             .store(in: &cancellables)
     }
 
-    /// Fetches the next page of comments in the item.
-    func fetchMoreComments() {
+    func onCommentAppear(comment: Comment) {
+        guard comment == comments.last else {
+            return
+        }
+
         page += 1
         fetchComments()
     }
 
-    /// Either collapses or expands the selected comment depending on its current state.
-    func toggle(comment: Comment) {
+    func onCommentTap(comment: Comment) {
         guard let index = allComments.firstIndex(of: comment) else {
             return
         }
@@ -111,9 +145,10 @@ private extension ItemViewModel {
 
     /// Fetches the current page of comments in the item.
     func fetchComments() {
-        HackerNewsService.shared.comments(
+        hackerNewsService.comments(
             in: item,
-            page: page
+            page: page,
+            pageSize: 5
         )
             .receive(on: DispatchQueue.main)
             .sink(

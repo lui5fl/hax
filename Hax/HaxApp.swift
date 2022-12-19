@@ -12,7 +12,7 @@ struct HaxApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MenuView()
+            MenuView(model: MenuViewModel())
         }
     }
 }
