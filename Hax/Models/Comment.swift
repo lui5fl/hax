@@ -13,10 +13,10 @@ struct Comment: Hashable {
     /// The depth of the comment in relation to the root item.
     let depth: Int
 
-    /// Whether the comment is collapsed or not in the item view.
+    /// Whether the comment is collapsed in the item view.
     var isCollapsed = false
 
-    /// Whether the comment is hidden or not in the item view.
+    /// Whether the comment is hidden in the item view.
     var isHidden = false
 }
 
@@ -45,9 +45,15 @@ extension Comment: Identifiable {
 
 extension Comment {
 
+    // MARK: Properties
+
+    static let example = example()
+
+    // MARK: Methods
+
     static func example(
         id: Int = 0,
-        depth: Int,
+        depth: Int = 0,
         isCollapsed: Bool = false
     ) -> Self {
         Comment(

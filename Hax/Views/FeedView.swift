@@ -7,32 +7,32 @@
 
 import SwiftUI
 
-struct FeedView: View {
+struct FeedView<Model: FeedViewModelProtocol>: View {
 
     // MARK: Properties
 
-    @StateObject var viewModel: FeedViewModel
+    @StateObject var model: Model
 
     // MARK: Body
 
     var body: some View {
         Group {
-            if viewModel.isLoading {
+            if model.isLoading {
                 ActivityIndicatorView()
             } else {
                 List(enumeratedItems, id: \.1) { index, item in
                     ZStack {
                         Button {
-                            viewModel.select(item: item)
+                            model.onItemButtonTrigger(item: item)
                         } label: {
                             ItemRowView(
-                                viewModel: ItemRowViewModel(
+                                model: ItemRowViewModel(
                                     in: .feed,
                                     index: index + 1,
                                     item: item,
                                     onNumberOfCommentsTap: {
-                                        viewModel.pushItemView(
-                                            for: item
+                                        model.onNumberOfCommentsTap(
+                                            item: item
                                         )
                                     }
                                 )
@@ -40,10 +40,10 @@ struct FeedView: View {
                         }
                         NavigationLink(
                             tag: item,
-                            selection: $viewModel.item
+                            selection: $model.selectedItem
                         ) {
                             ItemView(
-                                viewModel: ItemViewModel(item: item)
+                                model: ItemViewModel(item: item)
                             )
                         } label: {
                             EmptyView()
@@ -55,20 +55,18 @@ struct FeedView: View {
                         }
                     }
                     .onAppear {
-                        if item == viewModel.items.last {
-                            viewModel.fetchMoreItems()
-                        }
+                        model.onItemAppear(item: item)
                     }
                 }
             }
         }
-        .alert(error: $viewModel.error)
+        .alert(error: $model.error)
         .listStyle(.plain)
-        .navigationTitle(viewModel.feed.title)
+        .navigationTitle(model.feed.title)
         .onAppear {
-            viewModel.fetchItems()
+            model.onViewAppear()
         }
-        .safari(url: $viewModel.url)
+        .safari(url: $model.url)
     }
 }
 
@@ -77,7 +75,7 @@ struct FeedView: View {
 private extension FeedView {
 
     var enumeratedItems: [(Int, Item)] {
-        Array(zip(viewModel.items.indices, viewModel.items))
+        Array(zip(model.items.indices, model.items))
     }
 }
 
@@ -87,16 +85,16 @@ struct FeedView_Previews: PreviewProvider {
 
     // MARK: Types
 
-    private final class ViewModel: FeedViewModel {
+    private final class Model: FeedViewModel {
 
-        override func fetchItems() {
+        override func onViewAppear() {
             items = (0...2).map { _ in
                 .example
             }
             isLoading = false
         }
 
-        override func fetchMoreItems() {
+        override func onItemAppear(item: Item) {
             // Do nothing
         }
     }
@@ -105,7 +103,7 @@ struct FeedView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationView {
-            FeedView(viewModel: ViewModel(feed: .top))
+            FeedView(model: Model(feed: .top))
         }
     }
 }

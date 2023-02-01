@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct MenuView: View {
+struct MenuView<Model: MenuViewModelProtocol>: View {
 
     // MARK: Properties
 
-    @StateObject var viewModel = MenuViewModel()
+    @StateObject var model: Model
 
     // MARK: Body
 
@@ -19,13 +19,13 @@ struct MenuView: View {
         NavigationView {
             List {
                 Section {
-                    ForEach(viewModel.feeds, id: \.self) { feed in
+                    ForEach(model.feeds, id: \.self) { feed in
                         NavigationLink(
                             tag: feed,
-                            selection: $viewModel.feed
+                            selection: $model.selectedFeed
                         ) {
                             FeedView(
-                                viewModel: FeedViewModel(feed: feed)
+                                model: FeedViewModel(feed: feed)
                             )
                         } label: {
                             Label(
@@ -37,7 +37,7 @@ struct MenuView: View {
                 }
                 Section {
                     NavigationLink {
-                        SettingsView()
+                        SettingsView(model: SettingsViewModel())
                     } label: {
                         Label("Settings", systemImage: "gearshape")
                     }
@@ -54,6 +54,6 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
 
     static var previews: some View {
-        MenuView()
+        MenuView(model: MenuViewModel())
     }
 }

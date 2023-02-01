@@ -7,23 +7,28 @@
 
 import Foundation
 
-@MainActor final class MenuViewModel: ObservableObject {
+@MainActor
+protocol MenuViewModelProtocol: ObservableObject {
 
     // MARK: Properties
 
-    /// The selected feed.
-    @Published var feed: Feed?
-
     /// The array of feeds to display in the list.
+    var feeds: [Feed] { get }
+
+    /// The selected feed.
+    var selectedFeed: Feed? { get set }
+}
+
+final class MenuViewModel: MenuViewModelProtocol {
+
+    // MARK: Properties
+
     let feeds = Feed.allCases
+    @Published var selectedFeed: Feed?
 
     // MARK: Initialization
 
-    init() {
-        let defaultFeedRawValue = UserDefaults.standard.string(
-            forKey: UserDefaults.Key.defaultFeed
-        ) ?? ""
-
-        feed = Feed(rawValue: defaultFeedRawValue)
+    init(defaultFeedService: some DefaultFeedServiceProtocol = DefaultFeedService()) {
+        selectedFeed = defaultFeedService.defaultFeed()
     }
 }

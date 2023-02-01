@@ -7,30 +7,30 @@
 
 import SwiftUI
 
-struct ItemView: View {
+struct ItemView<Model: ItemViewModelProtocol>: View {
 
     // MARK: Properties
 
-    @StateObject var viewModel: ItemViewModel
+    @StateObject var model: Model
 
     // MARK: Body
 
     var body: some View {
         List {
             Button {
-                viewModel.url = IdentifiableURL(viewModel.item.url)
+                model.url = IdentifiableURL(model.item.url)
             } label: {
                 ItemRowView(
-                    viewModel: ItemRowViewModel(
+                    model: ItemRowViewModel(
                         in: .item,
-                        item: viewModel.item,
+                        item: model.item,
                         onLinkTap: { url in
-                            viewModel.url = IdentifiableURL(url)
+                            model.url = IdentifiableURL(url)
                         }
                     )
                 )
             }
-            if viewModel.isLoading {
+            if model.isLoading {
                 HStack {
                     Spacer()
                     ActivityIndicatorView()
@@ -38,37 +38,35 @@ struct ItemView: View {
                 }
                 .padding()
             } else {
-                ForEach(viewModel.comments) { comment in
+                ForEach(model.comments) { comment in
                     CommentRowView(
-                        viewModel: CommentRowViewModel(
+                        model: CommentRowViewModel(
                             comment: comment,
                             onLinkTap: { url in
-                                viewModel.url = IdentifiableURL(url)
+                                model.url = IdentifiableURL(url)
                             }
                         )
                     )
                         .id(comment)
                         .onAppear {
-                            if comment.id == viewModel.comments.last?.id {
-                                viewModel.fetchMoreComments()
-                            }
+                            model.onCommentAppear(comment: comment)
                         }
                         .onTapGesture {
-                            viewModel.toggle(comment: comment)
+                            model.onCommentTap(comment: comment)
                         }
                 }
             }
         }
-        .alert(error: $viewModel.error)
+        .alert(error: $model.error)
         .listStyle(.plain)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(viewModel.title)
+        .navigationTitle(model.title)
         .onAppear {
-            viewModel.fetchItem()
+            model.onViewAppear()
         }
-        .safari(url: $viewModel.url)
+        .safari(url: $model.url)
         .toolbar {
-            if let url = viewModel.item.url {
+            if let url = model.item.url {
                 ShareLink(item: url)
             }
         }
@@ -81,16 +79,16 @@ struct ItemView_Previews: PreviewProvider {
 
     // MARK: Types
 
-    private final class ViewModel: ItemViewModel {
+    private final class Model: ItemViewModel {
 
-        override func fetchItem() {
+        override func onViewAppear() {
             comments = (0...2).map { number in
                 .example(id: number, depth: number)
             }
             isLoading = false
         }
 
-        override func fetchMoreComments() {
+        override func onCommentAppear(comment: Comment) {
             // Do nothing
         }
     }
@@ -99,7 +97,7 @@ struct ItemView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationView {
-            ItemView(viewModel: ViewModel(item: .example))
+            ItemView(model: Model(item: .example))
         }
     }
 }

@@ -11,7 +11,7 @@ struct Item: Hashable {
 
     // MARK: Types
 
-    enum Kind: String, Decodable {
+    enum Kind: String, Decodable, CaseIterable {
         case comment, job, story
     }
 
@@ -20,7 +20,7 @@ struct Item: Hashable {
     /// The identifier of the item.
     let id: Int
 
-    /// Whether the item has been deleted or not.
+    /// Whether the item has been deleted.
     let deleted: Bool
 
     /// The kind of the item.
@@ -35,7 +35,7 @@ struct Item: Hashable {
     /// The body of the item.
     let body: String?
 
-    /// Whether the item has been "killed" by software / user flags / moderators or not.
+    /// Whether the item has been "killed" by software / user flags / moderators.
     let dead: Bool
 
     /// The identifiers of the children of the item.
@@ -65,18 +65,18 @@ struct Item: Hashable {
     // MARK: Initialization
 
     init(
-        id: Int,
-        deleted: Bool,
-        kind: Kind?,
-        author: String?,
-        date: Date?,
-        body: String?,
-        dead: Bool,
-        children: [Int],
-        url: URL?,
-        score: Int?,
-        title: String?,
-        descendants: Int?
+        id: Int = 0,
+        deleted: Bool = false,
+        kind: Kind? = nil,
+        author: String? = nil,
+        date: Date? = nil,
+        body: String? = nil,
+        dead: Bool = false,
+        children: [Int] = [],
+        url: URL? = nil,
+        score: Int? = nil,
+        title: String? = nil,
+        descendants: Int? = nil
     ) {
         self.id = id
         self.deleted = deleted
