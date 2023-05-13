@@ -55,4 +55,37 @@ final class URLExtensionTests: XCTestCase {
         // Then
         XCTAssertEqual(simpleString, "luisfl.me")
     }
+
+    func testSimpleString_givenIPAddress() throws {
+        // Given
+        let sut = try XCTUnwrap(URL(string: "https://1.1.1.1"))
+
+        // When
+        let simpleString = sut.simpleString()
+
+        // Then
+        XCTAssertEqual(simpleString, "1.1.1.1")
+    }
+
+    func testSimpleString_givenSLD() throws {
+        // Given
+        let sut = try XCTUnwrap(URL(string: "https://luisfl.co.jp"))
+
+        // When
+        let simpleString = sut.simpleString()
+
+        // Then
+        XCTAssertEqual(simpleString, "luisfl.co.jp")
+    }
+
+    func testSimpleString_givenWWW() throws {
+        // Given
+        let sut = try XCTUnwrap(URL(string: "https://www.luisfl.me"))
+
+        // When
+        let simpleString = sut.simpleString()
+
+        // Then
+        XCTAssertEqual(simpleString, "luisfl.me")
+    }
 }
