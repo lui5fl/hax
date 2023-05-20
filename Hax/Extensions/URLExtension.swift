@@ -22,11 +22,6 @@ extension URL {
             return absoluteString
         }
 
-        let domainNameAndTLD = stringBeforeFirstSlash
-            .split(separator: ".")
-            .suffix(2)
-            .joined(separator: ".")
-
-        return domainNameAndTLD
+        return String(stringBeforeFirstSlash.trimmingPrefix("www."))
     }
 }
