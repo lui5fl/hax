@@ -7,6 +7,7 @@
 
 import Combine
 import UIKit
+import WidgetKit
 
 @MainActor
 protocol FeedViewModelProtocol: ObservableObject {
@@ -111,7 +112,9 @@ private extension FeedViewModel {
                     self?.isLoading = false
                     switch completion {
                     case .finished:
-                        break
+                        if resetCache {
+                            WidgetCenter.shared.reloadAllTimelines()
+                        }
                     case .failure(let error):
                         self?.error = error
                     }

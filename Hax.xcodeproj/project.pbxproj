@@ -16,6 +16,15 @@
 		A01F70F329520CE100395B2A /* AppVersionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70F229520CE100395B2A /* AppVersionServiceTests.swift */; };
 		A01F70F529520FD600395B2A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70F429520FD600395B2A /* SettingsViewModelTests.swift */; };
 		A01F70F7295213B800395B2A /* AppVersionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70F6295213B800395B2A /* AppVersionServiceMock.swift */; };
+		A03FDF672AB74E5A00127AB6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */; };
+		A03FDF692AB74E5A00127AB6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */; };
+		A03FDF6C2AB74E5A00127AB6 /* HaxWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF6B2AB74E5A00127AB6 /* HaxWidgetBundle.swift */; };
+		A03FDF6E2AB74E5A00127AB6 /* HaxWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF6D2AB74E5A00127AB6 /* HaxWidget.swift */; };
+		A03FDF702AB74E5B00127AB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A03FDF6F2AB74E5B00127AB6 /* Assets.xcassets */; };
+		A03FDF742AB74E5B00127AB6 /* HaxWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A03FDF7D2AB7516F00127AB6 /* HaxWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF7C2AB7516F00127AB6 /* HaxWidgetProvider.swift */; };
+		A03FDF7F2AB7535100127AB6 /* HaxWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */; };
+		A04500932BBB239E006227CE /* FeedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04500922BBB239E006227CE /* FeedExtension.swift */; };
 		A064ABAD28D3ADA500572ADD /* HaxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABAC28D3ADA500572ADD /* HaxApp.swift */; };
 		A064ABB128D3ADA600572ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A064ABB028D3ADA600572ADD /* Assets.xcassets */; };
 		A064ABB528D3ADA600572ADD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A064ABB428D3ADA600572ADD /* Preview Assets.xcassets */; };
@@ -32,13 +41,25 @@
 		A06788A02953294800AA7BE0 /* IdentifiableURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067889F2953294800AA7BE0 /* IdentifiableURLTests.swift */; };
 		A06788A22953300100AA7BE0 /* BundleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06788A12953300100AA7BE0 /* BundleMock.swift */; };
 		A06788A429538C4C00AA7BE0 /* HackerNewsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06788A329538C4C00AA7BE0 /* HackerNewsServiceMock.swift */; };
+		A07D1C0A2AD323A90081FBE8 /* HackerNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB1A28D4EA3F006CD8E7 /* HackerNewsService.swift */; };
+		A07D1C0B2AD323B20081FBE8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0428D4EA3F006CD8E7 /* Comment.swift */; };
+		A07D1C0C2AD323C30081FBE8 /* AnyPublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */; };
 		A086E4682BA7755D0075B0AD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */; };
 		A092AD652954B8AC00B76D68 /* CommentRowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */; };
 		A092AD672954BE9400B76D68 /* ItemRowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A092AD662954BE9400B76D68 /* ItemRowViewModelTests.swift */; };
+		A096CE0C2AB9E741002B70BE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0528D4EA3F006CD8E7 /* Item.swift */; };
+		A096CE0D2AB9E752002B70BE /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DAFA28D4EA25006CD8E7 /* StringExtension.swift */; };
+		A096CE0E2AB9E772002B70BE /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABD828D3C0B600572ADD /* URLExtension.swift */; };
+		A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DAFC28D4EA25006CD8E7 /* DateExtension.swift */; };
+		A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */; };
+		A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0728D4EA3F006CD8E7 /* Feed.swift */; };
 		A0A2881829521A0500CF1484 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */; };
 		A0ACA52E2B935D9E00CFD2A8 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */; };
+		A0ACA6D32AD556D2007C2B8C /* SelectFeedIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */; };
+		A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */; };
 		A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */; };
 		A0D56A8E2BAB35220095BDD6 /* RegexServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */; };
+		A0DEE10D2AB6F7F5000918CB /* AnyPublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */; };
 		A0E318C52BB2D51B002BD063 /* RegexServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E318C42BB2D51B002BD063 /* RegexServiceMock.swift */; };
 		A0F3C6C32954A2E3008A7D2B /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3C6C22954A2E3008A7D2B /* XCTestCaseExtension.swift */; };
 		A0F3C6C52954A735008A7D2B /* ItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3C6C42954A735008A7D2B /* ItemViewModelTests.swift */; };
@@ -70,6 +91,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A03FDF722AB74E5B00127AB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A064ABA128D3ADA500572ADD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A03FDF632AB74E5A00127AB6;
+			remoteInfo = HaxWidgetExtension;
+		};
 		A064ABBB28D3ADA600572ADD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A064ABA128D3ADA500572ADD /* Project object */;
@@ -86,6 +114,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A03FDF752AB74E5B00127AB6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A03FDF742AB74E5B00127AB6 /* HaxWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A01F70E3295204DD00395B2A /* DefaultFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeedService.swift; sourceTree = "<group>"; };
 		A01F70E62952051D00395B2A /* DefaultFeedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeedServiceTests.swift; sourceTree = "<group>"; };
@@ -96,6 +138,16 @@
 		A01F70F229520CE100395B2A /* AppVersionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionServiceTests.swift; sourceTree = "<group>"; };
 		A01F70F429520FD600395B2A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		A01F70F6295213B800395B2A /* AppVersionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionServiceMock.swift; sourceTree = "<group>"; };
+		A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HaxWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A03FDF6B2AB74E5A00127AB6 /* HaxWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetBundle.swift; sourceTree = "<group>"; };
+		A03FDF6D2AB74E5A00127AB6 /* HaxWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidget.swift; sourceTree = "<group>"; };
+		A03FDF6F2AB74E5B00127AB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A03FDF712AB74E5B00127AB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A03FDF7C2AB7516F00127AB6 /* HaxWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetProvider.swift; sourceTree = "<group>"; };
+		A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetEntry.swift; sourceTree = "<group>"; };
+		A04500922BBB239E006227CE /* FeedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedExtension.swift; sourceTree = "<group>"; };
 		A064ABA928D3ADA500572ADD /* Hax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A064ABAC28D3ADA500572ADD /* HaxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxApp.swift; sourceTree = "<group>"; };
 		A064ABB028D3ADA600572ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,13 +168,17 @@
 		A067889F2953294800AA7BE0 /* IdentifiableURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableURLTests.swift; sourceTree = "<group>"; };
 		A06788A12953300100AA7BE0 /* BundleMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleMock.swift; sourceTree = "<group>"; };
 		A06788A329538C4C00AA7BE0 /* HackerNewsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsServiceMock.swift; sourceTree = "<group>"; };
+		A07FF27A2BB7306D0067B652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModelTests.swift; sourceTree = "<group>"; };
 		A092AD662954BE9400B76D68 /* ItemRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowViewModelTests.swift; sourceTree = "<group>"; };
 		A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFeedIntent.swift; sourceTree = "<group>"; };
+		A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetFamilyExtension.swift; sourceTree = "<group>"; };
 		A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexService.swift; sourceTree = "<group>"; };
 		A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexServiceTests.swift; sourceTree = "<group>"; };
+		A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPublisherExtension.swift; sourceTree = "<group>"; };
 		A0E318C42BB2D51B002BD063 /* RegexServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexServiceMock.swift; sourceTree = "<group>"; };
 		A0F3C6C22954A2E3008A7D2B /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		A0F3C6C42954A735008A7D2B /* ItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModelTests.swift; sourceTree = "<group>"; };
@@ -154,6 +210,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A03FDF612AB74E5A00127AB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A03FDF692AB74E5A00127AB6 /* SwiftUI.framework in Frameworks */,
+				A03FDF672AB74E5A00127AB6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A064ABA628D3ADA500572ADD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,12 +280,62 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		A03FDF652AB74E5A00127AB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */,
+				A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A03FDF6A2AB74E5A00127AB6 /* HaxWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A03FDF6B2AB74E5A00127AB6 /* HaxWidgetBundle.swift */,
+				A0C19F2C2AFC229E00D294C3 /* Extensions */,
+				A03FDF7A2AB74EA600127AB6 /* Resources */,
+				A03FDF792AB74E9700127AB6 /* Widgets */,
+			);
+			path = HaxWidget;
+			sourceTree = "<group>";
+		};
+		A03FDF792AB74E9700127AB6 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				A03FDF7B2AB7513C00127AB6 /* HaxWidget */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		A03FDF7A2AB74EA600127AB6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A03FDF712AB74E5B00127AB6 /* Info.plist */,
+				A03FDF6F2AB74E5B00127AB6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A03FDF7B2AB7513C00127AB6 /* HaxWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A03FDF6D2AB74E5A00127AB6 /* HaxWidget.swift */,
+				A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */,
+				A03FDF7C2AB7516F00127AB6 /* HaxWidgetProvider.swift */,
+				A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */,
+			);
+			path = HaxWidget;
+			sourceTree = "<group>";
+		};
 		A064ABA028D3ADA500572ADD = {
 			isa = PBXGroup;
 			children = (
 				A064ABAB28D3ADA500572ADD /* Hax */,
+				A03FDF6A2AB74E5A00127AB6 /* HaxWidget */,
 				A064ABBD28D3ADA600572ADD /* HaxTests */,
 				A064ABC728D3ADA600572ADD /* HaxUITests */,
+				A03FDF652AB74E5A00127AB6 /* Frameworks */,
 				A064ABAA28D3ADA500572ADD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -231,6 +346,7 @@
 				A064ABA928D3ADA500572ADD /* Hax.app */,
 				A064ABBA28D3ADA600572ADD /* HaxTests.xctest */,
 				A064ABC428D3ADA600572ADD /* HaxUITests.xctest */,
+				A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,6 +396,7 @@
 		A064ABD728D3C0AC00572ADD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */,
 				A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */,
 				A0F4DAFC28D4EA25006CD8E7 /* DateExtension.swift */,
 				A0F4DAFA28D4EA25006CD8E7 /* StringExtension.swift */,
@@ -333,6 +450,15 @@
 				A067889229530F9A00AA7BE0 /* ArrayExtensionTests.swift */,
 				A0678890295309A400AA7BE0 /* DateExtensionTests.swift */,
 				A064ABDC28D3C0E400572ADD /* URLExtensionTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A0C19F2C2AFC229E00D294C3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A04500922BBB239E006227CE /* FeedExtension.swift */,
+				A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -401,6 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				A064ABB228D3ADA600572ADD /* Hax.entitlements */,
+				A07FF27A2BB7306D0067B652 /* Info.plist */,
 				A064ABB028D3ADA600572ADD /* Assets.xcassets */,
 				A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */,
 				A064ABB328D3ADA600572ADD /* Preview Content */,
@@ -411,6 +538,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A03FDF632AB74E5A00127AB6 /* HaxWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A03FDF782AB74E5B00127AB6 /* Build configuration list for PBXNativeTarget "HaxWidgetExtension" */;
+			buildPhases = (
+				A03FDF602AB74E5A00127AB6 /* Sources */,
+				A03FDF612AB74E5A00127AB6 /* Frameworks */,
+				A03FDF622AB74E5A00127AB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HaxWidgetExtension;
+			productName = HaxWidgetExtension;
+			productReference = A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A064ABA828D3ADA500572ADD /* Hax */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A064ABCE28D3ADA600572ADD /* Build configuration list for PBXNativeTarget "Hax" */;
@@ -419,10 +563,12 @@
 				A064ABA628D3ADA500572ADD /* Frameworks */,
 				A064ABA728D3ADA500572ADD /* Resources */,
 				A008951329054FFA00D3F9DB /* Run SwiftLint */,
+				A03FDF752AB74E5B00127AB6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A03FDF732AB74E5B00127AB6 /* PBXTargetDependency */,
 			);
 			name = Hax;
 			productName = Hax;
@@ -472,9 +618,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					A03FDF632AB74E5A00127AB6 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					A064ABA828D3ADA500572ADD = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -502,6 +651,7 @@
 			projectRoot = "";
 			targets = (
 				A064ABA828D3ADA500572ADD /* Hax */,
+				A03FDF632AB74E5A00127AB6 /* HaxWidgetExtension */,
 				A064ABB928D3ADA600572ADD /* HaxTests */,
 				A064ABC328D3ADA600572ADD /* HaxUITests */,
 			);
@@ -509,6 +659,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A03FDF622AB74E5A00127AB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A03FDF702AB74E5B00127AB6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A064ABA728D3ADA500572ADD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -559,6 +717,29 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A03FDF602AB74E5A00127AB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A07D1C0A2AD323A90081FBE8 /* HackerNewsService.swift in Sources */,
+				A096CE0C2AB9E741002B70BE /* Item.swift in Sources */,
+				A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */,
+				A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */,
+				A096CE0E2AB9E772002B70BE /* URLExtension.swift in Sources */,
+				A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */,
+				A03FDF6C2AB74E5A00127AB6 /* HaxWidgetBundle.swift in Sources */,
+				A07D1C0B2AD323B20081FBE8 /* Comment.swift in Sources */,
+				A096CE0D2AB9E752002B70BE /* StringExtension.swift in Sources */,
+				A0ACA6D32AD556D2007C2B8C /* SelectFeedIntent.swift in Sources */,
+				A07D1C0C2AD323C30081FBE8 /* AnyPublisherExtension.swift in Sources */,
+				A03FDF6E2AB74E5A00127AB6 /* HaxWidget.swift in Sources */,
+				A03FDF7F2AB7535100127AB6 /* HaxWidgetEntry.swift in Sources */,
+				A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */,
+				A03FDF7D2AB7516F00127AB6 /* HaxWidgetProvider.swift in Sources */,
+				A04500932BBB239E006227CE /* FeedExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A064ABA528D3ADA500572ADD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -572,6 +753,7 @@
 				A0F4DB2528D4EA3F006CD8E7 /* SafariView.swift in Sources */,
 				A01F70F129520AAF00395B2A /* AppVersionService.swift in Sources */,
 				A0F4DB1F28D4EA3F006CD8E7 /* ItemViewModel.swift in Sources */,
+				A0DEE10D2AB6F7F5000918CB /* AnyPublisherExtension.swift in Sources */,
 				A0F4DB0128D4EA25006CD8E7 /* DateExtension.swift in Sources */,
 				A064ABAD28D3ADA500572ADD /* HaxApp.swift in Sources */,
 				A0F4DAFF28D4EA25006CD8E7 /* StringExtension.swift in Sources */,
@@ -639,6 +821,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A03FDF732AB74E5B00127AB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A03FDF632AB74E5A00127AB6 /* HaxWidgetExtension */;
+			targetProxy = A03FDF722AB74E5B00127AB6 /* PBXContainerItemProxy */;
+		};
 		A064ABBC28D3ADA600572ADD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A064ABA828D3ADA500572ADD /* Hax */;
@@ -652,6 +839,73 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		A03FDF762AB74E5B00127AB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = B2NJF5A6ZC;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HaxWidget/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HaxWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.debug.HaxWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A03FDF772AB74E5B00127AB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = B2NJF5A6ZC;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HaxWidget/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HaxWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.HaxWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		A064ABCC28D3ADA600572ADD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -685,9 +939,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -743,9 +999,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -764,16 +1022,20 @@
 		A064ABCF28D3ADA600572ADD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Hax/Resources/Hax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hax/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hax/Resources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -796,6 +1058,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -804,16 +1067,20 @@
 		A064ABD028D3ADA600572ADD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Hax/Resources/Hax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hax/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hax/Resources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -836,6 +1103,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -848,6 +1116,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -873,6 +1142,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -897,6 +1167,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -921,6 +1192,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -942,6 +1214,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A03FDF782AB74E5B00127AB6 /* Build configuration list for PBXNativeTarget "HaxWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A03FDF762AB74E5B00127AB6 /* Debug */,
+				A03FDF772AB74E5B00127AB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A064ABA428D3ADA500572ADD /* Build configuration list for PBXProject "Hax" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

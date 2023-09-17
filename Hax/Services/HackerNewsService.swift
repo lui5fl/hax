@@ -59,7 +59,7 @@ protocol HackerNewsServiceProtocol {
     /// Returns a publisher that resolves to a specific page of items in a feed.
     ///
     /// - Parameters:
-    ///   - feed:The feed whose items are to be fetched
+    ///   - feed: The feed whose items are to be fetched
     ///   - page: The page of items to fetch
     ///   - pageSize: The size of each page
     ///   - resetCache: Whether to reset the array of cached item identifiers
@@ -69,6 +69,40 @@ protocol HackerNewsServiceProtocol {
         pageSize: Int,
         resetCache: Bool
     ) -> AnyPublisher<[Item], Error>
+
+    /// Fetches a specific page of comments in an item.
+    ///
+    /// - Parameters:
+    ///   - item: The item to be fetched
+    ///   - page: The page of comments to fetch
+    ///   - pageSize: The size of each page
+    func comments(
+        in item: Item,
+        page: Int,
+        pageSize: Int
+    ) async throws -> [Comment]
+
+    /// Fetches the item with the specified identifier and its corresponding information.
+    ///
+    /// - Parameters:
+    ///   - id: The identifier of the item to be fetched
+    func item(
+        id: Int
+    ) async throws -> Item
+
+    /// Fetches a specific page of items in a feed.
+    ///
+    /// - Parameters:
+    ///   - feed: The feed whose items are to be fetched
+    ///   - page: The page of items to fetch
+    ///   - pageSize: The size of each page
+    ///   - resetCache: Whether to reset the array of cached item identifiers
+    func items(
+        in feed: Feed,
+        page: Int,
+        pageSize: Int,
+        resetCache: Bool
+    ) async throws -> [Item]
 }
 
 final class HackerNewsService: HackerNewsServiceProtocol {
@@ -136,6 +170,38 @@ final class HackerNewsService: HackerNewsServiceProtocol {
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
+    }
+
+    func comments(
+        in item: Item,
+        page: Int,
+        pageSize: Int
+    ) async throws -> [Comment] {
+        try await comments(
+            in: item,
+            page: page,
+            pageSize: pageSize
+        ).async()
+    }
+
+    func item(
+        id: Int
+    ) async throws -> Item {
+        try await item(id: id).async()
+    }
+
+    func items(
+        in feed: Feed,
+        page: Int,
+        pageSize: Int,
+        resetCache: Bool
+    ) async throws -> [Item] {
+        try await items(
+            in: feed,
+            page: page,
+            pageSize: pageSize,
+            resetCache: resetCache
+        ).async()
     }
 }
 
