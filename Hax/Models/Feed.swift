@@ -5,7 +5,7 @@
 //  Created by Luis Fariña on 8/5/22.
 //
 
-import Foundation
+import AppIntents
 
 enum Feed: String, CaseIterable {
 
@@ -76,6 +76,26 @@ enum Feed: String, CaseIterable {
         }
 
         return title
+    }
+}
+
+// MARK: - AppEnum
+
+extension Feed: AppEnum {
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation {
+        "Feed"
+    }
+
+    static var caseDisplayRepresentations: [Feed: DisplayRepresentation] {
+        [
+            .top: "Top",
+            .new: "New",
+            .best: "Best",
+            .ask: "Ask",
+            .show: "Show",
+            .jobs: "Jobs"
+        ]
     }
 }
 
