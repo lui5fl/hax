@@ -38,6 +38,17 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Feeds")
+        .sheet(isPresented: $model.settingsViewIsPresented) {
+            SettingsView(model: SettingsViewModel())
+                .dismissable(isPresented: $model.settingsViewIsPresented)
+        }
+        .toolbar {
+            Button {
+                model.settingsViewIsPresented = true
+            } label: {
+                Label("Settings", systemImage: "gearshape")
+            }
+        }
     }
 }
 

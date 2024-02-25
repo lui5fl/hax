@@ -14,6 +14,9 @@ protocol MenuViewModelProtocol: ObservableObject {
 
     /// The array of feeds to display in the list.
     var feeds: [Feed] { get }
+
+    /// Whether the settings view is presented.
+    var settingsViewIsPresented: Bool { get set }
 }
 
 final class MenuViewModel: MenuViewModelProtocol {
@@ -21,4 +24,5 @@ final class MenuViewModel: MenuViewModelProtocol {
     // MARK: Properties
 
     let feeds = Feed.allCases
+    @Published var settingsViewIsPresented = false
 }

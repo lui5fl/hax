@@ -12,24 +12,36 @@ struct MainView<Model: MainViewModelProtocol>: View {
     // MARK: Properties
 
     @StateObject var model: Model
+    @State private var columnVisibility = NavigationSplitViewVisibility.all
 
     // MARK: Body
 
     var body: some View {
-        NavigationStack {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             MenuView(
                 model: MenuViewModel(),
                 selectedFeed: $model.selectedFeed
             )
-            .navigationDestination(item: $model.selectedFeed) { feed in
+        } content: {
+            if let feed = model.selectedFeed {
                 FeedView(
                     model: FeedViewModel(feed: feed),
                     selectedItem: $model.selectedItem
                 )
-                .navigationDestination(item: $model.selectedItem) { item in
-                    ItemView(model: ItemViewModel(item: item))
-                }
+            } else {
+                Text("Select a feed")
+                    .foregroundStyle(.secondary)
             }
+        } detail: {
+            if let item = model.selectedItem {
+                ItemView(model: ItemViewModel(item: item))
+            } else {
+                Text("Select an item")
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .onChange(of: model.selectedItem) {
+            columnVisibility = model.selectedItem != nil ? .doubleColumn : .automatic
         }
     }
 }

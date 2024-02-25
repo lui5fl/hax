@@ -36,6 +36,25 @@ extension View {
         )
     }
 
+    /// Wraps the view in a navigation stack and adds a dismiss button to the navigation bar.
+    ///
+    /// - Parameters:
+    ///   - isPresented: Whether the view is presented
+    func dismissable(isPresented: Binding<Bool>) -> some View {
+        NavigationStack {
+            self
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            isPresented.wrappedValue = false
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                    }
+                }
+        }
+    }
+
     /// Presents a `SFSafariViewController` instance if the provided URL is
     /// different from nil.
     ///
