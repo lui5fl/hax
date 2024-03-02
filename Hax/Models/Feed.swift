@@ -78,3 +78,12 @@ enum Feed: String, CaseIterable {
         return title
     }
 }
+
+// MARK: - Identifiable
+
+extension Feed: Identifiable {
+
+    var id: Self {
+        self
+    }
+}

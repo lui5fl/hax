@@ -54,7 +54,7 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
 struct SettingsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             SettingsView(model: SettingsViewModel())
         }
     }
