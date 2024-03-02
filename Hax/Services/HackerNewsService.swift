@@ -132,6 +132,8 @@ final class HackerNewsService: HackerNewsServiceProtocol {
                     .prefix(pageSize)
 
                 return self.items(for: Array(identifiersForPage))
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -230,11 +232,17 @@ private extension HackerNewsService {
             .eraseToAnyPublisher()
     }
 
-    func items(for identifiers: [Int]) -> AnyPublisher<[Item], Error> {
+    func items(for identifiers: [Int]) -> AnyPublisher<[Item], Never> {
         // Get the items for the specified identifiers
-        Publishers.MergeMany(identifiers.map(item(id:)))
+        Publishers.MergeMany(identifiers.map {
+            item(id: $0)
+                .map(Optional.some)
+                .replaceError(with: nil)
+        })
             .collect()
             .map { items in
+                let items = items.compactMap { $0 }
+
                 // Sort the items following the order established
                 // by the server
                 var dictionary: [Int: Item] = [:]
