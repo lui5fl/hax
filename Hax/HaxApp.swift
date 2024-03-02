@@ -10,9 +10,11 @@ import SwiftUI
 @main
 struct HaxApp: App {
 
+    // MARK: Body
+
     var body: some Scene {
         WindowGroup {
-            MenuView(model: MenuViewModel())
+            MainView(model: MainViewModel())
         }
     }
 }

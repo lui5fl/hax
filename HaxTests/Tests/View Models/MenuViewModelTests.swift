@@ -14,16 +14,13 @@ final class MenuViewModelTests: XCTestCase {
     // MARK: Properties
 
     private var sut: MenuViewModel!
-    private var defaultFeedServiceMock: DefaultFeedServiceMock!
 
     // MARK: Set up and tear down
 
     override func setUpWithError() throws {
         try super.setUpWithError()
 
-        defaultFeedServiceMock = DefaultFeedServiceMock()
-        defaultFeedServiceMock.defaultFeedStub = .best
-        sut = MenuViewModel(defaultFeedService: defaultFeedServiceMock)
+        sut = MenuViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -36,10 +33,5 @@ final class MenuViewModelTests: XCTestCase {
 
     func testInit() {
         XCTAssertEqual(sut.feeds, Feed.allCases)
-        XCTAssertEqual(sut.selectedFeed, .best)
-        XCTAssertEqual(
-            defaultFeedServiceMock.defaultFeedCallCount,
-            1
-        )
     }
 }

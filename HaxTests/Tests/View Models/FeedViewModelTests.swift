@@ -46,7 +46,6 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssert(sut.isLoading)
         XCTAssertNil(sut.error)
         XCTAssertEqual(sut.items, [])
-        XCTAssertNil(sut.selectedItem)
         XCTAssertNil(sut.url)
     }
 
@@ -136,40 +135,6 @@ final class FeedViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 0)
-    }
-
-    func testOnItemButtonTrigger_givenItemWithURL() throws {
-        // Given
-        let url = try XCTUnwrap(URL(string: "luisfl.me"))
-        let item = Item(url: url)
-
-        // When
-        sut.onItemButtonTrigger(item: item)
-
-        // Then
-        XCTAssertNil(sut.selectedItem)
-        XCTAssertEqual(sut.url?.url, url)
-    }
-
-    func testOnItemButtonTrigger_givenItemWithoutURL() {
-        // Given
-        let item = Item()
-
-        // When
-        sut.onItemButtonTrigger(item: item)
-
-        // Then
-        XCTAssertEqual(sut.selectedItem, item)
-        XCTAssertNil(sut.url)
-    }
-
-    func testOnNumberOfCommentsTap() {
-        // When
-        sut.onNumberOfCommentsTap(item: .example)
-
-        // Then
-        XCTAssertEqual(sut.selectedItem, .example)
-        XCTAssertNil(sut.url)
     }
 }
 

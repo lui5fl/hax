@@ -12,48 +12,42 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
     // MARK: Properties
 
     @StateObject var model: Model
+    @Binding private(set) var selectedFeed: Feed?
 
     // MARK: Body
 
     var body: some View {
-        NavigationView {
-            List {
-                Section {
-                    ForEach(model.feeds, id: \.self) { feed in
-                        NavigationLink(
-                            tag: feed,
-                            selection: $model.selectedFeed
-                        ) {
-                            FeedView(
-                                model: FeedViewModel(feed: feed)
-                            )
-                        } label: {
-                            Label(
-                                feed.title,
-                                systemImage: feed.systemImage
-                            )
-                        }
-                    }
-                }
-                Section {
-                    NavigationLink {
-                        SettingsView(model: SettingsViewModel())
-                    } label: {
-                        Label("Settings", systemImage: "gearshape")
+        List(selection: $selectedFeed) {
+            Section {
+                ForEach(model.feeds) { feed in
+                    NavigationLink(value: feed) {
+                        Label(
+                            feed.title,
+                            systemImage: feed.systemImage
+                        )
                     }
                 }
             }
-            .listStyle(.insetGrouped)
-            .navigationTitle("Feeds")
+            Section {
+                NavigationLink {
+                    SettingsView(model: SettingsViewModel())
+                } label: {
+                    Label("Settings", systemImage: "gearshape")
+                }
+            }
         }
+        .listStyle(.insetGrouped)
+        .navigationTitle("Feeds")
     }
 }
 
 // MARK: - Previews
 
-struct MenuView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        MenuView(model: MenuViewModel())
+#Preview {
+    NavigationStack {
+        MenuView(
+            model: MenuViewModel(),
+            selectedFeed: .constant(nil)
+        )
     }
 }

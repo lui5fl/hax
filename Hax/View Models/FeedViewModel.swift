@@ -25,9 +25,6 @@ protocol FeedViewModelProtocol: ObservableObject {
     /// The array of items to display in the list.
     var items: [Item] { get }
 
-    /// The selected item.
-    var selectedItem: Item? { get set }
-
     /// The URL to navigate to.
     var url: IdentifiableURL? { get set }
 
@@ -38,12 +35,6 @@ protocol FeedViewModelProtocol: ObservableObject {
 
     /// Called when an item appears.
     func onItemAppear(item: Item)
-
-    /// Called when the button of an item is triggered.
-    func onItemButtonTrigger(item: Item)
-
-    /// Called when the number of comments of an item is tapped.
-    func onNumberOfCommentsTap(item: Item)
 }
 
 class FeedViewModel: FeedViewModelProtocol {
@@ -54,7 +45,6 @@ class FeedViewModel: FeedViewModelProtocol {
     @Published var isLoading = true
     @Published var error: Error?
     @Published var items: [Item] = []
-    @Published var selectedItem: Item?
     @Published var url: IdentifiableURL?
 
     /// The service to use for fetching Hacker News data.
@@ -97,18 +87,6 @@ class FeedViewModel: FeedViewModelProtocol {
 
         page += 1
         fetchItems(resetCache: false)
-    }
-
-    func onItemButtonTrigger(item: Item) {
-        if let url = item.url {
-            self.url = IdentifiableURL(url)
-        } else {
-            onNumberOfCommentsTap(item: item)
-        }
-    }
-
-    func onNumberOfCommentsTap(item: Item) {
-        selectedItem = item
     }
 }
 
