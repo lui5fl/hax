@@ -12,6 +12,7 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
     // MARK: Properties
 
     @StateObject var model: Model
+    @Binding private(set) var selectedItem: Item?
 
     // MARK: Body
 
@@ -21,33 +22,22 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
                 ActivityIndicatorView()
             } else {
                 List(enumeratedItems, id: \.1) { index, item in
-                    ZStack {
-                        Button {
-                            model.onItemButtonTrigger(item: item)
-                        } label: {
-                            ItemRowView(
-                                model: ItemRowViewModel(
-                                    in: .feed,
-                                    index: index + 1,
-                                    item: item,
-                                    onNumberOfCommentsTap: {
-                                        model.onNumberOfCommentsTap(
-                                            item: item
-                                        )
-                                    }
-                                )
-                            )
+                    Button {
+                        if let url = item.url {
+                            model.url = IdentifiableURL(url)
+                        } else {
+                            selectedItem = item
                         }
-                        NavigationLink(
-                            tag: item,
-                            selection: $model.selectedItem
-                        ) {
-                            ItemView(
-                                model: ItemViewModel(item: item)
-                            )
-                        } label: {
-                            EmptyView()
-                        }.opacity(0).disabled(true)
+                    } label: {
+                        ItemRowView(
+                            model: ItemRowViewModel(
+                                in: .feed,
+                                index: index + 1,
+                                item: item
+                            ) {
+                                selectedItem = item
+                            }
+                        )
                     }
                     .contextMenu {
                         if let url = item.url {
@@ -102,8 +92,11 @@ struct FeedView_Previews: PreviewProvider {
     // MARK: Previews
 
     static var previews: some View {
-        NavigationView {
-            FeedView(model: Model(feed: .top))
+        NavigationStack {
+            FeedView(
+                model: Model(feed: .top),
+                selectedItem: .constant(nil)
+            )
         }
     }
 }

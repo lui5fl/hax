@@ -96,7 +96,7 @@ struct ItemView_Previews: PreviewProvider {
     // MARK: Previews
 
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             ItemView(model: Model(item: .example))
         }
     }
