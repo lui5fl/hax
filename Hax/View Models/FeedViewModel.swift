@@ -35,6 +35,9 @@ protocol FeedViewModelProtocol: ObservableObject {
 
     /// Called when an item appears.
     func onItemAppear(item: Item)
+
+    /// Called when the user requests a refresh.
+    func onRefreshRequest() async
 }
 
 class FeedViewModel: FeedViewModelProtocol {
@@ -54,7 +57,7 @@ class FeedViewModel: FeedViewModelProtocol {
     private var isFirstTimeFetchingItems = true
 
     /// The page of items to be fetched.
-    private var page = 1
+    private var page = Constant.initialPage
 
     /// The subscriber to the request of items.
     private var cancellable: AnyCancellable?
@@ -77,7 +80,10 @@ class FeedViewModel: FeedViewModelProtocol {
         }
 
         isFirstTimeFetchingItems = false
-        fetchItems(resetCache: true)
+
+        Task {
+            await fetchItems(resetCache: true)
+        }
     }
 
     func onItemAppear(item: Item) {
@@ -86,7 +92,14 @@ class FeedViewModel: FeedViewModelProtocol {
         }
 
         page += 1
-        fetchItems(resetCache: false)
+
+        Task {
+            await fetchItems(resetCache: false)
+        }
+    }
+
+    func onRefreshRequest() async {
+        await fetchItems(resetCache: true)
     }
 }
 
@@ -94,31 +107,37 @@ class FeedViewModel: FeedViewModelProtocol {
 
 private extension FeedViewModel {
 
+    // MARK: Types
+
+    enum Constant {
+        static let initialPage = 1
+    }
+
     /// Fetches the current page of items in the feed.
     ///
     /// - Parameters:
-    ///   - resetCache: Whether the cache of item identifiers should be cleared
-    func fetchItems(resetCache: Bool) {
-        cancellable = hackerNewsService.items(
-            in: feed,
-            page: page,
-            pageSize: 10,
-            resetCache: resetCache
-        )
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    self?.isLoading = false
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self?.error = error
-                    }
-                },
-                receiveValue: { [weak self] value in
-                    self?.items += value
-                }
+    ///   - resetCache: Whether the cached items should be cleared
+    func fetchItems(resetCache: Bool) async {
+        do {
+            if resetCache {
+                page = Constant.initialPage
+            }
+            let items = try await hackerNewsService.items(
+                in: feed,
+                page: page,
+                pageSize: 10,
+                resetCache: resetCache
             )
+            if resetCache {
+                self.items = items
+            } else {
+                self.items += items
+            }
+            if isLoading {
+                isLoading = false
+            }
+        } catch {
+            self.error = error
+        }
     }
 }

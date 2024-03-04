@@ -48,6 +48,9 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
                         model.onItemAppear(item: item)
                     }
                 }
+                .refreshable {
+                    await model.onRefreshRequest()
+                }
             }
         }
         .alert(error: $model.error)
