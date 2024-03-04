@@ -35,6 +35,8 @@ enum HackerNewsServiceError: LocalizedError {
 
 protocol HackerNewsServiceProtocol {
 
+    // MARK: Methods
+
     /// Returns a publisher that resolves to a specific page of comments in an item.
     ///
     /// - Parameters:
@@ -55,20 +57,6 @@ protocol HackerNewsServiceProtocol {
     func item(
         id: Int
     ) -> AnyPublisher<Item, Error>
-
-    /// Returns a publisher that resolves to a specific page of items in a feed.
-    ///
-    /// - Parameters:
-    ///   - feed: The feed whose items are to be fetched
-    ///   - page: The page of items to fetch
-    ///   - pageSize: The size of each page
-    ///   - resetCache: Whether to reset the array of cached item identifiers
-    func items(
-        in feed: Feed,
-        page: Int,
-        pageSize: Int,
-        resetCache: Bool
-    ) -> AnyPublisher<[Item], Error>
 
     /// Fetches a specific page of comments in an item.
     ///
@@ -123,7 +111,7 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         return decoder
     }()
 
-    // MARK: HackerNewsServiceProtocol
+    // MARK: Methods
 
     func comments(
         in item: Item,
@@ -146,30 +134,6 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         }
 
         return request(url: url)
-    }
-
-    func items(
-        in feed: Feed,
-        page: Int,
-        pageSize: Int = Constant.feedPageSize,
-        resetCache: Bool = false
-    ) -> AnyPublisher<[Item], Error> {
-        identifiers(for: feed, resetCache: resetCache)
-            .flatMap { [weak self] identifiers -> AnyPublisher<[Item], Error> in
-                guard let self = self else {
-                    return Fail(error: HackerNewsServiceError.unknown)
-                        .eraseToAnyPublisher()
-                }
-
-                let identifiersForPage = identifiers
-                    .dropFirst(pageSize * (page - 1))
-                    .prefix(pageSize)
-
-                return self.items(for: Array(identifiersForPage))
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
     }
 
     func comments(
@@ -240,6 +204,30 @@ private extension HackerNewsService {
     }
 
     // MARK: Methods
+
+    func items(
+        in feed: Feed,
+        page: Int,
+        pageSize: Int = Constant.feedPageSize,
+        resetCache: Bool = false
+    ) -> AnyPublisher<[Item], Error> {
+        identifiers(for: feed, resetCache: resetCache)
+            .flatMap { [weak self] identifiers -> AnyPublisher<[Item], Error> in
+                guard let self else {
+                    return Fail(error: HackerNewsServiceError.unknown)
+                        .eraseToAnyPublisher()
+                }
+
+                let identifiersForPage = identifiers
+                    .dropFirst(pageSize * (page - 1))
+                    .prefix(pageSize)
+
+                return items(for: Array(identifiersForPage))
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
 
     func comments(
         for identifiers: [Int],

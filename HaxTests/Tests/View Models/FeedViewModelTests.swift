@@ -81,9 +81,13 @@ final class FeedViewModelTests: XCTestCase {
     }
 
     func testOnViewAppear_whenCalledTwice() {
+        // Given
+        setUpExpectationForIsLoading()
+
         // When
         sut.onViewAppear()
         sut.onViewAppear()
+        waitForExpectations(timeout: 5)
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
@@ -135,6 +139,35 @@ final class FeedViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 0)
+    }
+
+    func testOnRefreshRequest_givenItemsRequestFails() async {
+        // Given
+        sut.items = [.example, .example]
+
+        // When
+        await sut.onRefreshRequest()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNotNil(sut.error)
+        XCTAssertEqual(sut.items, [.example, .example])
+        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+    }
+
+    func testOnRefreshRequest_givenItemsRequestDoesNotFail() async {
+        // Given
+        sut.items = [.example, .example]
+        hackerNewsServiceMock.itemsStub = [.example]
+
+        // When
+        await sut.onRefreshRequest()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.items, [.example])
+        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
     }
 }
 

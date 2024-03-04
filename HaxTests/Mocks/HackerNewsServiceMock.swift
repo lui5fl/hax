@@ -37,17 +37,6 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
         return publisher(stub: itemStub)
     }
 
-    func items(
-        in feed: Feed,
-        page: Int,
-        pageSize: Int,
-        resetCache: Bool
-    ) -> AnyPublisher<[Item], Error> {
-        itemsCallCount += 1
-
-        return publisher(stub: itemsStub)
-    }
-
     func comments(
         in item: Item,
         page: Int,
