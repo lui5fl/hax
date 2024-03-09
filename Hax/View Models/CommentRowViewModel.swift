@@ -16,6 +16,9 @@ protocol CommentRowViewModelProtocol {
 
     /// The action to be carried out when tapping a link in the body of the comment.
     var onLinkTap: ((URL) -> Void)? { get }
+
+    /// Whether the author of the comment should be highlighted.
+    var shouldHighlightAuthor: Bool { get }
 }
 
 struct CommentRowViewModel: CommentRowViewModelProtocol {
@@ -24,14 +27,17 @@ struct CommentRowViewModel: CommentRowViewModelProtocol {
 
     let comment: Comment
     let onLinkTap: ((URL) -> Void)?
+    let shouldHighlightAuthor: Bool
 
     // MARK: Initialization
 
     init(
         comment: Comment,
+        item: Item,
         onLinkTap: ((URL) -> Void)? = nil
     ) {
         self.comment = comment
         self.onLinkTap = onLinkTap
+        shouldHighlightAuthor = comment.item.author == item.author
     }
 }

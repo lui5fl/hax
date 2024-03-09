@@ -29,6 +29,7 @@ struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
                     if let author = model.comment.item.author {
                         Text(author)
                             .bold()
+                            .foregroundStyle(authorTextColor)
                     }
                     Spacer()
                     if let elapsedTimeString = model.comment.item.elapsedTimeString {
@@ -81,32 +82,81 @@ private extension CommentRowView {
     var opacity: Double {
         model.comment.isCollapsed ? 0.4 : 1
     }
+
+    /// The color of the author text.
+    var authorTextColor: Color {
+        model.shouldHighlightAuthor ? .accentColor : .primary
+    }
 }
+
+#if DEBUG
 
 // MARK: - Previews
 
-struct CommentView_Previews: PreviewProvider {
+// MARK: Types
+
+private struct PreviewCommentRowViewModel: CommentRowViewModelProtocol {
 
     // MARK: Properties
 
-    static let isCollapsedValues = [false, true]
-    static let depths = [0, 1, 2]
+    let comment: Comment
+    let onLinkTap: ((URL) -> Void)?
+    let shouldHighlightAuthor: Bool
 
-    // MARK: Previews
+    // MARK: Initialization
 
-    static var previews: some View {
-        ForEach(isCollapsedValues, id: \.self) { isCollapsed in
-            ForEach(depths, id: \.self) { depth in
-                CommentRowView(
-                    model: CommentRowViewModel(
-                        comment: .example(
-                            depth: depth,
-                            isCollapsed: isCollapsed
-                        )
-                    )
-                )
-            }
-        }
-        .previewLayout(.fixed(width: 400, height: 50))
+    init(
+        comment: Comment = .example,
+        onLinkTap: ((URL) -> Void)? = nil,
+        shouldHighlightAuthor: Bool = false
+    ) {
+        self.comment = comment
+        self.onLinkTap = onLinkTap
+        self.shouldHighlightAuthor = shouldHighlightAuthor
     }
 }
+
+// MARK: Properties
+
+private let fixedLayoutPreviewTrait = PreviewTrait.fixedLayout(
+    width: 400,
+    height: 50
+)
+
+// MARK: Previews
+
+#Preview("comment.depth == 0", traits: fixedLayoutPreviewTrait) {
+    CommentRowView(model: PreviewCommentRowViewModel())
+}
+
+#Preview("comment.depth > 0", traits: fixedLayoutPreviewTrait) {
+    CommentRowView(
+        model: PreviewCommentRowViewModel(
+            comment: .example(depth: 4)
+        )
+    )
+}
+
+#Preview(
+    "comment.isCollapsed == true",
+    traits: fixedLayoutPreviewTrait
+) {
+    CommentRowView(
+        model: PreviewCommentRowViewModel(
+            comment: .example(isCollapsed: true)
+        )
+    )
+}
+
+#Preview(
+    "shouldHighlightAuthor == true",
+    traits: fixedLayoutPreviewTrait
+) {
+    CommentRowView(
+        model: PreviewCommentRowViewModel(
+            shouldHighlightAuthor: true
+        )
+    )
+}
+
+#endif
