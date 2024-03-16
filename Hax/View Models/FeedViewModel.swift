@@ -133,11 +133,11 @@ private extension FeedViewModel {
             } else {
                 self.items += items
             }
-            if isLoading {
-                isLoading = false
-            }
         } catch {
             self.error = error
+        }
+        if isLoading {
+            isLoading = false
         }
     }
 }
