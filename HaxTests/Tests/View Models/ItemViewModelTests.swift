@@ -111,9 +111,13 @@ final class ItemViewModelTests: XCTestCase {
     }
 
     func testOnViewAppear_whenCalledTwice() {
+        // Given
+        setUpExpectationForIsLoading()
+
         // When
         sut.onViewAppear()
         sut.onViewAppear()
+        waitForExpectations(timeout: 5)
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
@@ -260,6 +264,59 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(sut.secondaryItem?.id, 1)
         XCTAssertNil(sut.url)
         XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+    }
+
+    func testOnRefreshRequest_givenItemRequestFails() async {
+        // Given
+        sut.comments = [.example]
+
+        // When
+        await sut.onRefreshRequest()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNotNil(sut.error)
+        XCTAssertEqual(sut.item, .example)
+        XCTAssertEqual(sut.comments, [.example])
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        XCTAssertEqual(hackerNewsServiceMock.commentsCallCount, 0)
+    }
+
+    func testOnRefreshRequest_givenItemRequestDoesNotFailButCommentsRequestDoes() async {
+        // Given
+        sut.comments = [.example]
+        let item = Item.example(id: 1)
+        hackerNewsServiceMock.itemStub = item
+
+        // When
+        await sut.onRefreshRequest()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNotNil(sut.error)
+        XCTAssertEqual(sut.item, item)
+        XCTAssertEqual(sut.comments, [.example])
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        XCTAssertEqual(hackerNewsServiceMock.commentsCallCount, 1)
+    }
+
+    func testOnRefreshRequest_givenItemAndCommentsRequestsDoNotFail() async {
+        // Given
+        sut.comments = [.example]
+        let item = Item.example(id: 1)
+        hackerNewsServiceMock.itemStub = item
+        hackerNewsServiceMock.commentsStub = [.example, .example]
+
+        // When
+        await sut.onRefreshRequest()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.item, item)
+        XCTAssertEqual(sut.comments, [.example, .example])
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        XCTAssertEqual(hackerNewsServiceMock.commentsCallCount, 1)
     }
 }
 

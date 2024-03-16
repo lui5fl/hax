@@ -68,6 +68,9 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
         .onAppear {
             model.onViewAppear()
         }
+        .refreshable {
+            await model.onRefreshRequest()
+        }
         .safari(url: $model.url)
         .toolbar {
             if let url = model.item.url {

@@ -37,27 +37,6 @@ protocol HackerNewsServiceProtocol {
 
     // MARK: Methods
 
-    /// Returns a publisher that resolves to a specific page of comments in an item.
-    ///
-    /// - Parameters:
-    ///   - item: The item to be fetched
-    ///   - page: The page of comments to fetch
-    ///   - pageSize: The size of each page
-    func comments(
-        in item: Item,
-        page: Int,
-        pageSize: Int
-    ) -> AnyPublisher<[Comment], Error>
-
-    /// Returns a publisher that resolves to the item with the specified identifier and its
-    /// corresponding information.
-    ///
-    /// - Parameters:
-    ///   - id: The identifier of the item to be fetched
-    func item(
-        id: Int
-    ) -> AnyPublisher<Item, Error>
-
     /// Fetches a specific page of comments in an item.
     ///
     /// - Parameters:
@@ -112,29 +91,6 @@ final class HackerNewsService: HackerNewsServiceProtocol {
     }()
 
     // MARK: Methods
-
-    func comments(
-        in item: Item,
-        page: Int,
-        pageSize: Int = Constant.itemPageSize
-    ) -> AnyPublisher<[Comment], Error> {
-        let identifiersForPage = item.children
-            .dropFirst(pageSize * (page - 1))
-            .prefix(pageSize)
-
-        return comments(for: Array(identifiersForPage))
-    }
-
-    func item(
-        id: Int
-    ) -> AnyPublisher<Item, Error> {
-        guard let url = Endpoint.item(id).url else {
-            return Fail(error: HackerNewsServiceError.unknown)
-                .eraseToAnyPublisher()
-        }
-
-        return request(url: url)
-    }
 
     func comments(
         in item: Item,
@@ -204,6 +160,29 @@ private extension HackerNewsService {
     }
 
     // MARK: Methods
+
+    func comments(
+        in item: Item,
+        page: Int,
+        pageSize: Int = Constant.itemPageSize
+    ) -> AnyPublisher<[Comment], Error> {
+        let identifiersForPage = item.children
+            .dropFirst(pageSize * (page - 1))
+            .prefix(pageSize)
+
+        return comments(for: Array(identifiersForPage))
+    }
+
+    func item(
+        id: Int
+    ) -> AnyPublisher<Item, Error> {
+        guard let url = Endpoint.item(id).url else {
+            return Fail(error: HackerNewsServiceError.unknown)
+                .eraseToAnyPublisher()
+        }
+
+        return request(url: url)
+    }
 
     func items(
         in feed: Feed,

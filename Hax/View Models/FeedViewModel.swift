@@ -140,8 +140,7 @@ private extension FeedViewModel {
         } catch {
             self.error = error
         }
-        if isLoading {
-            isLoading = false
-        }
+
+        isLoading = false
     }
 }
