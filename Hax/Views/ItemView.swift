@@ -42,18 +42,18 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                     CommentRowView(
                         model: CommentRowViewModel(
                             comment: comment,
-                            onLinkTap: { url in
-                                model.url = IdentifiableURL(url)
-                            }
-                        )
+                            item: model.item
+                        ) { url in
+                            model.url = IdentifiableURL(url)
+                        }
                     )
-                        .id(comment)
-                        .onAppear {
-                            model.onCommentAppear(comment: comment)
-                        }
-                        .onTapGesture {
-                            model.onCommentTap(comment: comment)
-                        }
+                    .id(comment)
+                    .onAppear {
+                        model.onCommentAppear(comment: comment)
+                    }
+                    .onTapGesture {
+                        model.onCommentTap(comment: comment)
+                    }
                 }
             }
         }

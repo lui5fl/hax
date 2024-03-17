@@ -19,15 +19,30 @@ final class CommentRowViewModelTests: XCTestCase {
 
         // When
         let sut = CommentRowViewModel(
-            comment: .example,
-            onLinkTap: { _ in
-                onLinkTapCallCount += 1
-            }
-        )
+            comment: Comment(item: Item(author: "1")),
+            item: Item(author: "2")
+        ) { _ in
+            onLinkTapCallCount += 1
+        }
         sut.onLinkTap?(url)
 
         // Then
         XCTAssertEqual(sut.comment, .example)
         XCTAssertEqual(onLinkTapCallCount, 1)
+        XCTAssertFalse(sut.shouldHighlightAuthor)
+    }
+
+    func testShouldHighlightAuthor_givenCommentAuthorIsEqualToItemAuthor() {
+        // Given
+        let author = "example"
+        let comment = Comment(item: Item(author: author))
+        let item = Item(author: author)
+        let sut = CommentRowViewModel(comment: comment, item: item)
+
+        // When
+        let shouldHighlightAuthor = sut.shouldHighlightAuthor
+
+        // Then
+        XCTAssert(shouldHighlightAuthor)
     }
 }

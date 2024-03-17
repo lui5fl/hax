@@ -7,6 +7,8 @@
 
 struct Comment: Hashable {
 
+    // MARK: Properties
+
     /// The item corresponding to the comment.
     let item: Item
 
@@ -14,10 +16,24 @@ struct Comment: Hashable {
     let depth: Int
 
     /// Whether the comment is collapsed in the item view.
-    var isCollapsed = false
+    var isCollapsed: Bool
 
     /// Whether the comment is hidden in the item view.
-    var isHidden = false
+    var isHidden: Bool
+
+    // MARK: Initialization
+
+    init(
+        item: Item,
+        depth: Int = .zero,
+        isCollapsed: Bool = false,
+        isHidden: Bool = false
+    ) {
+        self.item = item
+        self.depth = depth
+        self.isCollapsed = isCollapsed
+        self.isHidden = isHidden
+    }
 }
 
 // MARK: - Equatable
