@@ -25,7 +25,7 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                         in: .item,
                         item: model.item,
                         onLinkTap: { url in
-                            model.url = IdentifiableURL(url)
+                            model.onCommentLinkTap(url: url)
                         }
                     )
                 )
@@ -44,7 +44,7 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                             comment: comment,
                             item: model.item
                         ) { url in
-                            model.url = IdentifiableURL(url)
+                            model.onCommentLinkTap(url: url)
                         }
                     )
                     .id(comment)
@@ -60,6 +60,10 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
         .alert(error: $model.error)
         .listStyle(.plain)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(item: $model.secondaryItem) { item in
+            ItemView<ItemViewModel>(model: ItemViewModel(item: item))
+                .toolbarRole(.editor)
+        }
         .navigationTitle(model.title)
         .onAppear {
             model.onViewAppear()
