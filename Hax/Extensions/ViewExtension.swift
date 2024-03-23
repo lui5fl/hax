@@ -36,6 +36,25 @@ extension View {
         )
     }
 
+    /// Wraps the view in a navigation stack and adds a dismiss button to the navigation bar.
+    ///
+    /// - Parameters:
+    ///   - item: A binding to the source of truth for the sheet
+    func dismissable<Item>(item: Binding<Item?>) -> some View {
+        NavigationStack {
+            self
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            item.wrappedValue = nil
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                    }
+                }
+        }
+    }
+
     /// Presents a `SFSafariViewController` instance if the provided URL is
     /// different from nil.
     ///

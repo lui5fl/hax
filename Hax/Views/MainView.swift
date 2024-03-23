@@ -19,7 +19,8 @@ struct MainView<Model: MainViewModelProtocol>: View {
         NavigationStack {
             MenuView(
                 model: MenuViewModel(),
-                selectedFeed: $model.selectedFeed
+                selectedFeed: $model.selectedFeed,
+                presentedItem: $model.presentedItem
             )
             .navigationDestination(item: $model.selectedFeed) { feed in
                 FeedView(
@@ -30,6 +31,10 @@ struct MainView<Model: MainViewModelProtocol>: View {
                     ItemView(model: ItemViewModel(item: item))
                 }
             }
+        }
+        .fullScreenCover(item: $model.presentedItem) { item in
+            ItemView(model: ItemViewModel(item: item))
+                .dismissable(item: $model.presentedItem)
         }
     }
 }

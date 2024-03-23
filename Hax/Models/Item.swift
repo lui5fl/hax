@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item: Hashable {
+struct Item: Hashable, Identifiable {
 
     // MARK: Types
 

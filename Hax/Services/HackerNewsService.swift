@@ -14,15 +14,15 @@ enum HackerNewsServiceError: LocalizedError {
 
     case network, unknown
 
-    // MARK: LocalizedError
+    // MARK: Properties
 
     var errorDescription: String? {
         let errorDescription: String
         switch self {
         case .network:
-            errorDescription = "Network error"
+            errorDescription = "Network Error"
         case .unknown:
-            errorDescription = "Unknown error"
+            errorDescription = "Unknown Error"
         }
 
         return errorDescription

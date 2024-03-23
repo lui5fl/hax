@@ -13,6 +13,7 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
 
     @StateObject var model: Model
     @Binding private(set) var selectedFeed: Feed?
+    @Binding private(set) var presentedItem: Item?
 
     // MARK: Body
 
@@ -29,12 +30,36 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
                 }
             }
             Section {
+                Button {
+                    model.openHackerNewsLinkAlertIsPresented = true
+                } label: {
+                    Label(
+                        "Open Hacker News Link",
+                        systemImage: "link"
+                    )
+                }
                 NavigationLink {
                     SettingsView(model: SettingsViewModel())
                 } label: {
                     Label("Settings", systemImage: "gearshape")
                 }
             }
+        }
+        .alert(error: $model.error)
+        .alert(
+            "Open Hacker News Link",
+            isPresented: $model.openHackerNewsLinkAlertIsPresented
+        ) {
+            TextField("", text: $model.openHackerNewsLinkAlertText)
+            Button("Cancel") {
+                model.openHackerNewsLinkAlertText = ""
+            }
+            Button("OK") {
+                presentedItem = model.itemForHackerNewsLink()
+            }
+            .keyboardShortcut(.defaultAction)
+        } message: {
+            Text("Input a valid Hacker News link into the text field.")
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Feeds")
@@ -47,7 +72,8 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
     NavigationStack {
         MenuView(
             model: MenuViewModel(),
-            selectedFeed: .constant(nil)
+            selectedFeed: .constant(nil),
+            presentedItem: .constant(nil)
         )
     }
 }
