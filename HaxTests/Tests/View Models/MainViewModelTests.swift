@@ -37,6 +37,8 @@ final class MainViewModelTests: XCTestCase {
 
     func testInit() {
         XCTAssertEqual(sut.selectedFeed, .best)
+        XCTAssertNil(sut.selectedItem)
+        XCTAssertNil(sut.presentedItem)
         XCTAssertEqual(
             defaultFeedServiceMock.defaultFeedCallCount,
             1

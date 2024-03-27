@@ -17,6 +17,9 @@ protocol MainViewModelProtocol: ObservableObject {
 
     /// The selected item.
     var selectedItem: Item? { get set }
+
+    /// The presented item.
+    var presentedItem: Item? { get set }
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -25,6 +28,7 @@ final class MainViewModel: MainViewModelProtocol {
 
     @Published var selectedFeed: Feed?
     @Published var selectedItem: Item?
+    @Published var presentedItem: Item?
 
     // MARK: Initialization
 
