@@ -22,6 +22,9 @@ protocol ItemViewModelProtocol: ObservableObject {
     /// The item whose information and comments are to be displayed on the view.
     var item: Item { get }
 
+    /// The item corresponding to a Hacker News link in a comment.
+    var secondaryItem: Item? { get set }
+
     /// The array of comments to display in the list.
     var comments: [Comment] { get }
 
@@ -41,6 +44,9 @@ protocol ItemViewModelProtocol: ObservableObject {
 
     /// Called when a comment is tapped.
     func onCommentTap(comment: Comment)
+
+    /// Called when a link in a comment is tapped.
+    func onCommentLinkTap(url: URL)
 }
 
 class ItemViewModel: ItemViewModelProtocol {
@@ -50,6 +56,7 @@ class ItemViewModel: ItemViewModelProtocol {
     @Published var isLoading = true
     @Published var error: Error?
     @Published var item: Item
+    @Published var secondaryItem: Item?
     @Published var comments: [Comment] = []
     @Published var url: IdentifiableURL?
 
@@ -64,6 +71,12 @@ class ItemViewModel: ItemViewModelProtocol {
     /// The service to use for fetching Hacker News data.
     private let hackerNewsService: HackerNewsServiceProtocol
 
+    /// The service to use to search for regular expressions.
+    private let regexService: RegexServiceProtocol
+
+    /// Whether the view has already appeared once.
+    private var viewHasAppearedOnce = false
+
     /// The page of comments to be fetched.
     private var page = 1
 
@@ -77,15 +90,23 @@ class ItemViewModel: ItemViewModelProtocol {
 
     init(
         item: Item,
-        hackerNewsService: HackerNewsServiceProtocol = HackerNewsService.shared
+        hackerNewsService: HackerNewsServiceProtocol = HackerNewsService.shared,
+        regexService: RegexServiceProtocol = RegexService()
     ) {
         self.item = item
         self.hackerNewsService = hackerNewsService
+        self.regexService = regexService
     }
 
     // MARK: Methods
 
     func onViewAppear() {
+        guard !viewHasAppearedOnce else {
+            return
+        }
+
+        viewHasAppearedOnce = true
+
         hackerNewsService.item(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(
@@ -135,6 +156,14 @@ class ItemViewModel: ItemViewModelProtocol {
 
         comments = allComments.filter {
             !$0.isHidden
+        }
+    }
+
+    func onCommentLinkTap(url: URL) {
+        if let itemID = regexService.itemID(url: url) {
+            secondaryItem = Item(id: itemID)
+        } else {
+            self.url = IdentifiableURL(url)
         }
     }
 }

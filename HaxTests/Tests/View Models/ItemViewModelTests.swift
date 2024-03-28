@@ -16,6 +16,7 @@ final class ItemViewModelTests: XCTestCase {
 
     private var sut: ItemViewModel!
     private var hackerNewsServiceMock: HackerNewsServiceMock!
+    private var regexServiceMock: RegexServiceMock!
     private var cancellables: Set<AnyCancellable>!
 
     // MARK: Set up and tear down
@@ -24,9 +25,11 @@ final class ItemViewModelTests: XCTestCase {
         try super.setUpWithError()
 
         hackerNewsServiceMock = HackerNewsServiceMock()
+        regexServiceMock = RegexServiceMock()
         sut = ItemViewModel(
             item: .example,
-            hackerNewsService: hackerNewsServiceMock
+            hackerNewsService: hackerNewsServiceMock,
+            regexService: regexServiceMock
         )
         cancellables = []
     }
@@ -45,6 +48,7 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssert(sut.isLoading)
         XCTAssertNil(sut.error)
         XCTAssertEqual(sut.item, .example)
+        XCTAssertNil(sut.secondaryItem)
         XCTAssertEqual(sut.comments, [])
         XCTAssertNil(sut.url)
         XCTAssertEqual(sut.title, "98 comments")
@@ -104,6 +108,15 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(sut.comments, [.example])
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
         XCTAssertEqual(hackerNewsServiceMock.commentsCallCount, 1)
+    }
+
+    func testOnViewAppear_whenCalledTwice() {
+        // When
+        sut.onViewAppear()
+        sut.onViewAppear()
+
+        // Then
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
     }
 
     func testOnCommentAppear_givenCommentsRequestFails() {
@@ -207,6 +220,33 @@ final class ItemViewModelTests: XCTestCase {
                 .example(id: 3, depth: 1)
             ]
         )
+    }
+
+    func testOnCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifier() throws {
+        // Given
+        let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
+
+        // When
+        sut.onCommentLinkTap(url: url)
+
+        // Then
+        XCTAssertNil(sut.secondaryItem)
+        XCTAssertEqual(sut.url?.url, url)
+        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+    }
+
+    func testOnCommentLinkTap_givenLinkContainsHackerNewsItemIdentifier() throws {
+        // Given
+        regexServiceMock.itemIDStub = 1
+        let url = try XCTUnwrap(URL(string: "news.ycombinator.com/item?id=1"))
+
+        // When
+        sut.onCommentLinkTap(url: url)
+
+        // Then
+        XCTAssertEqual(sut.secondaryItem?.id, 1)
+        XCTAssertNil(sut.url)
+        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
     }
 }
 
