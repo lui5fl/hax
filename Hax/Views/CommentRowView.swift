@@ -43,8 +43,7 @@ struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
                         .environment(
                             \.openURL,
                              OpenURLAction { url in
-                                 model.onLinkTap?(url)
-                                 return .handled
+                                 model.onLinkTap?(url) ?? .systemAction
                              }
                         )
                 }
@@ -100,14 +99,14 @@ private struct PreviewCommentRowViewModel: CommentRowViewModelProtocol {
     // MARK: Properties
 
     let comment: Comment
-    let onLinkTap: ((URL) -> Void)?
+    let onLinkTap: ((URL) -> OpenURLAction.Result)?
     let shouldHighlightAuthor: Bool
 
     // MARK: Initialization
 
     init(
         comment: Comment = .example,
-        onLinkTap: ((URL) -> Void)? = nil,
+        onLinkTap: ((URL) -> OpenURLAction.Result)? = nil,
         shouldHighlightAuthor: Bool = false
     ) {
         self.comment = comment

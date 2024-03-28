@@ -6,7 +6,7 @@
 //
 
 import Combine
-import UIKit
+import SwiftUI
 
 @MainActor
 protocol ItemViewModelProtocol: ObservableObject {
@@ -46,7 +46,7 @@ protocol ItemViewModelProtocol: ObservableObject {
     func onCommentTap(comment: Comment)
 
     /// Called when a link in a comment is tapped.
-    func onCommentLinkTap(url: URL)
+    func onCommentLinkTap(url: URL) -> OpenURLAction.Result
 }
 
 class ItemViewModel: ItemViewModelProtocol {
@@ -159,11 +159,15 @@ class ItemViewModel: ItemViewModelProtocol {
         }
     }
 
-    func onCommentLinkTap(url: URL) {
+    func onCommentLinkTap(url: URL) -> OpenURLAction.Result {
         if let itemID = regexService.itemID(url: url) {
             secondaryItem = Item(id: itemID)
-        } else {
+            return .handled
+        } else if url.scheme?.hasPrefix("http") == true {
             self.url = IdentifiableURL(url)
+            return .handled
+        } else {
+            return .systemAction
         }
     }
 }

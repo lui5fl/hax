@@ -39,8 +39,7 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
                             .environment(
                                 \.openURL,
                                  OpenURLAction { url in
-                                     model.onLinkTap?(url)
-                                     return .handled
+                                     model.onLinkTap?(url) ?? .systemAction
                                  }
                             )
                             .font(.subheadline)

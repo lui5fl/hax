@@ -5,7 +5,7 @@
 //  Created by Luis Fariña on 27/5/22.
 //
 
-import Foundation
+import SwiftUI
 
 enum ItemRowViewModelView: CaseIterable {
 
@@ -46,7 +46,7 @@ protocol ItemRowViewModelProtocol {
     var onNumberOfCommentsTap: (() -> Void)? { get }
 
     /// The action to be carried out when tapping a link in the body of the item.
-    var onLinkTap: ((URL) -> Void)? { get }
+    var onLinkTap: ((URL) -> OpenURLAction.Result)? { get }
 
     /// Whether the index of the item should be displayed.
     var shouldDisplayIndex: Bool { get }
@@ -72,7 +72,7 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
     let index: Int
     let item: Item
     let onNumberOfCommentsTap: (() -> Void)?
-    let onLinkTap: ((URL) -> Void)?
+    let onLinkTap: ((URL) -> OpenURLAction.Result)?
 
     var shouldDisplayIndex: Bool {
         view == .feed
@@ -101,7 +101,7 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         index: Int = 1,
         item: Item,
         onNumberOfCommentsTap: (() -> Void)? = nil,
-        onLinkTap: ((URL) -> Void)? = nil
+        onLinkTap: ((URL) -> OpenURLAction.Result)? = nil
     ) {
         self.view = view
         self.index = index
