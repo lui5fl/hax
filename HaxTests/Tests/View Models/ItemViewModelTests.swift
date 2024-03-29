@@ -222,12 +222,25 @@ final class ItemViewModelTests: XCTestCase {
         )
     }
 
-    func testOnCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifier() throws {
+    func testOnCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifierAndSchemeDoesNotStartWithHTTP() throws {
+        // Given
+        let url = try XCTUnwrap(URL(string: "example@example.com"))
+
+        // When
+        _ = sut.onCommentLinkTap(url: url)
+
+        // Then
+        XCTAssertNil(sut.secondaryItem)
+        XCTAssertNil(sut.url)
+        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+    }
+
+    func testOnCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifierAndSchemeStartsWithHTTP() throws {
         // Given
         let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
 
         // When
-        sut.onCommentLinkTap(url: url)
+        _ = sut.onCommentLinkTap(url: url)
 
         // Then
         XCTAssertNil(sut.secondaryItem)
@@ -241,7 +254,7 @@ final class ItemViewModelTests: XCTestCase {
         let url = try XCTUnwrap(URL(string: "news.ycombinator.com/item?id=1"))
 
         // When
-        sut.onCommentLinkTap(url: url)
+        _ = sut.onCommentLinkTap(url: url)
 
         // Then
         XCTAssertEqual(sut.secondaryItem?.id, 1)

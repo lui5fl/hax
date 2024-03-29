@@ -5,7 +5,7 @@
 //  Created by Luis Fariña on 20/6/22.
 //
 
-import Foundation
+import SwiftUI
 
 protocol CommentRowViewModelProtocol {
 
@@ -15,7 +15,7 @@ protocol CommentRowViewModelProtocol {
     var comment: Comment { get }
 
     /// The action to be carried out when tapping a link in the body of the comment.
-    var onLinkTap: ((URL) -> Void)? { get }
+    var onLinkTap: ((URL) -> OpenURLAction.Result)? { get }
 
     /// Whether the author of the comment should be highlighted.
     var shouldHighlightAuthor: Bool { get }
@@ -26,7 +26,7 @@ struct CommentRowViewModel: CommentRowViewModelProtocol {
     // MARK: Properties
 
     let comment: Comment
-    let onLinkTap: ((URL) -> Void)?
+    let onLinkTap: ((URL) -> OpenURLAction.Result)?
     let shouldHighlightAuthor: Bool
 
     // MARK: Initialization
@@ -34,7 +34,7 @@ struct CommentRowViewModel: CommentRowViewModelProtocol {
     init(
         comment: Comment,
         item: Item,
-        onLinkTap: ((URL) -> Void)? = nil
+        onLinkTap: ((URL) -> OpenURLAction.Result)? = nil
     ) {
         self.comment = comment
         self.onLinkTap = onLinkTap

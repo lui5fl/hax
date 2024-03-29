@@ -56,10 +56,12 @@ final class ItemRowViewModelTests: XCTestCase {
             },
             onLinkTap: { _ in
                 onLinkTapCallCount += 1
+
+                return .handled
             }
         )
         sut.onNumberOfCommentsTap?()
-        sut.onLinkTap?(url)
+        _ = sut.onLinkTap?(url)
 
         // Then
         XCTAssertEqual(sut.view, .feed)

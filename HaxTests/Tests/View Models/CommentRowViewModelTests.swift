@@ -23,8 +23,10 @@ final class CommentRowViewModelTests: XCTestCase {
             item: Item(author: "2")
         ) { _ in
             onLinkTapCallCount += 1
+
+            return .handled
         }
-        sut.onLinkTap?(url)
+        _ = sut.onLinkTap?(url)
 
         // Then
         XCTAssertEqual(sut.comment, .example)
