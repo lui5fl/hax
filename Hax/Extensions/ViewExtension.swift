@@ -40,6 +40,7 @@ extension View {
     ///
     /// - Parameters:
     ///   - item: A binding to the source of truth for the sheet
+    @MainActor
     func dismissable<Item>(item: Binding<Item?>) -> some View {
         NavigationStack {
             self

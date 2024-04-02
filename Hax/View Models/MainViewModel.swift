@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-protocol MainViewModelProtocol: ObservableObject {
+protocol MainViewModelProtocol {
 
     // MARK: Properties
 
@@ -22,13 +22,14 @@ protocol MainViewModelProtocol: ObservableObject {
     var presentedItem: Item? { get set }
 }
 
+@Observable
 final class MainViewModel: MainViewModelProtocol {
 
     // MARK: Properties
 
-    @Published var selectedFeed: Feed?
-    @Published var selectedItem: Item?
-    @Published var presentedItem: Item?
+    var selectedFeed: Feed?
+    var selectedItem: Item?
+    var presentedItem: Item?
 
     // MARK: Initialization
 

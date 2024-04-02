@@ -11,7 +11,7 @@ struct MainView<Model: MainViewModelProtocol>: View {
 
     // MARK: Properties
 
-    @StateObject var model: Model
+    @State var model: Model
 
     // MARK: Body
 
@@ -35,6 +35,7 @@ struct MainView<Model: MainViewModelProtocol>: View {
         .fullScreenCover(item: $model.presentedItem) { item in
             ItemView(model: ItemViewModel(item: item))
                 .dismissable(item: $model.presentedItem)
+                .id(item)
         }
     }
 }

@@ -25,7 +25,10 @@ final class RegexService: RegexServiceProtocol {
 
     private lazy var itemIDPattern = {
         Regex {
-            "news.ycombinator.com/item?id="
+            ChoiceOf {
+                "hax://item/"
+                "news.ycombinator.com/item?id="
+            }
             Capture {
                 OneOrMore(.digit)
             }

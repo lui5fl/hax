@@ -47,6 +47,33 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
 
         return publisher(stub: itemsStub)
     }
+
+    func comments(
+        in item: Item,
+        page: Int,
+        pageSize: Int
+    ) async throws -> [Comment] {
+        commentsCallCount += 1
+
+        return try stubOrError(commentsStub)
+    }
+
+    func item(id: Int) async throws -> Item {
+        itemCallCount += 1
+
+        return try stubOrError(itemStub)
+    }
+
+    func items(
+        in feed: Feed,
+        page: Int,
+        pageSize: Int,
+        resetCache: Bool
+    ) async throws -> [Item] {
+        itemsCallCount += 1
+
+        return try stubOrError(itemsStub)
+    }
 }
 
 // MARK: - Private extension
@@ -64,5 +91,13 @@ private extension HackerNewsServiceMock {
         return Just(stub)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
+    }
+
+    func stubOrError<T>(_ stub: T?) throws -> T {
+        guard let stub else {
+            throw HackerNewsServiceError.network
+        }
+
+        return stub
     }
 }

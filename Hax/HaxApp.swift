@@ -7,14 +7,24 @@
 
 import SwiftUI
 
+@MainActor
 @main
 struct HaxApp: App {
+
+    // MARK: Properties
+
+    @State private var mainViewModel = MainViewModel()
 
     // MARK: Body
 
     var body: some Scene {
         WindowGroup {
-            MainView(model: MainViewModel())
+            MainView(model: mainViewModel)
+                .onOpenURL { url in
+                    if let itemID = RegexService().itemID(url: url) {
+                        mainViewModel.presentedItem = Item(id: itemID)
+                    }
+                }
         }
     }
 }
