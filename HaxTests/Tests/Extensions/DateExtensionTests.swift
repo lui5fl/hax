@@ -56,9 +56,9 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertEqual(elapsedTimeString, "1d")
     }
 
-    func testElapsedTimeString_givenElapsedTimeIs30Days() throws {
+    func testElapsedTimeString_givenElapsedTimeIs31Days() throws {
         // Given
-        let sut = try currentDate(adding: .day, value: -30)
+        let sut = try currentDate(adding: .day, value: -31)
 
         // When
         let elapsedTimeString = sut.elapsedTimeString()
