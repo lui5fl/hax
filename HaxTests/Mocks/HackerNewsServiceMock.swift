@@ -25,22 +25,6 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
         in item: Item,
         page: Int,
         pageSize: Int
-    ) -> AnyPublisher<[Comment], Error> {
-        commentsCallCount += 1
-
-        return publisher(stub: commentsStub)
-    }
-
-    func item(id: Int) -> AnyPublisher<Item, Error> {
-        itemCallCount += 1
-
-        return publisher(stub: itemStub)
-    }
-
-    func comments(
-        in item: Item,
-        page: Int,
-        pageSize: Int
     ) async throws -> [Comment] {
         commentsCallCount += 1
 
@@ -70,17 +54,6 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
 private extension HackerNewsServiceMock {
 
     // MARK: Methods
-
-    func publisher<T>(stub: T?) -> AnyPublisher<T, Error> {
-        guard let stub else {
-            return Fail(error: HackerNewsServiceError.network)
-                .eraseToAnyPublisher()
-        }
-
-        return Just(stub)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
 
     func stubOrError<T>(_ stub: T?) throws -> T {
         guard let stub else {

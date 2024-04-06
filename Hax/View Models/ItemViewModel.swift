@@ -47,6 +47,9 @@ protocol ItemViewModelProtocol: ObservableObject {
 
     /// Called when a link in a comment is tapped.
     func onCommentLinkTap(url: URL) -> OpenURLAction.Result
+
+    /// Called when the user requests a refresh.
+    func onRefreshRequest() async
 }
 
 class ItemViewModel: ItemViewModelProtocol {
@@ -78,13 +81,10 @@ class ItemViewModel: ItemViewModelProtocol {
     private var viewHasAppearedOnce = false
 
     /// The page of comments to be fetched.
-    private var page = 1
+    private var page = Constant.initialPage
 
     /// The array of comments that have been fetched for now.
     private var allComments: [Comment] = []
-
-    /// The set of subscribers to the requests of the item and its comments.
-    private var cancellables: Set<AnyCancellable> = []
 
     // MARK: Initialization
 
@@ -107,23 +107,9 @@ class ItemViewModel: ItemViewModelProtocol {
 
         viewHasAppearedOnce = true
 
-        hackerNewsService.item(id: item.id)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    switch completion {
-                    case .finished:
-                        self?.fetchComments()
-                    case .failure(let error):
-                        self?.isLoading = false
-                        self?.error = error
-                    }
-                },
-                receiveValue: { [weak self] value in
-                    self?.item = value
-                }
-            )
-            .store(in: &cancellables)
+        Task {
+            await fetchItem()
+        }
     }
 
     func onCommentAppear(comment: Comment) {
@@ -132,7 +118,10 @@ class ItemViewModel: ItemViewModelProtocol {
         }
 
         page += 1
-        fetchComments()
+
+        Task {
+            await fetchComments()
+        }
     }
 
     func onCommentTap(comment: Comment) {
@@ -170,35 +159,60 @@ class ItemViewModel: ItemViewModelProtocol {
             return .systemAction
         }
     }
+
+    func onRefreshRequest() async {
+        await fetchItem()
+    }
 }
 
 // MARK: - Private extension
 
 private extension ItemViewModel {
 
+    // MARK: Types
+
+    enum Constant {
+        static let initialPage = 1
+    }
+
+    // MARK: Methods
+
+    /// Fetches the item.
+    func fetchItem() async {
+        do {
+            item = try await hackerNewsService.item(id: item.id)
+            await fetchComments(resetCache: true)
+        } catch {
+            isLoading = false
+            self.error = error
+        }
+    }
+
     /// Fetches the current page of comments in the item.
-    func fetchComments() {
-        hackerNewsService.comments(
-            in: item,
-            page: page,
-            pageSize: 5
-        )
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    self?.isLoading = false
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self?.error = error
-                    }
-                },
-                receiveValue: { [weak self] value in
-                    self?.comments += value
-                    self?.allComments += value
-                }
+    ///
+    /// - Parameters:
+    ///   - resetCache: Whether the cached items should be cleared
+    func fetchComments(resetCache: Bool = false) async {
+        do {
+            if resetCache {
+                page = Constant.initialPage
+            }
+            let comments = try await hackerNewsService.comments(
+                in: item,
+                page: page,
+                pageSize: 5
             )
-            .store(in: &cancellables)
+            if resetCache {
+                self.comments = comments
+                allComments = comments
+            } else {
+                self.comments += comments
+                allComments += comments
+            }
+        } catch {
+            self.error = error
+        }
+
+        isLoading = false
     }
 }
