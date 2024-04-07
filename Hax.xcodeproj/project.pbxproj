@@ -16,6 +16,9 @@
 		A01F70F329520CE100395B2A /* AppVersionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70F229520CE100395B2A /* AppVersionServiceTests.swift */; };
 		A01F70F529520FD600395B2A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70F429520FD600395B2A /* SettingsViewModelTests.swift */; };
 		A01F70F7295213B800395B2A /* AppVersionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70F6295213B800395B2A /* AppVersionServiceMock.swift */; };
+		A025292F2BC31A7B009FAAB2 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025292E2BC31A7B009FAAB2 /* ShareView.swift */; };
+		A02529312BC31C8B009FAAB2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02529302BC31C8B009FAAB2 /* Constant.swift */; };
+		A02529322BC31CC7009FAAB2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02529302BC31C8B009FAAB2 /* Constant.swift */; };
 		A03FDF672AB74E5A00127AB6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */; };
 		A03FDF692AB74E5A00127AB6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */; };
 		A03FDF6C2AB74E5A00127AB6 /* HaxWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF6B2AB74E5A00127AB6 /* HaxWidgetBundle.swift */; };
@@ -138,6 +141,8 @@
 		A01F70F229520CE100395B2A /* AppVersionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionServiceTests.swift; sourceTree = "<group>"; };
 		A01F70F429520FD600395B2A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		A01F70F6295213B800395B2A /* AppVersionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionServiceMock.swift; sourceTree = "<group>"; };
+		A025292E2BC31A7B009FAAB2 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		A02529302BC31C8B009FAAB2 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HaxWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -475,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				A0F4DB0428D4EA3F006CD8E7 /* Comment.swift */,
+				A02529302BC31C8B009FAAB2 /* Constant.swift */,
 				A0F4DB0728D4EA3F006CD8E7 /* Feed.swift */,
 				A0F4DB0628D4EA3F006CD8E7 /* IdentifiableURL.swift */,
 				A0F4DB0528D4EA3F006CD8E7 /* Item.swift */,
@@ -508,6 +514,7 @@
 				A0F4DB1828D4EA3F006CD8E7 /* MenuView.swift */,
 				A0F4DB1028D4EA3F006CD8E7 /* SafariView.swift */,
 				A0F4DB1228D4EA3F006CD8E7 /* SettingsView.swift */,
+				A025292E2BC31A7B009FAAB2 /* ShareView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -722,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A07D1C0A2AD323A90081FBE8 /* HackerNewsService.swift in Sources */,
+				A02529322BC31CC7009FAAB2 /* Constant.swift in Sources */,
 				A096CE0C2AB9E741002B70BE /* Item.swift in Sources */,
 				A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */,
 				A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */,
@@ -745,6 +753,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0F4DB2428D4EA3F006CD8E7 /* FeedViewModel.swift in Sources */,
+				A02529312BC31C8B009FAAB2 /* Constant.swift in Sources */,
 				A0F4DB2C28D4EA3F006CD8E7 /* FeedView.swift in Sources */,
 				A0F4DB1E28D4EA3F006CD8E7 /* Feed.swift in Sources */,
 				A0F4DB2E28D4EA3F006CD8E7 /* HackerNewsService.swift in Sources */,
@@ -756,6 +765,7 @@
 				A0DEE10D2AB6F7F5000918CB /* AnyPublisherExtension.swift in Sources */,
 				A0F4DB0128D4EA25006CD8E7 /* DateExtension.swift in Sources */,
 				A064ABAD28D3ADA500572ADD /* HaxApp.swift in Sources */,
+				A025292F2BC31A7B009FAAB2 /* ShareView.swift in Sources */,
 				A0F4DAFF28D4EA25006CD8E7 /* StringExtension.swift in Sources */,
 				A0F4DB1B28D4EA3F006CD8E7 /* Comment.swift in Sources */,
 				A0F4DB2B28D4EA3F006CD8E7 /* ActivityIndicatorView.swift in Sources */,

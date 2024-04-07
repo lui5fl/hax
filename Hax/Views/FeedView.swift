@@ -40,9 +40,10 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
                         )
                     }
                     .contextMenu {
-                        if let url = item.url {
-                            ShareLink(item: url)
-                        }
+                        ShareView(
+                            url: item.url,
+                            hackerNewsURL: item.hackerNewsURL
+                        )
                     }
                     .onAppear {
                         model.onItemAppear(item: item)

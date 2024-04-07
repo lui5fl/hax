@@ -62,6 +62,9 @@ struct Item: Hashable, Identifiable {
     /// The elapsed time between the date of the item and the current date, as a string.
     let elapsedTimeString: String?
 
+    /// The URL for the item's discussion on Hacker News.
+    let hackerNewsURL: URL?
+
     // MARK: Initialization
 
     init(
@@ -94,6 +97,7 @@ struct Item: Hashable, Identifiable {
         markdownBody = body?.htmlToMarkdown()
         urlSimpleString = url?.simpleString()
         elapsedTimeString = date?.elapsedTimeString()
+        hackerNewsURL = URL(string: "https://\(Constant.hackerNewsItemURLString)\(id)")
     }
 }
 

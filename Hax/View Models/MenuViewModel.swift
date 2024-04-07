@@ -90,7 +90,7 @@ private enum MenuViewModelError: LocalizedError {
             recoverySuggestion = """
             The link should be similar to the following one:
 
-            news.ycombinator.com/item?id=1
+            \(Constant.hackerNewsItemURLString)1
             """
         }
 

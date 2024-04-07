@@ -73,9 +73,10 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
         }
         .safari(url: $model.url)
         .toolbar {
-            if let url = model.item.url {
-                ShareLink(item: url)
-            }
+            ShareView(
+                url: model.item.url,
+                hackerNewsURL: model.item.hackerNewsURL
+            )
         }
     }
 }

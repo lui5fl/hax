@@ -27,7 +27,7 @@ final class RegexService: RegexServiceProtocol {
         Regex {
             ChoiceOf {
                 "hax://item/"
-                "news.ycombinator.com/item?id="
+                Constant.hackerNewsItemURLString
             }
             Capture {
                 OneOrMore(.digit)
