@@ -39,6 +39,10 @@ final class ItemTests: XCTestCase {
         XCTAssertEqual(sut.score, 42)
         XCTAssertEqual(sut.title, "This is the title")
         XCTAssertEqual(sut.descendants, 98)
+        XCTAssertEqual(
+            sut.hackerNewsURL,
+            URL(string: "https://news.ycombinator.com/item?id=9")
+        )
     }
 
     func testInitFromDecoder_givenJSONWithoutOptionalProperties() throws {
@@ -61,6 +65,10 @@ final class ItemTests: XCTestCase {
         XCTAssertNil(sut.score)
         XCTAssertNil(sut.title)
         XCTAssertNil(sut.descendants)
+        XCTAssertEqual(
+            sut.hackerNewsURL,
+            URL(string: "https://news.ycombinator.com/item?id=9")
+        )
     }
 }
 
