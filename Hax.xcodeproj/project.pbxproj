@@ -44,6 +44,8 @@
 		A06788A02953294800AA7BE0 /* IdentifiableURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067889F2953294800AA7BE0 /* IdentifiableURLTests.swift */; };
 		A06788A22953300100AA7BE0 /* BundleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06788A12953300100AA7BE0 /* BundleMock.swift */; };
 		A06788A429538C4C00AA7BE0 /* HackerNewsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06788A329538C4C00AA7BE0 /* HackerNewsServiceMock.swift */; };
+		A068D6B12BC57D740061E192 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A068D6B02BC57D740061E192 /* Localizable.xcstrings */; };
+		A068D6B32BC57E8B0061E192 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A068D6B02BC57D740061E192 /* Localizable.xcstrings */; };
 		A07D1C0A2AD323A90081FBE8 /* HackerNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB1A28D4EA3F006CD8E7 /* HackerNewsService.swift */; };
 		A07D1C0B2AD323B20081FBE8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0428D4EA3F006CD8E7 /* Comment.swift */; };
 		A07D1C0C2AD323C30081FBE8 /* AnyPublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */; };
@@ -173,6 +175,7 @@
 		A067889F2953294800AA7BE0 /* IdentifiableURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableURLTests.swift; sourceTree = "<group>"; };
 		A06788A12953300100AA7BE0 /* BundleMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleMock.swift; sourceTree = "<group>"; };
 		A06788A329538C4C00AA7BE0 /* HackerNewsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsServiceMock.swift; sourceTree = "<group>"; };
+		A068D6B02BC57D740061E192 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A07FF27A2BB7306D0067B652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModelTests.swift; sourceTree = "<group>"; };
@@ -537,6 +540,7 @@
 				A07FF27A2BB7306D0067B652 /* Info.plist */,
 				A064ABB028D3ADA600572ADD /* Assets.xcassets */,
 				A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */,
+				A068D6B02BC57D740061E192 /* Localizable.xcstrings */,
 				A064ABB328D3ADA600572ADD /* Preview Content */,
 			);
 			path = Resources;
@@ -651,6 +655,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = A064ABA028D3ADA500572ADD;
 			productRefGroup = A064ABAA28D3ADA500572ADD /* Products */;
@@ -670,6 +675,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A068D6B32BC57E8B0061E192 /* Localizable.xcstrings in Resources */,
 				A03FDF702AB74E5B00127AB6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -680,6 +686,7 @@
 			files = (
 				A086E4682BA7755D0075B0AD /* PrivacyInfo.xcprivacy in Resources */,
 				A064ABB528D3ADA600572ADD /* Preview Assets.xcassets in Resources */,
+				A068D6B12BC57D740061E192 /* Localizable.xcstrings in Resources */,
 				A064ABB128D3ADA600572ADD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

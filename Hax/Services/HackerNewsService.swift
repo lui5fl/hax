@@ -20,16 +20,16 @@ enum HackerNewsServiceError: LocalizedError {
         let errorDescription: String
         switch self {
         case .network:
-            errorDescription = "Network Error"
+            errorDescription = String(localized: "Network Error")
         case .unknown:
-            errorDescription = "Unknown Error"
+            errorDescription = String(localized: "Unknown Error")
         }
 
         return errorDescription
     }
 
     var recoverySuggestion: String? {
-        "Try again later."
+        String(localized: "Try again later.")
     }
 }
 
