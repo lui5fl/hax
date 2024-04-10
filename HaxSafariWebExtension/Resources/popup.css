@@ -1,0 +1,26 @@
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    font-family: system-ui;
+    line-height: 1.5;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+h3 {
+    color: #F60;
+}
+
+#app-icon {
+    width: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    body {
+        background-color: #000;
+        color: #FFF;
+    }
+}
