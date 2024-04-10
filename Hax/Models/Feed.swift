@@ -62,17 +62,17 @@ enum Feed: String, CaseIterable {
         let title: String
         switch self {
         case .top:
-            title = "Top"
+            title = String(localized: "Top")
         case .new:
-            title = "New"
+            title = String(localized: "New")
         case .best:
-            title = "Best"
+            title = String(localized: "Best")
         case .ask:
-            title = "Ask"
+            title = String(localized: "Ask")
         case .show:
-            title = "Show"
+            title = String(localized: "Show")
         case .jobs:
-            title = "Jobs"
+            title = String(localized: "Jobs")
         }
 
         return title

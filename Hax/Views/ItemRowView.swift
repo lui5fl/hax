@@ -48,17 +48,20 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
                         if let urlSimpleString = model.item.urlSimpleString {
                             Text(urlSimpleString)
                                 .lineLimit(1)
-                            Text("⸱")
+                            Text(verbatim: "⸱")
                         }
                         if model.shouldDisplayAuthor,
                            let author = model.item.author {
                             Text(author)
-                            Text("⸱")
+                            Text(verbatim: "⸱")
                         }
                         if model.shouldDisplayScore,
                            let score = model.item.score {
-                            Text("\(Image(systemName: "arrow.up"))\(score)")
-                            Text("⸱")
+                            Text(
+                                "\(Image(systemName: "arrow.up"))\(score)",
+                                tableName: ""
+                            )
+                            Text(verbatim: "⸱")
                         }
                         if let elapsedTimeString = model.item.elapsedTimeString {
                             Text(elapsedTimeString)
@@ -70,7 +73,10 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
                 Spacer()
                 if model.shouldDisplayNumberOfComments,
                    let descendants = model.item.descendants {
-                    Text("\(Image(systemName: "bubble.right")) \(descendants)")
+                    Text(
+                        "\(Image(systemName: "bubble.right")) \(descendants)",
+                        tableName: ""
+                    )
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .onTapGesture {

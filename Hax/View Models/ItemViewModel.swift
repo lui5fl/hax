@@ -68,7 +68,7 @@ class ItemViewModel: ItemViewModelProtocol {
             return ""
         }
 
-        return "\(descendants) comment\(descendants != 1 ? "s" : "")"
+        return String(localized: "\(descendants) comments")
     }
 
     /// The service to use for fetching Hacker News data.

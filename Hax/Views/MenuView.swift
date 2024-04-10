@@ -50,7 +50,10 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
             "Open Hacker News Link",
             isPresented: $model.openHackerNewsLinkAlertIsPresented
         ) {
-            TextField("", text: $model.openHackerNewsLinkAlertText)
+            TextField(
+                String(""),
+                text: $model.openHackerNewsLinkAlertText
+            )
             Button("Cancel") {
                 model.openHackerNewsLinkAlertText = ""
             }

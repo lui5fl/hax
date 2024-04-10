@@ -77,7 +77,7 @@ private enum MenuViewModelError: LocalizedError {
         let errorDescription: String
         switch self {
         case .invalidHackerNewsLink:
-            errorDescription = "Invalid Hacker News Link"
+            errorDescription = String(localized: "Invalid Hacker News Link")
         }
 
         return errorDescription
@@ -88,7 +88,7 @@ private enum MenuViewModelError: LocalizedError {
         switch self {
         case .invalidHackerNewsLink:
             recoverySuggestion = """
-            The link should be similar to the following one:
+            \(String(localized: "The link should be similar to the following one:"))
 
             \(Constant.hackerNewsItemURLString)1
             """

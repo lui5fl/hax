@@ -16,31 +16,31 @@ extension Date {
         let seconds = currentTimeInterval - timeIntervalSince1970
 
         if seconds < 60 {
-            return "\(Int(seconds))s"
+            return String(localized: "\(Int(seconds))s")
         }
 
         let minutes = floor(seconds / 60)
         if minutes < 60 {
-            return "\(Int(minutes))m"
+            return String(localized: "\(Int(minutes))m")
         }
 
         let hours = floor(minutes / 60)
         if hours < 24 {
-            return "\(Int(hours))h"
+            return String(localized: "\(Int(hours))h")
         }
 
         let days = floor(hours / 24)
         if days < 30 {
-            return "\(Int(days))d"
+            return String(localized: "\(Int(days))d")
         }
 
         let months = floor(days / 30)
         if months < 12 {
-            return "\(Int(months))mo"
+            return String(localized: "\(Int(months))mo")
         }
 
         let years = floor(months / 12)
 
-        return "\(Int(years))y"
+        return String(localized: "\(Int(years))y")
     }
 }
