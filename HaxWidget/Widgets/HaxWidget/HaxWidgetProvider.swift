@@ -5,9 +5,25 @@
 //  Created by Luis Fariña on 17/9/23.
 //
 
+import SwiftData
 import WidgetKit
 
 struct HaxWidgetProvider: AppIntentTimelineProvider {
+
+    // MARK: Initialization
+
+    @MainActor
+    init() {
+        let modelConfiguration = ModelConfiguration()
+        let modelContainer = try? ModelContainer(
+            for: KeywordFilter.self,
+            UserFilter.self,
+            configurations: modelConfiguration
+        )
+        HackerNewsService.shared.filterService = modelContainer.map {
+            FilterService(modelContext: $0.mainContext)
+        }
+    }
 
     // MARK: Methods
 

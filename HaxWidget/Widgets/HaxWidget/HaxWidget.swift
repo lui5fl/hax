@@ -76,6 +76,7 @@ struct HaxWidget: Widget {
 
     // MARK: Body
 
+    @MainActor
     var body: some WidgetConfiguration {
         AppIntentConfiguration(
             kind: String(describing: Self.self),

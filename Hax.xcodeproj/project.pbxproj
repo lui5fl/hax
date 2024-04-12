@@ -19,6 +19,7 @@
 		A025292F2BC31A7B009FAAB2 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025292E2BC31A7B009FAAB2 /* ShareView.swift */; };
 		A02529312BC31C8B009FAAB2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02529302BC31C8B009FAAB2 /* Constant.swift */; };
 		A02529322BC31CC7009FAAB2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02529302BC31C8B009FAAB2 /* Constant.swift */; };
+		A0266F662BDAA715007ED222 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0266F652BDAA715007ED222 /* StringExtensionTests.swift */; };
 		A03FDF672AB74E5A00127AB6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */; };
 		A03FDF692AB74E5A00127AB6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */; };
 		A03FDF6C2AB74E5A00127AB6 /* HaxWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF6B2AB74E5A00127AB6 /* HaxWidgetBundle.swift */; };
@@ -29,6 +30,11 @@
 		A03FDF7F2AB7535100127AB6 /* HaxWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */; };
 		A04316172BC9955E00C0CE7E /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = A04316162BC9955E00C0CE7E /* popup.js */; };
 		A04500932BBB239E006227CE /* FeedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04500922BBB239E006227CE /* FeedExtension.swift */; };
+		A049CE242BCAB9410068BE9F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049CE232BCAB9410068BE9F /* FilterService.swift */; };
+		A057C71B2BCED02A00B6FA11 /* FilterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A057C71A2BCED02A00B6FA11 /* FilterServiceTests.swift */; };
+		A05938202BCA96910042802D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059381F2BCA96910042802D /* FilterView.swift */; };
+		A05938222BCA97E10042802D /* KeywordFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938212BCA97E10042802D /* KeywordFilter.swift */; };
+		A05938262BCA9C210042802D /* UserFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938252BCA9C210042802D /* UserFilter.swift */; };
 		A064ABAD28D3ADA500572ADD /* HaxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABAC28D3ADA500572ADD /* HaxApp.swift */; };
 		A064ABB128D3ADA600572ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A064ABB028D3ADA600572ADD /* Assets.xcassets */; };
 		A064ABB528D3ADA600572ADD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A064ABB428D3ADA600572ADD /* Preview Assets.xcassets */; };
@@ -74,6 +80,9 @@
 		A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */; };
 		A0D56A8E2BAB35220095BDD6 /* RegexServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */; };
 		A0DEE10D2AB6F7F5000918CB /* AnyPublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */; };
+		A0DF5DA02BD2E35A00BD93CD /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049CE232BCAB9410068BE9F /* FilterService.swift */; };
+		A0DF5DA12BD2E36500BD93CD /* KeywordFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938212BCA97E10042802D /* KeywordFilter.swift */; };
+		A0DF5DA22BD2E36900BD93CD /* UserFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938252BCA9C210042802D /* UserFilter.swift */; };
 		A0E318C52BB2D51B002BD063 /* RegexServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E318C42BB2D51B002BD063 /* RegexServiceMock.swift */; };
 		A0F3C6C32954A2E3008A7D2B /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3C6C22954A2E3008A7D2B /* XCTestCaseExtension.swift */; };
 		A0F3C6C52954A735008A7D2B /* ItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3C6C42954A735008A7D2B /* ItemViewModelTests.swift */; };
@@ -162,6 +171,7 @@
 		A01F70F6295213B800395B2A /* AppVersionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionServiceMock.swift; sourceTree = "<group>"; };
 		A025292E2BC31A7B009FAAB2 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		A02529302BC31C8B009FAAB2 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		A0266F652BDAA715007ED222 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HaxWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -173,6 +183,11 @@
 		A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetEntry.swift; sourceTree = "<group>"; };
 		A04316162BC9955E00C0CE7E /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		A04500922BBB239E006227CE /* FeedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedExtension.swift; sourceTree = "<group>"; };
+		A049CE232BCAB9410068BE9F /* FilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		A057C71A2BCED02A00B6FA11 /* FilterServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterServiceTests.swift; sourceTree = "<group>"; };
+		A059381F2BCA96910042802D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		A05938212BCA97E10042802D /* KeywordFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFilter.swift; sourceTree = "<group>"; };
+		A05938252BCA9C210042802D /* UserFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilter.swift; sourceTree = "<group>"; };
 		A064ABA928D3ADA500572ADD /* Hax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A064ABAC28D3ADA500572ADD /* HaxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxApp.swift; sourceTree = "<group>"; };
 		A064ABB028D3ADA600572ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -195,6 +210,7 @@
 		A06788A329538C4C00AA7BE0 /* HackerNewsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsServiceMock.swift; sourceTree = "<group>"; };
 		A068D6B02BC57D740061E192 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A07FF27A2BB7306D0067B652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A080E6B02BD95EC7008DD06A /* HaxWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HaxWidgetExtension.entitlements; sourceTree = "<group>"; };
 		A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModelTests.swift; sourceTree = "<group>"; };
 		A092AD662954BE9400B76D68 /* ItemRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowViewModelTests.swift; sourceTree = "<group>"; };
@@ -290,6 +306,7 @@
 			children = (
 				A01F70F229520CE100395B2A /* AppVersionServiceTests.swift */,
 				A01F70E62952051D00395B2A /* DefaultFeedServiceTests.swift */,
+				A057C71A2BCED02A00B6FA11 /* FilterServiceTests.swift */,
 				A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */,
 			);
 			path = Services;
@@ -353,6 +370,7 @@
 		A03FDF7A2AB74EA600127AB6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A080E6B02BD95EC7008DD06A /* HaxWidgetExtension.entitlements */,
 				A03FDF712AB74E5B00127AB6 /* Info.plist */,
 				A03FDF6F2AB74E5B00127AB6 /* Assets.xcassets */,
 			);
@@ -368,6 +386,15 @@
 				A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */,
 			);
 			path = HaxWidget;
+			sourceTree = "<group>";
+		};
+		A05938272BCA9C540042802D /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				A05938212BCA97E10042802D /* KeywordFilter.swift */,
+				A05938252BCA9C210042802D /* UserFilter.swift */,
+			);
+			path = Filters;
 			sourceTree = "<group>";
 		};
 		A064ABA028D3ADA500572ADD = {
@@ -493,6 +520,7 @@
 			children = (
 				A067889229530F9A00AA7BE0 /* ArrayExtensionTests.swift */,
 				A0678890295309A400AA7BE0 /* DateExtensionTests.swift */,
+				A0266F652BDAA715007ED222 /* StringExtensionTests.swift */,
 				A064ABDC28D3C0E400572ADD /* URLExtensionTests.swift */,
 			);
 			path = Extensions;
@@ -547,6 +575,7 @@
 				A0F4DB0728D4EA3F006CD8E7 /* Feed.swift */,
 				A0F4DB0628D4EA3F006CD8E7 /* IdentifiableURL.swift */,
 				A0F4DB0528D4EA3F006CD8E7 /* Item.swift */,
+				A05938272BCA9C540042802D /* Filters */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -571,6 +600,7 @@
 				A0F4DB1628D4EA3F006CD8E7 /* ActivityIndicatorView.swift */,
 				A0F4DB1328D4EA3F006CD8E7 /* CommentRowView.swift */,
 				A0F4DB1728D4EA3F006CD8E7 /* FeedView.swift */,
+				A059381F2BCA96910042802D /* FilterView.swift */,
 				A0F4DB1428D4EA3F006CD8E7 /* ItemRowView.swift */,
 				A0F4DB1128D4EA3F006CD8E7 /* ItemView.swift */,
 				A0F92DB82B934EA100FE61B8 /* MainView.swift */,
@@ -587,6 +617,7 @@
 			children = (
 				A01F70F029520AAF00395B2A /* AppVersionService.swift */,
 				A01F70E3295204DD00395B2A /* DefaultFeedService.swift */,
+				A049CE232BCAB9410068BE9F /* FilterService.swift */,
 				A0F4DB1A28D4EA3F006CD8E7 /* HackerNewsService.swift */,
 				A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */,
 			);
@@ -835,6 +866,7 @@
 				A02529322BC31CC7009FAAB2 /* Constant.swift in Sources */,
 				A096CE0C2AB9E741002B70BE /* Item.swift in Sources */,
 				A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */,
+				A0DF5DA22BD2E36900BD93CD /* UserFilter.swift in Sources */,
 				A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */,
 				A096CE0E2AB9E772002B70BE /* URLExtension.swift in Sources */,
 				A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */,
@@ -844,8 +876,10 @@
 				A0ACA6D32AD556D2007C2B8C /* SelectFeedIntent.swift in Sources */,
 				A07D1C0C2AD323C30081FBE8 /* AnyPublisherExtension.swift in Sources */,
 				A03FDF6E2AB74E5A00127AB6 /* HaxWidget.swift in Sources */,
+				A0DF5DA12BD2E36500BD93CD /* KeywordFilter.swift in Sources */,
 				A03FDF7F2AB7535100127AB6 /* HaxWidgetEntry.swift in Sources */,
 				A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */,
+				A0DF5DA02BD2E35A00BD93CD /* FilterService.swift in Sources */,
 				A03FDF7D2AB7516F00127AB6 /* HaxWidgetProvider.swift in Sources */,
 				A04500932BBB239E006227CE /* FeedExtension.swift in Sources */,
 			);
@@ -855,6 +889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05938262BCA9C210042802D /* UserFilter.swift in Sources */,
 				A0F4DB2428D4EA3F006CD8E7 /* FeedViewModel.swift in Sources */,
 				A02529312BC31C8B009FAAB2 /* Constant.swift in Sources */,
 				A0F4DB2C28D4EA3F006CD8E7 /* FeedView.swift in Sources */,
@@ -867,6 +902,7 @@
 				A0F4DB1F28D4EA3F006CD8E7 /* ItemViewModel.swift in Sources */,
 				A0DEE10D2AB6F7F5000918CB /* AnyPublisherExtension.swift in Sources */,
 				A0F4DB0128D4EA25006CD8E7 /* DateExtension.swift in Sources */,
+				A049CE242BCAB9410068BE9F /* FilterService.swift in Sources */,
 				A064ABAD28D3ADA500572ADD /* HaxApp.swift in Sources */,
 				A025292F2BC31A7B009FAAB2 /* ShareView.swift in Sources */,
 				A0F4DAFF28D4EA25006CD8E7 /* StringExtension.swift in Sources */,
@@ -876,6 +912,7 @@
 				A064ABD928D3C0B600572ADD /* URLExtension.swift in Sources */,
 				A01F70E4295204DD00395B2A /* DefaultFeedService.swift in Sources */,
 				A064ABDB28D3C0CC00572ADD /* ArrayExtension.swift in Sources */,
+				A05938222BCA97E10042802D /* KeywordFilter.swift in Sources */,
 				A0F4DB2928D4EA3F006CD8E7 /* ItemRowView.swift in Sources */,
 				A0F4DB0028D4EA25006CD8E7 /* UserDefaultsExtension.swift in Sources */,
 				A0F4DAFE28D4EA25006CD8E7 /* ViewExtension.swift in Sources */,
@@ -883,6 +920,7 @@
 				A0F4DB2D28D4EA3F006CD8E7 /* MenuView.swift in Sources */,
 				A0F4DB1D28D4EA3F006CD8E7 /* IdentifiableURL.swift in Sources */,
 				A0F4DB2228D4EA3F006CD8E7 /* MenuViewModel.swift in Sources */,
+				A05938202BCA96910042802D /* FilterView.swift in Sources */,
 				A0F4DB2028D4EA3F006CD8E7 /* ItemRowViewModel.swift in Sources */,
 				A0F92DB92B934EA100FE61B8 /* MainView.swift in Sources */,
 				A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */,
@@ -901,8 +939,10 @@
 				A067889329530F9A00AA7BE0 /* ArrayExtensionTests.swift in Sources */,
 				A0A2881829521A0500CF1484 /* FeedViewModelTests.swift in Sources */,
 				A0ACA52E2B935D9E00CFD2A8 /* MainViewModelTests.swift in Sources */,
+				A057C71B2BCED02A00B6FA11 /* FilterServiceTests.swift in Sources */,
 				A01F70EA2952054200395B2A /* UserDefaultsMock.swift in Sources */,
 				A0D56A8E2BAB35220095BDD6 /* RegexServiceTests.swift in Sources */,
+				A0266F662BDAA715007ED222 /* StringExtensionTests.swift in Sources */,
 				A0678891295309A400AA7BE0 /* DateExtensionTests.swift in Sources */,
 				A092AD652954B8AC00B76D68 /* CommentRowViewModelTests.swift in Sources */,
 				A064ABDD28D3C0E400572ADD /* URLExtensionTests.swift in Sources */,
@@ -970,6 +1010,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HaxWidget/Resources/HaxWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
@@ -1003,6 +1044,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HaxWidget/Resources/HaxWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;

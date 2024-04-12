@@ -111,6 +111,36 @@
         }
       }
     },
+    "Add New Filter" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir filtro nuevo"
+          }
+        }
+      }
+    },
+    "Add New Keyword Filter" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir filtro de palabra clave nuevo"
+          }
+        }
+      }
+    },
+    "Add New User Filter" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir filtro de usuario nuevo"
+          }
+        }
+      }
+    },
     "Ask" : {
       "localizations" : {
         "es" : {
@@ -181,6 +211,16 @@
         }
       }
     },
+    "Filters" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtros"
+          }
+        }
+      }
+    },
     "Hacker News Link" : {
       "localizations" : {
         "es" : {
@@ -201,6 +241,26 @@
         }
       }
     },
+    "Input the keyword that, if present in stories or comments, these should be filtered out." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce la palabra clave que, si está presente en historias o comentarios, estos deben filtrarse."
+          }
+        }
+      }
+    },
+    "Input the user whose stories and comments you want to filter out." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce el usuario cuyas historias y comentarios deseas filtrar."
+          }
+        }
+      }
+    },
     "Invalid Hacker News Link" : {
       "localizations" : {
         "es" : {
@@ -217,6 +277,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jobs"
+          }
+        }
+      }
+    },
+    "Keywords" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palabras clave"
           }
         }
       }
@@ -387,6 +457,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error desconocido"
+          }
+        }
+      }
+    },
+    "Users" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuarios"
           }
         }
       }

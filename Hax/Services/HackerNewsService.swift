@@ -90,6 +90,9 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         return decoder
     }()
 
+    /// The service to use to filter items and comments.
+    var filterService: FilterServiceProtocol?
+
     // MARK: Methods
 
     func comments(
@@ -273,7 +276,7 @@ private extension HackerNewsService {
                 .replaceError(with: nil)
         })
             .collect()
-            .map { items in
+            .map { [self] items in
                 let items = items.compactMap { $0 }
 
                 // Sort the items following the order established
@@ -286,7 +289,7 @@ private extension HackerNewsService {
                     dictionary[identifier]
                 }
 
-                return sortedItems.filter { !$0.deleted && !$0.dead }
+                return filterService?.filtered(items: sortedItems) ?? sortedItems
             }
             .eraseToAnyPublisher()
     }

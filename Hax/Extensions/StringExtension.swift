@@ -6,8 +6,21 @@
 //
 
 import Foundation
+import RegexBuilder
 
 extension String {
+
+    // MARK: Methods
+
+    func contains(word: String) -> Bool {
+        contains(
+            Regex {
+                Anchor.wordBoundary
+                word
+                Anchor.wordBoundary
+            }
+        )
+    }
 
     // swiftlint:disable function_body_length
     /// Returns the result of converting any HTML content in the string into Markdown.
