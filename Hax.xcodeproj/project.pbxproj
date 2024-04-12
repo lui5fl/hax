@@ -27,6 +27,7 @@
 		A03FDF742AB74E5B00127AB6 /* HaxWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A03FDF7D2AB7516F00127AB6 /* HaxWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF7C2AB7516F00127AB6 /* HaxWidgetProvider.swift */; };
 		A03FDF7F2AB7535100127AB6 /* HaxWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */; };
+		A04316172BC9955E00C0CE7E /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = A04316162BC9955E00C0CE7E /* popup.js */; };
 		A04500932BBB239E006227CE /* FeedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04500922BBB239E006227CE /* FeedExtension.swift */; };
 		A064ABAD28D3ADA500572ADD /* HaxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABAC28D3ADA500572ADD /* HaxApp.swift */; };
 		A064ABB128D3ADA600572ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A064ABB028D3ADA600572ADD /* Assets.xcassets */; };
@@ -62,6 +63,14 @@
 		A0ACA52E2B935D9E00CFD2A8 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */; };
 		A0ACA6D32AD556D2007C2B8C /* SelectFeedIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */; };
 		A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */; };
+		A0D51B5C2BC6F66C001D8A78 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D51B5B2BC6F66C001D8A78 /* SafariWebExtensionHandler.swift */; };
+		A0D51B5F2BC6F66C001D8A78 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = A0D51B5E2BC6F66C001D8A78 /* _locales */; };
+		A0D51B612BC6F66C001D8A78 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A0D51B602BC6F66C001D8A78 /* images */; };
+		A0D51B632BC6F66C001D8A78 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = A0D51B622BC6F66C001D8A78 /* manifest.json */; };
+		A0D51B672BC6F66C001D8A78 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = A0D51B662BC6F66C001D8A78 /* content.js */; };
+		A0D51B692BC6F66C001D8A78 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = A0D51B682BC6F66C001D8A78 /* popup.html */; };
+		A0D51B6B2BC6F66C001D8A78 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = A0D51B6A2BC6F66C001D8A78 /* popup.css */; };
+		A0D51B712BC6F66C001D8A78 /* HaxSafariWebExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A0D51B592BC6F66C001D8A78 /* HaxSafariWebExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */; };
 		A0D56A8E2BAB35220095BDD6 /* RegexServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */; };
 		A0DEE10D2AB6F7F5000918CB /* AnyPublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */; };
@@ -117,6 +126,13 @@
 			remoteGlobalIDString = A064ABA828D3ADA500572ADD;
 			remoteInfo = Hax;
 		};
+		A0D51B6F2BC6F66C001D8A78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A064ABA128D3ADA500572ADD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0D51B582BC6F66C001D8A78;
+			remoteInfo = HaxSafariWebExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +143,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				A03FDF742AB74E5B00127AB6 /* HaxWidgetExtension.appex in Embed Foundation Extensions */,
+				A0D51B712BC6F66C001D8A78 /* HaxSafariWebExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +171,7 @@
 		A03FDF712AB74E5B00127AB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A03FDF7C2AB7516F00127AB6 /* HaxWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetProvider.swift; sourceTree = "<group>"; };
 		A03FDF7E2AB7535100127AB6 /* HaxWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetEntry.swift; sourceTree = "<group>"; };
+		A04316162BC9955E00C0CE7E /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		A04500922BBB239E006227CE /* FeedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedExtension.swift; sourceTree = "<group>"; };
 		A064ABA928D3ADA500572ADD /* Hax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A064ABAC28D3ADA500572ADD /* HaxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxApp.swift; sourceTree = "<group>"; };
@@ -184,6 +202,15 @@
 		A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFeedIntent.swift; sourceTree = "<group>"; };
 		A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetFamilyExtension.swift; sourceTree = "<group>"; };
+		A0D51B592BC6F66C001D8A78 /* HaxSafariWebExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HaxSafariWebExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0D51B5B2BC6F66C001D8A78 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		A0D51B5E2BC6F66C001D8A78 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		A0D51B602BC6F66C001D8A78 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		A0D51B622BC6F66C001D8A78 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		A0D51B662BC6F66C001D8A78 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		A0D51B682BC6F66C001D8A78 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		A0D51B6A2BC6F66C001D8A78 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
+		A0D51B6E2BC6F66C001D8A78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexService.swift; sourceTree = "<group>"; };
 		A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexServiceTests.swift; sourceTree = "<group>"; };
 		A0DEE10C2AB6F7F5000918CB /* AnyPublisherExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPublisherExtension.swift; sourceTree = "<group>"; };
@@ -242,6 +269,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A064ABC128D3ADA600572ADD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0D51B562BC6F66C001D8A78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				A064ABAB28D3ADA500572ADD /* Hax */,
+				A0D51B5A2BC6F66C001D8A78 /* HaxSafariWebExtension */,
 				A03FDF6A2AB74E5A00127AB6 /* HaxWidget */,
 				A064ABBD28D3ADA600572ADD /* HaxTests */,
 				A064ABC728D3ADA600572ADD /* HaxUITests */,
@@ -355,6 +390,7 @@
 				A064ABBA28D3ADA600572ADD /* HaxTests.xctest */,
 				A064ABC428D3ADA600572ADD /* HaxUITests.xctest */,
 				A03FDF642AB74E5A00127AB6 /* HaxWidgetExtension.appex */,
+				A0D51B592BC6F66C001D8A78 /* HaxSafariWebExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -471,6 +507,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A0D51B5A2BC6F66C001D8A78 /* HaxSafariWebExtension */ = {
+			isa = PBXGroup;
+			children = (
+				A0D51B5B2BC6F66C001D8A78 /* SafariWebExtensionHandler.swift */,
+				A0D51B6E2BC6F66C001D8A78 /* Info.plist */,
+				A0D51B5D2BC6F66C001D8A78 /* Resources */,
+			);
+			path = HaxSafariWebExtension;
+			sourceTree = "<group>";
+		};
+		A0D51B5D2BC6F66C001D8A78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A0D51B5E2BC6F66C001D8A78 /* _locales */,
+				A0D51B602BC6F66C001D8A78 /* images */,
+				A0D51B622BC6F66C001D8A78 /* manifest.json */,
+				A0D51B662BC6F66C001D8A78 /* content.js */,
+				A0D51B682BC6F66C001D8A78 /* popup.html */,
+				A0D51B6A2BC6F66C001D8A78 /* popup.css */,
+				A04316162BC9955E00C0CE7E /* popup.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A0F3C6C12954A2D3008A7D2B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +640,7 @@
 			);
 			dependencies = (
 				A03FDF732AB74E5B00127AB6 /* PBXTargetDependency */,
+				A0D51B702BC6F66C001D8A78 /* PBXTargetDependency */,
 			);
 			name = Hax;
 			productName = Hax;
@@ -622,6 +683,23 @@
 			productReference = A064ABC428D3ADA600572ADD /* HaxUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A0D51B582BC6F66C001D8A78 /* HaxSafariWebExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0D51B742BC6F66C001D8A78 /* Build configuration list for PBXNativeTarget "HaxSafariWebExtension" */;
+			buildPhases = (
+				A0D51B552BC6F66C001D8A78 /* Sources */,
+				A0D51B562BC6F66C001D8A78 /* Frameworks */,
+				A0D51B572BC6F66C001D8A78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HaxSafariWebExtension;
+			productName = HaxSafariWebExtension;
+			productReference = A0D51B592BC6F66C001D8A78 /* HaxSafariWebExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -629,7 +707,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					A03FDF632AB74E5A00127AB6 = {
@@ -645,6 +723,9 @@
 					A064ABC328D3ADA600572ADD = {
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = A064ABA828D3ADA500572ADD;
+					};
+					A0D51B582BC6F66C001D8A78 = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
@@ -663,6 +744,7 @@
 			projectRoot = "";
 			targets = (
 				A064ABA828D3ADA500572ADD /* Hax */,
+				A0D51B582BC6F66C001D8A78 /* HaxSafariWebExtension */,
 				A03FDF632AB74E5A00127AB6 /* HaxWidgetExtension */,
 				A064ABB928D3ADA600572ADD /* HaxTests */,
 				A064ABC328D3ADA600572ADD /* HaxUITests */,
@@ -703,6 +785,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0D51B572BC6F66C001D8A78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A04316172BC9955E00C0CE7E /* popup.js in Resources */,
+				A0D51B6B2BC6F66C001D8A78 /* popup.css in Resources */,
+				A0D51B692BC6F66C001D8A78 /* popup.html in Resources */,
+				A0D51B612BC6F66C001D8A78 /* images in Resources */,
+				A0D51B632BC6F66C001D8A78 /* manifest.json in Resources */,
+				A0D51B5F2BC6F66C001D8A78 /* _locales in Resources */,
+				A0D51B672BC6F66C001D8A78 /* content.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,6 +931,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0D51B552BC6F66C001D8A78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0D51B5C2BC6F66C001D8A78 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -852,6 +956,11 @@
 			isa = PBXTargetDependency;
 			target = A064ABA828D3ADA500572ADD /* Hax */;
 			targetProxy = A064ABC528D3ADA600572ADD /* PBXContainerItemProxy */;
+		};
+		A0D51B702BC6F66C001D8A78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0D51B582BC6F66C001D8A78 /* HaxSafariWebExtension */;
+			targetProxy = A0D51B6F2BC6F66C001D8A78 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1228,6 +1337,84 @@
 			};
 			name = Release;
 		};
+		A0D51B722BC6F66C001D8A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = B2NJF5A6ZC;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HaxSafariWebExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HaxSafariWebExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.debug.HaxSafariWebExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A0D51B732BC6F66C001D8A78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = B2NJF5A6ZC;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HaxSafariWebExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HaxSafariWebExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.HaxSafariWebExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1272,6 +1459,15 @@
 			buildConfigurations = (
 				A064ABD528D3ADA600572ADD /* Debug */,
 				A064ABD628D3ADA600572ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0D51B742BC6F66C001D8A78 /* Build configuration list for PBXNativeTarget "HaxSafariWebExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0D51B722BC6F66C001D8A78 /* Debug */,
+				A0D51B732BC6F66C001D8A78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

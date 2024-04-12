@@ -1,0 +1,16 @@
+{
+    "extension_name": {
+        "message": "Abrir en Hax",
+        "description": "The display name for the extension."
+    },
+    "extension_description": {
+        "message": "Abre enlaces de Hacker News en Hax.",
+        "description": "Description of what the extension does."
+    },
+    "popup_title": {
+        "message": "¡Todo listo!"
+    },
+    "popup_subtitle": {
+        "message": "Ahora, al abrir historias de Hacker News en Safari, tendrás la opción de abrirlas en Hax."
+    }
+}
