@@ -26,5 +26,12 @@ struct HaxApp: App {
                     }
                 }
         }
+        .modelContainer(
+            for: [KeywordFilter.self, UserFilter.self]
+        ) { result in
+            HackerNewsService.shared.filterService = (try? result.get().mainContext).map {
+                FilterService(modelContext: $0)
+            }
+        }
     }
 }

@@ -28,6 +28,11 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 } label: {
                     Text("Default Feed")
                 }
+                NavigationLink {
+                    FilterView()
+                } label: {
+                    Label("Filters", systemImage: "eye.slash")
+                }
             }
             Section("About") {
                 Button("Privacy Policy") {
