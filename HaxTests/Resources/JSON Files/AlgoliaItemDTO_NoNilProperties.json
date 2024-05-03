@@ -1,0 +1,37 @@
+{
+    "author": "pg",
+    "children":
+    [
+        {
+            "author": "sama",
+            "children":
+            [],
+            "created_at": "2006-10-09T19:51:01.000Z",
+            "created_at_i": 1160423461,
+            "id": 15,
+            "options":
+            [],
+            "parent_id": 1,
+            "points": null,
+            "story_id": 1,
+            "text": "&#34;the rising star of venture capital&#34; -unknown VC eating lunch on SHR",
+            "title": null,
+            "type": "comment",
+            "url": null
+        }
+    ],
+    "created_at": "2006-10-09T18:21:51.000Z",
+    "created_at_i": 1160418111,
+    "id": 1,
+    "options":
+    [
+        42
+    ],
+    "parent_id": 42,
+    "points": 57,
+    "story_id": 1,
+    "text": "text",
+    "title": "Y Combinator",
+    "type": "story",
+    "url": "http://ycombinator.com"
+}

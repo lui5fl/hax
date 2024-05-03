@@ -1,0 +1,26 @@
+{
+    "by": "pg",
+    "dead": false,
+    "deleted": false,
+    "descendants": 15,
+    "id": 1,
+    "kids":
+    [
+        15,
+        234509,
+        487171,
+        82729
+    ],
+    "parent": 42,
+    "parts":
+    [
+        42
+    ],
+    "poll": 42,
+    "score": 57,
+    "text": "text",
+    "time": 1160418111,
+    "title": "Y Combinator",
+    "type": "story",
+    "url": "http://ycombinator.com"
+}
