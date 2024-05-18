@@ -5,31 +5,19 @@
 //  Created by Luis Fariña on 21/12/22.
 //
 
-import Combine
 @testable import Hax
 
 final class HackerNewsServiceMock: HackerNewsServiceProtocol {
 
     // MARK: Properties
 
-    var commentsStub: [Comment]?
     var itemStub: Item?
     var itemsStub: [Item]?
-    private(set) var commentsCallCount = 0
-    private(set) var itemCallCount = 0
-    private(set) var itemsCallCount = 0
+
+    private(set) var itemCallCount = Int.zero
+    private(set) var itemsCallCount = Int.zero
 
     // MARK: Methods
-
-    func comments(
-        in item: Item,
-        page: Int,
-        pageSize: Int
-    ) async throws -> [Comment] {
-        commentsCallCount += 1
-
-        return try stubOrError(commentsStub)
-    }
 
     func item(id: Int) async throws -> Item {
         itemCallCount += 1

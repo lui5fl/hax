@@ -1,0 +1,41 @@
+//
+//  FirebaseAPI.swift
+//  Hax
+//
+//  Created by Luis Fariña on 10/5/24.
+//
+
+import Networking
+
+struct FirebaseAPI: APIProtocol {
+
+    // MARK: Types
+
+    enum Endpoint: EndpointProtocol {
+
+        // MARK: Cases
+
+        case feed(resource: String)
+        case item(id: Int)
+
+        // MARK: Properties
+
+        var path: String {
+            var path = "/v0/"
+
+            switch self {
+            case .feed(let resource):
+                path += "\(resource).json"
+            case .item(let id):
+                path += "item/\(id).json"
+            }
+
+            return path
+        }
+    }
+
+    // MARK: Properties
+
+    let scheme = "https"
+    let host = "hacker-news.firebaseio.com"
+}

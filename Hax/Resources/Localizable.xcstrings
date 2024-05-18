@@ -451,16 +451,6 @@
         }
       }
     },
-    "Unknown Error" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error desconocido"
-          }
-        }
-      }
-    },
     "Users" : {
       "localizations" : {
         "es" : {

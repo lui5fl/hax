@@ -19,8 +19,8 @@ Therefore, after not much consideration, I decided to remake my old Hacker News 
 
 ## Technologies
 
-- Combine
 - SafariServices
+- Swift Concurrency
 - SwiftUI
 - UIKit
 
@@ -29,7 +29,7 @@ I'll start off by saying the initial version of this app could be considered a M
 
 The app is written using the MVVM pattern with the main purpose of separating model code from view code. I don't feel content with the approach though, so once I get to writing tests for the entire app I'll see whether I need a whole new architecture or just refine the current one. Now's the best time to do it since there's not much code yet!
 
-Currently the structure of the app is simple. There are three main views, `MenuView`, `FeedView` and `ItemView`, which form the main navigation stack. The data displayed on the last two is retrieved through the `HackerNewsService` class. This class uses Combine a lot, which I'm not an expert on so the code may seem all over the place. In the future I'll definitely look into using the [Swift Async Algorithms](https://github.com/apple/swift-async-algorithms) package published by Apple, which might make things simpler.
+Currently the structure of the app is simple. There are three main views, `MenuView`, `FeedView` and `ItemView`, which form the main navigation stack. The data displayed on the last two is retrieved through the `HackerNewsService` class, which uses a local Swift package, `Networking`, that encapsulates the networking logic. Both fully take advantage of the Swift Concurrency APIs.
 
 ## Roadmap
 Instead of outlining any upcoming features here, I'll create issues for any feature or fix that I plan on implementing. You can check out the latest issues [here](https://github.com/lui5fl/hax/issues). You're more than welcome to create an issue to propose a feature or report a bug.
