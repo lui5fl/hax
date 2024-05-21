@@ -45,6 +45,17 @@ final class SettingsViewModelTests: XCTestCase {
         XCTAssertEqual(appVersionServiceMock.appVersionCallCount, 1)
     }
 
+    func testOnSafariExtensionButtonTrigger() {
+        // When
+        sut.onSafariExtensionButtonTrigger()
+
+        // Then
+        XCTAssertEqual(
+            sut.url?.url.absoluteString,
+            "https://luisfl.me/hax/help/safari-extension"
+        )
+    }
+
     func testOnPrivacyPolicyButtonTrigger() {
         // When
         sut.onPrivacyPolicyButtonTrigger()

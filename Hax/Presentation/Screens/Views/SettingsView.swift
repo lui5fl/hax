@@ -34,6 +34,11 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                     Label("Filters", systemImage: "eye.slash")
                 }
             }
+            Section("Help") {
+                Button("Safari Extension") {
+                    model.onSafariExtensionButtonTrigger()
+                }
+            }
             Section("About") {
                 Button("Privacy Policy") {
                     model.onPrivacyPolicyButtonTrigger()
@@ -56,11 +61,8 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
 
 // MARK: - Previews
 
-struct SettingsView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        NavigationStack {
-            SettingsView(model: SettingsViewModel())
-        }
+#Preview {
+    NavigationStack {
+        SettingsView(model: SettingsViewModel())
     }
 }
