@@ -26,7 +26,10 @@ protocol SettingsViewModelProtocol: ObservableObject {
 
     // MARK: Methods
 
-    /// Called when the privacy policy button is triggered.
+    /// Called when the "Safari Extension" button is triggered.
+    func onSafariExtensionButtonTrigger()
+
+    /// Called when the "Privacy Policy" button is triggered.
     func onPrivacyPolicyButtonTrigger()
 }
 
@@ -47,9 +50,11 @@ final class SettingsViewModel: SettingsViewModelProtocol {
 
     // MARK: Methods
 
+    func onSafariExtensionButtonTrigger() {
+        url = IdentifiableURL(URL(string: "https://luisfl.me/hax/help/safari-extension"))
+    }
+
     func onPrivacyPolicyButtonTrigger() {
-        url = IdentifiableURL(
-            URL(string: "https://luisfl.me/hax/privacy-policy")
-        )
+        url = IdentifiableURL(URL(string: "https://luisfl.me/hax/privacy-policy"))
     }
 }

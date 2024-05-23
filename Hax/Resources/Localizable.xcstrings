@@ -231,6 +231,16 @@
         }
       }
     },
+    "Help" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda"
+          }
+        }
+      }
+    },
     "Input a valid Hacker News link into the text field." : {
       "localizations" : {
         "es" : {
@@ -347,6 +357,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Política de privacidad"
+          }
+        }
+      }
+    },
+    "Safari Extension" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensión de Safari"
           }
         }
       }
