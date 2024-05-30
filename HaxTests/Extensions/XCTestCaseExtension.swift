@@ -18,7 +18,9 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func algoliaItemDTO(jsonResourceName: String) throws -> AlgoliaItemDTO {
+    func algoliaItemDTO(
+        jsonResourceName: String
+    ) throws -> AlgoliaItemDTO {
         let data = try jsonData(resourceName: jsonResourceName)
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -50,9 +52,25 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func firebaseItemDTO(jsonResourceName: String) throws -> FirebaseItemDTO {
+    func firebaseItemDTO(
+        jsonResourceName: String
+    ) throws -> FirebaseItemDTO {
         try JSONDecoder().decode(
             FirebaseItemDTO.self,
+            from: jsonData(resourceName: jsonResourceName)
+        )
+    }
+
+    /// Decodes and returns a `FirebaseUserDTO` instance from a JSON resource with
+    /// the specified name located in the bundle of the current test target.
+    ///
+    /// - Parameters:
+    ///   - jsonResourceName: The name of the JSON resource without the extension
+    func firebaseUserDTO(
+        jsonResourceName: String
+    ) throws -> FirebaseUserDTO {
+        try JSONDecoder().decode(
+            FirebaseUserDTO.self,
             from: jsonData(resourceName: jsonResourceName)
         )
     }

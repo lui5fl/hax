@@ -51,6 +51,7 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertNil(sut.secondaryItem)
         XCTAssertEqual(sut.comments, [])
         XCTAssertNil(sut.url)
+        XCTAssertNil(sut.user)
         XCTAssertEqual(sut.title, "98 comments")
     }
 
@@ -195,7 +196,25 @@ final class ItemViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual(sut.secondaryItem?.id, 1)
         XCTAssertNil(sut.url)
+        XCTAssertNil(sut.user)
         XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        XCTAssertEqual(regexServiceMock.userIDCallCount, .zero)
+    }
+
+    func testOnCommentLinkTap_givenLinkContainsHackerNewsUserIdentifier() throws {
+        // Given
+        regexServiceMock.userIDStub = "pg"
+        let url = try XCTUnwrap(URL(string: "news.ycombinator.com/user?id=pg"))
+
+        // When
+        _ = sut.onCommentLinkTap(url: url)
+
+        // Then
+        XCTAssertNil(sut.secondaryItem)
+        XCTAssertNil(sut.url)
+        XCTAssertEqual(sut.user?.string, "pg")
+        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        XCTAssertEqual(regexServiceMock.userIDCallCount, 1)
     }
 
     func testOnRefreshRequest_givenItemRequestFails() async {

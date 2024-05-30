@@ -10,4 +10,5 @@ enum Constant {
     // MARK: Properties
 
     static let hackerNewsItemURLString = "news.ycombinator.com/item?id="
+    static let hackerNewsUserURLString = "news.ycombinator.com/user?id="
 }

@@ -20,6 +20,9 @@ protocol MainViewModelProtocol {
 
     /// The presented item.
     var presentedItem: Item? { get set }
+
+    /// The presented user.
+    var presentedUser: IdentifiableString? { get set }
 }
 
 @Observable
@@ -30,6 +33,7 @@ final class MainViewModel: MainViewModelProtocol {
     var selectedFeed: Feed?
     var selectedItem: Item?
     var presentedItem: Item?
+    var presentedUser: IdentifiableString?
 
     // MARK: Initialization
 

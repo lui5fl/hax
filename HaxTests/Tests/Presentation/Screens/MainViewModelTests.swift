@@ -39,6 +39,7 @@ final class MainViewModelTests: XCTestCase {
         XCTAssertEqual(sut.selectedFeed, .best)
         XCTAssertNil(sut.selectedItem)
         XCTAssertNil(sut.presentedItem)
+        XCTAssertNil(sut.presentedUser)
         XCTAssertEqual(
             defaultFeedServiceMock.defaultFeedCallCount,
             1

@@ -24,8 +24,16 @@ protocol MenuViewModelProtocol: ObservableObject {
     /// The text in the text field of the "Open Hacker News Link" alert.
     var openHackerNewsLinkAlertText: String { get set }
 
+    /// Whether the "View User" alert is presented.
+    var viewUserAlertIsPresented: Bool { get set }
+
+    /// The text in the text field of the "View User" alert.
+    var viewUserAlertText: String { get set }
+
     /// The item corresponding to the specified Hacker News link, if the latter is valid.
     func itemForHackerNewsLink() -> Item?
+
+    func userFromText() -> IdentifiableString?
 }
 
 final class MenuViewModel: MenuViewModelProtocol {
@@ -36,6 +44,8 @@ final class MenuViewModel: MenuViewModelProtocol {
     @Published var error: Error?
     @Published var openHackerNewsLinkAlertIsPresented = false
     @Published var openHackerNewsLinkAlertText = ""
+    @Published var viewUserAlertIsPresented = false
+    @Published var viewUserAlertText = ""
 
     /// The service to use to search for regular expressions.
     private let regexService: RegexServiceProtocol
@@ -62,6 +72,18 @@ final class MenuViewModel: MenuViewModelProtocol {
         }
 
         return Item(id: itemID)
+    }
+
+    func userFromText() -> IdentifiableString? {
+        defer {
+            viewUserAlertText = ""
+        }
+
+        guard !viewUserAlertText.isEmpty else {
+            return nil
+        }
+
+        return IdentifiableString(viewUserAlertText)
     }
 }
 

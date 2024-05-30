@@ -53,6 +53,9 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
                         if model.shouldDisplayAuthor,
                            let author = model.item.author {
                             Text(author)
+                                .onTapGesture {
+                                    model.onUserTap?()
+                                }
                             Text(verbatim: "⸱")
                         }
                         if model.shouldDisplayScore,

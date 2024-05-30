@@ -23,6 +23,8 @@ struct HaxApp: App {
                 .onOpenURL { url in
                     if let itemID = RegexService().itemID(url: url) {
                         mainViewModel.presentedItem = Item(id: itemID)
+                    } else if let userID = RegexService().userID(url: url) {
+                        mainViewModel.presentedUser = IdentifiableString(userID)
                     }
                 }
         }

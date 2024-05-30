@@ -42,8 +42,9 @@ final class ItemRowViewModelTests: XCTestCase {
     func testInit() throws {
         // Given
         let item = Item(kind: .story)
-        var onNumberOfCommentsTapCallCount = 0
-        var onLinkTapCallCount = 0
+        var onUserTapCallCount = Int.zero
+        var onNumberOfCommentsTapCallCount = Int.zero
+        var onLinkTapCallCount = Int.zero
         let url = try XCTUnwrap(URL(string: "luisfl.me"))
 
         // When
@@ -51,6 +52,9 @@ final class ItemRowViewModelTests: XCTestCase {
             in: .feed,
             index: 9,
             item: item,
+            onUserTap: {
+                onUserTapCallCount += 1
+            },
             onNumberOfCommentsTap: {
                 onNumberOfCommentsTapCallCount += 1
             },
@@ -60,6 +64,7 @@ final class ItemRowViewModelTests: XCTestCase {
                 return .handled
             }
         )
+        sut.onUserTap?()
         sut.onNumberOfCommentsTap?()
         _ = sut.onLinkTap?(url)
 
@@ -72,6 +77,7 @@ final class ItemRowViewModelTests: XCTestCase {
         XCTAssertFalse(sut.shouldDisplayAuthor)
         XCTAssert(sut.shouldDisplayScore)
         XCTAssert(sut.shouldDisplayNumberOfComments)
+        XCTAssertEqual(onUserTapCallCount, 1)
         XCTAssertEqual(onNumberOfCommentsTapCallCount, 1)
         XCTAssertEqual(onLinkTapCallCount, 1)
     }

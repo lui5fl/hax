@@ -30,6 +30,9 @@ protocol ItemViewModelProtocol: ObservableObject {
     /// The URL to navigate to.
     var url: IdentifiableURL? { get set }
 
+    /// The user whose information is to be displayed.
+    var user: IdentifiableString? { get set }
+
     /// The title for the view.
     var title: String { get }
 
@@ -37,6 +40,9 @@ protocol ItemViewModelProtocol: ObservableObject {
 
     /// Called when the view appears.
     func onViewAppear()
+
+    /// Called when a user is tapped.
+    func onUserTap(item: Item)
 
     /// Called when a comment is tapped.
     func onCommentTap(comment: Comment)
@@ -58,6 +64,7 @@ class ItemViewModel: ItemViewModelProtocol {
     @Published var secondaryItem: Item?
     @Published var comments: [Comment] = []
     @Published var url: IdentifiableURL?
+    @Published var user: IdentifiableString?
 
     var title: String {
         guard let descendants = item.descendants else {
@@ -105,6 +112,10 @@ class ItemViewModel: ItemViewModelProtocol {
         }
     }
 
+    func onUserTap(item: Item) {
+        user = item.author.map(IdentifiableString.init)
+    }
+
     func onCommentTap(comment: Comment) {
         guard let index = allComments.firstIndex(of: comment) else {
             return
@@ -132,6 +143,9 @@ class ItemViewModel: ItemViewModelProtocol {
     func onCommentLinkTap(url: URL) -> OpenURLAction.Result {
         if let itemID = regexService.itemID(url: url) {
             secondaryItem = Item(id: itemID)
+            return .handled
+        } else if let userID = regexService.userID(url: url) {
+            user = IdentifiableString(userID)
             return .handled
         } else if url.scheme?.hasPrefix("http") == true {
             self.url = IdentifiableURL(url)

@@ -14,22 +14,29 @@ final class CommentRowViewModelTests: XCTestCase {
 
     func testInit() throws {
         // Given
-        var onLinkTapCallCount = 0
+        var onUserTapCallCount = Int.zero
+        var onLinkTapCallCount = Int.zero
         let url = try XCTUnwrap(URL(string: "luisfl.me"))
 
         // When
         let sut = CommentRowViewModel(
             comment: Comment(item: Item(author: "1")),
-            item: Item(author: "2")
-        ) { _ in
-            onLinkTapCallCount += 1
+            item: Item(author: "2"),
+            onUserTap: {
+                onUserTapCallCount += 1
+            },
+            onLinkTap: { _ in
+                onLinkTapCallCount += 1
 
-            return .handled
-        }
+                return .handled
+            }
+        )
+        sut.onUserTap?()
         _ = sut.onLinkTap?(url)
 
         // Then
         XCTAssertEqual(sut.comment, .example)
+        XCTAssertEqual(onUserTapCallCount, 1)
         XCTAssertEqual(onLinkTapCallCount, 1)
         XCTAssertFalse(sut.shouldHighlightAuthor)
     }

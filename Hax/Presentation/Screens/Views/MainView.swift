@@ -20,7 +20,8 @@ struct MainView<Model: MainViewModelProtocol>: View {
             MenuView(
                 model: MenuViewModel(),
                 selectedFeed: $model.selectedFeed,
-                presentedItem: $model.presentedItem
+                presentedItem: $model.presentedItem,
+                presentedUser: $model.presentedUser
             )
             .navigationDestination(item: $model.selectedFeed) { feed in
                 FeedView(
@@ -36,6 +37,11 @@ struct MainView<Model: MainViewModelProtocol>: View {
             ItemView(model: ItemViewModel(item: item))
                 .dismissable(item: $model.presentedItem)
                 .id(item)
+        }
+        .sheet(item: $model.presentedUser) { user in
+            UserView(model: UserViewModel(id: user.string))
+                .presentationDetents([.medium, .large])
+                .id(user.string)
         }
     }
 }

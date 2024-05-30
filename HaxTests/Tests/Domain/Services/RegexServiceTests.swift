@@ -62,4 +62,37 @@ final class RegexServiceTests: XCTestCase {
         // Then
         XCTAssertEqual(itemID, 39763750)
     }
+
+    func testUserID_givenURLIsNotValid() throws {
+        // Given
+        let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
+
+        // When
+        let userID = sut.userID(url: url)
+
+        // Then
+        XCTAssertNil(userID)
+    }
+
+    func testUserID_givenURLIsValidDeepLink() throws {
+        // Given
+        let url = try XCTUnwrap(URL(string: "hax://user/pg"))
+
+        // When
+        let userID = sut.userID(url: url)
+
+        // Then
+        XCTAssertEqual(userID, "pg")
+    }
+
+    func testUserID_givenURLIsValidHackerNewsLink() throws {
+        // Given
+        let url = try XCTUnwrap(URL(string: "https://news.ycombinator.com/user?id=pg"))
+
+        // When
+        let userID = sut.userID(url: url)
+
+        // Then
+        XCTAssertEqual(userID, "pg")
+    }
 }
