@@ -67,6 +67,41 @@ extension View {
                 .edgesIgnoringSafeArea(.all)
         }
     }
+
+    /// Presents an alert with a text field and two buttons, a "cancel" button which clears the
+    /// text, and a "OK" button which triggers a closure with the text field's content as a
+    /// parameter.
+    ///
+    /// - Parameters:
+    ///   - titleKey: The title of the alert
+    ///   - message: The message of the alert
+    ///   - isPresented: A binding that controls the presentation of the alert
+    ///   - text: A binding to the text field's content
+    ///   - onOKButtonTrigger: A closure that gets called when the "OK" button is
+    ///     triggered, with the text field's content as a parameter
+    func textFieldAlert(
+        _ titleKey: LocalizedStringKey,
+        message: LocalizedStringKey,
+        isPresented: Binding<Bool>,
+        text: Binding<String>,
+        onOKButtonTrigger: @escaping (String) -> Void
+    ) -> some View {
+        alert(titleKey, isPresented: isPresented) {
+            TextField(String(""), text: text)
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+            Button("Cancel") {
+                text.wrappedValue = ""
+            }
+            Button("OK") {
+                onOKButtonTrigger(text.wrappedValue)
+                text.wrappedValue = ""
+            }
+            .keyboardShortcut(.defaultAction)
+        } message: {
+            Text(message)
+        }
+    }
 }
 
 private struct WrappedLocalizedError: LocalizedError {

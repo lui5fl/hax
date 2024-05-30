@@ -24,6 +24,9 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                     model: ItemRowViewModel(
                         in: .item,
                         item: model.item,
+                        onUserTap: {
+                            model.onUserTap(item: model.item)
+                        },
                         onLinkTap: { url in
                             model.onCommentLinkTap(url: url)
                         }
@@ -42,10 +45,14 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                     CommentRowView(
                         model: CommentRowViewModel(
                             comment: comment,
-                            item: model.item
-                        ) { url in
-                            model.onCommentLinkTap(url: url)
-                        }
+                            item: model.item,
+                            onUserTap: {
+                                model.onUserTap(item: comment.item)
+                            },
+                            onLinkTap: { url in
+                                model.onCommentLinkTap(url: url)
+                            }
+                        )
                     )
                     .contextMenu {
                         ShareView(
@@ -75,6 +82,10 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
             await model.onRefreshRequest()
         }
         .safari(url: $model.url)
+        .sheet(item: $model.user) { user in
+            UserView(model: UserViewModel(id: user.string))
+                .presentationDetents([.medium, .large])
+        }
         .toolbar {
             ShareView(
                 url: model.item.url,

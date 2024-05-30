@@ -42,7 +42,7 @@ final class NetworkClientTests: XCTestCase {
     func testPerform() async throws {
         // Given
         urlSessionMock.dataStub = { _, _ in
-            try (XCTUnwrap("42".data(using: .utf8)), URLResponse())
+            (Data("42".utf8), URLResponse())
         }
         let request = Request<APIMock>.get(EndpointMock(path: "/"))
 

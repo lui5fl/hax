@@ -17,6 +17,12 @@ protocol RegexServiceProtocol {
     /// - Parameters:
     ///   - url: The URL in which to look for a Hacker News item identifier
     func itemID(url: URL) -> Int?
+
+    /// Looks for a Hacker News user identifier in the specified URL.
+    ///
+    /// - Parameters:
+    ///   - url: The URL in which to look for a Hacker News user identifier
+    func userID(url: URL) -> String?
 }
 
 final class RegexService: RegexServiceProtocol {
@@ -35,6 +41,18 @@ final class RegexService: RegexServiceProtocol {
         }
     }()
 
+    private lazy var userIDPattern = {
+        Regex {
+            ChoiceOf {
+                "hax://user/"
+                Constant.hackerNewsUserURLString
+            }
+            Capture {
+                OneOrMore(.word)
+            }
+        }
+    }()
+
     // MARK: Methods
 
     func itemID(url: URL) -> Int? {
@@ -45,5 +63,15 @@ final class RegexService: RegexServiceProtocol {
         let (_, id) = match.output
 
         return Int(id)
+    }
+
+    func userID(url: URL) -> String? {
+        guard let match = url.absoluteString.firstMatch(of: userIDPattern) else {
+            return nil
+        }
+
+        let (_, id) = match.output
+
+        return String(id)
     }
 }

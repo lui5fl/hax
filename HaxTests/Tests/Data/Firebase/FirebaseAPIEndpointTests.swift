@@ -35,4 +35,16 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         // Then
         XCTAssertEqual(path, "/v0/item/\(id).json")
     }
+
+    func testPath_givenUserEndpoint() {
+        // Given
+        let id = "pg"
+        let sut = FirebaseAPI.Endpoint.user(id: id)
+
+        // When
+        let path = sut.path
+
+        // Then
+        XCTAssertEqual(path, "/v0/user/\(id).json")
+    }
 }
