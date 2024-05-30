@@ -47,6 +47,12 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                             model.onCommentLinkTap(url: url)
                         }
                     )
+                    .contextMenu {
+                        ShareView(
+                            url: comment.item.url,
+                            hackerNewsURL: comment.item.hackerNewsURL
+                        )
+                    }
                     .id(comment)
                     .onTapGesture {
                         model.onCommentTap(comment: comment)
