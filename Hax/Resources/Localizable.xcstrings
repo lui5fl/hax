@@ -241,6 +241,16 @@
         }
       }
     },
+    "Input a Hacker News username into the text field." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce un nombre de usuario de Hacker News en el campo de texto."
+          }
+        }
+      }
+    },
     "Input a valid Hacker News link into the text field." : {
       "localizations" : {
         "es" : {
@@ -317,6 +327,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New"
+          }
+        }
+      }
+    },
+    "No description" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin descripción"
           }
         }
       }
@@ -471,6 +491,16 @@
         }
       }
     },
+    "User since %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuario desde el %@"
+          }
+        }
+      }
+    },
     "Users" : {
       "localizations" : {
         "es" : {
@@ -487,6 +517,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versión"
+          }
+        }
+      }
+    },
+    "View User" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver usuario"
           }
         }
       }

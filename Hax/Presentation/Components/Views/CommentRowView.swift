@@ -30,6 +30,9 @@ struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
                         Text(author)
                             .bold()
                             .foregroundStyle(authorTextColor)
+                            .onTapGesture {
+                                model.onUserTap?()
+                            }
                     }
                     Spacer()
                     if let elapsedTimeString = model.comment.item.elapsedTimeString {
@@ -99,18 +102,17 @@ private struct PreviewCommentRowViewModel: CommentRowViewModelProtocol {
     // MARK: Properties
 
     let comment: Comment
-    let onLinkTap: ((URL) -> OpenURLAction.Result)?
+    let onUserTap: OnUserTap? = nil
+    let onLinkTap: OnLinkTap? = nil
     let shouldHighlightAuthor: Bool
 
     // MARK: Initialization
 
     init(
         comment: Comment = .example,
-        onLinkTap: ((URL) -> OpenURLAction.Result)? = nil,
         shouldHighlightAuthor: Bool = false
     ) {
         self.comment = comment
-        self.onLinkTap = onLinkTap
         self.shouldHighlightAuthor = shouldHighlightAuthor
     }
 }

@@ -37,24 +37,28 @@ struct FilterView: View {
                 text: \.user
             )
         }
-        .alert(
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Filters")
+        .textFieldAlert(
             "Add New Keyword Filter",
             message: "Input the keyword that, if present in stories or comments, these should be filtered out.",
             isPresented: $addNewKeywordFilterAlertIsPresented,
             text: $addNewKeywordFilterAlertText
         ) { keyword in
-            modelContext.insert(KeywordFilter(keyword: keyword.localizedLowercase))
+            if !keyword.isEmpty {
+                modelContext.insert(KeywordFilter(keyword: keyword.localizedLowercase))
+            }
         }
-        .alert(
+        .textFieldAlert(
             "Add New User Filter",
             message: "Input the user whose stories and comments you want to filter out.",
             isPresented: $addNewUserFilterAlertIsPresented,
             text: $addNewUserFilterAlertText
         ) { user in
-            modelContext.insert(UserFilter(user: user))
+            if !user.isEmpty {
+                modelContext.insert(UserFilter(user: user))
+            }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Filters")
     }
 }
 
@@ -94,37 +98,6 @@ private extension FilterView {
     ) {
         for index in indexSet {
             modelContext.delete(models[index])
-        }
-    }
-}
-
-private extension View {
-
-    // MARK: Methods
-
-    func alert(
-        _ titleKey: LocalizedStringKey,
-        message: LocalizedStringKey,
-        isPresented: Binding<Bool>,
-        text: Binding<String>,
-        onOKButtonTrigger: @escaping (String) -> Void
-    ) -> some View {
-        alert(titleKey, isPresented: isPresented) {
-            TextField(String(""), text: text)
-                .disableAutocorrection(true)
-                .textInputAutocapitalization(.never)
-            Button("Cancel") {
-                text.wrappedValue = ""
-            }
-            Button("OK") {
-                if !text.wrappedValue.isEmpty {
-                    onOKButtonTrigger(text.wrappedValue)
-                }
-                text.wrappedValue = ""
-            }
-            .keyboardShortcut(.defaultAction)
-        } message: {
-            Text(message)
         }
     }
 }

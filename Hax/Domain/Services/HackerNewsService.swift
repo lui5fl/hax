@@ -62,6 +62,12 @@ protocol HackerNewsServiceProtocol {
         pageSize: Int,
         resetCache: Bool
     ) async throws -> [Item]
+
+    /// Fetches the user with the specified identifier and its corresponding information.
+    ///
+    /// - Parameters:
+    ///   - id: The identifier of the user to be fetched
+    func user(id: String) async throws -> User
 }
 
 final class HackerNewsService: HackerNewsServiceProtocol {
@@ -123,6 +129,15 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         )
 
         return try await items(for: identifiersForPage)
+    }
+
+    func user(id: String) async throws -> User {
+        try await User(
+            firebaseUserDTO: perform(
+                .get(.user(id: id)),
+                with: firebaseAPINetworkClient
+            )
+        )
     }
 }
 

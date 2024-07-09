@@ -21,8 +21,12 @@ struct HaxApp: App {
         WindowGroup {
             MainView(model: mainViewModel)
                 .onOpenURL { url in
-                    if let itemID = RegexService().itemID(url: url) {
+                    let regexService = RegexService()
+
+                    if let itemID = regexService.itemID(url: url) {
                         mainViewModel.presentedItem = Item(id: itemID)
+                    } else if let userID = regexService.userID(url: url) {
+                        mainViewModel.presentedUser = IdentifiableString(userID)
                     }
                 }
         }

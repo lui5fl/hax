@@ -13,7 +13,10 @@ final class RegexServiceMock: RegexServiceProtocol {
     // MARK: Properties
 
     var itemIDStub: Int?
-    private(set) var itemIDCallCount = 0
+    var userIDStub: String?
+
+    private(set) var itemIDCallCount = Int.zero
+    private(set) var userIDCallCount = Int.zero
 
     // MARK: Methods
 
@@ -21,5 +24,11 @@ final class RegexServiceMock: RegexServiceProtocol {
         itemIDCallCount += 1
 
         return itemIDStub
+    }
+
+    func userID(url: URL) -> String? {
+        userIDCallCount += 1
+
+        return userIDStub
     }
 }

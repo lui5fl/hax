@@ -26,18 +26,12 @@ struct HaxWidgetEntryView: View {
             .foregroundStyle(Color(.accent))
             if entry.items.isEmpty {
                 Spacer()
-                VStack(alignment: .center, spacing: 15) {
-                    Image(systemName: "exclamationmark.circle")
-                        .imageScale(.large)
-                    Text("There was an error fetching the items.")
-                        .multilineTextAlignment(.center)
-                }
-                .foregroundStyle(.secondary)
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .center
-                )
+                ErrorView("There was an error fetching the items.")
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity,
+                        alignment: .center
+                    )
                 Spacer()
             } else {
                 ForEach(

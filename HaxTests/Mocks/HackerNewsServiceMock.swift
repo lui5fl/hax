@@ -13,9 +13,11 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
 
     var itemStub: Item?
     var itemsStub: [Item]?
+    var userStub: User?
 
     private(set) var itemCallCount = Int.zero
     private(set) var itemsCallCount = Int.zero
+    private(set) var userCallCount = Int.zero
 
     // MARK: Methods
 
@@ -34,6 +36,12 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
         itemsCallCount += 1
 
         return try stubOrError(itemsStub)
+    }
+
+    func user(id: String) async throws -> User {
+        userCallCount += 1
+
+        return try stubOrError(userStub)
     }
 }
 

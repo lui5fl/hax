@@ -39,6 +39,8 @@ final class MenuViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
         XCTAssertFalse(sut.openHackerNewsLinkAlertIsPresented)
         XCTAssertEqual(sut.openHackerNewsLinkAlertText, "")
+        XCTAssertFalse(sut.viewUserAlertIsPresented)
+        XCTAssertEqual(sut.viewUserAlertText, "")
         XCTAssertEqual(regexServiceMock.itemIDCallCount, 0)
     }
 

@@ -33,10 +33,11 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
                             model: ItemRowViewModel(
                                 in: .feed,
                                 index: index + 1,
-                                item: item
-                            ) {
-                                selectedItem = item
-                            }
+                                item: item,
+                                onNumberOfCommentsTap: {
+                                    selectedItem = item
+                                }
+                            )
                         )
                     }
                     .contextMenu {

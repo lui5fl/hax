@@ -14,6 +14,7 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
     @StateObject var model: Model
     @Binding private(set) var selectedFeed: Feed?
     @Binding private(set) var presentedItem: Item?
+    @Binding private(set) var presentedUser: IdentifiableString?
 
     // MARK: Body
 
@@ -38,6 +39,14 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
                         systemImage: "link"
                     )
                 }
+                Button {
+                    model.viewUserAlertIsPresented = true
+                } label: {
+                    Label(
+                        "View User",
+                        systemImage: "person"
+                    )
+                }
                 NavigationLink {
                     SettingsView(model: SettingsViewModel())
                 } label: {
@@ -46,26 +55,26 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
             }
         }
         .alert(error: $model.error)
-        .alert(
-            "Open Hacker News Link",
-            isPresented: $model.openHackerNewsLinkAlertIsPresented
-        ) {
-            TextField(
-                String(""),
-                text: $model.openHackerNewsLinkAlertText
-            )
-            Button("Cancel") {
-                model.openHackerNewsLinkAlertText = ""
-            }
-            Button("OK") {
-                presentedItem = model.itemForHackerNewsLink()
-            }
-            .keyboardShortcut(.defaultAction)
-        } message: {
-            Text("Input a valid Hacker News link into the text field.")
-        }
         .listStyle(.insetGrouped)
         .navigationTitle("Feeds")
+        .textFieldAlert(
+            "Open Hacker News Link",
+            message: "Input a valid Hacker News link into the text field.",
+            isPresented: $model.openHackerNewsLinkAlertIsPresented,
+            text: $model.openHackerNewsLinkAlertText
+        ) { _ in
+            presentedItem = model.itemForHackerNewsLink()
+        }
+        .textFieldAlert(
+            "View User",
+            message: "Input a Hacker News username into the text field.",
+            isPresented: $model.viewUserAlertIsPresented,
+            text: $model.viewUserAlertText
+        ) { user in
+            if !user.isEmpty {
+                presentedUser = IdentifiableString(user)
+            }
+        }
     }
 }
 
@@ -76,7 +85,8 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
         MenuView(
             model: MenuViewModel(),
             selectedFeed: .constant(nil),
-            presentedItem: .constant(nil)
+            presentedItem: .constant(nil),
+            presentedUser: .constant(nil)
         )
     }
 }

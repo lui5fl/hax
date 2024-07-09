@@ -31,6 +31,12 @@ enum ItemRowViewModelView: CaseIterable {
 
 protocol ItemRowViewModelProtocol {
 
+    // MARK: Types
+
+    typealias OnUserTap = () -> Void
+    typealias OnNumberOfCommentsTap = () -> Void
+    typealias OnLinkTap = (URL) -> OpenURLAction.Result
+
     // MARK: Properties
 
     /// The type of view the row is being displayed on.
@@ -42,11 +48,14 @@ protocol ItemRowViewModelProtocol {
     /// The item whose information is to be displayed on the row.
     var item: Item { get }
 
+    /// The action to be carried out when tapping the user.
+    var onUserTap: OnUserTap? { get }
+
     /// The action to be carried out when tapping the number of comments.
-    var onNumberOfCommentsTap: (() -> Void)? { get }
+    var onNumberOfCommentsTap: OnNumberOfCommentsTap? { get }
 
     /// The action to be carried out when tapping a link in the body of the item.
-    var onLinkTap: ((URL) -> OpenURLAction.Result)? { get }
+    var onLinkTap: OnLinkTap? { get }
 
     /// Whether the index of the item should be displayed.
     var shouldDisplayIndex: Bool { get }
@@ -71,8 +80,9 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
     let view: ItemRowViewModelView
     let index: Int
     let item: Item
-    let onNumberOfCommentsTap: (() -> Void)?
-    let onLinkTap: ((URL) -> OpenURLAction.Result)?
+    let onUserTap: OnUserTap?
+    let onNumberOfCommentsTap: OnNumberOfCommentsTap?
+    let onLinkTap: OnLinkTap?
 
     var shouldDisplayIndex: Bool {
         view == .feed
@@ -100,12 +110,14 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         in view: ItemRowViewModelView,
         index: Int = 1,
         item: Item,
-        onNumberOfCommentsTap: (() -> Void)? = nil,
-        onLinkTap: ((URL) -> OpenURLAction.Result)? = nil
+        onUserTap: OnUserTap? = nil,
+        onNumberOfCommentsTap: OnNumberOfCommentsTap? = nil,
+        onLinkTap: OnLinkTap? = nil
     ) {
         self.view = view
         self.index = index
         self.item = item
+        self.onUserTap = onUserTap
         self.onNumberOfCommentsTap = onNumberOfCommentsTap
         self.onLinkTap = onLinkTap
     }

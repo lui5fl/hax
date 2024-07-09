@@ -51,6 +51,7 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertNil(sut.secondaryItem)
         XCTAssertEqual(sut.comments, [])
         XCTAssertNil(sut.url)
+        XCTAssertNil(sut.user)
         XCTAssertEqual(sut.title, "98 comments")
     }
 
@@ -99,6 +100,18 @@ final class ItemViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+    }
+
+    func testOnUserTap() {
+        // Given
+        let author = "pg"
+        let item = Item(author: author)
+
+        // When
+        sut.onUserTap(item: item)
+
+        // Then
+        XCTAssertEqual(sut.user?.string, author)
     }
 
     func testOnCommentTap_givenCommentIsNotInComments() {
@@ -184,18 +197,42 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
     }
 
-    func testOnCommentLinkTap_givenLinkContainsHackerNewsItemIdentifier() throws {
+    func testOnCommentLinkTap_givenLinkContainsHackerNewsUserIdentifier() throws {
         // Given
-        regexServiceMock.itemIDStub = 1
-        let url = try XCTUnwrap(URL(string: "news.ycombinator.com/item?id=1"))
+        let userID = "pg"
+        regexServiceMock.userIDStub = userID
+        let url = try XCTUnwrap(
+            URL(string: "news.ycombinator.com/user?id=pg")
+        )
 
         // When
         _ = sut.onCommentLinkTap(url: url)
 
         // Then
-        XCTAssertEqual(sut.secondaryItem?.id, 1)
+        XCTAssertNil(sut.secondaryItem)
         XCTAssertNil(sut.url)
+        XCTAssertEqual(sut.user?.string, userID)
         XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        XCTAssertEqual(regexServiceMock.userIDCallCount, 1)
+    }
+
+    func testOnCommentLinkTap_givenLinkContainsHackerNewsItemIdentifier() throws {
+        // Given
+        let itemID = 1
+        regexServiceMock.itemIDStub = itemID
+        let url = try XCTUnwrap(
+            URL(string: "news.ycombinator.com/item?id=1")
+        )
+
+        // When
+        _ = sut.onCommentLinkTap(url: url)
+
+        // Then
+        XCTAssertEqual(sut.secondaryItem?.id, itemID)
+        XCTAssertNil(sut.url)
+        XCTAssertNil(sut.user)
+        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        XCTAssertEqual(regexServiceMock.userIDCallCount, .zero)
     }
 
     func testOnRefreshRequest_givenItemRequestFails() async {
