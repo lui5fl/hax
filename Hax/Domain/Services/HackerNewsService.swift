@@ -47,7 +47,11 @@ protocol HackerNewsServiceProtocol {
     ///
     /// - Parameters:
     ///   - id: The identifier of the item to be fetched
-    func item(id: Int) async throws -> Item
+    ///   - shouldFetchComments: Whether the comments of the item should be fetched
+    func item(
+        id: Int,
+        shouldFetchComments: Bool
+    ) async throws -> Item
 
     /// Fetches a specific page of items in a feed.
     ///
@@ -99,18 +103,27 @@ final class HackerNewsService: HackerNewsServiceProtocol {
 
     // MARK: Methods
 
-    func item(id: Int) async throws -> Item {
-        try await Item(
-            algoliaItemDTO: perform(
-                .get(.item(id: id)),
-                with: algoliaAPINetworkClient
-            ),
-            firebaseItemDTO: perform(
-                .get(.item(id: id)),
-                with: firebaseAPINetworkClient
-            ),
-            filterService: filterService
+    func item(
+        id: Int,
+        shouldFetchComments: Bool = false
+    ) async throws -> Item {
+        let firebaseItemDTO: FirebaseItemDTO = try await perform(
+            .get(.item(id: id)),
+            with: firebaseAPINetworkClient
         )
+
+        if shouldFetchComments {
+            return try await Item(
+                algoliaItemDTO: perform(
+                    .get(.item(id: id)),
+                    with: algoliaAPINetworkClient
+                ),
+                firebaseItemDTO: firebaseItemDTO,
+                filterService: filterService
+            )
+        } else {
+            return Item(firebaseItemDTO: firebaseItemDTO)
+        }
     }
 
     func items(
@@ -150,12 +163,7 @@ private extension HackerNewsService {
     func items(for identifiers: [Int]) async throws -> [Item] {
         let items = try await identifiers
             .concurrentMap { [self] identifier in
-                try? await Item(
-                    firebaseItemDTO: perform(
-                        .get(.item(id: identifier)),
-                        with: firebaseAPINetworkClient
-                    )
-                )
+                try? await item(id: identifier)
             }
             .compacted()
 

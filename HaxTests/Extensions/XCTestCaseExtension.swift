@@ -28,25 +28,6 @@ extension XCTestCase {
         return try decoder.decode(AlgoliaItemDTO.self, from: data)
     }
 
-    /// Creates an expectation which is fulfilled once the specified `Published` property
-    /// emits a value other than its initial one.
-    ///
-    /// - Parameters:
-    ///   - publishedProperty: The `Published` property to be subscribed to
-    ///   - description: The description of the expectation
-    func expectation<T>(
-        publishedProperty: Published<T>.Publisher,
-        description: String
-    ) -> AnyCancellable {
-        let expectation = expectation(description: description)
-
-        return publishedProperty
-            .dropFirst()
-            .sink { _ in
-                expectation.fulfill()
-            }
-    }
-
     /// Decodes and returns a `FirebaseItemDTO` instance from a JSON resource with
     /// the specified name located in the bundle of the current test target.
     ///

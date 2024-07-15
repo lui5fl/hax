@@ -102,6 +102,22 @@ final class ItemRowViewModelTests: XCTestCase {
         }
     }
 
+    func testShouldDisplayBody_givenCommentIsHighlighted() {
+        // Given
+        let commentIsHighlighted = true
+        let sut = ItemRowViewModel(
+            in: .item,
+            item: .example,
+            commentIsHighlighted: commentIsHighlighted
+        )
+
+        // When
+        let shouldDisplayBody = sut.shouldDisplayBody
+
+        // Then
+        XCTAssertFalse(shouldDisplayBody)
+    }
+
     func testShouldDisplayAuthor() {
         for sut in Self.suts {
             // When

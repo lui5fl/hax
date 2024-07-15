@@ -89,7 +89,7 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
     }
 
     var shouldDisplayBody: Bool {
-        view == .item
+        view == .item && !commentIsHighlighted
     }
 
     var shouldDisplayAuthor: Bool {
@@ -104,6 +104,9 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         view == .feed && item.kind != .job
     }
 
+    /// Whether a comment from the item is highlighted.
+    private let commentIsHighlighted: Bool
+
     // MARK: Initialization
 
     init(
@@ -112,7 +115,8 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         item: Item,
         onUserTap: OnUserTap? = nil,
         onNumberOfCommentsTap: OnNumberOfCommentsTap? = nil,
-        onLinkTap: OnLinkTap? = nil
+        onLinkTap: OnLinkTap? = nil,
+        commentIsHighlighted: Bool = false
     ) {
         self.view = view
         self.index = index
@@ -120,5 +124,6 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         self.onUserTap = onUserTap
         self.onNumberOfCommentsTap = onNumberOfCommentsTap
         self.onLinkTap = onLinkTap
+        self.commentIsHighlighted = commentIsHighlighted
     }
 }
