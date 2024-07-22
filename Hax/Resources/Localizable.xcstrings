@@ -521,12 +521,32 @@
         }
       }
     },
+    "View all of the story's comments" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todos los comentarios de la historia"
+          }
+        }
+      }
+    },
     "View User" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver usuario"
+          }
+        }
+      }
+    },
+    "You're viewing a single comment" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estás viendo un solo comentario"
           }
         }
       }

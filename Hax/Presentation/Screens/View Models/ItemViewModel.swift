@@ -33,13 +33,16 @@ protocol ItemViewModelProtocol: ObservableObject {
     /// The user whose information is to be displayed.
     var user: IdentifiableString? { get set }
 
+    /// The identifier of the comment to be highlighted.
+    var highlightedCommentId: Int? { get }
+
     /// The title for the view.
     var title: String { get }
 
     // MARK: Methods
 
     /// Called when the view appears.
-    func onViewAppear()
+    func onViewAppear() async
 
     /// Called when a user is tapped.
     func onUserTap(item: Item)
@@ -65,6 +68,7 @@ class ItemViewModel: ItemViewModelProtocol {
     @Published var comments: [Comment] = []
     @Published var url: IdentifiableURL?
     @Published var user: IdentifiableString?
+    @Published private(set) var highlightedCommentId: Int?
 
     var title: String {
         guard let descendants = item.descendants else {
@@ -79,6 +83,10 @@ class ItemViewModel: ItemViewModelProtocol {
 
     /// The service to use to search for regular expressions.
     private let regexService: RegexServiceProtocol
+
+    /// The original item, which is used to fetch the latest information instead of the main item
+    /// if the latter has been modified to highlight a comment.
+    private let originalItem: Item
 
     /// Whether the view has already appeared once.
     private var viewHasAppearedOnce = false
@@ -96,20 +104,18 @@ class ItemViewModel: ItemViewModelProtocol {
         self.item = item
         self.hackerNewsService = hackerNewsService
         self.regexService = regexService
+        originalItem = item
     }
 
     // MARK: Methods
 
-    func onViewAppear() {
+    func onViewAppear() async {
         guard !viewHasAppearedOnce else {
             return
         }
 
         viewHasAppearedOnce = true
-
-        Task {
-            await fetchItem()
-        }
+        await fetchItem()
     }
 
     func onUserTap(item: Item) {
@@ -169,8 +175,31 @@ private extension ItemViewModel {
     /// Fetches the item.
     func fetchItem() async {
         do {
-            item = try await hackerNewsService.item(id: item.id)
-            let comments = item.comments
+            let item = try await hackerNewsService.item(
+                id: originalItem.id,
+                shouldFetchComments: true
+            )
+            let comments: [Comment]
+
+            if let storyId = item.storyId,
+               storyId != item.id {
+                self.item = try await hackerNewsService.item(
+                    id: storyId,
+                    shouldFetchComments: false
+                )
+                let comment = Comment(item: item)
+                comments = [comment] + item.comments.map { comment in
+                    Comment(
+                        item: comment.item,
+                        depth: comment.depth + 1
+                    )
+                }
+                highlightedCommentId = comment.id
+            } else {
+                self.item = item
+                comments = item.comments
+            }
+
             self.comments = comments
             allComments = comments
         } catch {

@@ -56,6 +56,9 @@ struct Item: Hashable, Identifiable, Sendable {
     /// The comments of the item.
     let comments: [Comment]
 
+    /// The identifier of the story that the comment is associated to.
+    let storyId: Int?
+
     /// The body of the item in Markdown.
     let markdownBody: String?
 
@@ -83,7 +86,8 @@ struct Item: Hashable, Identifiable, Sendable {
         score: Int? = nil,
         title: String? = nil,
         descendants: Int? = nil,
-        comments: [Comment] = []
+        comments: [Comment] = [],
+        storyId: Int? = nil
     ) {
         self.id = id
         self.deleted = deleted
@@ -97,6 +101,7 @@ struct Item: Hashable, Identifiable, Sendable {
         self.title = title
         self.descendants = descendants
         self.comments = comments
+        self.storyId = storyId
 
         markdownBody = body?.htmlToMarkdown()
         urlSimpleString = url?.simpleString()
@@ -115,7 +120,8 @@ struct Item: Hashable, Identifiable, Sendable {
             children: algoliaItemDTO.children.map(Self.init(algoliaItemDTO:)),
             url: algoliaItemDTO.url.flatMap(URL.init(string:)),
             score: algoliaItemDTO.points,
-            title: algoliaItemDTO.title
+            title: algoliaItemDTO.title,
+            storyId: algoliaItemDTO.storyId
         )
     }
 
@@ -160,7 +166,8 @@ struct Item: Hashable, Identifiable, Sendable {
                 item: Item(algoliaItemDTO: algoliaItemDTO),
                 childIdentifiers: firebaseItemDTO.kids,
                 filterService: filterService
-            )
+            ),
+            storyId: algoliaItemDTO.storyId
         )
     }
 }

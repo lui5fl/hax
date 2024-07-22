@@ -31,10 +31,10 @@ protocol FeedViewModelProtocol: ObservableObject {
     // MARK: Methods
 
     /// Called when the view appears.
-    func onViewAppear()
+    func onViewAppear() async
 
     /// Called when an item appears.
-    func onItemAppear(item: Item)
+    func onItemAppear(item: Item) async
 
     /// Called when the user requests a refresh.
     func onRefreshRequest() async
@@ -71,28 +71,22 @@ class FeedViewModel: FeedViewModelProtocol {
 
     // MARK: Methods
 
-    func onViewAppear() {
+    func onViewAppear() async {
         guard isFirstTimeFetchingItems else {
             return
         }
 
         isFirstTimeFetchingItems = false
-
-        Task {
-            await fetchItems(resetCache: true)
-        }
+        await fetchItems(resetCache: true)
     }
 
-    func onItemAppear(item: Item) {
+    func onItemAppear(item: Item) async {
         guard item == items.last else {
             return
         }
 
         page += 1
-
-        Task {
-            await fetchItems(resetCache: false)
-        }
+        await fetchItems(resetCache: false)
     }
 
     func onRefreshRequest() async {

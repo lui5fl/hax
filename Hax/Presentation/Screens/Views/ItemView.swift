@@ -12,59 +12,86 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
     // MARK: Properties
 
     @StateObject var model: Model
+    @Environment(\.colorScheme) private var colorScheme
 
     // MARK: Body
 
     var body: some View {
-        List {
-            Button {
-                model.url = IdentifiableURL(model.item.url)
-            } label: {
-                ItemRowView(
-                    model: ItemRowViewModel(
-                        in: .item,
-                        item: model.item,
-                        onUserTap: {
-                            model.onUserTap(item: model.item)
-                        },
-                        onLinkTap: { url in
-                            model.onCommentLinkTap(url: url)
-                        }
-                    )
-                )
-            }
-            if model.isLoading {
-                HStack {
-                    Spacer()
-                    ActivityIndicatorView()
-                    Spacer()
-                }
-                .padding()
-            } else {
-                ForEach(model.comments) { comment in
-                    CommentRowView(
-                        model: CommentRowViewModel(
-                            comment: comment,
+        VStack(spacing: .zero) {
+            List {
+                Button {
+                    model.url = IdentifiableURL(model.item.url)
+                } label: {
+                    ItemRowView(
+                        model: ItemRowViewModel(
+                            in: .item,
                             item: model.item,
                             onUserTap: {
-                                model.onUserTap(item: comment.item)
+                                model.onUserTap(item: model.item)
                             },
                             onLinkTap: { url in
                                 model.onCommentLinkTap(url: url)
-                            }
+                            },
+                            commentIsHighlighted: model.highlightedCommentId != nil
                         )
                     )
-                    .contextMenu {
-                        ShareView(
-                            url: comment.item.url,
-                            hackerNewsURL: comment.item.hackerNewsURL
-                        )
+                }
+                if model.isLoading {
+                    HStack {
+                        Spacer()
+                        ActivityIndicatorView()
+                        Spacer()
                     }
-                    .id(comment)
-                    .onTapGesture {
-                        model.onCommentTap(comment: comment)
+                    .padding()
+                } else {
+                    ForEach(model.comments) { comment in
+                        CommentRowView(
+                            model: CommentRowViewModel(
+                                comment: comment,
+                                item: model.item,
+                                onUserTap: {
+                                    model.onUserTap(item: comment.item)
+                                },
+                                onLinkTap: { url in
+                                    model.onCommentLinkTap(url: url)
+                                }
+                            )
+                        )
+                        .contextMenu {
+                            ShareView(
+                                url: comment.item.url,
+                                hackerNewsURL: comment.item.hackerNewsURL
+                            )
+                        }
+                        .id(comment)
+                        .listRowBackground(
+                            comment.id == model.highlightedCommentId
+                            ? highlightedCommentColor
+                            : nil
+                        )
+                        .onTapGesture {
+                            model.onCommentTap(comment: comment)
+                        }
                     }
                 }
+            }
+            if model.highlightedCommentId != nil {
+                VStack(spacing: .zero) {
+                    Divider()
+                    VStack {
+                        Text("You're viewing a single comment")
+                        Text("View all of the story's comments")
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.accentColor)
+                    }
+                    .multilineTextAlignment(.center)
+                    .onTapGesture {
+                        model.secondaryItem = model.item
+                    }
+                    .padding()
+                }
+                .background(highlightedCommentColor)
+                .font(.footnote)
             }
         }
         .alert(error: $model.error)
@@ -76,7 +103,9 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
         }
         .navigationTitle(model.title)
         .onAppear {
-            model.onViewAppear()
+            Task {
+                await model.onViewAppear()
+            }
         }
         .refreshable {
             await model.onRefreshRequest()
@@ -95,27 +124,44 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
     }
 }
 
+// MARK: - Private extension
+
+private extension ItemView {
+
+    // MARK: Properties
+
+    var highlightedCommentColor: Color {
+        Color.accentColor.opacity(colorScheme == .dark ? 0.15 : 0.1)
+    }
+}
+
 // MARK: - Previews
 
-struct ItemView_Previews: PreviewProvider {
+#Preview {
 
     // MARK: Types
 
-    private final class Model: ItemViewModel {
+    final class Model: ItemViewModel {
 
-        override func onViewAppear() {
-            comments = (0...2).map { number in
-                .example(id: number, depth: number)
+        // MARK: Properties
+
+        override var highlightedCommentId: Int? {
+            .zero
+        }
+
+        // MARK: Methods
+
+        override func onViewAppear() async {
+            comments = (.zero ... 2).map { number in
+                Comment.example(id: number, depth: number)
             }
             isLoading = false
         }
     }
 
-    // MARK: Previews
+    // MARK: Preview
 
-    static var previews: some View {
-        NavigationStack {
-            ItemView(model: Model(item: .example))
-        }
+    return NavigationStack {
+        ItemView(model: Model(item: .example))
     }
 }

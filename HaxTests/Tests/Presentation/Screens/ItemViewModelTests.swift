@@ -17,7 +17,6 @@ final class ItemViewModelTests: XCTestCase {
     private var sut: ItemViewModel!
     private var hackerNewsServiceMock: HackerNewsServiceMock!
     private var regexServiceMock: RegexServiceMock!
-    private var cancellables: Set<AnyCancellable>!
 
     // MARK: Set up and tear down
 
@@ -31,13 +30,11 @@ final class ItemViewModelTests: XCTestCase {
             hackerNewsService: hackerNewsServiceMock,
             regexService: regexServiceMock
         )
-        cancellables = []
     }
 
     override func tearDownWithError() throws {
         sut = nil
         hackerNewsServiceMock = nil
-        cancellables = nil
 
         try super.tearDownWithError()
     }
@@ -52,54 +49,91 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(sut.comments, [])
         XCTAssertNil(sut.url)
         XCTAssertNil(sut.user)
+        XCTAssertNil(sut.highlightedCommentId)
         XCTAssertEqual(sut.title, "98 comments")
     }
 
-    func testOnViewAppear_givenItemRequestFails() {
-        // Given
-        setUpExpectationForError()
-
+    func testOnViewAppear_givenItemRequestFails() async {
         // When
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        await sut.onViewAppear()
 
         // Then
         XCTAssertFalse(sut.isLoading)
         XCTAssertNotNil(sut.error)
         XCTAssertEqual(sut.item, .example)
         XCTAssertEqual(sut.comments, [])
+        XCTAssertNil(sut.highlightedCommentId)
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
     }
 
-    func testOnViewAppear_givenItemRequestDoesNotFail() {
+    func testOnViewAppear_givenItemRequestDoesNotFail() async {
         // Given
         let item = Item(id: 1, comments: [.example])
-        hackerNewsServiceMock.itemStub = item
-        setUpExpectationForIsLoading()
+        hackerNewsServiceMock.itemStub = { _, _ in
+            item
+        }
 
         // When
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        await sut.onViewAppear()
 
         // Then
         XCTAssertFalse(sut.isLoading)
         XCTAssertNil(sut.error)
         XCTAssertEqual(sut.item, item)
         XCTAssertEqual(sut.comments, [.example])
+        XCTAssertNil(sut.highlightedCommentId)
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
     }
 
-    func testOnViewAppear_whenCalledTwice() {
-        // Given
-        setUpExpectationForIsLoading()
-
+    func testOnViewAppear_whenCalledTwice() async {
         // When
-        sut.onViewAppear()
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        await sut.onViewAppear()
+        await sut.onViewAppear()
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+    }
+
+    func testOnViewAppear_givenCommentShouldBeHighlighted() async {
+        // Given
+        let item = Item(
+            id: 1,
+            comments: [Comment(item: Item(id: 2))],
+            storyId: .zero
+        )
+        let storyItem = Item(id: .zero)
+        hackerNewsServiceMock.itemStub = { id, _ in
+            switch id {
+            case .zero:
+                storyItem
+            case 1:
+                item
+            default:
+                nil
+            }
+        }
+        sut = ItemViewModel(
+            item: item,
+            hackerNewsService: hackerNewsServiceMock,
+            regexService: regexServiceMock
+        )
+
+        // When
+        await sut.onViewAppear()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.item, storyItem)
+        XCTAssertEqual(
+            sut.comments,
+            [
+                Comment(item: item),
+                Comment(item: Item(id: 2), depth: 1)
+            ]
+        )
+        XCTAssertEqual(sut.highlightedCommentId, 1)
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 2)
     }
 
     func testOnUserTap() {
@@ -114,19 +148,19 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(sut.user?.string, author)
     }
 
-    func testOnCommentTap_givenCommentIsNotInComments() {
+    func testOnCommentTap_givenCommentIsNotInComments() async {
         // Given
-        hackerNewsServiceMock.itemStub = Item(
-            comments: [
-                .example,
-                .example(id: 1, depth: 1),
-                .example(id: 2, depth: 2),
-                .example(id: 3, depth: 1)
-            ]
-        )
-        setUpExpectationForIsLoading()
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        hackerNewsServiceMock.itemStub = { _, _ in
+            Item(
+                comments: [
+                    .example,
+                    .example(id: 1, depth: 1),
+                    .example(id: 2, depth: 2),
+                    .example(id: 3, depth: 1)
+                ]
+            )
+        }
+        await sut.onViewAppear()
 
         // When
         sut.onCommentTap(comment: .example(id: 4))
@@ -143,19 +177,19 @@ final class ItemViewModelTests: XCTestCase {
         )
     }
 
-    func testOnCommentTap_givenCommentIsInComments() {
+    func testOnCommentTap_givenCommentIsInComments() async {
         // Given
-        hackerNewsServiceMock.itemStub = Item(
-            comments: [
-                .example,
-                .example(id: 1, depth: 1),
-                .example(id: 2, depth: 2),
-                .example(id: 3, depth: 1)
-            ]
-        )
-        setUpExpectationForIsLoading()
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        hackerNewsServiceMock.itemStub = { _, _ in
+            Item(
+                comments: [
+                    .example,
+                    .example(id: 1, depth: 1),
+                    .example(id: 2, depth: 2),
+                    .example(id: 3, depth: 1)
+                ]
+            )
+        }
+        await sut.onViewAppear()
 
         // When
         sut.onCommentTap(comment: .example(id: 1, depth: 1))
@@ -254,7 +288,9 @@ final class ItemViewModelTests: XCTestCase {
         // Given
         sut.comments = [.example]
         let item = Item(id: 1, comments: [.example, .example])
-        hackerNewsServiceMock.itemStub = item
+        hackerNewsServiceMock.itemStub = { _, _ in
+            item
+        }
 
         // When
         await sut.onRefreshRequest()
@@ -265,28 +301,5 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(sut.item, item)
         XCTAssertEqual(sut.comments, [.example, .example])
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
-    }
-}
-
-// MARK: - Private extension
-
-private extension ItemViewModelTests {
-
-    // MARK: Methods
-
-    func setUpExpectationForIsLoading() {
-        expectation(
-            publishedProperty: sut.$isLoading,
-            description: "isLoading"
-        )
-        .store(in: &cancellables)
-    }
-
-    func setUpExpectationForError() {
-        expectation(
-            publishedProperty: sut.$error,
-            description: "error"
-        )
-        .store(in: &cancellables)
     }
 }

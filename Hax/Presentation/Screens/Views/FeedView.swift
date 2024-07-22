@@ -47,7 +47,9 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
                         )
                     }
                     .onAppear {
-                        model.onItemAppear(item: item)
+                        Task {
+                            await model.onItemAppear(item: item)
+                        }
                     }
                 }
                 .refreshable {
@@ -59,7 +61,9 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
         .listStyle(.plain)
         .navigationTitle(model.feed.title)
         .onAppear {
-            model.onViewAppear()
+            Task {
+                await model.onViewAppear()
+            }
         }
         .safari(url: $model.url)
     }
@@ -82,14 +86,14 @@ struct FeedView_Previews: PreviewProvider {
 
     private final class Model: FeedViewModel {
 
-        override func onViewAppear() {
+        override func onViewAppear() async {
             items = (0...2).map { _ in
                 .example
             }
             isLoading = false
         }
 
-        override func onItemAppear(item: Item) {
+        override func onItemAppear(item: Item) async {
             // Do nothing
         }
     }

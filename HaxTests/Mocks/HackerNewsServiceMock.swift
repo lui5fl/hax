@@ -11,7 +11,9 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
 
     // MARK: Properties
 
-    var itemStub: Item?
+    var itemStub: (
+        (_ id: Int, _ shouldFetchComments: Bool) -> Item?
+    )?
     var itemsStub: [Item]?
     var userStub: User?
 
@@ -21,10 +23,17 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
 
     // MARK: Methods
 
-    func item(id: Int) async throws -> Item {
+    func item(
+        id: Int,
+        shouldFetchComments: Bool
+    ) async throws -> Item {
         itemCallCount += 1
 
-        return try stubOrError(itemStub)
+        if let item = itemStub?(id, shouldFetchComments) {
+            return item
+        } else {
+            throw HackerNewsServiceError.network
+        }
     }
 
     func items(

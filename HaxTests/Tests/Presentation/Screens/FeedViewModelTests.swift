@@ -16,7 +16,6 @@ final class FeedViewModelTests: XCTestCase {
 
     private var sut: FeedViewModel!
     private var hackerNewsServiceMock: HackerNewsServiceMock!
-    private var cancellables: Set<AnyCancellable>!
 
     // MARK: Set up and tear down
 
@@ -28,13 +27,11 @@ final class FeedViewModelTests: XCTestCase {
             feed: .top,
             hackerNewsService: hackerNewsServiceMock
         )
-        cancellables = []
     }
 
     override func tearDownWithError() throws {
         sut = nil
         hackerNewsServiceMock = nil
-        cancellables = nil
 
         try super.tearDownWithError()
     }
@@ -49,13 +46,9 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssertNil(sut.url)
     }
 
-    func testOnViewAppear_givenItemsRequestFails() {
-        // Given
-        setUpExpectationForError()
-
+    func testOnViewAppear_givenItemsRequestFails() async {
         // When
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        await sut.onViewAppear()
 
         // Then
         XCTAssertFalse(sut.isLoading)
@@ -64,14 +57,12 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
     }
 
-    func testOnViewAppear_givenItemsRequestDoesNotFail() {
+    func testOnViewAppear_givenItemsRequestDoesNotFail() async {
         // Given
         hackerNewsServiceMock.itemsStub = [.example]
-        setUpExpectationForIsLoading()
 
         // When
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        await sut.onViewAppear()
 
         // Then
         XCTAssertFalse(sut.isLoading)
@@ -80,27 +71,21 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
     }
 
-    func testOnViewAppear_whenCalledTwice() {
-        // Given
-        setUpExpectationForIsLoading()
-
+    func testOnViewAppear_whenCalledTwice() async {
         // When
-        sut.onViewAppear()
-        sut.onViewAppear()
-        waitForExpectations(timeout: 5)
+        await sut.onViewAppear()
+        await sut.onViewAppear()
 
         // Then
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
     }
 
-    func testOnItemAppear_givenItemsRequestFails() {
+    func testOnItemAppear_givenItemsRequestFails() async {
         // Given
         sut.items = [.example]
-        setUpExpectationForError()
 
         // When
-        sut.onItemAppear(item: .example)
-        waitForExpectations(timeout: 5)
+        await sut.onItemAppear(item: .example)
 
         // Then
         XCTAssertFalse(sut.isLoading)
@@ -109,15 +94,13 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
     }
 
-    func testOnItemAppear_givenItemsRequestDoesNotFail() {
+    func testOnItemAppear_givenItemsRequestDoesNotFail() async {
         // Given
         sut.items = [.example]
         hackerNewsServiceMock.itemsStub = [.example]
-        setUpExpectationForIsLoading()
 
         // When
-        sut.onItemAppear(item: .example)
-        waitForExpectations(timeout: 5)
+        await sut.onItemAppear(item: .example)
 
         // Then
         XCTAssertFalse(sut.isLoading)
@@ -126,7 +109,7 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
     }
 
-    func testOnItemAppear_whenCalledForEveryItemButTheLastOne() {
+    func testOnItemAppear_whenCalledForEveryItemButTheLastOne() async {
         // Given
         sut.items = (0...9).map {
             .example(id: $0)
@@ -134,7 +117,7 @@ final class FeedViewModelTests: XCTestCase {
 
         // When
         for item in sut.items.dropLast() {
-            sut.onItemAppear(item: item)
+            await sut.onItemAppear(item: item)
         }
 
         // Then
@@ -168,28 +151,5 @@ final class FeedViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
         XCTAssertEqual(sut.items, [.example])
         XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
-    }
-}
-
-// MARK: - Private extension
-
-private extension FeedViewModelTests {
-
-    // MARK: Methods
-
-    func setUpExpectationForIsLoading() {
-        expectation(
-            publishedProperty: sut.$isLoading,
-            description: "isLoading"
-        )
-        .store(in: &cancellables)
-    }
-
-    func setUpExpectationForError() {
-        expectation(
-            publishedProperty: sut.$error,
-            description: "error"
-        )
-        .store(in: &cancellables)
     }
 }
