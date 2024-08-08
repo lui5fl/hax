@@ -39,6 +39,13 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                     model.onSafariExtensionButtonTrigger()
                 }
             }
+            Section("Other") {
+                NavigationLink {
+                    TipJarView()
+                } label: {
+                    Label("Tip Jar", systemImage: "dollarsign")
+                }
+            }
             Section("About") {
                 Button("Privacy Policy") {
                     model.onPrivacyPolicyButtonTrigger()

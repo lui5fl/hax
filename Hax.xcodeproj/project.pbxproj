@@ -93,6 +93,7 @@
 		A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DAFC28D4EA25006CD8E7 /* DateExtension.swift */; };
 		A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */; };
 		A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0728D4EA3F006CD8E7 /* Feed.swift */; };
+		A0999DFC2C6518B6008B62B6 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0999DFB2C6518B6008B62B6 /* TipJarView.swift */; };
 		A0A2881829521A0500CF1484 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */; };
 		A0ACA52E2B935D9E00CFD2A8 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */; };
 		A0ACA6D32AD556D2007C2B8C /* SelectFeedIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */; };
@@ -269,6 +270,8 @@
 		A08FDE3D2BEF811300FB0265 /* FirebaseItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseItemDTO.swift; sourceTree = "<group>"; };
 		A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModelTests.swift; sourceTree = "<group>"; };
 		A092AD662954BE9400B76D68 /* ItemRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowViewModelTests.swift; sourceTree = "<group>"; };
+		A0999DFB2C6518B6008B62B6 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
+		A0999DFE2C652116008B62B6 /* LocalProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = LocalProducts.storekit; sourceTree = "<group>"; };
 		A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFeedIntent.swift; sourceTree = "<group>"; };
@@ -818,6 +821,7 @@
 				A0F4DB1828D4EA3F006CD8E7 /* MenuView.swift */,
 				A0F4DB1028D4EA3F006CD8E7 /* SafariView.swift */,
 				A0F4DB1228D4EA3F006CD8E7 /* SettingsView.swift */,
+				A0999DFB2C6518B6008B62B6 /* TipJarView.swift */,
 				A06B0CCB2C0A198300292A36 /* UserView.swift */,
 			);
 			path = Views;
@@ -840,6 +844,7 @@
 			children = (
 				A064ABB228D3ADA600572ADD /* Hax.entitlements */,
 				A07FF27A2BB7306D0067B652 /* Info.plist */,
+				A0999DFE2C652116008B62B6 /* LocalProducts.storekit */,
 				A064ABB028D3ADA600572ADD /* Assets.xcassets */,
 				A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */,
 				A068D6B02BC57D740061E192 /* Localizable.xcstrings */,
@@ -1124,6 +1129,7 @@
 				A0F4DB2C28D4EA3F006CD8E7 /* FeedView.swift in Sources */,
 				A0CB86E62C08C3A2002C6353 /* FirebaseUserDTO.swift in Sources */,
 				A0F4DB1E28D4EA3F006CD8E7 /* Feed.swift in Sources */,
+				A0999DFC2C6518B6008B62B6 /* TipJarView.swift in Sources */,
 				A0F4DB2E28D4EA3F006CD8E7 /* HackerNewsService.swift in Sources */,
 				A06B0CCC2C0A198300292A36 /* UserView.swift in Sources */,
 				A0F4DB2628D4EA3F006CD8E7 /* ItemView.swift in Sources */,
