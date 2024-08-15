@@ -5,6 +5,7 @@
 //  Created by Luis Fariña on 23/5/22.
 //
 
+import StoreKit
 import SwiftUI
 
 struct SettingsView<Model: SettingsViewModelProtocol>: View {
@@ -37,6 +38,15 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
             Section("Help") {
                 Button("Safari Extension") {
                     model.onSafariExtensionButtonTrigger()
+                }
+            }
+            if AppStore.canMakePayments {
+                Section("Other") {
+                    NavigationLink {
+                        TipJarView()
+                    } label: {
+                        Label("Tip Jar", systemImage: "dollarsign")
+                    }
                 }
             }
             Section("About") {

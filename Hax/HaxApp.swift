@@ -5,6 +5,7 @@
 //  Created by Luis Fariña on 8/5/22.
 //
 
+import StoreKit
 import SwiftUI
 
 @MainActor
@@ -14,6 +15,18 @@ struct HaxApp: App {
     // MARK: Properties
 
     @State private var mainViewModel = MainViewModel()
+
+    // MARK: Initialization
+
+    init() {
+        Task(priority: .background) {
+            for await verificationResult in Transaction.updates {
+                if case .verified(let transaction) = verificationResult {
+                    await transaction.finish()
+                }
+            }
+        }
+    }
 
     // MARK: Body
 
