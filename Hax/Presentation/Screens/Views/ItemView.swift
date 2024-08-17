@@ -13,6 +13,8 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
 
     @StateObject var model: Model
     @Environment(\.colorScheme) private var colorScheme
+    @State private var translationPopoverIsPresented = false
+    @State private var textToBeTranslated = ""
 
     // MARK: Body
 
@@ -34,6 +36,18 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                             },
                             commentIsHighlighted: model.highlightedCommentId != nil
                         )
+                    )
+                }
+                .contextMenu {
+                    TranslateButton(
+                        text: [
+                            model.item.title,
+                            model.item.markdownBody
+                        ]
+                            .compacted()
+                            .joined(separator: "\n\n"),
+                        translationPopoverIsPresented: $translationPopoverIsPresented,
+                        textToBeTranslated: $textToBeTranslated
                     )
                 }
                 if model.isLoading {
@@ -61,6 +75,11 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                             ShareView(
                                 url: comment.item.url,
                                 hackerNewsURL: comment.item.hackerNewsURL
+                            )
+                            TranslateButton(
+                                text: comment.item.markdownBody,
+                                translationPopoverIsPresented: $translationPopoverIsPresented,
+                                textToBeTranslated: $textToBeTranslated
                             )
                         }
                         .id(comment)
@@ -121,6 +140,10 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                 hackerNewsURL: model.item.hackerNewsURL
             )
         }
+        .translationPresentation(
+            isPresented: $translationPopoverIsPresented,
+            text: textToBeTranslated
+        )
     }
 }
 

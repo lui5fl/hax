@@ -13,6 +13,8 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
 
     @StateObject var model: Model
     @Binding private(set) var selectedItem: Item?
+    @State private var translationPopoverIsPresented = false
+    @State private var textToBeTranslated = ""
 
     // MARK: Body
 
@@ -45,6 +47,11 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
                             url: item.url,
                             hackerNewsURL: item.hackerNewsURL
                         )
+                        TranslateButton(
+                            text: item.title,
+                            translationPopoverIsPresented: $translationPopoverIsPresented,
+                            textToBeTranslated: $textToBeTranslated
+                        )
                     }
                     .onAppear {
                         Task {
@@ -66,6 +73,10 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
             }
         }
         .safari(url: $model.url)
+        .translationPresentation(
+            isPresented: $translationPopoverIsPresented,
+            text: textToBeTranslated
+        )
     }
 }
 

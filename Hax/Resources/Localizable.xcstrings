@@ -551,6 +551,16 @@
         }
       }
     },
+    "Translate…" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traducir…"
+          }
+        }
+      }
+    },
     "Try again later." : {
       "localizations" : {
         "es" : {

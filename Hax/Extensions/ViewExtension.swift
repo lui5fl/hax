@@ -56,6 +56,23 @@ extension View {
         }
     }
 
+    /// Adjusts the view's frame to match the minimum hit region size recommended by
+    /// Apple, which is 44x44 pt.
+    ///
+    /// - Parameters:
+    ///   - alignment: The alignment of the view within the frame
+    func frameEqualToMinimumHitRegion(
+        alignment: Alignment = .center
+    ) -> some View {
+        let widthAndHeight: CGFloat = 44
+
+        return frame(
+            width: widthAndHeight,
+            height: widthAndHeight,
+            alignment: alignment
+        )
+    }
+
     /// Presents a `SFSafariViewController` instance if the provided URL is
     /// different from nil.
     ///

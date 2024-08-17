@@ -12,6 +12,8 @@ struct UserView<Model: UserViewModelProtocol>: View {
     // MARK: Properties
 
     @State var model: Model
+    @State private var translationPopoverIsPresented = false
+    @State private var textToBeTranslated = ""
 
     // MARK: Body
 
@@ -28,9 +30,21 @@ struct UserView<Model: UserViewModelProtocol>: View {
                                     .bold()
                                     .font(.title2)
                                     .textSelection(.enabled)
+                                Spacer()
                                 if let url = user.url {
-                                    Spacer()
-                                    ShareLink(item: url)
+                                    if let description = user.description {
+                                        Menu {
+                                            ShareLink(item: url)
+                                            translateButton(text: description)
+                                        } label: {
+                                            Image(systemName: "ellipsis")
+                                                .frameEqualToMinimumHitRegion(alignment: .trailing)
+                                        }
+                                    } else {
+                                        ShareLink(item: url)
+                                    }
+                                } else if let description = user.description {
+                                    translateButton(text: description)
                                 }
                             }
                             HStack(spacing: 3) {
@@ -80,6 +94,25 @@ struct UserView<Model: UserViewModelProtocol>: View {
             }
         }
         .safari(url: $model.url)
+        .translationPresentation(
+            isPresented: $translationPopoverIsPresented,
+            text: textToBeTranslated
+        )
+    }
+}
+
+// MARK: - Private extension
+
+private extension UserView {
+
+    // MARK: - Methods
+
+    func translateButton(text: String) -> some View {
+        TranslateButton(
+            text: text,
+            translationPopoverIsPresented: $translationPopoverIsPresented,
+            textToBeTranslated: $textToBeTranslated
+        )
     }
 }
 
