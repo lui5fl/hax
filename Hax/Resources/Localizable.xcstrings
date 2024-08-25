@@ -651,6 +651,16 @@
         }
       }
     },
+    "View Random Story" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver historia aleatoria"
+          }
+        }
+      }
+    },
     "View User" : {
       "localizations" : {
         "es" : {

@@ -136,6 +136,27 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 2)
     }
 
+    func testOnViewAppear_givenShouldFetchItemIsFalse() async {
+        // Given
+        let item = Item(comments: [Comment(item: Item(id: 1))])
+        sut = ItemViewModel(
+            item: item,
+            hackerNewsService: hackerNewsServiceMock,
+            regexService: regexServiceMock,
+            shouldFetchItem: false
+        )
+
+        // When
+        await sut.onViewAppear()
+
+        // Then
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.item, item)
+        XCTAssertEqual(sut.comments, item.comments)
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, .zero)
+    }
+
     func testOnUserTap() {
         // Given
         let author = "pg"
@@ -300,6 +321,22 @@ final class ItemViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
         XCTAssertEqual(sut.item, item)
         XCTAssertEqual(sut.comments, [.example, .example])
+        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+    }
+
+    func testOnRefreshRequest_givenShouldFetchItemIsFalse() async {
+        // Given
+        sut = ItemViewModel(
+            item: .example,
+            hackerNewsService: hackerNewsServiceMock,
+            regexService: regexServiceMock,
+            shouldFetchItem: false
+        )
+
+        // When
+        await sut.onRefreshRequest()
+
+        // Then
         XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
     }
 }

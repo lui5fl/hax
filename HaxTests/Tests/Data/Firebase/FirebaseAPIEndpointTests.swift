@@ -36,6 +36,17 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         XCTAssertEqual(path, "/v0/item/\(id).json")
     }
 
+    func testPath_givenMaxitemEndpoint() {
+        // Given
+        let sut = FirebaseAPI.Endpoint.maxitem
+
+        // When
+        let path = sut.path
+
+        // Then
+        XCTAssertEqual(path, "/v0/maxitem.json")
+    }
+
     func testPath_givenUserEndpoint() {
         // Given
         let id = "pg"
@@ -62,6 +73,17 @@ final class FirebaseAPIEndpointTests: XCTestCase {
     func testQueryItems_givenItemEndpoint() {
         // Given
         let sut = FirebaseAPI.Endpoint.item(id: 42)
+
+        // When
+        let queryItems = sut.queryItems
+
+        // Then
+        XCTAssertNil(queryItems)
+    }
+
+    func testQueryItems_givenMaxitemEndpoint() {
+        // Given
+        let sut = FirebaseAPI.Endpoint.maxitem
 
         // When
         let queryItems = sut.queryItems

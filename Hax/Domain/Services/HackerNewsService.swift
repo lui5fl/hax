@@ -105,6 +105,9 @@ final class HackerNewsService: HackerNewsServiceProtocol {
     /// The array of cached item identifiers from the last visited feed.
     private var cachedIdentifiers: [Int] = []
 
+    /// The current largest item identifier.
+    private var maximumItemID: Int?
+
     /// The service to use to filter items and comments.
     var filterService: FilterServiceProtocol?
 
@@ -149,6 +152,38 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         )
 
         return try await items(for: identifiersForPage)
+    }
+
+    func randomStory() async throws -> Item {
+        func maximumItemID() async throws -> Int {
+            if let maximumItemID = self.maximumItemID {
+                return maximumItemID
+            } else {
+                let maximumItemID: Int = try await perform(
+                    .get(.maxitem),
+                    with: firebaseAPINetworkClient
+                )
+                self.maximumItemID = maximumItemID
+
+                return maximumItemID
+            }
+        }
+
+        let item = try await item(
+            id: .random(in: 1 ... maximumItemID()),
+            shouldFetchComments: true
+        )
+
+        guard let storyId = item.storyId,
+              storyId != item.id
+        else {
+            return item
+        }
+
+        return try await self.item(
+            id: storyId,
+            shouldFetchComments: true
+        )
     }
 
     func search(query: String) async throws -> [Item] {
