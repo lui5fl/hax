@@ -24,7 +24,7 @@ final class ItemRowViewModelTests: XCTestCase {
                 suts.append(
                     ItemRowViewModel(
                         in: view,
-                        item: Item(kind: kind)
+                        item: Item(kind: kind, body: "Body")
                     )
                 )
             }
@@ -110,6 +110,18 @@ final class ItemRowViewModelTests: XCTestCase {
             item: .example,
             commentIsHighlighted: commentIsHighlighted
         )
+
+        // When
+        let shouldDisplayBody = sut.shouldDisplayBody
+
+        // Then
+        XCTAssertFalse(shouldDisplayBody)
+    }
+
+    func testShouldDisplayBody_givenBodyIsEmptyString() {
+        // Given
+        let body = ""
+        let sut = ItemRowViewModel(in: .item, item: Item(body: body))
 
         // When
         let shouldDisplayBody = sut.shouldDisplayBody

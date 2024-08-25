@@ -89,7 +89,11 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
     }
 
     var shouldDisplayBody: Bool {
-        view == .item && !commentIsHighlighted
+        view == .item &&
+        !commentIsHighlighted &&
+        item.markdownBody?.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty == false
     }
 
     var shouldDisplayAuthor: Bool {
