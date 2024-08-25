@@ -21,11 +21,38 @@ extension XCTestCase {
     func algoliaItemDTO(
         jsonResourceName: String
     ) throws -> AlgoliaItemDTO {
-        let data = try jsonData(resourceName: jsonResourceName)
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        try snakeCaseJSONDecoder().decode(
+            AlgoliaItemDTO.self,
+            from: jsonData(resourceName: jsonResourceName)
+        )
+    }
 
-        return try decoder.decode(AlgoliaItemDTO.self, from: data)
+    /// Decodes and returns an `AlgoliaSearchResponseDTO` instance from a JSON
+    /// resource with the specified name located in the bundle of the current test target.
+    ///
+    /// - Parameters:
+    ///   - jsonResourceName: The name of the JSON resource without the extension
+    func algoliaSearchResponseDTO(
+        jsonResourceName: String
+    ) throws -> AlgoliaSearchResponseDTO {
+        try snakeCaseJSONDecoder().decode(
+            AlgoliaSearchResponseDTO.self,
+            from: jsonData(resourceName: jsonResourceName)
+        )
+    }
+
+    /// Decodes and returns an `AlgoliaSearchResultDTO` instance from a JSON
+    /// resource with the specified name located in the bundle of the current test target.
+    ///
+    /// - Parameters:
+    ///   - jsonResourceName: The name of the JSON resource without the extension
+    func algoliaSearchResultDTO(
+        jsonResourceName: String
+    ) throws -> AlgoliaSearchResultDTO {
+        try snakeCaseJSONDecoder().decode(
+            AlgoliaSearchResultDTO.self,
+            from: jsonData(resourceName: jsonResourceName)
+        )
     }
 
     /// Decodes and returns a `FirebaseItemDTO` instance from a JSON resource with
@@ -79,5 +106,14 @@ private extension XCTestCase {
         let string = try String(contentsOfFile: path)
 
         return try XCTUnwrap(string.data(using: .utf8))
+    }
+
+    /// Creates and returns a `JSONDecoder` instance configured to convert snake case
+    /// keys to camel case.
+    func snakeCaseJSONDecoder() -> JSONDecoder {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        return jsonDecoder
     }
 }

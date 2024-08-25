@@ -34,6 +34,7 @@ public enum Request<API: APIProtocol> {
         switch self {
         case .get(let endpoint):
             urlComponents.path = endpoint.path
+            urlComponents.queryItems = endpoint.queryItems
         }
 
         guard let url = urlComponents.url else {

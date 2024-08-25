@@ -15,7 +15,14 @@ final class RequestTests: XCTestCase {
     func testURLRequest_givenHTTPMethodIsGETAndURLIsNotValid() {
         // Given
         let api = APIMock(scheme: "https", host: "/")
-        let sut = Request<APIMock>.get(EndpointMock(path: "/"))
+        let sut = Request<APIMock>.get(
+            EndpointMock(
+                path: "/",
+                queryItems: [
+                    URLQueryItem(name: "name", value: "value")
+                ]
+            )
+        )
 
         // When
         let urlRequest = {
@@ -34,7 +41,14 @@ final class RequestTests: XCTestCase {
     func testURLRequest_givenHTTPMethodIsGETAndURLIsValid() throws {
         // Given
         let api = APIMock(scheme: "https", host: "luisfl.me")
-        let sut = Request<APIMock>.get(EndpointMock(path: "/"))
+        let sut = Request<APIMock>.get(
+            EndpointMock(
+                path: "/",
+                queryItems: [
+                    URLQueryItem(name: "name", value: "value")
+                ]
+            )
+        )
 
         // When
         let urlRequest = try sut.urlRequest(api: api)
@@ -42,7 +56,7 @@ final class RequestTests: XCTestCase {
         // Then
         XCTAssertEqual(
             urlRequest.url,
-            URL(string: "https://luisfl.me/")
+            URL(string: "https://luisfl.me/?name=value")
         )
         XCTAssertEqual(urlRequest.httpMethod, "GET")
     }

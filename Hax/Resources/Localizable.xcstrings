@@ -241,6 +241,16 @@
         }
       }
     },
+    "General" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        }
+      }
+    },
     "Hacker News Link" : {
       "localizations" : {
         "es" : {
@@ -257,6 +267,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ayuda"
+          }
+        }
+      }
+    },
+    "Home" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio"
           }
         }
       }
@@ -431,6 +451,16 @@
         }
       }
     },
+    "Search" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar"
+          }
+        }
+      }
+    },
     "Select Feed" : {
       "localizations" : {
         "es" : {
@@ -537,6 +567,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tarro de propinas"
+          }
+        }
+      }
+    },
+    "Title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título"
           }
         }
       }

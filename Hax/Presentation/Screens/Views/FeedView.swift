@@ -19,73 +19,34 @@ struct FeedView<Model: FeedViewModelProtocol>: View {
     // MARK: Body
 
     var body: some View {
-        Group {
-            if model.isLoading {
-                ActivityIndicatorView()
-            } else {
-                List(enumeratedItems, id: \.1) { index, item in
-                    Button {
-                        if let url = item.url {
-                            model.url = IdentifiableURL(url)
-                        } else {
-                            selectedItem = item
-                        }
-                    } label: {
-                        ItemRowView(
-                            model: ItemRowViewModel(
-                                in: .feed,
-                                index: index + 1,
-                                item: item,
-                                onNumberOfCommentsTap: {
-                                    selectedItem = item
-                                }
-                            )
-                        )
-                    }
-                    .contextMenu {
-                        ShareView(
-                            url: item.url,
-                            hackerNewsURL: item.hackerNewsURL
-                        )
-                        TranslateButton(
-                            text: item.title,
-                            translationPopoverIsPresented: $translationPopoverIsPresented,
-                            textToBeTranslated: $textToBeTranslated
-                        )
-                    }
-                    .onAppear {
-                        Task {
-                            await model.onItemAppear(item: item)
-                        }
-                    }
+        ItemList(
+            isLoading: model.isLoading,
+            items: model.items,
+            onItemAppear: { item in
+                Task {
+                    await model.onItemAppear(item: item)
                 }
-                .refreshable {
-                    await model.onRefreshRequest()
-                }
-            }
-        }
+            },
+            url: $model.url,
+            selectedItem: $selectedItem,
+            translationPopoverIsPresented: $translationPopoverIsPresented,
+            textToBeTranslated: $textToBeTranslated
+        )
         .alert(error: $model.error)
-        .listStyle(.plain)
         .navigationTitle(model.feed.title)
         .onAppear {
             Task {
                 await model.onViewAppear()
             }
         }
+        .refreshable {
+            await model.onRefreshRequest()
+        }
         .safari(url: $model.url)
         .translationPresentation(
             isPresented: $translationPopoverIsPresented,
             text: textToBeTranslated
         )
-    }
-}
-
-// MARK: - Private extension
-
-private extension FeedView {
-
-    var enumeratedItems: [(Int, Item)] {
-        Array(zip(model.items.indices, model.items))
     }
 }
 

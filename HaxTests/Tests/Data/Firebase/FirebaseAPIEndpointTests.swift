@@ -47,4 +47,37 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         // Then
         XCTAssertEqual(path, "/v0/user/\(id).json")
     }
+
+    func testQueryItems_givenFeedEndpoint() {
+        // Given
+        let sut = FirebaseAPI.Endpoint.feed(resource: "topstories")
+
+        // When
+        let queryItems = sut.queryItems
+
+        // Then
+        XCTAssertNil(queryItems)
+    }
+
+    func testQueryItems_givenItemEndpoint() {
+        // Given
+        let sut = FirebaseAPI.Endpoint.item(id: 42)
+
+        // When
+        let queryItems = sut.queryItems
+
+        // Then
+        XCTAssertNil(queryItems)
+    }
+
+    func testQueryItems_givenUserEndpoint() {
+        // Given
+        let sut = FirebaseAPI.Endpoint.user(id: "pg")
+
+        // When
+        let queryItems = sut.queryItems
+
+        // Then
+        XCTAssertNil(queryItems)
+    }
 }

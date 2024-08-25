@@ -15,10 +15,12 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
         (_ id: Int, _ shouldFetchComments: Bool) -> Item?
     )?
     var itemsStub: [Item]?
+    var searchStub: ((_ query: String) -> [Item])?
     var userStub: User?
 
     private(set) var itemCallCount = Int.zero
     private(set) var itemsCallCount = Int.zero
+    private(set) var searchCallCount = Int.zero
     private(set) var userCallCount = Int.zero
 
     // MARK: Methods
@@ -45,6 +47,16 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
         itemsCallCount += 1
 
         return try stubOrError(itemsStub)
+    }
+
+    func search(query: String) async throws -> [Item] {
+        searchCallCount += 1
+
+        if let items = searchStub?(query) {
+            return items
+        } else {
+            throw HackerNewsServiceError.network
+        }
     }
 
     func user(id: String) async throws -> User {

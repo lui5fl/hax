@@ -1,0 +1,1676 @@
+{
+    "exhaustive":
+    {
+        "nbHits": false,
+        "typo": false
+    },
+    "exhaustiveNbHits": false,
+    "exhaustiveTypo": false,
+    "hits":
+    [
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "protomyth"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "SQL <em>queries</em> don't start with SELECT"
+                },
+                "url":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "https://jvns.ca/blog/2019/10/03/sql-<em>queries</em>-don-t-start-with-select/"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_protomyth",
+                "story_21150606"
+            ],
+            "author": "protomyth",
+            "children":
+            [
+                21151235,
+                21151251,
+                21151263,
+                21151267,
+                21151280,
+                21151291,
+                21151310,
+                21151360,
+                21151420,
+                21151463,
+                21151563,
+                21151604,
+                21151658,
+                21151660,
+                21151702,
+                21151767,
+                21151825,
+                21151889,
+                21151905,
+                21151906,
+                21151913,
+                21151971,
+                21152109,
+                21152116,
+                21152140,
+                21152264,
+                21152275,
+                21152276,
+                21152418,
+                21152453,
+                21152458,
+                21152574,
+                21152642,
+                21152747,
+                21152793,
+                21152796,
+                21152811,
+                21152889,
+                21152919,
+                21153327,
+                21153361,
+                21153368,
+                21153779,
+                21153789,
+                21153981,
+                21154033,
+                21154051,
+                21154318,
+                21154531,
+                21154555,
+                21154883,
+                21155042,
+                21155057,
+                21155122,
+                21155367,
+                21155382,
+                21155389,
+                21155488,
+                21156181,
+                21156959,
+                21160889
+            ],
+            "created_at": "2019-10-03T18:49:59Z",
+            "created_at_i": 1570128599,
+            "num_comments": 253,
+            "objectID": "21150606",
+            "points": 905,
+            "story_id": 21150606,
+            "title": "SQL queries don't start with SELECT",
+            "updated_at": "2024-08-04T15:25:17Z",
+            "url": "https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "Anon84"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "SQL for data scientists in 100 <em>queries</em>"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://gvwilson.github.io/sql-tutorial/"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_Anon84",
+                "story_39281178"
+            ],
+            "author": "Anon84",
+            "children":
+            [
+                39281441,
+                39281682,
+                39281749,
+                39281767,
+                39281774,
+                39281792,
+                39281796,
+                39281814,
+                39281847,
+                39281851,
+                39281878,
+                39281910,
+                39281983,
+                39281997,
+                39282012,
+                39282017,
+                39282323,
+                39282415,
+                39282558,
+                39282677,
+                39282785,
+                39282850,
+                39282922,
+                39282936,
+                39283252,
+                39283316,
+                39283423,
+                39283452,
+                39283534,
+                39283722,
+                39283746,
+                39284037,
+                39284328,
+                39284535,
+                39284570,
+                39284582,
+                39286175,
+                39286224,
+                39286247,
+                39286256,
+                39286630,
+                39288335,
+                39289521,
+                39293586,
+                39293698,
+                39294181
+            ],
+            "created_at": "2024-02-06T21:50:26Z",
+            "created_at_i": 1707256226,
+            "num_comments": 158,
+            "objectID": "39281178",
+            "points": 834,
+            "story_id": 39281178,
+            "title": "SQL for data scientists in 100 queries",
+            "updated_at": "2024-05-09T21:57:37Z",
+            "url": "https://gvwilson.github.io/sql-tutorial/"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "jdblair"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "One-liner for running <em>queries</em> against CSV files with SQLite"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://til.simonwillison.net/sqlite/one-line-csv-operations"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_jdblair",
+                "story_31824030"
+            ],
+            "author": "jdblair",
+            "children":
+            [
+                31824192,
+                31824197,
+                31824265,
+                31824385,
+                31824506,
+                31824590,
+                31824609,
+                31824667,
+                31824731,
+                31825071,
+                31825093,
+                31825195,
+                31825199,
+                31825215,
+                31825261,
+                31825337,
+                31825374,
+                31825464,
+                31825558,
+                31825577,
+                31825632,
+                31825905,
+                31826052,
+                31826397,
+                31826642,
+                31827293,
+                31827714,
+                31827820,
+                31828094,
+                31832424,
+                31835669
+            ],
+            "created_at": "2022-06-21T13:59:36Z",
+            "created_at_i": 1655819976,
+            "num_comments": 127,
+            "objectID": "31824030",
+            "points": 747,
+            "story_id": 31824030,
+            "title": "One-liner for running queries against CSV files with SQLite",
+            "updated_at": "2024-05-27T17:09:16Z",
+            "url": "https://til.simonwillison.net/sqlite/one-line-csv-operations"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "voigt"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Static torrent website with peer-to-peer <em>queries</em> over BitTorrent on 2M records"
+                },
+                "url":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "https://boredcaveman.xyz/post/0x2_static-torrent-website-p2p-<em>queries</em>.html"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_voigt",
+                "story_30605252"
+            ],
+            "author": "voigt",
+            "children":
+            [
+                30608058,
+                30608157,
+                30608303,
+                30608529,
+                30608787,
+                30608875,
+                30608983,
+                30609585,
+                30610040,
+                30610175,
+                30610176,
+                30610323,
+                30610375,
+                30610698,
+                30611077,
+                30611359,
+                30611897,
+                30613432,
+                30614150,
+                30618224,
+                30654100
+            ],
+            "created_at": "2022-03-08T19:32:09Z",
+            "created_at_i": 1646767929,
+            "num_comments": 106,
+            "objectID": "30605252",
+            "points": 575,
+            "story_id": 30605252,
+            "title": "Static torrent website with peer-to-peer queries over BitTorrent on 2M records",
+            "updated_at": "2024-04-18T15:10:18Z",
+            "url": "https://boredcaveman.xyz/post/0x2_static-torrent-website-p2p-queries.html"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "lynnetye"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Show HN: Culture <em>Queries</em> – The best questions to ask during your job interview"
+                },
+                "url":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "https://www.keyvalues.com/culture-<em>queries</em>"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_lynnetye",
+                "story_15908812",
+                "show_hn"
+            ],
+            "author": "lynnetye",
+            "children":
+            [
+                15908815,
+                15909351,
+                15909377,
+                15909404,
+                15909410,
+                15909550,
+                15909568,
+                15909601,
+                15909671,
+                15909891,
+                15910042,
+                15910145,
+                15910424,
+                15910438,
+                15910491,
+                15910530,
+                15910609,
+                15910721,
+                15910789,
+                15910807,
+                15910955,
+                15911117,
+                15911290,
+                15911300,
+                15911524,
+                15911573,
+                15911891,
+                15912148,
+                15912839,
+                15913233,
+                15913339,
+                15913340,
+                15913575,
+                15914144,
+                15915763,
+                15920154
+            ],
+            "created_at": "2017-12-12T19:46:35Z",
+            "created_at_i": 1513107995,
+            "num_comments": 125,
+            "objectID": "15908812",
+            "points": 572,
+            "story_id": 15908812,
+            "title": "Show HN: Culture Queries – The best questions to ask during your job interview",
+            "updated_at": "2023-09-07T03:36:08Z",
+            "url": "https://www.keyvalues.com/culture-queries"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "ArtTimeInvestor"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Many small <em>queries</em> are efficient in SQLite"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://sqlite.org/np1queryprob.html"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_ArtTimeInvestor",
+                "story_26151302"
+            ],
+            "author": "ArtTimeInvestor",
+            "children":
+            [
+                26151432,
+                26151464,
+                26151491,
+                26151577,
+                26151594,
+                26151621,
+                26151642,
+                26151653,
+                26151695,
+                26151704,
+                26151988,
+                26152015,
+                26152056,
+                26152063,
+                26152083,
+                26152327,
+                26152455,
+                26152589,
+                26152763,
+                26152851,
+                26153158,
+                26154342,
+                26154972,
+                26155010,
+                26158516,
+                26158602
+            ],
+            "created_at": "2021-02-16T05:45:22Z",
+            "created_at_i": 1613454322,
+            "num_comments": 342,
+            "objectID": "26151302",
+            "points": 542,
+            "story_id": 26151302,
+            "title": "Many small queries are efficient in SQLite",
+            "updated_at": "2024-08-23T13:21:08Z",
+            "url": "https://sqlite.org/np1queryprob.html"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "r721"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Wired has removed \"How Google alters search <em>queries</em>\" story"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://www.wired.com/story/google-antitrust-lawsuit-search-results/"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_r721",
+                "story_37802116"
+            ],
+            "author": "r721",
+            "children":
+            [
+                37802131,
+                37802265,
+                37802267,
+                37802302,
+                37802436,
+                37802447,
+                37802472,
+                37802494,
+                37802681,
+                37802828,
+                37802846,
+                37802864,
+                37803090,
+                37803136,
+                37803251,
+                37803519,
+                37803676,
+                37803713,
+                37803830,
+                37804021,
+                37804208,
+                37804256,
+                37804651,
+                37805130,
+                37805232,
+                37805323,
+                37806022,
+                37806174,
+                37806180,
+                37806670,
+                37806786,
+                37806851,
+                37808001,
+                37808306,
+                37809994,
+                37813049,
+                37829209,
+                37948537
+            ],
+            "created_at": "2023-10-07T14:43:18Z",
+            "created_at_i": 1696689798,
+            "num_comments": 223,
+            "objectID": "37802116",
+            "points": 526,
+            "story_id": 37802116,
+            "title": "Wired has removed \"How Google alters search queries\" story",
+            "updated_at": "2023-10-27T11:35:46Z",
+            "url": "https://www.wired.com/story/google-antitrust-lawsuit-search-results/"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "animal_spirits"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "PRQL: Pipelined Relational <em>Query</em> Language"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://github.com/PRQL/prql"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_animal_spirits",
+                "story_36866861"
+            ],
+            "author": "animal_spirits",
+            "children":
+            [
+                36867319,
+                36867492,
+                36867614,
+                36867637,
+                36867651,
+                36867774,
+                36867783,
+                36867886,
+                36867974,
+                36867982,
+                36868029,
+                36868096,
+                36868206,
+                36868287,
+                36868348,
+                36868367,
+                36868458,
+                36868504,
+                36868735,
+                36868749,
+                36868784,
+                36869126,
+                36869175,
+                36869299,
+                36869402,
+                36869658,
+                36869882,
+                36870011,
+                36870058,
+                36870138,
+                36870225,
+                36870336,
+                36870633,
+                36870655,
+                36870872,
+                36871026,
+                36871160,
+                36871575,
+                36871788,
+                36871938,
+                36871996,
+                36873356,
+                36873396,
+                36873550,
+                36876391,
+                36878721,
+                36887231
+            ],
+            "created_at": "2023-07-25T18:13:51Z",
+            "created_at_i": 1690308831,
+            "num_comments": 209,
+            "objectID": "36866861",
+            "points": 519,
+            "story_id": 36866861,
+            "title": "PRQL: Pipelined Relational Query Language",
+            "updated_at": "2024-08-26T22:30:35Z",
+            "url": "https://github.com/PRQL/prql"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "shawndumas"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "If you move your mouse continually the <em>query</em> may not fail. Do not stop moving"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "http://support.microsoft.com/kb/168702"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_shawndumas",
+                "story_7011228"
+            ],
+            "author": "shawndumas",
+            "children":
+            [
+                7011275,
+                7011276,
+                7011278,
+                7011287,
+                7011307,
+                7011313,
+                7011324,
+                7011335,
+                7011366,
+                7011374,
+                7011383,
+                7011390,
+                7011406,
+                7011437,
+                7011440,
+                7011470,
+                7011480,
+                7011493,
+                7011604,
+                7011688,
+                7011689,
+                7011699,
+                7011712,
+                7011813,
+                7011901,
+                7011915,
+                7011973,
+                7012143,
+                7012221,
+                7012288,
+                7012630,
+                7012965,
+                7013097,
+                7013314,
+                7013483,
+                7014304
+            ],
+            "created_at": "2014-01-04T15:05:38Z",
+            "created_at_i": 1388847938,
+            "num_comments": 163,
+            "objectID": "7011228",
+            "points": 493,
+            "story_id": 7011228,
+            "title": "If you move your mouse continually the query may not fail. Do not stop moving",
+            "updated_at": "2023-09-06T21:51:00Z",
+            "url": "http://support.microsoft.com/kb/168702"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "phikai"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "TP-Link firmware sends six DNS requests and one NTP <em>query</em> every 5 seconds"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://www.ctrl.blog/entry/tplink-aggressive-ntp"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_phikai",
+                "story_15911501"
+            ],
+            "author": "phikai",
+            "children":
+            [
+                15912242,
+                15912255,
+                15912258,
+                15912275,
+                15912278,
+                15912286,
+                15912440,
+                15912459,
+                15912474,
+                15912527,
+                15912580,
+                15912889,
+                15912927,
+                15913155,
+                15913173,
+                15913273,
+                15913668,
+                15913733,
+                15913846,
+                15913955,
+                15914116,
+                15914472,
+                15914540,
+                15914880,
+                15915264,
+                15915335,
+                15915361,
+                15915443,
+                15916013,
+                15916938,
+                15938556,
+                15997480
+            ],
+            "created_at": "2017-12-13T02:19:01Z",
+            "created_at_i": 1513131541,
+            "num_comments": 237,
+            "objectID": "15911501",
+            "points": 485,
+            "story_id": 15911501,
+            "title": "TP-Link firmware sends six DNS requests and one NTP query every 5 seconds",
+            "updated_at": "2023-09-07T03:36:23Z",
+            "url": "https://www.ctrl.blog/entry/tplink-aggressive-ntp"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "grzm"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "My Favorite PostgreSQL <em>Queries</em> and Why They Matter"
+                },
+                "url":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "https://severalnines.com/blog/my-favorite-postgresql-<em>queries</em>-and-why-they-matter"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_grzm",
+                "story_16840220"
+            ],
+            "author": "grzm",
+            "children":
+            [
+                16840543,
+                16840556,
+                16840606,
+                16840679,
+                16840730,
+                16841917,
+                16851374
+            ],
+            "created_at": "2018-04-14T23:41:20Z",
+            "created_at_i": 1523749280,
+            "num_comments": 99,
+            "objectID": "16840220",
+            "points": 447,
+            "story_id": 16840220,
+            "title": "My Favorite PostgreSQL Queries and Why They Matter",
+            "updated_at": "2023-09-07T04:35:07Z",
+            "url": "https://severalnines.com/blog/my-favorite-postgresql-queries-and-why-they-matter"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "dan_ahmadi"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "MongoDB <em>queries</em> don’t always return all matching documents"
+                },
+                "url":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "https://engineering.meteor.com/mongodb-<em>queries</em>-dont-always-return-all-matching-documents-654b6594a827#.s3ko3vfnx"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_dan_ahmadi",
+                "story_11857674"
+            ],
+            "author": "dan_ahmadi",
+            "children":
+            [
+                11857754,
+                11857850,
+                11857870,
+                11857884,
+                11858055,
+                11858131,
+                11858132,
+                11858134,
+                11858161,
+                11858165,
+                11858214,
+                11858256,
+                11858503,
+                11858631,
+                11858651,
+                11858669,
+                11858778,
+                11858827,
+                11858845,
+                11858854,
+                11858882,
+                11858904,
+                11858907,
+                11858968,
+                11859041,
+                11859085,
+                11859113,
+                11859146,
+                11859250,
+                11859266,
+                11859308,
+                11859351,
+                11859480,
+                11859620,
+                11859621,
+                11859689,
+                11859891,
+                11859892,
+                11859979,
+                11860307,
+                11860539,
+                11860605,
+                11860606,
+                11860642,
+                11860662,
+                11861493,
+                11861619,
+                11864077,
+                11864407
+            ],
+            "created_at": "2016-06-07T20:48:14Z",
+            "created_at_i": 1465332494,
+            "num_comments": 397,
+            "objectID": "11857674",
+            "points": 444,
+            "story_id": 11857674,
+            "title": "MongoDB queries don’t always return all matching documents",
+            "updated_at": "2023-09-07T00:42:03Z",
+            "url": "https://engineering.meteor.com/mongodb-queries-dont-always-return-all-matching-documents-654b6594a827#.s3ko3vfnx"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "Aaronmacaron"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "DuckDuckGo Reaches 100M Daily Search <em>Queries</em>"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://duckduckgo.com/traffic?lang=en"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_Aaronmacaron",
+                "story_25779323"
+            ],
+            "author": "Aaronmacaron",
+            "children":
+            [
+                25779461,
+                25779468,
+                25779471,
+                25779474,
+                25779492,
+                25779510,
+                25779532,
+                25779539,
+                25779545,
+                25779555,
+                25779595,
+                25779623,
+                25779635,
+                25779640,
+                25779652,
+                25779676,
+                25779713,
+                25779754,
+                25779772,
+                25779774,
+                25779839,
+                25779850,
+                25779905,
+                25780214,
+                25780268,
+                25780342,
+                25780580,
+                25780651,
+                25780689,
+                25780942,
+                25781089,
+                25781386,
+                25781511,
+                25782206,
+                25782854,
+                25782976,
+                25782996,
+                25783434,
+                25784107,
+                25786781,
+                25791154,
+                25802996
+            ],
+            "created_at": "2021-01-14T17:34:17Z",
+            "created_at_i": 1610645657,
+            "num_comments": 176,
+            "objectID": "25779323",
+            "points": 442,
+            "story_id": 25779323,
+            "title": "DuckDuckGo Reaches 100M Daily Search Queries",
+            "updated_at": "2023-09-07T08:47:28Z",
+            "url": "https://duckduckgo.com/traffic?lang=en"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "ReginaDeiPirati"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Best practices for writing SQL <em>queries</em>"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://www.metabase.com/learn/building-analytics/sql-templates/sql-best-practices"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_ReginaDeiPirati",
+                "story_26762206"
+            ],
+            "author": "ReginaDeiPirati",
+            "children":
+            [
+                26762683,
+                26762767,
+                26762830,
+                26762911,
+                26762927,
+                26762946,
+                26762947,
+                26763195,
+                26763234,
+                26763269,
+                26763368,
+                26763464,
+                26763510,
+                26763591,
+                26763652,
+                26763678,
+                26763731,
+                26763866,
+                26764002,
+                26764474,
+                26764725,
+                26765015,
+                26765235,
+                26766049
+            ],
+            "created_at": "2021-04-10T15:33:37Z",
+            "created_at_i": 1618068817,
+            "num_comments": 151,
+            "objectID": "26762206",
+            "points": 424,
+            "story_id": 26762206,
+            "title": "Best practices for writing SQL queries",
+            "updated_at": "2023-10-09T19:17:45Z",
+            "url": "https://www.metabase.com/learn/building-analytics/sql-templates/sql-best-practices"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "tate"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Speeding up SQL <em>queries</em> by orders of magnitude using UNION"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://www.foxhound.systems/blog/sql-performance-with-union/"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_tate",
+                "story_26524776"
+            ],
+            "author": "tate",
+            "children":
+            [
+                26525593,
+                26525726,
+                26525775,
+                26525833,
+                26525891,
+                26525957,
+                26526087,
+                26526262,
+                26526336,
+                26526439,
+                26526670,
+                26526934,
+                26526995,
+                26527162,
+                26527236,
+                26527300,
+                26527387,
+                26527451,
+                26527670,
+                26528373,
+                26528443,
+                26528638,
+                26529302,
+                26529633,
+                26529838,
+                26531380,
+                26540026,
+                26637694
+            ],
+            "created_at": "2021-03-20T17:58:25Z",
+            "created_at_i": 1616263105,
+            "num_comments": 156,
+            "objectID": "26524776",
+            "points": 402,
+            "story_id": 26524776,
+            "title": "Speeding up SQL queries by orders of magnitude using UNION",
+            "updated_at": "2024-04-15T21:13:20Z",
+            "url": "https://www.foxhound.systems/blog/sql-performance-with-union/"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "xtreak29"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "New JSON <em>query</em> operators in SQLite 3.38.0"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://tirkarthi.github.io/programming/2022/02/26/sqlite-json-improvements.html"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_xtreak29",
+                "story_30486052"
+            ],
+            "author": "xtreak29",
+            "children":
+            [
+                30486443,
+                30486577,
+                30486610,
+                30486713,
+                30486948,
+                30487131,
+                30489137,
+                30489352,
+                30489962,
+                30490818
+            ],
+            "created_at": "2022-02-27T06:57:37Z",
+            "created_at_i": 1645945057,
+            "num_comments": 33,
+            "objectID": "30486052",
+            "points": 397,
+            "story_id": 30486052,
+            "title": "New JSON query operators in SQLite 3.38.0",
+            "updated_at": "2023-09-07T10:38:07Z",
+            "url": "https://tirkarthi.github.io/programming/2022/02/26/sqlite-json-improvements.html"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "sbenitez"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Rocket v0.4: Typed URIs, Database Support, Revamped <em>Queries</em>"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://rocket.rs/v0.4/news/2018-12-08-version-0.4/"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_sbenitez",
+                "story_18636113"
+            ],
+            "author": "sbenitez",
+            "children":
+            [
+                18636332,
+                18636423,
+                18636447,
+                18636637,
+                18636682,
+                18636719,
+                18636733,
+                18636828,
+                18637906,
+                18639200,
+                18639274,
+                18640517,
+                18640855
+            ],
+            "created_at": "2018-12-08T16:56:18Z",
+            "created_at_i": 1544288178,
+            "num_comments": 83,
+            "objectID": "18636113",
+            "points": 395,
+            "story_id": 18636113,
+            "title": "Rocket v0.4: Typed URIs, Database Support, Revamped Queries",
+            "updated_at": "2023-09-07T04:36:02Z",
+            "url": "https://rocket.rs/v0.4/news/2018-12-08-version-0.4/"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "dmarinoc"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "\"I've isolated the bug to a database <em>query</em>\""
+                },
+                "url":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "http://thedailywtf.com/Articles/The-<em>Query</em>-of-Despair.aspx"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_dmarinoc",
+                "story_3215317"
+            ],
+            "author": "dmarinoc",
+            "children":
+            [
+                3215512,
+                3215523,
+                3215530,
+                3215542,
+                3215565,
+                3215611,
+                3215651,
+                3215686,
+                3215698,
+                3215716,
+                3215852,
+                3215867,
+                3215907,
+                3216053,
+                3216066,
+                3216082,
+                3216092,
+                3216115,
+                3216117,
+                3216142,
+                3216194,
+                3216291,
+                3216415,
+                3216711,
+                3216883,
+                3217821,
+                3218301,
+                3218449,
+                3219510,
+                3219886
+            ],
+            "created_at": "2011-11-09T13:06:14Z",
+            "created_at_i": 1320843974,
+            "num_comments": 165,
+            "objectID": "3215317",
+            "points": 394,
+            "story_id": 3215317,
+            "title": "\"I've isolated the bug to a database query\"",
+            "updated_at": "2023-12-07T15:28:27Z",
+            "url": "http://thedailywtf.com/Articles/The-Query-of-Despair.aspx"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "Saepirist"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "Show HN: API to <em>query</em> catalogs of 20 streaming services across 60 countries"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://www.movieofthenight.com/about/api"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_Saepirist",
+                "story_29862588",
+                "show_hn"
+            ],
+            "author": "Saepirist",
+            "children":
+            [
+                29862637,
+                29862731,
+                29862745,
+                29862752,
+                29862802,
+                29862882,
+                29862924,
+                29862950,
+                29862990,
+                29863005,
+                29863022,
+                29863083,
+                29863373,
+                29863619,
+                29863819,
+                29864587,
+                29864751,
+                29865061,
+                29865439,
+                29865489,
+                29865854,
+                29866217,
+                29866625,
+                29866676,
+                29867637,
+                29867975,
+                29877932,
+                29880235
+            ],
+            "created_at": "2022-01-09T12:13:27Z",
+            "created_at_i": 1641730407,
+            "num_comments": 95,
+            "objectID": "29862588",
+            "points": 364,
+            "story_id": 29862588,
+            "title": "Show HN: API to query catalogs of 20 streaming services across 60 countries",
+            "updated_at": "2024-07-09T10:40:07Z",
+            "url": "https://www.movieofthenight.com/about/api"
+        },
+        {
+            "_highlightResult":
+            {
+                "author":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "tippytop"
+                },
+                "title":
+                {
+                    "fullyHighlighted": false,
+                    "matchLevel": "full",
+                    "matchedWords":
+                    [
+                        "query"
+                    ],
+                    "value": "DuckDuckGo Direct <em>queries</em> per day (28 day average)"
+                },
+                "url":
+                {
+                    "matchLevel": "none",
+                    "matchedWords":
+                    [],
+                    "value": "https://duckduckgo.com/traffic.html"
+                }
+            },
+            "_tags":
+            [
+                "story",
+                "author_tippytop",
+                "story_6021947"
+            ],
+            "author": "tippytop",
+            "children":
+            [
+                6022008,
+                6022014,
+                6022016,
+                6022024,
+                6022025,
+                6022029,
+                6022033,
+                6022038,
+                6022109,
+                6022172,
+                6022236,
+                6022242,
+                6022243,
+                6022290,
+                6022369,
+                6022394,
+                6022420,
+                6022425,
+                6022448,
+                6022455,
+                6022614,
+                6022657,
+                6022709,
+                6022751,
+                6022817,
+                6022873,
+                6022905,
+                6022961,
+                6022970,
+                6022974,
+                6022977,
+                6023263,
+                6023383,
+                6023432,
+                6023466,
+                6023578,
+                6023720,
+                6023935,
+                6023945,
+                6023978,
+                6024627,
+                6024700,
+                6024922,
+                6025251,
+                6025359,
+                6037718,
+                6056723
+            ],
+            "created_at": "2013-07-10T18:48:50Z",
+            "created_at_i": 1373482130,
+            "num_comments": 164,
+            "objectID": "6021947",
+            "points": 353,
+            "story_id": 6021947,
+            "title": "DuckDuckGo Direct queries per day (28 day average)",
+            "updated_at": "2023-09-06T21:43:16Z",
+            "url": "https://duckduckgo.com/traffic.html"
+        }
+    ],
+    "hitsPerPage": 20,
+    "nbHits": 102688,
+    "nbPages": 50,
+    "page": 0,
+    "params": "query=query&advancedSyntax=true&analyticsTags=backend",
+    "processingTimeMS": 149,
+    "processingTimingsMS":
+    {
+        "_request":
+        {
+            "roundTrip": 20
+        },
+        "fetch":
+        {
+            "query": 5,
+            "total": 6
+        },
+        "getIdx":
+        {
+            "load":
+            {
+                "dicts": 2,
+                "gens": 2,
+                "synonyms": 109,
+                "total": 141
+            },
+            "total": 142
+        },
+        "total": 149
+    },
+    "query": "query",
+    "serverTimeMS": 150
+}

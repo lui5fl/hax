@@ -1,0 +1,49 @@
+{
+    "_highlightResult":
+    {
+        "author":
+        {
+            "matchLevel": "none",
+            "matchedWords":
+            [],
+            "value": "pg"
+        },
+        "title":
+        {
+            "matchLevel": "none",
+            "matchedWords":
+            [],
+            "value": "Y Combinator"
+        },
+        "url":
+        {
+            "matchLevel": "none",
+            "matchedWords":
+            [],
+            "value": "http://ycombinator.com"
+        }
+    },
+    "_tags":
+    [
+        "story",
+        "author_pg",
+        "story_1"
+    ],
+    "author": "pg",
+    "children":
+    [
+        15,
+        234509,
+        487171,
+        82729
+    ],
+    "created_at": "2006-10-09T18:21:51Z",
+    "created_at_i": 1160418111,
+    "num_comments": 15,
+    "objectID": "1",
+    "points": 57,
+    "story_id": 1,
+    "title": "Y Combinator",
+    "updated_at": "2024-07-31T18:34:19Z",
+    "url": "http://ycombinator.com"
+}

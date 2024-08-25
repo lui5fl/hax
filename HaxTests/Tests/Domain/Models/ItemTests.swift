@@ -45,6 +45,43 @@ final class ItemTests: XCTestCase {
         )
     }
 
+    func testInit_givenAlgoliaSearchResultDTO() throws {
+        // Given
+        let algoliaSearchResultDTO = try algoliaSearchResultDTO(
+            jsonResourceName: "AlgoliaSearchResultDTO_NoNilProperties"
+        )
+
+        // When
+        let sut = Item(
+            algoliaSearchResultDTO: algoliaSearchResultDTO
+        )
+
+        // Then
+        XCTAssertEqual(sut.id, 1)
+        XCTAssertFalse(sut.deleted)
+        XCTAssertNil(sut.kind)
+        XCTAssertEqual(sut.author, "pg")
+        XCTAssertNil(sut.body)
+        XCTAssertFalse(sut.dead)
+        XCTAssert(sut.children.isEmpty)
+        XCTAssertEqual(
+            sut.url,
+            URL(string: "http://ycombinator.com")
+        )
+        XCTAssertEqual(sut.score, 57)
+        XCTAssertEqual(sut.title, "Y Combinator")
+        XCTAssertEqual(sut.descendants, 15)
+        XCTAssert(sut.comments.isEmpty)
+        XCTAssertEqual(sut.storyId, 1)
+        XCTAssertNil(sut.markdownBody)
+        XCTAssertNotNil(sut.urlSimpleString)
+        XCTAssertNotNil(sut.elapsedTimeString)
+        XCTAssertEqual(
+            sut.hackerNewsURL,
+            URL(string: "https://news.ycombinator.com/item?id=1")
+        )
+    }
+
     func testInit_givenFirebaseItemDTO() throws {
         // Given
         let firebaseItemDTO = try firebaseItemDTO()

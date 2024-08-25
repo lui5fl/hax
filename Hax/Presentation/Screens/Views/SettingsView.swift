@@ -13,12 +13,13 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
     // MARK: Properties
 
     @StateObject var model: Model
+    @Binding var navigationPath: NavigationPath
 
     // MARK: Body
 
     var body: some View {
         Form {
-            Section {
+            Section("General") {
                 Picker(selection: $model.defaultFeed) {
                     Text("None")
                         .tag(nil as Feed?)
@@ -29,9 +30,9 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 } label: {
                     Text("Default Feed")
                 }
-                NavigationLink {
-                    FilterView()
-                } label: {
+                NavigationLink(
+                    value: NavigationDestination.filters
+                ) {
                     Label("Filters", systemImage: "eye.slash")
                 }
             }
@@ -42,9 +43,9 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
             }
             if AppStore.canMakePayments {
                 Section("Other") {
-                    NavigationLink {
-                        TipJarView()
-                    } label: {
+                    NavigationLink(
+                        value: NavigationDestination.tipJar
+                    ) {
                         Label("Tip Jar", systemImage: "dollarsign")
                     }
                 }
@@ -63,9 +64,32 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(
+            for: NavigationDestination.self
+        ) { navigationDestination in
+            switch navigationDestination {
+            case .filters:
+                FilterView()
+            case .tipJar:
+                TipJarView()
+            }
+        }
         .navigationTitle("Settings")
         .safari(url: $model.url)
+    }
+}
+
+// MARK: - Private extension
+
+private extension SettingsView {
+
+    // MARK: Types
+
+    enum NavigationDestination {
+
+        // MARK: Cases
+
+        case filters, tipJar
     }
 }
 
@@ -73,6 +97,9 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
 
 #Preview {
     NavigationStack {
-        SettingsView(model: SettingsViewModel())
+        SettingsView(
+            model: SettingsViewModel(),
+            navigationPath: .constant(NavigationPath())
+        )
     }
 }

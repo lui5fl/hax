@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A003D07B2C0B471E00FB6030 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003D07A2C0B471E00FB6030 /* UserViewModelTests.swift */; };
 		A003D07D2C0B62A000FB6030 /* IdentifiableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003D07C2C0B62A000FB6030 /* IdentifiableString.swift */; };
+		A005D0482C8DFF5100438BA2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005D0472C8DFF5100438BA2 /* SearchViewModel.swift */; };
 		A01F70E4295204DD00395B2A /* DefaultFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70E3295204DD00395B2A /* DefaultFeedService.swift */; };
 		A01F70E72952051D00395B2A /* DefaultFeedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70E62952051D00395B2A /* DefaultFeedServiceTests.swift */; };
 		A01F70EA2952054200395B2A /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01F70E92952054200395B2A /* UserDefaultsMock.swift */; };
@@ -24,6 +25,15 @@
 		A0266F662BDAA715007ED222 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0266F652BDAA715007ED222 /* StringExtensionTests.swift */; };
 		A033895C2BEE95A30019F782 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A033895B2BEE95A30019F782 /* FirebaseAPI.swift */; };
 		A03389602BEE9B810019F782 /* AlgoliaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A033895F2BEE9B810019F782 /* AlgoliaAPI.swift */; };
+		A03456EA2C7FA7200005D3B5 /* AlgoliaSearchResponseDTO.json in Resources */ = {isa = PBXBuildFile; fileRef = A03456E92C7FA7200005D3B5 /* AlgoliaSearchResponseDTO.json */; };
+		A03456EC2C7FA74A0005D3B5 /* AlgoliaSearchResponseDTOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03456EB2C7FA74A0005D3B5 /* AlgoliaSearchResponseDTOTests.swift */; };
+		A03456EE2C7FA9A90005D3B5 /* AlgoliaSearchResultDTO_NoNilProperties.json in Resources */ = {isa = PBXBuildFile; fileRef = A03456ED2C7FA9A90005D3B5 /* AlgoliaSearchResultDTO_NoNilProperties.json */; };
+		A03456F02C7FA9FC0005D3B5 /* AlgoliaSearchResultDTO_SomeNilProperties.json in Resources */ = {isa = PBXBuildFile; fileRef = A03456EF2C7FA9FC0005D3B5 /* AlgoliaSearchResultDTO_SomeNilProperties.json */; };
+		A03456F22C7FAA200005D3B5 /* AlgoliaSearchResultDTOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03456F12C7FAA200005D3B5 /* AlgoliaSearchResultDTOTests.swift */; };
+		A03739C72C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03739C62C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift */; };
+		A03739C92C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03739C82C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift */; };
+		A03739CA2C7F780100DEE078 /* AlgoliaSearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03739C82C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift */; };
+		A03739CB2C7F780800DEE078 /* AlgoliaSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03739C62C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift */; };
 		A037DC0E2BED200E0050E794 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = A037DC0D2BED200E0050E794 /* Networking */; };
 		A03810272BF12389005DCFE7 /* AlgoliaAPIEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03810262BF12389005DCFE7 /* AlgoliaAPIEndpointTests.swift */; };
 		A03810292BF124B1005DCFE7 /* FirebaseAPIEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03810282BF124B1005DCFE7 /* FirebaseAPIEndpointTests.swift */; };
@@ -95,12 +105,14 @@
 		A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */; };
 		A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0728D4EA3F006CD8E7 /* Feed.swift */; };
 		A0999DFC2C6518B6008B62B6 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0999DFB2C6518B6008B62B6 /* TipJarView.swift */; };
+		A09DE87D2C8F57F300146418 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */; };
 		A0A2881829521A0500CF1484 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */; };
 		A0ACA52E2B935D9E00CFD2A8 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */; };
 		A0ACA6D32AD556D2007C2B8C /* SelectFeedIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */; };
 		A0B6E1232C10B7E300452ACC /* IdentifiableStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6E1222C10B7E300452ACC /* IdentifiableStringTests.swift */; };
 		A0BB8A662C35A5310015F163 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BB8A652C35A5310015F163 /* ErrorView.swift */; };
 		A0BB8A672C35A5310015F163 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BB8A652C35A5310015F163 /* ErrorView.swift */; };
+		A0BD1E822C7B697F0081ED0C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD1E812C7B697F0081ED0C /* SearchView.swift */; };
 		A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */; };
 		A0C7AB7C2C6D19B3003B130A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C7AB7B2C6D19B3003B130A /* StoreKit.framework */; };
 		A0CB86E62C08C3A2002C6353 /* FirebaseUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CB86E52C08C3A2002C6353 /* FirebaseUserDTO.swift */; };
@@ -118,6 +130,7 @@
 		A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */; };
 		A0D56A8E2BAB35220095BDD6 /* RegexServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */; };
 		A0D77F002BF7680600B026B2 /* FilterServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D77EFF2BF7680600B026B2 /* FilterServiceMock.swift */; };
+		A0DD98142C82129E00CBFC7F /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD98132C82129E00CBFC7F /* ItemList.swift */; };
 		A0DF5DA02BD2E35A00BD93CD /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049CE232BCAB9410068BE9F /* FilterService.swift */; };
 		A0DF5DA12BD2E36500BD93CD /* KeywordFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938212BCA97E10042802D /* KeywordFilter.swift */; };
 		A0DF5DA22BD2E36900BD93CD /* UserFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938252BCA9C210042802D /* UserFilter.swift */; };
@@ -200,6 +213,7 @@
 /* Begin PBXFileReference section */
 		A003D07A2C0B471E00FB6030 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		A003D07C2C0B62A000FB6030 /* IdentifiableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableString.swift; sourceTree = "<group>"; };
+		A005D0472C8DFF5100438BA2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		A0162E142C6D0F050072F919 /* SyncedProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SyncedProducts.storekit; sourceTree = "<group>"; };
 		A01F70E3295204DD00395B2A /* DefaultFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeedService.swift; sourceTree = "<group>"; };
 		A01F70E62952051D00395B2A /* DefaultFeedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeedServiceTests.swift; sourceTree = "<group>"; };
@@ -215,6 +229,13 @@
 		A0266F652BDAA715007ED222 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		A033895B2BEE95A30019F782 /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		A033895F2BEE9B810019F782 /* AlgoliaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaAPI.swift; sourceTree = "<group>"; };
+		A03456E92C7FA7200005D3B5 /* AlgoliaSearchResponseDTO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlgoliaSearchResponseDTO.json; sourceTree = "<group>"; };
+		A03456EB2C7FA74A0005D3B5 /* AlgoliaSearchResponseDTOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSearchResponseDTOTests.swift; sourceTree = "<group>"; };
+		A03456ED2C7FA9A90005D3B5 /* AlgoliaSearchResultDTO_NoNilProperties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlgoliaSearchResultDTO_NoNilProperties.json; sourceTree = "<group>"; };
+		A03456EF2C7FA9FC0005D3B5 /* AlgoliaSearchResultDTO_SomeNilProperties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlgoliaSearchResultDTO_SomeNilProperties.json; sourceTree = "<group>"; };
+		A03456F12C7FAA200005D3B5 /* AlgoliaSearchResultDTOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSearchResultDTOTests.swift; sourceTree = "<group>"; };
+		A03739C62C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSearchResponseDTO.swift; sourceTree = "<group>"; };
+		A03739C82C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSearchResultDTO.swift; sourceTree = "<group>"; };
 		A03810262BF12389005DCFE7 /* AlgoliaAPIEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaAPIEndpointTests.swift; sourceTree = "<group>"; };
 		A03810282BF124B1005DCFE7 /* FirebaseAPIEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPIEndpointTests.swift; sourceTree = "<group>"; };
 		A038102A2BF12F1B005DCFE7 /* FirebaseItemDTO_SomeNilProperties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FirebaseItemDTO_SomeNilProperties.json; sourceTree = "<group>"; };
@@ -275,12 +296,14 @@
 		A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModelTests.swift; sourceTree = "<group>"; };
 		A092AD662954BE9400B76D68 /* ItemRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowViewModelTests.swift; sourceTree = "<group>"; };
 		A0999DFB2C6518B6008B62B6 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
+		A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		A0ACA6D22AD556D2007C2B8C /* SelectFeedIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFeedIntent.swift; sourceTree = "<group>"; };
 		A0B6E1222C10B7E300452ACC /* IdentifiableStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableStringTests.swift; sourceTree = "<group>"; };
 		A0BB8A652C35A5310015F163 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A0BC91BD2BED1ECA00E4F4A7 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
+		A0BD1E812C7B697F0081ED0C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetFamilyExtension.swift; sourceTree = "<group>"; };
 		A0C7AB7B2C6D19B3003B130A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A0CB86E52C08C3A2002C6353 /* FirebaseUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserDTO.swift; sourceTree = "<group>"; };
@@ -299,6 +322,7 @@
 		A0D56A8B2BAB32F00095BDD6 /* RegexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexService.swift; sourceTree = "<group>"; };
 		A0D56A8D2BAB35220095BDD6 /* RegexServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexServiceTests.swift; sourceTree = "<group>"; };
 		A0D77EFF2BF7680600B026B2 /* FilterServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterServiceMock.swift; sourceTree = "<group>"; };
+		A0DD98132C82129E00CBFC7F /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		A0E318C42BB2D51B002BD063 /* RegexServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexServiceMock.swift; sourceTree = "<group>"; };
 		A0F3C6C22954A2E3008A7D2B /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		A0F3C6C42954A735008A7D2B /* ItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModelTests.swift; sourceTree = "<group>"; };
@@ -403,6 +427,8 @@
 			children = (
 				A033895F2BEE9B810019F782 /* AlgoliaAPI.swift */,
 				A08FDE352BEF7EA000FB0265 /* AlgoliaItemDTO.swift */,
+				A03739C62C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift */,
+				A03739C82C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift */,
 			);
 			path = Algolia;
 			sourceTree = "<group>";
@@ -423,6 +449,8 @@
 				A03810262BF12389005DCFE7 /* AlgoliaAPIEndpointTests.swift */,
 				A06C19002BF1170E00362F8F /* AlgoliaAPITests.swift */,
 				A087B9822BEF862600994EE6 /* AlgoliaItemDTOTests.swift */,
+				A03456EB2C7FA74A0005D3B5 /* AlgoliaSearchResponseDTOTests.swift */,
+				A03456F12C7FAA200005D3B5 /* AlgoliaSearchResultDTOTests.swift */,
 			);
 			path = Algolia;
 			sourceTree = "<group>";
@@ -591,6 +619,9 @@
 			children = (
 				A087B9842BEF867000994EE6 /* AlgoliaItemDTO_NoNilProperties.json */,
 				A06C18F72BF0F37E00362F8F /* AlgoliaItemDTO_SomeNilProperties.json */,
+				A03456E92C7FA7200005D3B5 /* AlgoliaSearchResponseDTO.json */,
+				A03456ED2C7FA9A90005D3B5 /* AlgoliaSearchResultDTO_NoNilProperties.json */,
+				A03456EF2C7FA9FC0005D3B5 /* AlgoliaSearchResultDTO_SomeNilProperties.json */,
 				A06C18FB2BF0F8FE00362F8F /* FirebaseItemDTO_NoNilProperties.json */,
 				A038102A2BF12F1B005DCFE7 /* FirebaseItemDTO_SomeNilProperties.json */,
 				A0CB86EA2C08C6D6002C6353 /* FirebaseUserDTO_NoNilProperties.json */,
@@ -644,6 +675,7 @@
 				A0F4DB1628D4EA3F006CD8E7 /* ActivityIndicatorView.swift */,
 				A0F4DB1328D4EA3F006CD8E7 /* CommentRowView.swift */,
 				A0BB8A652C35A5310015F163 /* ErrorView.swift */,
+				A0DD98132C82129E00CBFC7F /* ItemList.swift */,
 				A0F4DB1428D4EA3F006CD8E7 /* ItemRowView.swift */,
 				A025292E2BC31A7B009FAAB2 /* ShareView.swift */,
 				A043A43A2C70A0B400830868 /* TranslateButton.swift */,
@@ -721,6 +753,7 @@
 				A0F3C6C42954A735008A7D2B /* ItemViewModelTests.swift */,
 				A0ACA52D2B935D9E00CFD2A8 /* MainViewModelTests.swift */,
 				A01F70EE2952064800395B2A /* MenuViewModelTests.swift */,
+				A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */,
 				A01F70F429520FD600395B2A /* SettingsViewModelTests.swift */,
 				A003D07A2C0B471E00FB6030 /* UserViewModelTests.swift */,
 			);
@@ -812,6 +845,7 @@
 				A0F4DB0928D4EA3F006CD8E7 /* ItemViewModel.swift */,
 				A0F92DBA2B934ED200FE61B8 /* MainViewModel.swift */,
 				A0F4DB0C28D4EA3F006CD8E7 /* MenuViewModel.swift */,
+				A005D0472C8DFF5100438BA2 /* SearchViewModel.swift */,
 				A0F4DB0B28D4EA3F006CD8E7 /* SettingsViewModel.swift */,
 				A06B0CD12C0A229D00292A36 /* UserViewModel.swift */,
 			);
@@ -827,6 +861,7 @@
 				A0F92DB82B934EA100FE61B8 /* MainView.swift */,
 				A0F4DB1828D4EA3F006CD8E7 /* MenuView.swift */,
 				A0F4DB1028D4EA3F006CD8E7 /* SafariView.swift */,
+				A0BD1E812C7B697F0081ED0C /* SearchView.swift */,
 				A0F4DB1228D4EA3F006CD8E7 /* SettingsView.swift */,
 				A0999DFB2C6518B6008B62B6 /* TipJarView.swift */,
 				A06B0CCB2C0A198300292A36 /* UserView.swift */,
@@ -1038,8 +1073,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A038102B2BF12F1B005DCFE7 /* FirebaseItemDTO_SomeNilProperties.json in Resources */,
+				A03456EA2C7FA7200005D3B5 /* AlgoliaSearchResponseDTO.json in Resources */,
 				A087B9852BEF867000994EE6 /* AlgoliaItemDTO_NoNilProperties.json in Resources */,
+				A03456F02C7FA9FC0005D3B5 /* AlgoliaSearchResultDTO_SomeNilProperties.json in Resources */,
 				A0CB86EB2C08C6D6002C6353 /* FirebaseUserDTO_SomeNilProperties.json in Resources */,
+				A03456EE2C7FA9A90005D3B5 /* AlgoliaSearchResultDTO_NoNilProperties.json in Resources */,
 				A0CB86EC2C08C6D6002C6353 /* FirebaseUserDTO_NoNilProperties.json in Resources */,
 				A06C18F82BF0F37E00362F8F /* AlgoliaItemDTO_SomeNilProperties.json in Resources */,
 				A06C18FC2BF0F8FE00362F8F /* FirebaseItemDTO_NoNilProperties.json in Resources */,
@@ -1096,6 +1134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A03739CB2C7F780800DEE078 /* AlgoliaSearchResponseDTO.swift in Sources */,
 				A06C19062BF11A2F00362F8F /* AlgoliaItemDTO.swift in Sources */,
 				A07D1C0A2AD323A90081FBE8 /* HackerNewsService.swift in Sources */,
 				A02529322BC31CC7009FAAB2 /* Constant.swift in Sources */,
@@ -1116,6 +1155,7 @@
 				A0DF5DA12BD2E36500BD93CD /* KeywordFilter.swift in Sources */,
 				A048CAF12BE6707600DE3B9F /* SequenceExtension.swift in Sources */,
 				A03FDF7F2AB7535100127AB6 /* HaxWidgetEntry.swift in Sources */,
+				A03739CA2C7F780100DEE078 /* AlgoliaSearchResultDTO.swift in Sources */,
 				A06B0CC82C0A18EE00292A36 /* FirebaseUserDTO.swift in Sources */,
 				A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */,
 				A0DF5DA02BD2E35A00BD93CD /* FilterService.swift in Sources */,
@@ -1141,6 +1181,7 @@
 				A06B0CCC2C0A198300292A36 /* UserView.swift in Sources */,
 				A0F4DB2628D4EA3F006CD8E7 /* ItemView.swift in Sources */,
 				A0F92DBB2B934ED200FE61B8 /* MainViewModel.swift in Sources */,
+				A005D0482C8DFF5100438BA2 /* SearchViewModel.swift in Sources */,
 				A0F4DB2528D4EA3F006CD8E7 /* SafariView.swift in Sources */,
 				A01F70F129520AAF00395B2A /* AppVersionService.swift in Sources */,
 				A0F4DB1F28D4EA3F006CD8E7 /* ItemViewModel.swift in Sources */,
@@ -1160,9 +1201,11 @@
 				A01F70E4295204DD00395B2A /* DefaultFeedService.swift in Sources */,
 				A064ABDB28D3C0CC00572ADD /* ArrayExtension.swift in Sources */,
 				A05938222BCA97E10042802D /* KeywordFilter.swift in Sources */,
+				A03739C92C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift in Sources */,
 				A0F4DB2928D4EA3F006CD8E7 /* ItemRowView.swift in Sources */,
 				A0F4DB0028D4EA25006CD8E7 /* UserDefaultsExtension.swift in Sources */,
 				A03389602BEE9B810019F782 /* AlgoliaAPI.swift in Sources */,
+				A0DD98142C82129E00CBFC7F /* ItemList.swift in Sources */,
 				A0BB8A662C35A5310015F163 /* ErrorView.swift in Sources */,
 				A0F4DAFE28D4EA25006CD8E7 /* ViewExtension.swift in Sources */,
 				A0F4DB2328D4EA3F006CD8E7 /* CommentRowViewModel.swift in Sources */,
@@ -1170,11 +1213,13 @@
 				A06B0CC52C0A171E00292A36 /* User.swift in Sources */,
 				A0F4DB2D28D4EA3F006CD8E7 /* MenuView.swift in Sources */,
 				A0F4DB1D28D4EA3F006CD8E7 /* IdentifiableURL.swift in Sources */,
+				A0BD1E822C7B697F0081ED0C /* SearchView.swift in Sources */,
 				A0F4DB2228D4EA3F006CD8E7 /* MenuViewModel.swift in Sources */,
 				A05938202BCA96910042802D /* FilterView.swift in Sources */,
 				A0F4DB2028D4EA3F006CD8E7 /* ItemRowViewModel.swift in Sources */,
 				A0F92DB92B934EA100FE61B8 /* MainView.swift in Sources */,
 				A003D07D2C0B62A000FB6030 /* IdentifiableString.swift in Sources */,
+				A03739C72C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift in Sources */,
 				A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */,
 				A0F4DB2828D4EA3F006CD8E7 /* CommentRowView.swift in Sources */,
 				A0F4DB2128D4EA3F006CD8E7 /* SettingsViewModel.swift in Sources */,
@@ -1197,9 +1242,11 @@
 				A06B0CCE2C0A1D0600292A36 /* UserTests.swift in Sources */,
 				A0ACA52E2B935D9E00CFD2A8 /* MainViewModelTests.swift in Sources */,
 				A057C71B2BCED02A00B6FA11 /* FilterServiceTests.swift in Sources */,
+				A03456F22C7FAA200005D3B5 /* AlgoliaSearchResultDTOTests.swift in Sources */,
 				A01F70EA2952054200395B2A /* UserDefaultsMock.swift in Sources */,
 				A0D56A8E2BAB35220095BDD6 /* RegexServiceTests.swift in Sources */,
 				A03810272BF12389005DCFE7 /* AlgoliaAPIEndpointTests.swift in Sources */,
+				A09DE87D2C8F57F300146418 /* SearchViewModelTests.swift in Sources */,
 				A0266F662BDAA715007ED222 /* StringExtensionTests.swift in Sources */,
 				A0678891295309A400AA7BE0 /* DateExtensionTests.swift in Sources */,
 				A092AD652954B8AC00B76D68 /* CommentRowViewModelTests.swift in Sources */,
@@ -1220,6 +1267,7 @@
 				A06788A429538C4C00AA7BE0 /* HackerNewsServiceMock.swift in Sources */,
 				A01F70E72952051D00395B2A /* DefaultFeedServiceTests.swift in Sources */,
 				A003D07B2C0B471E00FB6030 /* UserViewModelTests.swift in Sources */,
+				A03456EC2C7FA74A0005D3B5 /* AlgoliaSearchResponseDTOTests.swift in Sources */,
 				A01F70EC2952061F00395B2A /* DefaultFeedServiceMock.swift in Sources */,
 				A06788A02953294800AA7BE0 /* IdentifiableURLTests.swift in Sources */,
 				A0F3C6C52954A735008A7D2B /* ItemViewModelTests.swift in Sources */,
