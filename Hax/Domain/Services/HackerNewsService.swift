@@ -67,6 +67,13 @@ protocol HackerNewsServiceProtocol {
         resetCache: Bool
     ) async throws -> [Item]
 
+    /// Searches for stories matching the specified query and returns the most relevant
+    /// results.
+    ///
+    /// - Parameters:
+    ///   - query: The text to be matched
+    func search(query: String) async throws -> [Item]
+
     /// Fetches the user with the specified identifier and its corresponding information.
     ///
     /// - Parameters:
@@ -142,6 +149,16 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         )
 
         return try await items(for: identifiersForPage)
+    }
+
+    func search(query: String) async throws -> [Item] {
+        let algoliaSearchResponseDTO: AlgoliaSearchResponseDTO = try await perform(
+            .get(.search(query: query)),
+            with: algoliaAPINetworkClient
+        )
+        let items = algoliaSearchResponseDTO.hits.map(Item.init)
+
+        return filterService?.filtered(items: items) ?? items
     }
 
     func user(id: String) async throws -> User {

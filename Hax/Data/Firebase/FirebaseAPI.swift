@@ -5,6 +5,7 @@
 //  Created by Luis Fariña on 10/5/24.
 //
 
+import Foundation
 import Networking
 
 struct FirebaseAPI: APIProtocol {
@@ -34,6 +35,10 @@ struct FirebaseAPI: APIProtocol {
             }
 
             return path
+        }
+
+        var queryItems: [URLQueryItem]? {
+            nil
         }
     }
 

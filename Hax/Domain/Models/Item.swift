@@ -106,7 +106,9 @@ struct Item: Hashable, Identifiable, Sendable {
         markdownBody = body?.htmlToMarkdown()
         urlSimpleString = url?.simpleString()
         elapsedTimeString = date?.elapsedTimeString()
-        hackerNewsURL = URL(string: "https://\(Constant.hackerNewsItemURLString)\(id)")
+        hackerNewsURL = URL(
+            string: "https://\(Constant.hackerNewsItemURLString)\(id)"
+        )
     }
 
     init(algoliaItemDTO: AlgoliaItemDTO) {
@@ -115,13 +117,37 @@ struct Item: Hashable, Identifiable, Sendable {
             deleted: algoliaItemDTO.author == nil,
             kind: Kind(rawValue: algoliaItemDTO.type),
             author: algoliaItemDTO.author,
-            date: Date(timeIntervalSince1970: TimeInterval(algoliaItemDTO.createdAtI)),
+            date: Date(
+                timeIntervalSince1970: TimeInterval(
+                    algoliaItemDTO.createdAtI
+                )
+            ),
             body: algoliaItemDTO.text,
-            children: algoliaItemDTO.children.map(Self.init(algoliaItemDTO:)),
-            url: algoliaItemDTO.url.flatMap(URL.init(string:)),
+            children: algoliaItemDTO.children.map(
+                Self.init(algoliaItemDTO:)
+            ),
+            url: algoliaItemDTO.url.flatMap(URL.init),
             score: algoliaItemDTO.points,
             title: algoliaItemDTO.title,
             storyId: algoliaItemDTO.storyId
+        )
+    }
+
+    init(algoliaSearchResultDTO: AlgoliaSearchResultDTO) {
+        self.init(
+            id: Int(algoliaSearchResultDTO.objectID)!,
+            deleted: algoliaSearchResultDTO.author == nil,
+            author: algoliaSearchResultDTO.author,
+            date: Date(
+                timeIntervalSince1970: TimeInterval(
+                    algoliaSearchResultDTO.createdAtI
+                )
+            ),
+            url: algoliaSearchResultDTO.url.flatMap(URL.init),
+            score: algoliaSearchResultDTO.points,
+            title: algoliaSearchResultDTO.title,
+            descendants: algoliaSearchResultDTO.numComments,
+            storyId: algoliaSearchResultDTO.storyId
         )
     }
 
@@ -129,14 +155,14 @@ struct Item: Hashable, Identifiable, Sendable {
         self.init(
             id: firebaseItemDTO.id,
             deleted: firebaseItemDTO.deleted ?? false,
-            kind: firebaseItemDTO.type.flatMap(Kind.init(rawValue:)),
+            kind: firebaseItemDTO.type.flatMap(Kind.init),
             author: firebaseItemDTO.by,
             date: firebaseItemDTO.time.map {
                 Date(timeIntervalSince1970: TimeInterval($0))
             },
             body: firebaseItemDTO.text,
             dead: firebaseItemDTO.dead ?? false,
-            url: firebaseItemDTO.url.flatMap(URL.init(string:)),
+            url: firebaseItemDTO.url.flatMap(URL.init),
             score: firebaseItemDTO.score,
             title: firebaseItemDTO.title,
             descendants: firebaseItemDTO.descendants
@@ -151,14 +177,14 @@ struct Item: Hashable, Identifiable, Sendable {
         self.init(
             id: firebaseItemDTO.id,
             deleted: firebaseItemDTO.deleted ?? false,
-            kind: firebaseItemDTO.type.flatMap(Kind.init(rawValue:)),
+            kind: firebaseItemDTO.type.flatMap(Kind.init),
             author: firebaseItemDTO.by,
             date: firebaseItemDTO.time.map {
                 Date(timeIntervalSince1970: TimeInterval($0))
             },
             body: firebaseItemDTO.text,
             dead: firebaseItemDTO.dead ?? false,
-            url: firebaseItemDTO.url.flatMap(URL.init(string:)),
+            url: firebaseItemDTO.url.flatMap(URL.init),
             score: firebaseItemDTO.score,
             title: firebaseItemDTO.title,
             descendants: firebaseItemDTO.descendants,

@@ -5,6 +5,8 @@
 //  Created by Luis Fariña on 10/5/24.
 //
 
+import Foundation
+
 public protocol EndpointProtocol {
 
     // MARK: Properties
@@ -13,4 +15,7 @@ public protocol EndpointProtocol {
     ///
     /// Example: `/example`
     var path: String { get }
+
+    /// The parameters of the URL.
+    var queryItems: [URLQueryItem]? { get }
 }

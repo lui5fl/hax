@@ -20,7 +20,7 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
 
     var body: some View {
         List(selection: $selectedFeed) {
-            Section {
+            Section("Feeds") {
                 ForEach(model.feeds) { feed in
                     NavigationLink(value: feed) {
                         Label(
@@ -30,7 +30,7 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
                     }
                 }
             }
-            Section {
+            Section("Other") {
                 Button {
                     model.openHackerNewsLinkAlertIsPresented = true
                 } label: {
@@ -47,16 +47,11 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
                         systemImage: "person"
                     )
                 }
-                NavigationLink {
-                    SettingsView(model: SettingsViewModel())
-                } label: {
-                    Label("Settings", systemImage: "gearshape")
-                }
             }
         }
         .alert(error: $model.error)
         .listStyle(.insetGrouped)
-        .navigationTitle("Feeds")
+        .navigationTitle("Home")
         .textFieldAlert(
             "Open Hacker News Link",
             message: "Input a valid Hacker News link into the text field.",
