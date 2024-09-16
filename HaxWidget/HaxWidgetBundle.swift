@@ -15,5 +15,8 @@ struct HaxWidgetBundle: WidgetBundle {
 
     var body: some Widget {
         HaxWidget()
+        if #available(iOSApplicationExtension 18.0, *) {
+            HaxWidgetControl()
+        }
     }
 }

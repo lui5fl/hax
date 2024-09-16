@@ -27,6 +27,7 @@ struct MainViewModelTests {
     // MARK: Tests
 
     @Test func initialize() {
+        #expect(sut.selectedTab == .home)
         #expect(sut.selectedFeed == .best)
         #expect(sut.selectedItem == nil)
         #expect(sut.presentedItem == nil)

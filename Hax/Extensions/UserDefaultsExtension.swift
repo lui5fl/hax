@@ -11,5 +11,6 @@ extension UserDefaults {
 
     enum Key {
         static let defaultFeed = "defaultFeed"
+        static let url = "url"
     }
 }

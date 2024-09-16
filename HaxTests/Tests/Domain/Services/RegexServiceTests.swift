@@ -17,6 +17,28 @@ struct RegexServiceTests {
 
     // MARK: Tests
 
+    @Test func feed_givenURLIsNotValid() throws {
+        // Given
+        let url = try #require(URL(string: "https://luisfl.me"))
+
+        // When
+        let feed = sut.feed(url: url)
+
+        // Then
+        #expect(feed == nil)
+    }
+
+    @Test func feed_givenURLIsValidDeepLink() throws {
+        // Given
+        let url = try #require(URL(string: "hax://feed/best"))
+
+        // When
+        let feed = sut.feed(url: url)
+
+        // Then
+        #expect(feed == .best)
+    }
+
     @Test func itemID_givenURLIsNotValid() throws {
         // Given
         let url = try #require(URL(string: "https://luisfl.me"))

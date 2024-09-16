@@ -52,6 +52,9 @@
 		A048CAF02BE669A100DE3B9F /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A048CAEF2BE669A100DE3B9F /* SequenceExtension.swift */; };
 		A048CAF12BE6707600DE3B9F /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A048CAEF2BE669A100DE3B9F /* SequenceExtension.swift */; };
 		A049CE242BCAB9410068BE9F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049CE232BCAB9410068BE9F /* FilterService.swift */; };
+		A05361F32C7798CE007D3EC1 /* OpenFeedIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05361F22C7798CE007D3EC1 /* OpenFeedIntent.swift */; };
+		A05361F42C7798CE007D3EC1 /* OpenFeedIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05361F22C7798CE007D3EC1 /* OpenFeedIntent.swift */; };
+		A0572B832C9F0CFE00DAC406 /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DAFB28D4EA25006CD8E7 /* UserDefaultsExtension.swift */; };
 		A057C71B2BCED02A00B6FA11 /* FilterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A057C71A2BCED02A00B6FA11 /* FilterServiceTests.swift */; };
 		A05938202BCA96910042802D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059381F2BCA96910042802D /* FilterView.swift */; };
 		A05938222BCA97E10042802D /* KeywordFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05938212BCA97E10042802D /* KeywordFilter.swift */; };
@@ -66,6 +69,7 @@
 		A064ABD928D3C0B600572ADD /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABD828D3C0B600572ADD /* URLExtension.swift */; };
 		A064ABDB28D3C0CC00572ADD /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */; };
 		A064ABDD28D3C0E400572ADD /* URLExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABDC28D3C0E400572ADD /* URLExtensionTests.swift */; };
+		A0670D8F2C76473900B3B0D6 /* HaxWidgetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0670D8E2C76473900B3B0D6 /* HaxWidgetControl.swift */; };
 		A0678891295309A400AA7BE0 /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0678890295309A400AA7BE0 /* DateExtensionTests.swift */; };
 		A067889329530F9A00AA7BE0 /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067889229530F9A00AA7BE0 /* ArrayExtensionTests.swift */; };
 		A067889A2953215100AA7BE0 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06788992953215100AA7BE0 /* ItemTests.swift */; };
@@ -253,6 +257,7 @@
 		A04500922BBB239E006227CE /* FeedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedExtension.swift; sourceTree = "<group>"; };
 		A048CAEF2BE669A100DE3B9F /* SequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtension.swift; sourceTree = "<group>"; };
 		A049CE232BCAB9410068BE9F /* FilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		A05361F22C7798CE007D3EC1 /* OpenFeedIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFeedIntent.swift; sourceTree = "<group>"; };
 		A057C71A2BCED02A00B6FA11 /* FilterServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterServiceTests.swift; sourceTree = "<group>"; };
 		A059381F2BCA96910042802D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		A05938212BCA97E10042802D /* KeywordFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFilter.swift; sourceTree = "<group>"; };
@@ -270,6 +275,7 @@
 		A064ABD828D3C0B600572ADD /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		A064ABDC28D3C0E400572ADD /* URLExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionTests.swift; sourceTree = "<group>"; };
+		A0670D8E2C76473900B3B0D6 /* HaxWidgetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWidgetControl.swift; sourceTree = "<group>"; };
 		A0678890295309A400AA7BE0 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		A067889229530F9A00AA7BE0 /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		A06788992953215100AA7BE0 /* ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
@@ -491,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				A03FDF7B2AB7513C00127AB6 /* HaxWidget */,
+				A0670D8D2C76471000B3B0D6 /* HaxWidgetControl */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -612,6 +619,15 @@
 				A0F4DAF928D4EA25006CD8E7 /* ViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A0670D8D2C76471000B3B0D6 /* HaxWidgetControl */ = {
+			isa = PBXGroup;
+			children = (
+				A0670D8E2C76473900B3B0D6 /* HaxWidgetControl.swift */,
+				A05361F22C7798CE007D3EC1 /* OpenFeedIntent.swift */,
+			);
+			path = HaxWidgetControl;
 			sourceTree = "<group>";
 		};
 		A06788942953203000AA7BE0 /* Resources */ = {
@@ -1138,11 +1154,13 @@
 				A06C19062BF11A2F00362F8F /* AlgoliaItemDTO.swift in Sources */,
 				A07D1C0A2AD323A90081FBE8 /* HackerNewsService.swift in Sources */,
 				A02529322BC31CC7009FAAB2 /* Constant.swift in Sources */,
+				A05361F42C7798CE007D3EC1 /* OpenFeedIntent.swift in Sources */,
 				A06B0CC62C0A18E300292A36 /* User.swift in Sources */,
 				A096CE0C2AB9E741002B70BE /* Item.swift in Sources */,
 				A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */,
 				A0DF5DA22BD2E36900BD93CD /* UserFilter.swift in Sources */,
 				A0BB8A672C35A5310015F163 /* ErrorView.swift in Sources */,
+				A0572B832C9F0CFE00DAC406 /* UserDefaultsExtension.swift in Sources */,
 				A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */,
 				A096CE0E2AB9E772002B70BE /* URLExtension.swift in Sources */,
 				A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */,
@@ -1163,6 +1181,7 @@
 				A04500932BBB239E006227CE /* FeedExtension.swift in Sources */,
 				A06C18FE2BF0FEAC00362F8F /* FirebaseAPI.swift in Sources */,
 				A06C19052BF11A2800362F8F /* FirebaseItemDTO.swift in Sources */,
+				A0670D8F2C76473900B3B0D6 /* HaxWidgetControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1240,7 @@
 				A003D07D2C0B62A000FB6030 /* IdentifiableString.swift in Sources */,
 				A03739C72C7F758900DEE078 /* AlgoliaSearchResponseDTO.swift in Sources */,
 				A0D56A8C2BAB32F00095BDD6 /* RegexService.swift in Sources */,
+				A05361F32C7798CE007D3EC1 /* OpenFeedIntent.swift in Sources */,
 				A0F4DB2828D4EA3F006CD8E7 /* CommentRowView.swift in Sources */,
 				A0F4DB2128D4EA3F006CD8E7 /* SettingsViewModel.swift in Sources */,
 				A08FDE3E2BEF811300FB0265 /* FirebaseItemDTO.swift in Sources */,
