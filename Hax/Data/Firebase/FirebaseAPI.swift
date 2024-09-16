@@ -18,6 +18,7 @@ struct FirebaseAPI: APIProtocol {
 
         case feed(resource: String)
         case item(id: Int)
+        case maxitem
         case user(id: String)
 
         // MARK: Properties
@@ -27,12 +28,16 @@ struct FirebaseAPI: APIProtocol {
 
             switch self {
             case .feed(let resource):
-                path += "\(resource).json"
+                path += "\(resource)"
             case .item(let id):
-                path += "item/\(id).json"
+                path += "item/\(id)"
+            case .maxitem:
+                path += "maxitem"
             case .user(let id):
-                path += "user/\(id).json"
+                path += "user/\(id)"
             }
+
+            path += ".json"
 
             return path
         }

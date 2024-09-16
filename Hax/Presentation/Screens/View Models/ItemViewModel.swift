@@ -84,6 +84,9 @@ class ItemViewModel: ItemViewModelProtocol {
     /// The service to use to search for regular expressions.
     private let regexService: RegexServiceProtocol
 
+    /// Whether the item should be updated when the view appears.
+    private let shouldFetchItem: Bool
+
     /// The original item, which is used to fetch the latest information instead of the main item
     /// if the latter has been modified to highlight a comment.
     private let originalItem: Item
@@ -99,11 +102,13 @@ class ItemViewModel: ItemViewModelProtocol {
     init(
         item: Item,
         hackerNewsService: HackerNewsServiceProtocol = HackerNewsService.shared,
-        regexService: RegexServiceProtocol = RegexService()
+        regexService: RegexServiceProtocol = RegexService(),
+        shouldFetchItem: Bool = true
     ) {
         self.item = item
         self.hackerNewsService = hackerNewsService
         self.regexService = regexService
+        self.shouldFetchItem = shouldFetchItem
         originalItem = item
     }
 
@@ -162,7 +167,7 @@ class ItemViewModel: ItemViewModelProtocol {
     }
 
     func onRefreshRequest() async {
-        await fetchItem()
+        await fetchItem(isRefresh: true)
     }
 }
 
@@ -173,15 +178,23 @@ private extension ItemViewModel {
     // MARK: Methods
 
     /// Fetches the item.
-    func fetchItem() async {
+    func fetchItem(isRefresh: Bool = false) async {
         do {
-            let item = try await hackerNewsService.item(
-                id: originalItem.id,
-                shouldFetchComments: true
-            )
+            let item: Item
             let comments: [Comment]
+            let shouldFetchItem = shouldFetchItem || isRefresh
 
-            if let storyId = item.storyId,
+            if shouldFetchItem {
+                item = try await hackerNewsService.item(
+                    id: originalItem.id,
+                    shouldFetchComments: true
+                )
+            } else {
+                item = self.item
+            }
+
+            if shouldFetchItem,
+               let storyId = item.storyId,
                storyId != item.id {
                 self.item = try await hackerNewsService.item(
                     id: storyId,

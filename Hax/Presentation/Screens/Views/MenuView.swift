@@ -15,6 +15,7 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
     @Binding private(set) var selectedFeed: Feed?
     @Binding private(set) var presentedItem: Item?
     @Binding private(set) var presentedUser: IdentifiableString?
+    @State private var isFetchingRandomStory = false
 
     // MARK: Body
 
@@ -46,6 +47,29 @@ struct MenuView<Model: MenuViewModelProtocol>: View {
                         "View User",
                         systemImage: "person"
                     )
+                }
+                Button {
+                    isFetchingRandomStory = true
+                    Task {
+                        do {
+                            presentedItem = try await HackerNewsService.shared.randomStory()
+                        } catch {
+                            model.error = error
+                        }
+
+                        isFetchingRandomStory = false
+                    }
+                } label: {
+                    HStack {
+                        Label(
+                            "View Random Story",
+                            systemImage: "dice"
+                        )
+                        if isFetchingRandomStory {
+                            Spacer()
+                            ActivityIndicatorView()
+                        }
+                    }
                 }
             }
         }

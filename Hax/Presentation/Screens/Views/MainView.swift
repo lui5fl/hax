@@ -48,9 +48,14 @@ struct MainView<Model: MainViewModelProtocol>: View {
             settingsNavigationStack
         }
         .fullScreenCover(item: $model.presentedItem) { item in
-            ItemView(model: ItemViewModel(item: item))
-                .dismissable(item: $model.presentedItem)
-                .id(item)
+            ItemView(
+                model: ItemViewModel(
+                    item: item,
+                    shouldFetchItem: item.title == nil
+                )
+            )
+            .dismissable(item: $model.presentedItem)
+            .id(item)
         }
         .sheet(item: $model.presentedUser) { user in
             UserView(model: UserViewModel(id: user.string))
