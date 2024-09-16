@@ -88,6 +88,14 @@ actor HackerNewsService: HackerNewsServiceProtocol {
     /// The instance to be shared across the application.
     static let shared = HackerNewsService()
 
+    private let urlSession = {
+#if DEBUG
+        URLSessionDebug()
+#else
+        URLSession(configuration: .default)
+#endif
+    }()
+
     /// The network client to use for interacting with the Hacker News Algolia API.
     private lazy var algoliaAPINetworkClient = {
         let jsonDecoder = JSONDecoder()
@@ -95,12 +103,16 @@ actor HackerNewsService: HackerNewsServiceProtocol {
 
         return NetworkClient(
             api: AlgoliaAPI(),
+            urlSession: urlSession,
             jsonDecoder: jsonDecoder
         )
     }()
 
     /// The network client to use for interacting with the Hacker News Firebase API.
-    private lazy var firebaseAPINetworkClient = NetworkClient(api: FirebaseAPI())
+    private lazy var firebaseAPINetworkClient = NetworkClient(
+        api: FirebaseAPI(),
+        urlSession: urlSession
+    )
 
     /// The array of cached item identifiers from the last visited feed.
     private var cachedIdentifiers: [Int] = []
