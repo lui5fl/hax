@@ -35,6 +35,9 @@ struct HaxApp: App {
         WindowGroup {
             MainView(model: mainViewModel)
                 .onOpenURL(perform: handleURL)
+                .onShake {
+                    print("Shaken")
+                }
         }
         .modelContainer(
             for: [KeywordFilter.self, UserFilter.self]

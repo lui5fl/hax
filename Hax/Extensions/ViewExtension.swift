@@ -73,6 +73,20 @@ extension View {
         )
     }
 
+    /// Attaches an action to be performed when the device shake gesture is detected.
+    ///
+    /// - Parameters:
+    ///   - action: The closure to be executed when the shake gesture is recognized
+    func onShake(perform action: @escaping () -> Void) -> some View {
+        onReceive(
+            NotificationCenter.default.publisher(
+                for: UIDevice.deviceDidShake
+            )
+        ) { _ in
+            action()
+        }
+    }
+
     /// Presents a `SFSafariViewController` instance if the provided URL is
     /// different from nil.
     ///
