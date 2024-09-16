@@ -5,60 +5,64 @@
 //  Created by Luis Fariña on 12/5/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class FirebaseItemDTOTests: XCTestCase {
+struct FirebaseItemDTOTests {
 
     // MARK: Tests
 
-    func testInitFromDecoder_givenNoNilPropertiesJSON() throws {
+    @Test func initializeFromDecoder_givenNoNilPropertiesJSON() throws {
         // Given
         let jsonResourceName = "FirebaseItemDTO_NoNilProperties"
 
         // When
-        let sut = try firebaseItemDTO(jsonResourceName: jsonResourceName)
+        let sut = try JSONHelper.firebaseItemDTO(
+            jsonResourceName: jsonResourceName
+        )
 
         // Then
-        XCTAssertEqual(sut.by, "pg")
-        XCTAssertEqual(sut.dead, false)
-        XCTAssertEqual(sut.deleted, false)
-        XCTAssertEqual(sut.descendants, 15)
-        XCTAssertEqual(sut.id, 1)
-        XCTAssertEqual(sut.kids?.count, 4)
-        XCTAssertEqual(sut.parent, 42)
-        XCTAssertEqual(sut.parts?.count, 1)
-        XCTAssertEqual(sut.poll, 42)
-        XCTAssertEqual(sut.score, 57)
-        XCTAssertEqual(sut.text, "text")
-        XCTAssertEqual(sut.time, 1160418111)
-        XCTAssertEqual(sut.title, "Y Combinator")
-        XCTAssertEqual(sut.type, "story")
-        XCTAssertEqual(sut.url, "http://ycombinator.com")
+        #expect(sut.by == "pg")
+        #expect(sut.dead == false)
+        #expect(sut.deleted == false)
+        #expect(sut.descendants == 15)
+        #expect(sut.id == 1)
+        #expect(sut.kids?.count == 4)
+        #expect(sut.parent == 42)
+        #expect(sut.parts?.count == 1)
+        #expect(sut.poll == 42)
+        #expect(sut.score == 57)
+        #expect(sut.text == "text")
+        #expect(sut.time == 1160418111)
+        #expect(sut.title == "Y Combinator")
+        #expect(sut.type == "story")
+        #expect(sut.url == "http://ycombinator.com")
     }
 
-    func testInitFromDecoder_givenSomeNilPropertiesJSON() throws {
+    @Test func initializeFromDecoder_givenSomeNilPropertiesJSON() throws {
         // Given
         let jsonResourceName = "FirebaseItemDTO_SomeNilProperties"
 
         // When
-        let sut = try firebaseItemDTO(jsonResourceName: jsonResourceName)
+        let sut = try JSONHelper.firebaseItemDTO(
+            jsonResourceName: jsonResourceName
+        )
 
         // Then
-        XCTAssertNil(sut.by)
-        XCTAssertNil(sut.dead)
-        XCTAssertNil(sut.deleted)
-        XCTAssertNil(sut.descendants)
-        XCTAssertEqual(sut.id, 42)
-        XCTAssertNil(sut.kids)
-        XCTAssertNil(sut.parent)
-        XCTAssertNil(sut.parts)
-        XCTAssertNil(sut.poll)
-        XCTAssertNil(sut.score)
-        XCTAssertNil(sut.text)
-        XCTAssertNil(sut.time)
-        XCTAssertNil(sut.title)
-        XCTAssertNil(sut.type)
-        XCTAssertNil(sut.url)
+        #expect(sut.by == nil)
+        #expect(sut.dead == nil)
+        #expect(sut.deleted == nil)
+        #expect(sut.descendants == nil)
+        #expect(sut.id == 42)
+        #expect(sut.kids == nil)
+        #expect(sut.parent == nil)
+        #expect(sut.parts == nil)
+        #expect(sut.poll == nil)
+        #expect(sut.score == nil)
+        #expect(sut.text == nil)
+        #expect(sut.time == nil)
+        #expect(sut.title == nil)
+        #expect(sut.type == nil)
+        #expect(sut.url == nil)
     }
 }

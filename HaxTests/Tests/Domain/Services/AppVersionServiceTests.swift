@@ -5,44 +5,35 @@
 //  Created by Luis Fariña on 20/12/22.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class AppVersionServiceTests: XCTestCase {
+struct AppVersionServiceTests {
 
     // MARK: Properties
 
-    private var sut: AppVersionService!
-    private var bundleMock: BundleMock!
+    private let sut: AppVersionService
+    private let bundleMock: BundleMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         bundleMock = BundleMock()
         sut = AppVersionService(bundle: bundleMock)
     }
 
-    override func tearDownWithError() throws {
-        sut = nil
-        bundleMock = nil
+    // MARK: Tests
 
-        try super.tearDownWithError()
-    }
-
-    // MARK: Methods
-
-    func testAppVersion_givenVersionIsNil() {
+    @Test func appVersion_givenVersionIsNil() {
         // When
         let appVersion = sut.appVersion()
 
         // Then
-        XCTAssertNil(appVersion)
-        XCTAssertEqual(bundleMock.objectCallCount, 1)
+        #expect(appVersion == nil)
+        #expect(bundleMock.objectCallCount == 1)
     }
 
-    func testAppVersion_givenBuildIsNil() {
+    @Test func appVersion_givenBuildIsNil() {
         // Given
         bundleMock.infoDictionaryStub = [
             "CFBundleShortVersionString": "1.2.3"
@@ -52,11 +43,11 @@ final class AppVersionServiceTests: XCTestCase {
         let appVersion = sut.appVersion()
 
         // Then
-        XCTAssertNil(appVersion)
-        XCTAssertEqual(bundleMock.objectCallCount, 2)
+        #expect(appVersion == nil)
+        #expect(bundleMock.objectCallCount == 2)
     }
 
-    func testAppVersion_givenVersionAndBuildAreNotNil() {
+    @Test func appVersion_givenVersionAndBuildAreNotNil() {
         // Given
         bundleMock.infoDictionaryStub = [
             "CFBundleShortVersionString": "1.2.3",
@@ -67,7 +58,7 @@ final class AppVersionServiceTests: XCTestCase {
         let appVersion = sut.appVersion()
 
         // Then
-        XCTAssertEqual(appVersion, "1.2.3 (4)")
-        XCTAssertEqual(bundleMock.objectCallCount, 2)
+        #expect(appVersion == "1.2.3 (4)")
+        #expect(bundleMock.objectCallCount == 2)
     }
 }

@@ -5,14 +5,15 @@
 //  Created by Luis Fariña on 12/5/24.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class AlgoliaAPIEndpointTests: XCTestCase {
+struct AlgoliaAPIEndpointTests {
 
     // MARK: Tests
 
-    func testPath_givenItemEndpoint() {
+    @Test func path_givenItemEndpoint() {
         // Given
         let id = 42
         let sut = AlgoliaAPI.Endpoint.item(id: id)
@@ -21,10 +22,10 @@ final class AlgoliaAPIEndpointTests: XCTestCase {
         let path = sut.path
 
         // Then
-        XCTAssertEqual(path, "/api/v1/items/\(id)")
+        #expect(path == "/api/v1/items/\(id)")
     }
 
-    func testPath_givenSearchEndpoint() {
+    @Test func path_givenSearchEndpoint() {
         // Given
         let sut = AlgoliaAPI.Endpoint.search(query: "query")
 
@@ -32,10 +33,10 @@ final class AlgoliaAPIEndpointTests: XCTestCase {
         let path = sut.path
 
         // Then
-        XCTAssertEqual(path, "/api/v1/search")
+        #expect(path == "/api/v1/search")
     }
 
-    func testQueryItems_givenItemEndpoint() {
+    @Test func queryItems_givenItemEndpoint() {
         // Given
         let sut = AlgoliaAPI.Endpoint.item(id: 42)
 
@@ -43,10 +44,10 @@ final class AlgoliaAPIEndpointTests: XCTestCase {
         let queryItems = sut.queryItems
 
         // Then
-        XCTAssertNil(queryItems)
+        #expect(queryItems == nil)
     }
 
-    func testQueryItems_givenSearchEndpoint() {
+    @Test func queryItems_givenSearchEndpoint() {
         // Given
         let query = "query"
         let sut = AlgoliaAPI.Endpoint.search(query: query)
@@ -55,8 +56,8 @@ final class AlgoliaAPIEndpointTests: XCTestCase {
         let queryItems = sut.queryItems
 
         // Then
-        XCTAssertEqual(
-            queryItems,
+        #expect(
+            queryItems ==
             [
                 URLQueryItem(name: "query", value: query),
                 URLQueryItem(name: "tags", value: "story")

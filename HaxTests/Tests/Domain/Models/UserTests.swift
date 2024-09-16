@@ -5,16 +5,17 @@
 //  Created by Luis Fariña on 31/5/24.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class UserTests: XCTestCase {
+struct UserTests {
 
     // MARK: Tests
 
-    func testInit_givenFirebaseUserDTO() throws {
+    @Test func initialize_givenFirebaseUserDTO() throws {
         // Given
-        let firebaseUserDTO = try firebaseUserDTO(
+        let firebaseUserDTO = try JSONHelper.firebaseUserDTO(
             jsonResourceName: "FirebaseUserDTO_NoNilProperties"
         )
 
@@ -22,15 +23,15 @@ final class UserTests: XCTestCase {
         let sut = User(firebaseUserDTO: firebaseUserDTO)
 
         // Then
-        XCTAssertEqual(sut.id, "pg")
-        XCTAssertEqual(
-            sut.creationDate,
+        #expect(sut.id == "pg")
+        #expect(
+            sut.creationDate ==
             Date(timeIntervalSince1970: 1160418092)
         )
-        XCTAssertEqual(sut.karma, 157236)
-        XCTAssertEqual(sut.description, "Bug fixer.")
-        XCTAssertEqual(
-            sut.url,
+        #expect(sut.karma == 157236)
+        #expect(sut.description == "Bug fixer.")
+        #expect(
+            sut.url ==
             URL(string: "https://news.ycombinator.com/user?id=pg")
         )
     }

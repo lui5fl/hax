@@ -5,57 +5,48 @@
 //  Created by Luis Fariña on 20/12/22.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
 @MainActor
-final class MenuViewModelTests: XCTestCase {
+struct MenuViewModelTests {
 
     // MARK: Properties
 
-    private var sut: MenuViewModel!
-    private var regexServiceMock: RegexServiceMock!
+    private let sut: MenuViewModel
+    private let regexServiceMock: RegexServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         regexServiceMock = RegexServiceMock()
         sut = MenuViewModel(regexService: regexServiceMock)
     }
 
-    override func tearDownWithError() throws {
-        sut = nil
-        regexServiceMock = nil
-
-        try super.tearDownWithError()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertEqual(sut.feeds, Feed.allCases)
-        XCTAssertNil(sut.error)
-        XCTAssertFalse(sut.openHackerNewsLinkAlertIsPresented)
-        XCTAssertEqual(sut.openHackerNewsLinkAlertText, "")
-        XCTAssertFalse(sut.viewUserAlertIsPresented)
-        XCTAssertEqual(sut.viewUserAlertText, "")
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 0)
+    @Test func initialize() {
+        #expect(sut.feeds == Feed.allCases)
+        #expect(sut.error == nil)
+        #expect(!sut.openHackerNewsLinkAlertIsPresented)
+        #expect(sut.openHackerNewsLinkAlertText.isEmpty)
+        #expect(!sut.viewUserAlertIsPresented)
+        #expect(sut.viewUserAlertText.isEmpty)
+        #expect(regexServiceMock.itemIDCallCount == .zero)
     }
 
-    func testItemForHackerNewsLink_givenLinkIsNotAValidURL() {
+    @Test func itemForHackerNewsLink_givenLinkIsNotAValidURL() {
         // When
         let itemForHackerNewsLink = sut.itemForHackerNewsLink()
 
         // Then
-        XCTAssertNil(itemForHackerNewsLink)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.openHackerNewsLinkAlertText, "")
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 0)
+        #expect(itemForHackerNewsLink == nil)
+        #expect(sut.error != nil)
+        #expect(sut.openHackerNewsLinkAlertText.isEmpty)
+        #expect(regexServiceMock.itemIDCallCount == .zero)
     }
 
-    func testItemForHackerNewsLink_givenLinkHasNoHackerNewsItemIdentifier() {
+    @Test func itemForHackerNewsLink_givenLinkHasNoHackerNewsItemIdentifier() {
         // Given
         sut.openHackerNewsLinkAlertText = "https://luisfl.me"
 
@@ -63,13 +54,13 @@ final class MenuViewModelTests: XCTestCase {
         let itemForHackerNewsLink = sut.itemForHackerNewsLink()
 
         // Then
-        XCTAssertNil(itemForHackerNewsLink)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.openHackerNewsLinkAlertText, "")
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        #expect(itemForHackerNewsLink == nil)
+        #expect(sut.error != nil)
+        #expect(sut.openHackerNewsLinkAlertText.isEmpty)
+        #expect(regexServiceMock.itemIDCallCount == 1)
     }
 
-    func testItemForHackerNewsLink_givenLinkHasHackerNewsItemIdentifier() {
+    @Test func itemForHackerNewsLink_givenLinkHasHackerNewsItemIdentifier() {
         // Given
         sut.openHackerNewsLinkAlertText = "news.ycombinator.com/item?id=1"
         regexServiceMock.itemIDStub = 1
@@ -78,9 +69,9 @@ final class MenuViewModelTests: XCTestCase {
         let itemForHackerNewsLink = sut.itemForHackerNewsLink()
 
         // Then
-        XCTAssertEqual(itemForHackerNewsLink?.id, 1)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.openHackerNewsLinkAlertText, "")
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        #expect(itemForHackerNewsLink?.id == 1)
+        #expect(sut.error == nil)
+        #expect(sut.openHackerNewsLinkAlertText.isEmpty)
+        #expect(regexServiceMock.itemIDCallCount == 1)
     }
 }

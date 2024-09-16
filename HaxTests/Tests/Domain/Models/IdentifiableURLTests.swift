@@ -5,29 +5,30 @@
 //  Created by Luis Fariña on 21/12/22.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class IdentifiableURLTests: XCTestCase {
+struct IdentifiableURLTests {
 
     // MARK: Tests
 
-    func testInit_givenURLIsNil() {
+    @Test func initialize_givenURLIsNil() {
         // When
         let sut = IdentifiableURL(nil)
 
         // Then
-        XCTAssertNil(sut)
+        #expect(sut == nil)
     }
 
-    func testInit_givenURLIsNotNil() throws {
+    @Test func initialize_givenURLIsNotNil() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "luisfl.me"))
+        let url = try #require(URL(string: "luisfl.me"))
 
         // When
         let sut = IdentifiableURL(url)
 
         // Then
-        XCTAssertEqual(sut?.url, url)
+        #expect(sut?.url == url)
     }
 }

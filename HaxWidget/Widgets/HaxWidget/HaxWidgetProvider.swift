@@ -21,7 +21,7 @@ struct HaxWidgetProvider: AppIntentTimelineProvider {
             configurations: modelConfiguration
         )
         HackerNewsService.shared.filterService = modelContainer.map {
-            FilterService(modelContext: $0.mainContext)
+            FilterService(modelContainer: $0)
         }
     }
 

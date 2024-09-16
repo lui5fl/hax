@@ -5,56 +5,43 @@
 //  Created by Luis Fariña on 20/3/24.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class RegexServiceTests: XCTestCase {
+struct RegexServiceTests {
 
     // MARK: Properties
 
-    private var sut: RegexService!
-
-    // MARK: Set up and tear down
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
-        sut = RegexService()
-    }
-
-    override func tearDownWithError() throws {
-        sut = nil
-
-        try super.tearDownWithError()
-    }
+    private let sut = RegexService()
 
     // MARK: Tests
 
-    func testItemID_givenURLIsNotValid() throws {
+    @Test func itemID_givenURLIsNotValid() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
+        let url = try #require(URL(string: "https://luisfl.me"))
 
         // When
         let itemID = sut.itemID(url: url)
 
         // Then
-        XCTAssertNil(itemID)
+        #expect(itemID == nil)
     }
 
-    func testItemID_givenURLIsValidDeepLink() throws {
+    @Test func itemID_givenURLIsValidDeepLink() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "hax://item/39763750"))
+        let url = try #require(URL(string: "hax://item/39763750"))
 
         // When
         let itemID = sut.itemID(url: url)
 
         // Then
-        XCTAssertEqual(itemID, 39763750)
+        #expect(itemID == 39763750)
     }
 
-    func testItemID_givenURLIsValidHackerNewsLink() throws {
+    @Test func itemID_givenURLIsValidHackerNewsLink() throws {
         // Given
-        let url = try XCTUnwrap(
+        let url = try #require(
             URL(
                 string: "https://news.ycombinator.com/item?id=39763750"
             )
@@ -64,34 +51,34 @@ final class RegexServiceTests: XCTestCase {
         let itemID = sut.itemID(url: url)
 
         // Then
-        XCTAssertEqual(itemID, 39763750)
+        #expect(itemID == 39763750)
     }
 
-    func testUserID_givenURLIsNotValid() throws {
+    @Test func userID_givenURLIsNotValid() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
+        let url = try #require(URL(string: "https://luisfl.me"))
 
         // When
         let userID = sut.userID(url: url)
 
         // Then
-        XCTAssertNil(userID)
+        #expect(userID == nil)
     }
 
-    func testUserID_givenURLIsValidDeepLink() throws {
+    @Test func userID_givenURLIsValidDeepLink() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "hax://user/pg"))
+        let url = try #require(URL(string: "hax://user/pg"))
 
         // When
         let userID = sut.userID(url: url)
 
         // Then
-        XCTAssertEqual(userID, "pg")
+        #expect(userID == "pg")
     }
 
-    func testUserID_givenURLIsValidHackerNewsLink() throws {
+    @Test func userID_givenURLIsValidHackerNewsLink() throws {
         // Given
-        let url = try XCTUnwrap(
+        let url = try #require(
             URL(string: "https://news.ycombinator.com/user?id=pg")
         )
 
@@ -99,6 +86,6 @@ final class RegexServiceTests: XCTestCase {
         let userID = sut.userID(url: url)
 
         // Then
-        XCTAssertEqual(userID, "pg")
+        #expect(userID == "pg")
     }
 }

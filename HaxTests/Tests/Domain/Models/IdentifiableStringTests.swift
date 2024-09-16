@@ -5,14 +5,14 @@
 //  Created by Luis Fariña on 5/6/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class IdentifiableStringTests: XCTestCase {
+struct IdentifiableStringTests {
 
     // MARK: Tests
 
-    func testInit() {
+    @Test func initialize() {
         // Given
         let string = "string"
 
@@ -20,7 +20,7 @@ final class IdentifiableStringTests: XCTestCase {
         let sut = IdentifiableString(string)
 
         // Then
-        XCTAssertEqual(sut.string, string)
-        XCTAssertEqual(sut.id, string)
+        #expect(sut.string == string)
+        #expect(sut.id == string)
     }
 }

@@ -5,22 +5,21 @@
 //  Created by Luis Fariña on 9/5/24.
 //
 
+import Foundation
 import Networking
-import XCTest
+import Testing
 
-final class NetworkClientTests: XCTestCase {
+struct NetworkClientTests {
 
     // MARK: Properties
 
-    private var sut: NetworkClient<APIMock>!
-    private var urlSessionMock: URLSessionMock!
-    private var jsonDecoderMock: JSONDecoderMock!
+    private let sut: NetworkClient<APIMock>
+    private let urlSessionMock: URLSessionMock
+    private let jsonDecoderMock: JSONDecoderMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUp() {
-        super.setUp()
-
+    init() {
         let apiMock = APIMock(scheme: "https", host: "luisfl.me")
         urlSessionMock = URLSessionMock()
         jsonDecoderMock = JSONDecoderMock()
@@ -31,15 +30,9 @@ final class NetworkClientTests: XCTestCase {
         )
     }
 
-    override func tearDown() {
-        sut = nil
-
-        super.tearDown()
-    }
-
     // MARK: Tests
 
-    func testPerform() async throws {
+    @Test func perform() async throws {
         // Given
         urlSessionMock.dataStub = { _, _ in
             (Data("42".utf8), URLResponse())
@@ -50,8 +43,8 @@ final class NetworkClientTests: XCTestCase {
         let performResult: Int = try await sut.perform(request)
 
         // Then
-        XCTAssertEqual(performResult, 42)
-        XCTAssertEqual(urlSessionMock.dataCallCount, 1)
-        XCTAssertEqual(jsonDecoderMock.decodeCallCount, 1)
+        #expect(performResult == 42)
+        #expect(urlSessionMock.dataCallCount == 1)
+        #expect(jsonDecoderMock.decodeCallCount == 1)
     }
 }

@@ -82,7 +82,7 @@ private extension ItemList {
 #Preview {
     ItemList(
         isLoading: false,
-        items: (0...2).map(Item.example),
+        items: (.zero ... 2).map(Item.example),
         onItemAppear: nil,
         url: .constant(nil),
         selectedItem: .constant(nil),

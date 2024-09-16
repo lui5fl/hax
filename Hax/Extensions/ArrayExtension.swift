@@ -9,7 +9,7 @@ extension Array {
 
     subscript(safe index: Int) -> Element? {
         guard
-            index >= 0,
+            index >= .zero,
             index < endIndex
         else {
             return nil

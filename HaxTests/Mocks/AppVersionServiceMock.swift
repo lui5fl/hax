@@ -12,7 +12,7 @@ final class AppVersionServiceMock: AppVersionServiceProtocol {
     // MARK: Properties
 
     var appVersionStub: String?
-    private(set) var appVersionCallCount = 0
+    private(set) var appVersionCallCount = Int.zero
 
     // MARK: Methods
 

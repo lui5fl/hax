@@ -5,41 +5,27 @@
 //  Created by Luis Fariña on 21/12/22.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class ArrayExtensionTests: XCTestCase {
+struct ArrayExtensionTests {
 
     // MARK: Properties
 
-    private var sut: [Int]!
-
-    // MARK: Set up and tear down
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
-        sut = [0]
-    }
-
-    override func tearDownWithError() throws {
-        sut = nil
-
-        try super.tearDownWithError()
-    }
+    private let sut = [Int.zero]
 
     // MARK: Tests
 
-    func testSafeSubscript_givenIndexIsLessThanZero() {
-        XCTAssertNil(sut[safe: -1])
+    @Test func safeSubscript_givenIndexIsLessThanZero() {
+        #expect(sut[safe: -1] == nil)
     }
 
-    func testSafeSubscript_givenIndexIsGreaterThanOrEqualToEndIndex() {
-        XCTAssertNil(sut[safe: sut.endIndex + 1])
-        XCTAssertNil(sut[safe: sut.endIndex])
+    @Test func safeSubscript_givenIndexIsGreaterThanOrEqualToEndIndex() {
+        #expect(sut[safe: sut.endIndex + 1] == nil)
+        #expect(sut[safe: sut.endIndex] == nil)
     }
 
-    func testSafeSubscript_givenIndexIsWithinBounds() {
-        XCTAssertNotNil(sut[safe: 0])
+    @Test func safeSubscript_givenIndexIsWithinBounds() {
+        #expect(sut[safe: .zero] != nil)
     }
 }

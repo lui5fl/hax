@@ -5,14 +5,15 @@
 //  Created by Luis Fariña on 21/12/22.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class DateExtensionTests: XCTestCase {
+struct DateExtensionTests {
 
     // MARK: Tests
 
-    func testElapsedTimeString_givenElapsedTimeIs59Seconds() throws {
+    @Test func elapsedTimeString_givenElapsedTimeIs59Seconds() throws {
         // Given
         let sut = try currentDate(adding: .second, value: -59)
 
@@ -20,10 +21,10 @@ final class DateExtensionTests: XCTestCase {
         let elapsedTimeString = sut.elapsedTimeString()
 
         // Then
-        XCTAssertEqual(elapsedTimeString, "59s")
+        #expect(elapsedTimeString == "59s")
     }
 
-    func testElapsedTimeString_givenElapsedTimeIs1Minute() throws {
+    @Test func elapsedTimeString_givenElapsedTimeIs1Minute() throws {
         // Given
         let sut = try currentDate(adding: .minute, value: -1)
 
@@ -31,10 +32,10 @@ final class DateExtensionTests: XCTestCase {
         let elapsedTimeString = sut.elapsedTimeString()
 
         // Then
-        XCTAssertEqual(elapsedTimeString, "1m")
+        #expect(elapsedTimeString == "1m")
     }
 
-    func testElapsedTimeString_givenElapsedTimeIs1Hour() throws {
+    @Test func elapsedTimeString_givenElapsedTimeIs1Hour() throws {
         // Given
         let sut = try currentDate(adding: .hour, value: -1)
 
@@ -42,10 +43,10 @@ final class DateExtensionTests: XCTestCase {
         let elapsedTimeString = sut.elapsedTimeString()
 
         // Then
-        XCTAssertEqual(elapsedTimeString, "1h")
+        #expect(elapsedTimeString == "1h")
     }
 
-    func testElapsedTimeString_givenElapsedTimeIs1Day() throws {
+    @Test func elapsedTimeString_givenElapsedTimeIs1Day() throws {
         // Given
         let sut = try currentDate(adding: .day, value: -1)
 
@@ -53,10 +54,10 @@ final class DateExtensionTests: XCTestCase {
         let elapsedTimeString = sut.elapsedTimeString()
 
         // Then
-        XCTAssertEqual(elapsedTimeString, "1d")
+        #expect(elapsedTimeString == "1d")
     }
 
-    func testElapsedTimeString_givenElapsedTimeIs31Days() throws {
+    @Test func elapsedTimeString_givenElapsedTimeIs31Days() throws {
         // Given
         let sut = try currentDate(adding: .day, value: -31)
 
@@ -64,10 +65,10 @@ final class DateExtensionTests: XCTestCase {
         let elapsedTimeString = sut.elapsedTimeString()
 
         // Then
-        XCTAssertEqual(elapsedTimeString, "1mo")
+        #expect(elapsedTimeString == "1mo")
     }
 
-    func testElapsedTimeString_givenElapsedTimeIs1Year() throws {
+    @Test func elapsedTimeString_givenElapsedTimeIs1Year() throws {
         // Given
         let sut = try currentDate(adding: .year, value: -1)
 
@@ -75,7 +76,7 @@ final class DateExtensionTests: XCTestCase {
         let elapsedTimeString = sut.elapsedTimeString()
 
         // Then
-        XCTAssertEqual(elapsedTimeString, "1y")
+        #expect(elapsedTimeString == "1y")
     }
 }
 
@@ -89,7 +90,7 @@ private extension DateExtensionTests {
         adding component: Calendar.Component,
         value: Int
     ) throws -> Date {
-        try XCTUnwrap(
+        try #require(
             Calendar.current.date(
                 byAdding: component,
                 value: value,

@@ -5,56 +5,56 @@
 //  Created by Luis Fariña on 28/8/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class AlgoliaSearchResultDTOTests: XCTestCase {
+struct AlgoliaSearchResultDTOTests {
 
     // MARK: Tests
 
-    func testInitFromDecoder_givenNoNilPropertiesJSON() throws {
+    @Test func initializeFromDecoder_givenNoNilPropertiesJSON() throws {
         // Given
         let jsonResourceName = "AlgoliaSearchResultDTO_NoNilProperties"
 
         // When
-        let sut = try algoliaSearchResultDTO(
+        let sut = try JSONHelper.algoliaSearchResultDTO(
             jsonResourceName: jsonResourceName
         )
 
         // Then
-        XCTAssertEqual(sut.author, "pg")
-        XCTAssertEqual(sut.children?.count, 4)
-        XCTAssertEqual(sut.createdAt, "2006-10-09T18:21:51Z")
-        XCTAssertEqual(sut.createdAtI, 1160418111)
-        XCTAssertEqual(sut.numComments, 15)
-        XCTAssertEqual(sut.objectID, "1")
-        XCTAssertEqual(sut.points, 57)
-        XCTAssertEqual(sut.storyId, 1)
-        XCTAssertEqual(sut.title, "Y Combinator")
-        XCTAssertEqual(sut.updatedAt, "2024-07-31T18:34:19Z")
-        XCTAssertEqual(sut.url, "http://ycombinator.com")
+        #expect(sut.author == "pg")
+        #expect(sut.children?.count == 4)
+        #expect(sut.createdAt == "2006-10-09T18:21:51Z")
+        #expect(sut.createdAtI == 1160418111)
+        #expect(sut.numComments == 15)
+        #expect(sut.objectID == "1")
+        #expect(sut.points == 57)
+        #expect(sut.storyId == 1)
+        #expect(sut.title == "Y Combinator")
+        #expect(sut.updatedAt == "2024-07-31T18:34:19Z")
+        #expect(sut.url == "http://ycombinator.com")
     }
 
-    func testInitFromDecoder_givenSomeNilPropertiesJSON() throws {
+    @Test func initializeFromDecoder_givenSomeNilPropertiesJSON() throws {
         // Given
         let jsonResourceName = "AlgoliaSearchResultDTO_SomeNilProperties"
 
         // When
-        let sut = try algoliaSearchResultDTO(
+        let sut = try JSONHelper.algoliaSearchResultDTO(
             jsonResourceName: jsonResourceName
         )
 
         // Then
-        XCTAssertNil(sut.author)
-        XCTAssertNil(sut.children)
-        XCTAssertEqual(sut.createdAt, "2006-10-09T18:21:51Z")
-        XCTAssertEqual(sut.createdAtI, 1160418111)
-        XCTAssertNil(sut.numComments)
-        XCTAssertEqual(sut.objectID, "1")
-        XCTAssertNil(sut.points)
-        XCTAssertNil(sut.storyId)
-        XCTAssertNil(sut.title)
-        XCTAssertEqual(sut.updatedAt, "2024-07-31T18:34:19Z")
-        XCTAssertNil(sut.url)
+        #expect(sut.author == nil)
+        #expect(sut.children == nil)
+        #expect(sut.createdAt == "2006-10-09T18:21:51Z")
+        #expect(sut.createdAtI == 1160418111)
+        #expect(sut.numComments == nil)
+        #expect(sut.objectID == "1")
+        #expect(sut.points == nil)
+        #expect(sut.storyId == nil)
+        #expect(sut.title == nil)
+        #expect(sut.updatedAt == "2024-07-31T18:34:19Z")
+        #expect(sut.url == nil)
     }
 }

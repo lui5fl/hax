@@ -5,22 +5,21 @@
 //  Created by Luis Fariña on 1/6/24.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
 @MainActor
-final class UserViewModelTests: XCTestCase {
+struct UserViewModelTests {
 
     // MARK: Properties
 
-    private var sut: UserViewModel!
-    private var hackerNewsServiceMock: HackerNewsServiceMock!
+    private let sut: UserViewModel
+    private let hackerNewsServiceMock: HackerNewsServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUp() {
-        super.setUp()
-
+    init() {
         hackerNewsServiceMock = HackerNewsServiceMock()
         sut = UserViewModel(
             id: "pg",
@@ -28,32 +27,25 @@ final class UserViewModelTests: XCTestCase {
         )
     }
 
-    override func tearDown() {
-        sut = nil
-        hackerNewsServiceMock = nil
-
-        super.tearDown()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertNil(sut.error)
-        XCTAssertNil(sut.user)
-        XCTAssertNil(sut.url)
+    @Test func initialize() {
+        #expect(sut.error == nil)
+        #expect(sut.user == nil)
+        #expect(sut.url == nil)
     }
 
-    func testOnViewAppear_givenUserRequestFails() async {
+    @Test func onViewAppear_givenUserRequestFails() async {
         // When
         await sut.onViewAppear()
 
         // Then
-        XCTAssertNotNil(sut.error)
-        XCTAssertNil(sut.user)
-        XCTAssertEqual(hackerNewsServiceMock.userCallCount, 1)
+        #expect(sut.error != nil)
+        #expect(sut.user == nil)
+        #expect(hackerNewsServiceMock.userCallCount == 1)
     }
 
-    func testOnViewAppear_givenUserRequestDoesNotFail() async {
+    @Test func onViewAppear_givenUserRequestDoesNotFail() async {
         // Given
         hackerNewsServiceMock.userStub = User(
             id: "pg",
@@ -65,30 +57,30 @@ final class UserViewModelTests: XCTestCase {
         await sut.onViewAppear()
 
         // Then
-        XCTAssertNil(sut.error)
-        XCTAssertNotNil(sut.user)
-        XCTAssertEqual(hackerNewsServiceMock.userCallCount, 1)
+        #expect(sut.error == nil)
+        #expect(sut.user != nil)
+        #expect(hackerNewsServiceMock.userCallCount == 1)
     }
 
-    func testOnLinkTap_givenSchemeDoesNotStartWithHTTP() throws {
+    @Test func onLinkTap_givenSchemeDoesNotStartWithHTTP() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "example@example.com"))
+        let url = try #require(URL(string: "example@example.com"))
 
         // When
         _ = sut.onLinkTap(url: url)
 
         // Then
-        XCTAssertNil(sut.url)
+        #expect(sut.url == nil)
     }
 
-    func testOnLinkTap_givenSchemeStartsWithHTTP() throws {
+    @Test func onLinkTap_givenSchemeStartsWithHTTP() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
+        let url = try #require(URL(string: "https://luisfl.me"))
 
         // When
         _ = sut.onLinkTap(url: url)
 
         // Then
-        XCTAssertEqual(sut.url?.url, url)
+        #expect(sut.url?.url == url)
     }
 }

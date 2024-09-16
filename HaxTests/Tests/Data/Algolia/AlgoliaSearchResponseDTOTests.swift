@@ -5,23 +5,23 @@
 //  Created by Luis Fariña on 28/8/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class AlgoliaSearchResponseDTOTests: XCTestCase {
+struct AlgoliaSearchResponseDTOTests {
 
     // MARK: Tests
 
-    func testInitFromDecoder() throws {
+    @Test func initializeFromDecoder() throws {
         // Given
         let jsonResourceName = "AlgoliaSearchResponseDTO"
 
         // When
-        let sut = try algoliaSearchResponseDTO(
+        let sut = try JSONHelper.algoliaSearchResponseDTO(
             jsonResourceName: jsonResourceName
         )
 
         // Then
-        XCTAssertEqual(sut.hits.count, 20)
+        #expect(sut.hits.count == 20)
     }
 }

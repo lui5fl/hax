@@ -71,7 +71,7 @@ extension String {
         for match in matches {
             guard
                 let linkTagRange = Range(
-                    match.range(at: 0),
+                    match.range(at: .zero),
                     in: string
                 )
             else {

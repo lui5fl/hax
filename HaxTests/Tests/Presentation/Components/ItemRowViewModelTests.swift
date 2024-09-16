@@ -5,47 +5,21 @@
 //  Created by Luis Fariña on 22/12/22.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class ItemRowViewModelTests: XCTestCase {
-
-    // MARK: Properties
-
-    private static var suts: [ItemRowViewModel]! = []
-
-    // MARK: Set up and tear down
-
-    override static func setUp() {
-        super.setUp()
-
-        for view in ItemRowViewModelView.allCases {
-            for kind in Item.Kind.allCases {
-                suts.append(
-                    ItemRowViewModel(
-                        in: view,
-                        item: Item(kind: kind, body: "Body")
-                    )
-                )
-            }
-        }
-    }
-
-    override static func tearDown() {
-        suts = nil
-
-        super.tearDown()
-    }
+struct ItemRowViewModelTests {
 
     // MARK: Tests
 
-    func testInit() throws {
+    @Test func initialize() throws {
         // Given
         let item = Item(kind: .story)
         var onUserTapCallCount = Int.zero
         var onNumberOfCommentsTapCallCount = Int.zero
         var onLinkTapCallCount = Int.zero
-        let url = try XCTUnwrap(URL(string: "luisfl.me"))
+        let url = try #require(URL(string: "luisfl.me"))
 
         // When
         let sut = ItemRowViewModel(
@@ -69,40 +43,56 @@ final class ItemRowViewModelTests: XCTestCase {
         _ = sut.onLinkTap?(url)
 
         // Then
-        XCTAssertEqual(sut.view, .feed)
-        XCTAssertEqual(sut.index, 9)
-        XCTAssertEqual(sut.item, item)
-        XCTAssert(sut.shouldDisplayIndex)
-        XCTAssertFalse(sut.shouldDisplayBody)
-        XCTAssertFalse(sut.shouldDisplayAuthor)
-        XCTAssert(sut.shouldDisplayScore)
-        XCTAssert(sut.shouldDisplayNumberOfComments)
-        XCTAssertEqual(onUserTapCallCount, 1)
-        XCTAssertEqual(onNumberOfCommentsTapCallCount, 1)
-        XCTAssertEqual(onLinkTapCallCount, 1)
+        #expect(sut.view == .feed)
+        #expect(sut.index == 9)
+        #expect(sut.item == item)
+        #expect(sut.shouldDisplayIndex)
+        #expect(!sut.shouldDisplayBody)
+        #expect(!sut.shouldDisplayAuthor)
+        #expect(sut.shouldDisplayScore)
+        #expect(sut.shouldDisplayNumberOfComments)
+        #expect(onUserTapCallCount == 1)
+        #expect(onNumberOfCommentsTapCallCount == 1)
+        #expect(onLinkTapCallCount == 1)
     }
 
-    func testShouldDisplayIndex() {
-        for sut in Self.suts {
-            // When
-            let shouldDisplayIndex = sut.shouldDisplayIndex
+    @Test(
+        arguments: Item.Kind.allCases,
+        ItemRowViewModelView.allCases
+    )
+    func shouldDisplayIndex(
+        of kind: Item.Kind,
+        in view: ItemRowViewModelView
+    ) {
+        // Given
+        let sut = sut(kind: kind, view: view)
 
-            // Then
-            XCTAssertEqual(shouldDisplayIndex, sut.view == .feed)
-        }
+        // When
+        let shouldDisplayIndex = sut.shouldDisplayIndex
+
+        // Then
+        #expect(shouldDisplayIndex == (view == .feed))
     }
 
-    func testShouldDisplayBody() {
-        for sut in Self.suts {
-            // When
-            let shouldDisplayBody = sut.shouldDisplayBody
+    @Test(
+        arguments: Item.Kind.allCases,
+        ItemRowViewModelView.allCases
+    )
+    func shouldDisplayBody(
+        of kind: Item.Kind,
+        in view: ItemRowViewModelView
+    ) {
+        // Given
+        let sut = sut(kind: kind, view: view)
 
-            // Then
-            XCTAssertEqual(shouldDisplayBody, sut.view == .item)
-        }
+        // When
+        let shouldDisplayBody = sut.shouldDisplayBody
+
+        // Then
+        #expect(shouldDisplayBody == (view == .item))
     }
 
-    func testShouldDisplayBody_givenCommentIsHighlighted() {
+    @Test func shouldDisplayBody_givenCommentIsHighlighted() {
         // Given
         let commentIsHighlighted = true
         let sut = ItemRowViewModel(
@@ -115,10 +105,11 @@ final class ItemRowViewModelTests: XCTestCase {
         let shouldDisplayBody = sut.shouldDisplayBody
 
         // Then
-        XCTAssertFalse(shouldDisplayBody)
+        #expect(!shouldDisplayBody)
     }
 
-    func testShouldDisplayBody_givenBodyIsEmptyString() {
+    @Test(.bug("https://github.com/lui5fl/hax/issues/98", id: 98))
+    func shouldDisplayBody_givenBodyIsEmptyString() {
         // Given
         let body = ""
         let sut = ItemRowViewModel(in: .item, item: Item(body: body))
@@ -127,39 +118,80 @@ final class ItemRowViewModelTests: XCTestCase {
         let shouldDisplayBody = sut.shouldDisplayBody
 
         // Then
-        XCTAssertFalse(shouldDisplayBody)
+        #expect(!shouldDisplayBody)
     }
 
-    func testShouldDisplayAuthor() {
-        for sut in Self.suts {
-            // When
-            let shouldDisplayAuthor = sut.shouldDisplayAuthor
+    @Test(
+        arguments: Item.Kind.allCases,
+        ItemRowViewModelView.allCases
+    )
+    func shouldDisplayAuthor(
+        of kind: Item.Kind,
+        in view: ItemRowViewModelView
+    ) {
+        // Given
+        let sut = sut(kind: kind, view: view)
 
-            // Then
-            XCTAssertEqual(shouldDisplayAuthor, sut.view == .item)
-        }
+        // When
+        let shouldDisplayAuthor = sut.shouldDisplayAuthor
+
+        // Then
+        #expect(shouldDisplayAuthor == (view == .item))
     }
 
-    func testShouldDisplayScore() {
-        for sut in Self.suts {
-            // When
-            let shouldDisplayScore = sut.shouldDisplayScore
+    @Test(
+        arguments: Item.Kind.allCases,
+        ItemRowViewModelView.allCases
+    )
+    func shouldDisplayScore(
+        of kind: Item.Kind,
+        in view: ItemRowViewModelView
+    ) {
+        // Given
+        let sut = sut(kind: kind, view: view)
 
-            // Then
-            XCTAssertEqual(shouldDisplayScore, sut.item.kind != .job)
-        }
+        // When
+        let shouldDisplayScore = sut.shouldDisplayScore
+
+        // Then
+        #expect(shouldDisplayScore == (kind != .job))
     }
 
-    func testShouldDisplayNumberOfComments() {
-        for sut in Self.suts {
-            // When
-            let shouldDisplayNumberOfComments = sut.shouldDisplayNumberOfComments
+    @Test(
+        arguments: Item.Kind.allCases,
+        ItemRowViewModelView.allCases
+    )
+    func shouldDisplayNumberOfComments(
+        of kind: Item.Kind,
+        in view: ItemRowViewModelView
+    ) {
+        // Given
+        let sut = sut(kind: kind, view: view)
 
-            // Then
-            XCTAssertEqual(
-                shouldDisplayNumberOfComments,
-                sut.view == .feed && sut.item.kind != .job
-            )
-        }
+        // When
+        let shouldDisplayNumberOfComments = sut.shouldDisplayNumberOfComments
+
+        // Then
+        #expect(
+            shouldDisplayNumberOfComments ==
+            (view == .feed && kind != .job)
+        )
+    }
+}
+
+// MARK: - Private extension
+
+private extension ItemRowViewModelTests {
+
+    // MARK: Methods
+
+    func sut(
+        kind: Item.Kind,
+        view: ItemRowViewModelView
+    ) -> ItemRowViewModel {
+        ItemRowViewModel(
+            in: view,
+            item: Item(kind: kind, body: "Body")
+        )
     }
 }

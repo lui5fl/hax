@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class JSONDecoderMock: JSONDecoder {
+final class JSONDecoderMock: JSONDecoder, @unchecked Sendable {
 
     // MARK: Properties
 

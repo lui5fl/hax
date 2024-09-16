@@ -5,64 +5,56 @@
 //  Created by Luis Fariña on 20/12/22.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
 @MainActor
-final class SettingsViewModelTests: XCTestCase {
+struct SettingsViewModelTests {
 
     // MARK: Properties
 
-    private var sut: SettingsViewModel!
-    private var appVersionServiceMock: AppVersionServiceMock!
+    private let sut: SettingsViewModel
+    private let appVersionServiceMock: AppVersionServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         appVersionServiceMock = AppVersionServiceMock()
         appVersionServiceMock.appVersionStub = "1.2.3 (4)"
         sut = SettingsViewModel(appVersionService: appVersionServiceMock)
     }
 
-    override func tearDownWithError() throws {
-        sut = nil
-
-        try super.tearDownWithError()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertEqual(sut.feeds, Feed.allCases)
-        XCTAssertEqual(sut.version, "1.2.3 (4)")
-        XCTAssertEqual(
-            sut.defaultFeed,
+    @Test func initialize() {
+        #expect(sut.feeds == Feed.allCases)
+        #expect(sut.version == "1.2.3 (4)")
+        #expect(
+            sut.defaultFeed ==
             DefaultFeedService().defaultFeed()
         )
-        XCTAssertNil(sut.url)
-        XCTAssertEqual(appVersionServiceMock.appVersionCallCount, 1)
+        #expect(sut.url == nil)
+        #expect(appVersionServiceMock.appVersionCallCount == 1)
     }
 
-    func testOnSafariExtensionButtonTrigger() {
+    @Test func onSafariExtensionButtonTrigger() {
         // When
         sut.onSafariExtensionButtonTrigger()
 
         // Then
-        XCTAssertEqual(
-            sut.url?.url.absoluteString,
+        #expect(
+            sut.url?.url.absoluteString ==
             "https://luisfl.me/hax/help/safari-extension"
         )
     }
 
-    func testOnPrivacyPolicyButtonTrigger() {
+    @Test func onPrivacyPolicyButtonTrigger() {
         // When
         sut.onPrivacyPolicyButtonTrigger()
 
         // Then
-        XCTAssertEqual(
-            sut.url?.url.absoluteString,
+        #expect(
+            sut.url?.url.absoluteString ==
             "https://luisfl.me/hax/privacy-policy"
         )
     }

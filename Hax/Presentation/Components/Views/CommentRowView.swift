@@ -17,7 +17,7 @@ struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
-            if model.comment.depth > 0 {
+            if model.comment.depth > .zero {
                 Rectangle()
                     .cornerRadius(1.5)
                     .foregroundColor(lineColor)
@@ -66,7 +66,7 @@ private extension CommentRowView {
 
     /// The leading padding to apply to the view.
     var leadingPadding: CGFloat {
-        CGFloat(max(model.comment.depth - 1, 0) * 10)
+        CGFloat(max(model.comment.depth - 1, .zero) * 10)
     }
 
     /// The color of the line on the leading side of the view.
@@ -76,7 +76,7 @@ private extension CommentRowView {
         return Color(
             red: 1 - value,
             green: 0.4 + value,
-            blue: 0
+            blue: .zero
         )
     }
 

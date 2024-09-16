@@ -11,20 +11,11 @@ protocol FilterServiceProtocol {
 
     // MARK: Methods
 
-    func filtered(items: [Item]) -> [Item]
+    func filtered(items: [Item]) async -> [Item]
 }
 
-struct FilterService: FilterServiceProtocol {
-
-    // MARK: Properties
-
-    private let modelContext: ModelContext
-
-    // MARK: Initialization
-
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-    }
+@ModelActor
+actor FilterService: FilterServiceProtocol {
 
     // MARK: Methods
 
@@ -33,16 +24,22 @@ struct FilterService: FilterServiceProtocol {
         let userFilters = fetch() as [UserFilter]
 
         return items.filter { item in
-            !item.deleted &&
-            !item.dead &&
-            noFilteredKeywordIsPresent(
-                item: item,
-                keywordFilters: keywordFilters
-            ) &&
-            userIsNotFiltered(
-                item: item,
-                userFilters: userFilters
-            )
+            guard
+                !item.deleted,
+                !item.dead,
+                noFilteredKeywordIsPresent(
+                    item: item,
+                    keywordFilters: keywordFilters
+                ),
+                userIsNotFiltered(
+                    item: item,
+                    userFilters: userFilters
+                )
+            else {
+                return false
+            }
+
+            return true
         }
     }
 }
@@ -50,6 +47,12 @@ struct FilterService: FilterServiceProtocol {
 // MARK: - Private extension
 
 private extension FilterService {
+
+    // MARK: Properties
+
+    var context: ModelContext {
+        modelExecutor.modelContext
+    }
 
     // MARK: Methods
 

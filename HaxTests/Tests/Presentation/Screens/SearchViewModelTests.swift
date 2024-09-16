@@ -5,57 +5,48 @@
 //  Created by Luis Fariña on 9/9/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
 @MainActor
-final class SearchViewModelTests: XCTestCase {
+struct SearchViewModelTests {
 
     // MARK: Properties
 
-    private var sut: SearchViewModel!
-    private var hackerNewsServiceMock: HackerNewsServiceMock!
+    private let sut: SearchViewModel
+    private let hackerNewsServiceMock: HackerNewsServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUp() {
-        super.setUp()
-
+    init() {
         hackerNewsServiceMock = HackerNewsServiceMock()
         sut = SearchViewModel(
             hackerNewsService: hackerNewsServiceMock
         )
     }
 
-    override func tearDown() {
-        sut = nil
-        hackerNewsServiceMock = nil
-
-        super.tearDown()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssert(sut.items.isEmpty)
-        XCTAssertEqual(sut.text, "")
+    @Test func initialize() {
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.items.isEmpty)
+        #expect(sut.text.isEmpty)
     }
 
-    func testOnSubmit_givenSearchRequestFails() async {
+    @Test func onSubmit_givenSearchRequestFails() async {
         // When
         await sut.onSubmit()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNotNil(sut.error)
-        XCTAssert(sut.items.isEmpty)
-        XCTAssertEqual(sut.text, "")
-        XCTAssertEqual(hackerNewsServiceMock.searchCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error != nil)
+        #expect(sut.items.isEmpty)
+        #expect(sut.text.isEmpty)
+        #expect(hackerNewsServiceMock.searchCallCount == 1)
     }
 
-    func testOnSubmit_givenSearchRequestDoesNotFail() async {
+    @Test func onSubmit_givenSearchRequestDoesNotFail() async {
         // Given
         let items = [Item.example]
         hackerNewsServiceMock.searchStub = { _ in
@@ -66,10 +57,10 @@ final class SearchViewModelTests: XCTestCase {
         await sut.onSubmit()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.items, items)
-        XCTAssertEqual(sut.text, "")
-        XCTAssertEqual(hackerNewsServiceMock.searchCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.items == items)
+        #expect(sut.text.isEmpty)
+        #expect(hackerNewsServiceMock.searchCallCount == 1)
     }
 }

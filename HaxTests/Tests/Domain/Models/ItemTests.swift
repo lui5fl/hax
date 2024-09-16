@@ -5,14 +5,15 @@
 //  Created by Luis Fariña on 21/12/22.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class ItemTests: XCTestCase {
+struct ItemTests {
 
     // MARK: Tests
 
-    func testInit_givenAlgoliaItemDTO() throws {
+    @Test func initialize_givenAlgoliaItemDTO() throws {
         // Given
         let algoliaItemDTO = try algoliaItemDTO()
 
@@ -20,34 +21,34 @@ final class ItemTests: XCTestCase {
         let sut = Item(algoliaItemDTO: algoliaItemDTO)
 
         // Then
-        XCTAssertEqual(sut.id, 1)
-        XCTAssertFalse(sut.deleted)
-        XCTAssertEqual(sut.kind, .story)
-        XCTAssertEqual(sut.author, "pg")
-        XCTAssertEqual(sut.body, "text")
-        XCTAssertFalse(sut.dead)
-        XCTAssertEqual(sut.children.count, 1)
-        XCTAssertEqual(
-            sut.url,
+        #expect(sut.id == 1)
+        #expect(!sut.deleted)
+        #expect(sut.kind == .story)
+        #expect(sut.author == "pg")
+        #expect(sut.body == "text")
+        #expect(!sut.dead)
+        #expect(sut.children.count == 1)
+        #expect(
+            sut.url ==
             URL(string: "http://ycombinator.com")
         )
-        XCTAssertEqual(sut.score, 57)
-        XCTAssertEqual(sut.title, "Y Combinator")
-        XCTAssertNil(sut.descendants)
-        XCTAssert(sut.comments.isEmpty)
-        XCTAssertEqual(sut.storyId, 1)
-        XCTAssertNotNil(sut.markdownBody)
-        XCTAssertNotNil(sut.urlSimpleString)
-        XCTAssertNotNil(sut.elapsedTimeString)
-        XCTAssertEqual(
-            sut.hackerNewsURL,
+        #expect(sut.score == 57)
+        #expect(sut.title == "Y Combinator")
+        #expect(sut.descendants == nil)
+        #expect(sut.comments.isEmpty)
+        #expect(sut.storyId == 1)
+        #expect(sut.markdownBody != nil)
+        #expect(sut.urlSimpleString != nil)
+        #expect(sut.elapsedTimeString != nil)
+        #expect(
+            sut.hackerNewsURL ==
             URL(string: "https://news.ycombinator.com/item?id=1")
         )
     }
 
-    func testInit_givenAlgoliaSearchResultDTO() throws {
+    @Test func initialize_givenAlgoliaSearchResultDTO() throws {
         // Given
-        let algoliaSearchResultDTO = try algoliaSearchResultDTO(
+        let algoliaSearchResultDTO = try JSONHelper.algoliaSearchResultDTO(
             jsonResourceName: "AlgoliaSearchResultDTO_NoNilProperties"
         )
 
@@ -57,32 +58,32 @@ final class ItemTests: XCTestCase {
         )
 
         // Then
-        XCTAssertEqual(sut.id, 1)
-        XCTAssertFalse(sut.deleted)
-        XCTAssertNil(sut.kind)
-        XCTAssertEqual(sut.author, "pg")
-        XCTAssertNil(sut.body)
-        XCTAssertFalse(sut.dead)
-        XCTAssert(sut.children.isEmpty)
-        XCTAssertEqual(
-            sut.url,
+        #expect(sut.id == 1)
+        #expect(!sut.deleted)
+        #expect(sut.kind == nil)
+        #expect(sut.author == "pg")
+        #expect(sut.body == nil)
+        #expect(!sut.dead)
+        #expect(sut.children.isEmpty)
+        #expect(
+            sut.url ==
             URL(string: "http://ycombinator.com")
         )
-        XCTAssertEqual(sut.score, 57)
-        XCTAssertEqual(sut.title, "Y Combinator")
-        XCTAssertEqual(sut.descendants, 15)
-        XCTAssert(sut.comments.isEmpty)
-        XCTAssertEqual(sut.storyId, 1)
-        XCTAssertNil(sut.markdownBody)
-        XCTAssertNotNil(sut.urlSimpleString)
-        XCTAssertNotNil(sut.elapsedTimeString)
-        XCTAssertEqual(
-            sut.hackerNewsURL,
+        #expect(sut.score == 57)
+        #expect(sut.title == "Y Combinator")
+        #expect(sut.descendants == 15)
+        #expect(sut.comments.isEmpty)
+        #expect(sut.storyId == 1)
+        #expect(sut.markdownBody == nil)
+        #expect(sut.urlSimpleString != nil)
+        #expect(sut.elapsedTimeString != nil)
+        #expect(
+            sut.hackerNewsURL ==
             URL(string: "https://news.ycombinator.com/item?id=1")
         )
     }
 
-    func testInit_givenFirebaseItemDTO() throws {
+    @Test func initialize_givenFirebaseItemDTO() throws {
         // Given
         let firebaseItemDTO = try firebaseItemDTO()
 
@@ -90,69 +91,69 @@ final class ItemTests: XCTestCase {
         let sut = Item(firebaseItemDTO: firebaseItemDTO)
 
         // Then
-        XCTAssertEqual(sut.id, 1)
-        XCTAssertFalse(sut.deleted)
-        XCTAssertEqual(sut.kind, .story)
-        XCTAssertEqual(sut.author, "pg")
-        XCTAssertEqual(sut.body, "text")
-        XCTAssertFalse(sut.dead)
-        XCTAssert(sut.children.isEmpty)
-        XCTAssertEqual(
-            sut.url,
+        #expect(sut.id == 1)
+        #expect(!sut.deleted)
+        #expect(sut.kind == .story)
+        #expect(sut.author == "pg")
+        #expect(sut.body == "text")
+        #expect(!sut.dead)
+        #expect(sut.children.isEmpty)
+        #expect(
+            sut.url ==
             URL(string: "http://ycombinator.com")
         )
-        XCTAssertEqual(sut.score, 57)
-        XCTAssertEqual(sut.title, "Y Combinator")
-        XCTAssertEqual(sut.descendants, 15)
-        XCTAssert(sut.comments.isEmpty)
-        XCTAssertNil(sut.storyId)
-        XCTAssertNotNil(sut.markdownBody)
-        XCTAssertNotNil(sut.urlSimpleString)
-        XCTAssertNotNil(sut.elapsedTimeString)
-        XCTAssertEqual(
-            sut.hackerNewsURL,
+        #expect(sut.score == 57)
+        #expect(sut.title == "Y Combinator")
+        #expect(sut.descendants == 15)
+        #expect(sut.comments.isEmpty)
+        #expect(sut.storyId == nil)
+        #expect(sut.markdownBody != nil)
+        #expect(sut.urlSimpleString != nil)
+        #expect(sut.elapsedTimeString != nil)
+        #expect(
+            sut.hackerNewsURL ==
             URL(string: "https://news.ycombinator.com/item?id=1")
         )
     }
 
-    func testInit_givenAlgoliaAndFirebaseItemDTOs() throws {
+    @Test func initialize_givenAlgoliaAndFirebaseItemDTOs() async throws {
         // Given
         let algoliaItemDTO = try algoliaItemDTO()
         let firebaseItemDTO = try firebaseItemDTO()
         let filterServiceMock = FilterServiceMock()
 
         // When
-        let sut = Item(
+        let sut = await Item(
             algoliaItemDTO: algoliaItemDTO,
             firebaseItemDTO: firebaseItemDTO,
             filterService: filterServiceMock
         )
 
         // Then
-        XCTAssertEqual(sut.id, 1)
-        XCTAssertFalse(sut.deleted)
-        XCTAssertEqual(sut.kind, .story)
-        XCTAssertEqual(sut.author, "pg")
-        XCTAssertEqual(sut.body, "text")
-        XCTAssertFalse(sut.dead)
-        XCTAssert(sut.children.isEmpty)
-        XCTAssertEqual(
-            sut.url,
+        #expect(sut.id == 1)
+        #expect(!sut.deleted)
+        #expect(sut.kind == .story)
+        #expect(sut.author == "pg")
+        #expect(sut.body == "text")
+        #expect(!sut.dead)
+        #expect(sut.children.isEmpty)
+        #expect(
+            sut.url ==
             URL(string: "http://ycombinator.com")
         )
-        XCTAssertEqual(sut.score, 57)
-        XCTAssertEqual(sut.title, "Y Combinator")
-        XCTAssertEqual(sut.descendants, 15)
-        XCTAssertEqual(sut.comments.count, 1)
-        XCTAssertEqual(sut.storyId, 1)
-        XCTAssertNotNil(sut.markdownBody)
-        XCTAssertNotNil(sut.urlSimpleString)
-        XCTAssertNotNil(sut.elapsedTimeString)
-        XCTAssertEqual(
-            sut.hackerNewsURL,
+        #expect(sut.score == 57)
+        #expect(sut.title == "Y Combinator")
+        #expect(sut.descendants == 15)
+        #expect(sut.comments.count == 1)
+        #expect(sut.storyId == 1)
+        #expect(sut.markdownBody != nil)
+        #expect(sut.urlSimpleString != nil)
+        #expect(sut.elapsedTimeString != nil)
+        #expect(
+            sut.hackerNewsURL ==
             URL(string: "https://news.ycombinator.com/item?id=1")
         )
-        XCTAssertEqual(filterServiceMock.filteredItemsCallCount, 2)
+        #expect(filterServiceMock.filteredItemsCallCount == 2)
     }
 }
 
@@ -163,10 +164,14 @@ private extension ItemTests {
     // MARK: Methods
 
     func algoliaItemDTO() throws -> AlgoliaItemDTO {
-        try algoliaItemDTO(jsonResourceName: "AlgoliaItemDTO_NoNilProperties")
+        try JSONHelper.algoliaItemDTO(
+            jsonResourceName: "AlgoliaItemDTO_NoNilProperties"
+        )
     }
 
     func firebaseItemDTO() throws -> FirebaseItemDTO {
-        try firebaseItemDTO(jsonResourceName: "FirebaseItemDTO_NoNilProperties")
+        try JSONHelper.firebaseItemDTO(
+            jsonResourceName: "FirebaseItemDTO_NoNilProperties"
+        )
     }
 }

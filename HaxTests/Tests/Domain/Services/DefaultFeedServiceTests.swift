@@ -5,38 +5,30 @@
 //  Created by Luis Fariña on 20/12/22.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class DefaultFeedServiceTests: XCTestCase {
+struct DefaultFeedServiceTests {
 
     // MARK: Properties
 
-    private var sut: DefaultFeedService!
-    private var userDefaultsMock: UserDefaultsMock!
+    private let sut: DefaultFeedService
+    private let userDefaultsMock: UserDefaultsMock
+    private let userDefaultsKey = "defaultFeed"
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         userDefaultsMock = UserDefaultsMock()
         sut = DefaultFeedService(
             userDefaults: userDefaultsMock,
-            userDefaultsKey: Constant.userDefaultsKey
+            userDefaultsKey: userDefaultsKey
         )
-    }
-
-    override func tearDownWithError() throws {
-        sut = nil
-        userDefaultsMock = nil
-
-        try super.tearDownWithError()
     }
 
     // MARK: Tests
 
-    func testDefaultFeed_givenDefaultFeedIsNotValid() {
+    @Test func defaultFeed_givenDefaultFeedIsNotValid() {
         // Given
         setDefaultFeed(rawValue: "invalidFeed")
 
@@ -44,11 +36,11 @@ final class DefaultFeedServiceTests: XCTestCase {
         let defaultFeed = sut.defaultFeed()
 
         // Then
-        XCTAssertNil(defaultFeed)
-        XCTAssertEqual(userDefaultsMock.stringCallCount, 1)
+        #expect(defaultFeed == nil)
+        #expect(userDefaultsMock.stringCallCount == 1)
     }
 
-    func testDefaultFeed_givenDefaultFeedIsValid() {
+    @Test func defaultFeed_givenDefaultFeedIsValid() {
         // Given
         setDefaultFeed(rawValue: "best")
 
@@ -56,8 +48,8 @@ final class DefaultFeedServiceTests: XCTestCase {
         let defaultFeed = sut.defaultFeed()
 
         // Then
-        XCTAssertEqual(defaultFeed, .best)
-        XCTAssertEqual(userDefaultsMock.stringCallCount, 1)
+        #expect(defaultFeed == .best)
+        #expect(userDefaultsMock.stringCallCount == 1)
     }
 }
 
@@ -65,18 +57,9 @@ final class DefaultFeedServiceTests: XCTestCase {
 
 private extension DefaultFeedServiceTests {
 
-    // MARK: Types
-
-    enum Constant {
-        static let userDefaultsKey = "defaultFeed"
-    }
-
     // MARK: Methods
 
     func setDefaultFeed(rawValue: String) {
-        userDefaultsMock.set(
-            rawValue,
-            forKey: Constant.userDefaultsKey
-        )
+        userDefaultsMock.set(rawValue, forKey: userDefaultsKey)
     }
 }
