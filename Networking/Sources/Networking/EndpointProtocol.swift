@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol EndpointProtocol {
+public protocol EndpointProtocol: Sendable {
 
     // MARK: Properties
 

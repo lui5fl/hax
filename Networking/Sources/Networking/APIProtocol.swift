@@ -5,7 +5,7 @@
 //  Created by Luis Fariña on 10/5/24.
 //
 
-public protocol APIProtocol {
+public protocol APIProtocol: Sendable {
 
     // MARK: Types
 

@@ -9,16 +9,19 @@ import Foundation
 import Networking
 import Testing
 
-final class URLSessionMock: URLSessionProtocol {
+actor URLSessionMock: URLSessionProtocol {
+
+    // MARK: Types
+
+    typealias DataStub = @Sendable (
+        _ request: URLRequest,
+        _ delegate: (any URLSessionTaskDelegate)?
+    ) async throws -> (Data, URLResponse)
 
     // MARK: Properties
 
-    var dataStub: ((
-        _ request: URLRequest,
-        _ delegate: (any URLSessionTaskDelegate)?
-    ) async throws -> (Data, URLResponse))?
-
     private(set) var dataCallCount = Int.zero
+    private var _dataStub: DataStub?
 
     // MARK: Methods
 
@@ -28,6 +31,10 @@ final class URLSessionMock: URLSessionProtocol {
     ) async throws -> (Data, URLResponse) {
         dataCallCount += 1
 
-        return try await (#require(dataStub))(request, delegate)
+        return try await (#require(_dataStub))(request, delegate)
+    }
+
+    func dataStub(_ dataStub: DataStub?) {
+        _dataStub = dataStub
     }
 }

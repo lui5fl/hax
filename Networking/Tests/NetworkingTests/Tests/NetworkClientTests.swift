@@ -34,7 +34,7 @@ struct NetworkClientTests {
 
     @Test func perform() async throws {
         // Given
-        urlSessionMock.dataStub = { _, _ in
+        await urlSessionMock.dataStub { _, _ in
             (Data("42".utf8), URLResponse())
         }
         let request = Request<APIMock>.get(EndpointMock(path: "/"))
@@ -44,7 +44,7 @@ struct NetworkClientTests {
 
         // Then
         #expect(performResult == 42)
-        #expect(urlSessionMock.dataCallCount == 1)
+        #expect(await urlSessionMock.dataCallCount == 1)
         #expect(jsonDecoderMock.decodeCallCount == 1)
     }
 }

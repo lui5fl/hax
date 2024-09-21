@@ -2,6 +2,8 @@
 # https://realm.github.io/SwiftLint/rule-directory.html
 
 identifier_name:
+  allowed_symbols:
+    - _
   excluded:
     - id
     - by

@@ -42,15 +42,13 @@ struct UserViewModelTests {
         // Then
         #expect(sut.error != nil)
         #expect(sut.user == nil)
-        #expect(hackerNewsServiceMock.userCallCount == 1)
+        #expect(await hackerNewsServiceMock.userCallCount == 1)
     }
 
     @Test func onViewAppear_givenUserRequestDoesNotFail() async {
         // Given
-        hackerNewsServiceMock.userStub = User(
-            id: "pg",
-            creationDate: .now,
-            karma: .zero
+        await hackerNewsServiceMock.userStub(
+            User(id: "pg", creationDate: .now, karma: .zero)
         )
 
         // When
@@ -59,7 +57,7 @@ struct UserViewModelTests {
         // Then
         #expect(sut.error == nil)
         #expect(sut.user != nil)
-        #expect(hackerNewsServiceMock.userCallCount == 1)
+        #expect(await hackerNewsServiceMock.userCallCount == 1)
     }
 
     @Test func onLinkTap_givenSchemeDoesNotStartWithHTTP() throws {

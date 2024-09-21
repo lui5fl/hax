@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class HaxUITests: XCTestCase {
 
     override func setUpWithError() throws {

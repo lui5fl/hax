@@ -43,13 +43,13 @@ struct SearchViewModelTests {
         #expect(sut.error != nil)
         #expect(sut.items.isEmpty)
         #expect(sut.text.isEmpty)
-        #expect(hackerNewsServiceMock.searchCallCount == 1)
+        #expect(await hackerNewsServiceMock.searchCallCount == 1)
     }
 
     @Test func onSubmit_givenSearchRequestDoesNotFail() async {
         // Given
         let items = [Item.example]
-        hackerNewsServiceMock.searchStub = { _ in
+        await hackerNewsServiceMock.searchStub { _ in
             items
         }
 
@@ -61,6 +61,6 @@ struct SearchViewModelTests {
         #expect(sut.error == nil)
         #expect(sut.items == items)
         #expect(sut.text.isEmpty)
-        #expect(hackerNewsServiceMock.searchCallCount == 1)
+        #expect(await hackerNewsServiceMock.searchCallCount == 1)
     }
 }

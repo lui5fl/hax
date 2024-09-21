@@ -13,7 +13,7 @@ final class KeywordFilter {
     // MARK: Properties
 
     @Attribute(.unique)
-    let keyword: String
+    var keyword: String
 
     // MARK: Initialization
 

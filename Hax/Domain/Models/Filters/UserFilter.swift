@@ -13,7 +13,7 @@ final class UserFilter {
     // MARK: Properties
 
     @Attribute(.unique)
-    let user: String
+    var user: String
 
     // MARK: Initialization
 
