@@ -12,6 +12,12 @@ protocol RegexServiceProtocol {
 
     // MARK: Methods
 
+    /// Looks for a Hacker News feed in the specified URL.
+    ///
+    /// - Parameters:
+    ///   - url: The URL in which to look for a Hacker News feed
+    func feed(url: URL) -> Feed?
+
     /// Looks for a Hacker News item identifier in the specified URL.
     ///
     /// - Parameters:
@@ -28,6 +34,15 @@ protocol RegexServiceProtocol {
 final class RegexService: RegexServiceProtocol {
 
     // MARK: Properties
+
+    private lazy var feedPattern = {
+        Regex {
+            Constant.hackerNewsFeedURLString
+            Capture {
+                OneOrMore(.word)
+            }
+        }
+    }()
 
     private lazy var itemIDPattern = {
         Regex {
@@ -55,8 +70,26 @@ final class RegexService: RegexServiceProtocol {
 
     // MARK: Methods
 
+    func feed(url: URL) -> Feed? {
+        guard
+            let match = url.absoluteString.firstMatch(
+                of: feedPattern
+            )
+        else {
+            return nil
+        }
+
+        let (_, feed) = match.output
+
+        return Feed(rawValue: String(feed))
+    }
+
     func itemID(url: URL) -> Int? {
-        guard let match = url.absoluteString.firstMatch(of: itemIDPattern) else {
+        guard
+            let match = url.absoluteString.firstMatch(
+                of: itemIDPattern
+            )
+        else {
             return nil
         }
 
@@ -66,7 +99,11 @@ final class RegexService: RegexServiceProtocol {
     }
 
     func userID(url: URL) -> String? {
-        guard let match = url.absoluteString.firstMatch(of: userIDPattern) else {
+        guard
+            let match = url.absoluteString.firstMatch(
+                of: userIDPattern
+            )
+        else {
             return nil
         }
 

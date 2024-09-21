@@ -7,10 +7,20 @@
 
 import Foundation
 
+enum Tab {
+
+    // MARK: Cases
+
+    case home, search, settings
+}
+
 @MainActor
 protocol MainViewModelProtocol {
 
     // MARK: Properties
+
+    /// The selected tab.
+    var selectedTab: Tab { get set }
 
     /// The selected feed.
     var selectedFeed: Feed? { get set }
@@ -30,6 +40,7 @@ final class MainViewModel: MainViewModelProtocol {
 
     // MARK: Properties
 
+    var selectedTab = Tab.home
     var selectedFeed: Feed?
     var selectedItem: Item?
     var presentedItem: Item?

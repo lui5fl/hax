@@ -411,12 +411,32 @@
         }
       }
     },
+    "Open Feed" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir feed"
+          }
+        }
+      }
+    },
     "Open Hacker News Link" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir enlace de Hacker News"
+          }
+        }
+      }
+    },
+    "Opens the specified feed." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre el feed especificado."
           }
         }
       }

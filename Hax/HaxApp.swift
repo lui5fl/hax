@@ -15,6 +15,7 @@ struct HaxApp: App {
     // MARK: Properties
 
     @State private var mainViewModel = MainViewModel()
+    @AppStorage(UserDefaults.Key.url) private var urlString: String?
 
     // MARK: Initialization
 
@@ -33,15 +34,7 @@ struct HaxApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(model: mainViewModel)
-                .onOpenURL { url in
-                    let regexService = RegexService()
-
-                    if let itemID = regexService.itemID(url: url) {
-                        mainViewModel.presentedItem = Item(id: itemID)
-                    } else if let userID = regexService.userID(url: url) {
-                        mainViewModel.presentedUser = IdentifiableString(userID)
-                    }
-                }
+                .onOpenURL(perform: handleURL)
         }
         .modelContainer(
             for: [KeywordFilter.self, UserFilter.self]
@@ -49,6 +42,45 @@ struct HaxApp: App {
             HackerNewsService.shared.filterService = try? FilterService(
                 modelContainer: result.get()
             )
+        }
+        .onChange(of: urlString) { _, _ in
+            guard let urlString,
+                  let url = URL(string: urlString)
+            else {
+                return
+            }
+
+            self.urlString = nil
+            handleURL(url)
+        }
+    }
+}
+
+// MARK: - Private extension
+
+private extension HaxApp {
+
+    // MARK: Methods
+
+    func handleURL(_ url: URL?) {
+        guard let url else {
+            return
+        }
+
+        let regexService = RegexService()
+
+        if let feed = regexService.feed(url: url) {
+            mainViewModel.selectedTab = .home
+            mainViewModel.selectedFeed = feed
+            mainViewModel.selectedItem = nil
+            mainViewModel.presentedItem = nil
+            mainViewModel.presentedUser = nil
+        } else if let itemID = regexService.itemID(url: url) {
+            mainViewModel.presentedItem = Item(id: itemID)
+            mainViewModel.presentedUser = nil
+        } else if let userID = regexService.userID(url: url) {
+            mainViewModel.presentedItem = nil
+            mainViewModel.presentedUser = IdentifiableString(userID)
         }
     }
 }

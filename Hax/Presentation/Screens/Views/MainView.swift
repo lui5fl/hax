@@ -12,7 +12,6 @@ struct MainView<Model: MainViewModelProtocol>: View {
     // MARK: Properties
 
     @State var model: Model
-    @State private var selectedTab = Tab.home
     @State private var searchBarIsPresented = false
     @State private var searchSelectedItem: Item?
     @State private var settingsNavigationPath = NavigationPath()
@@ -22,10 +21,10 @@ struct MainView<Model: MainViewModelProtocol>: View {
     var body: some View {
         TabView(
             selection: Binding {
-                selectedTab
+                model.selectedTab
             } set: { newValue, _ in
-                if newValue == selectedTab {
-                    switch selectedTab {
+                if newValue == model.selectedTab {
+                    switch model.selectedTab {
                     case .home:
                         model.selectedFeed = nil
                         model.selectedItem = nil
@@ -39,7 +38,7 @@ struct MainView<Model: MainViewModelProtocol>: View {
                         settingsNavigationPath = NavigationPath()
                     }
                 } else {
-                    selectedTab = newValue
+                    model.selectedTab = newValue
                 }
             }
         ) {
@@ -70,15 +69,6 @@ struct MainView<Model: MainViewModelProtocol>: View {
 @MainActor
 private extension MainView {
 
-    // MARK: Types
-
-    enum Tab {
-
-        // MARK: Cases
-
-        case home, search, settings
-    }
-
     // MARK: Properties
 
     var homeNavigationStack: some View {
@@ -96,6 +86,7 @@ private extension MainView {
                     model: FeedViewModel(feed: feed),
                     selectedItem: $model.selectedItem
                 )
+                .id(feed)
                 .navigationDestination(
                     item: $model.selectedItem
                 ) { item in
