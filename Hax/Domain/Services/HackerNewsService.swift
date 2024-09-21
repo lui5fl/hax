@@ -193,7 +193,7 @@ final class HackerNewsService: HackerNewsServiceProtocol {
         )
         let items = algoliaSearchResponseDTO.hits.map(Item.init)
 
-        return filterService?.filtered(items: items) ?? items
+        return await filterService?.filtered(items: items) ?? items
     }
 
     func user(id: String) async throws -> User {
@@ -219,7 +219,7 @@ private extension HackerNewsService {
             }
             .compacted()
 
-        return filterService?.filtered(items: items) ?? items
+        return await filterService?.filtered(items: items) ?? items
     }
 
     func identifiers(

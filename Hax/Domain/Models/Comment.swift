@@ -68,8 +68,8 @@ extension Comment {
     // MARK: Methods
 
     static func example(
-        id: Int = 0,
-        depth: Int = 0,
+        id: Int = .zero,
+        depth: Int = .zero,
         isCollapsed: Bool = false
     ) -> Self {
         Comment(

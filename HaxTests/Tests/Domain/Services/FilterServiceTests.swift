@@ -5,23 +5,24 @@
 //  Created by Luis Fariña on 16/4/24.
 //
 
+import Foundation
 import SwiftData
-import XCTest
+import Testing
 @testable import Hax
 
-@MainActor
-final class FilterServiceTests: XCTestCase {
+struct FilterServiceTests {
 
     // MARK: Properties
 
-    private var sut: FilterService!
+    private let sut: FilterService
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
-        let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: true)
+    @MainActor
+    init() throws {
+        let modelConfiguration = ModelConfiguration(
+            isStoredInMemoryOnly: true
+        )
         let modelContainer = try ModelContainer(
             for: KeywordFilter.self,
             UserFilter.self,
@@ -30,91 +31,88 @@ final class FilterServiceTests: XCTestCase {
         let modelContext = modelContainer.mainContext
         modelContext.insert(KeywordFilter(keyword: "keyword"))
         modelContext.insert(UserFilter(user: "author"))
-        sut = FilterService(modelContext: modelContext)
-    }
-
-    override func tearDownWithError() throws {
-        sut = nil
-
-        try super.tearDownWithError()
+        try modelContext.save()
+        sut = FilterService(modelContainer: modelContainer)
     }
 
     // MARK: Tests
 
-    func testFilteredItems_givenItemWhichIsDeleted() {
+    @Test func filteredItems_givenItemWhichIsDeleted() async {
         // Given
         let item = Item(deleted: true)
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssert(filteredItems.isEmpty)
+        #expect(filteredItems.isEmpty)
     }
 
-    func testFilteredItems_givenItemWhichIsDead() {
+    @Test func filteredItems_givenItemWhichIsDead() async {
         // Given
         let item = Item(dead: true)
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssert(filteredItems.isEmpty)
+        #expect(filteredItems.isEmpty)
     }
 
-    func testFilteredItems_givenItemWhoseBodyHasFilteredKeyword() {
+    @Test func filteredItems_givenItemWhoseBodyHasFilteredKeyword() async {
         // Given
         let item = Item(body: "keyword")
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssert(filteredItems.isEmpty)
+        #expect(filteredItems.isEmpty)
     }
 
-    func testFilteredItems_givenItemWhoseURLHasFilteredKeyword() {
+    @Test func filteredItems_givenItemWhoseURLHasFilteredKeyword() async {
         // Given
-        let item = Item(url: URL(string: "https://luisfl.me/keyword"))
+        let item = Item(
+            url: URL(string: "https://luisfl.me/keyword")
+        )
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssert(filteredItems.isEmpty)
+        #expect(filteredItems.isEmpty)
     }
 
-    func testFilteredItems_givenItemWhoseTitleHasFilteredKeyword() {
+    @Test func filteredItems_givenItemWhoseTitleHasFilteredKeyword() async {
         // Given
         let item = Item(title: "keyword")
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssert(filteredItems.isEmpty)
+        #expect(filteredItems.isEmpty)
     }
 
-    func testFilteredItems_givenItemWhoseAuthorIsFiltered() {
+    @Test func filteredItems_givenItemWhoseAuthorIsFiltered() async {
         // Given
         let item = Item(author: "author")
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssert(filteredItems.isEmpty)
+        #expect(filteredItems.isEmpty)
     }
 
-    func testFilteredItems_givenItemWithoutFilteredKeywordsAndWhoseAuthorIsNotFiltered() {
+    @Test func filteredItems_givenItemWithoutFilteredKeywordsAndWhoseAuthorIsNotFiltered() async {
         // Given
         let item = Item()
 
         // When
-        let filteredItems = sut.filtered(items: [item])
+        let filteredItems = await sut.filtered(items: [item])
 
         // Then
-        XCTAssertEqual(filteredItems, [item])
+        #expect(filteredItems == [item])
     }
 }

@@ -12,7 +12,7 @@ final class UserDefaultsMock: UserDefaults {
     // MARK: Properties
 
     private var dictionary: [String: Any] = [:]
-    private(set) var stringCallCount = 0
+    private(set) var stringCallCount = Int.zero
 
     // MARK: Methods
 

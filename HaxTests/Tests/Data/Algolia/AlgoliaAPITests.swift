@@ -5,33 +5,19 @@
 //  Created by Luis Fariña on 12/5/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class AlgoliaAPITests: XCTestCase {
+struct AlgoliaAPITests {
 
     // MARK: Properties
 
-    private var sut: AlgoliaAPI!
-
-    // MARK: Set up and tear down
-
-    override func setUp() {
-        super.setUp()
-
-        sut = AlgoliaAPI()
-    }
-
-    override func tearDown() {
-        sut = nil
-
-        super.tearDown()
-    }
+    private let sut = AlgoliaAPI()
 
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertEqual(sut.scheme, "https")
-        XCTAssertEqual(sut.host, "hn.algolia.com")
+    @Test func initialize() {
+        #expect(sut.scheme == "https")
+        #expect(sut.host == "hn.algolia.com")
     }
 }

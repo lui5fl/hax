@@ -5,44 +5,32 @@
 //  Created by Luis Fariña on 2/3/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
 @MainActor
-final class MainViewModelTests: XCTestCase {
+struct MainViewModelTests {
 
     // MARK: Properties
 
-    private var sut: MainViewModel!
-    private var defaultFeedServiceMock: DefaultFeedServiceMock!
+    private let sut: MainViewModel
+    private let defaultFeedServiceMock: DefaultFeedServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         defaultFeedServiceMock = DefaultFeedServiceMock()
         defaultFeedServiceMock.defaultFeedStub = .best
         sut = MainViewModel(defaultFeedService: defaultFeedServiceMock)
     }
 
-    override func tearDownWithError() throws {
-        sut = nil
-        defaultFeedServiceMock = nil
-
-        try super.tearDownWithError()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertEqual(sut.selectedFeed, .best)
-        XCTAssertNil(sut.selectedItem)
-        XCTAssertNil(sut.presentedItem)
-        XCTAssertNil(sut.presentedUser)
-        XCTAssertEqual(
-            defaultFeedServiceMock.defaultFeedCallCount,
-            1
-        )
+    @Test func initialize() {
+        #expect(sut.selectedFeed == .best)
+        #expect(sut.selectedItem == nil)
+        #expect(sut.presentedItem == nil)
+        #expect(sut.presentedUser == nil)
+        #expect(defaultFeedServiceMock.defaultFeedCallCount == 1)
     }
 }

@@ -173,7 +173,7 @@ struct Item: Hashable, Identifiable, Sendable {
         algoliaItemDTO: AlgoliaItemDTO,
         firebaseItemDTO: FirebaseItemDTO,
         filterService: FilterServiceProtocol? = nil
-    ) {
+    ) async {
         self.init(
             id: firebaseItemDTO.id,
             deleted: firebaseItemDTO.deleted ?? false,
@@ -188,7 +188,7 @@ struct Item: Hashable, Identifiable, Sendable {
             score: firebaseItemDTO.score,
             title: firebaseItemDTO.title,
             descendants: firebaseItemDTO.descendants,
-            comments: Self.comments(
+            comments: await Self.comments(
                 item: Item(algoliaItemDTO: algoliaItemDTO),
                 childIdentifiers: firebaseItemDTO.kids,
                 filterService: filterService
@@ -234,7 +234,7 @@ private extension Item {
         depth: Int = .zero,
         childIdentifiers: [Int]? = nil,
         filterService: FilterServiceProtocol? = nil
-    ) -> [Comment] {
+    ) async -> [Comment] {
         var comments: [Comment] = []
         var items: [Self] = []
 
@@ -254,12 +254,12 @@ private extension Item {
             items = item.children
         }
 
-        items = filterService?.filtered(items: items) ?? items
+        items = await filterService?.filtered(items: items) ?? items
 
         for child in items {
             comments.append(Comment(item: child, depth: depth))
             comments.append(
-                contentsOf: Self.comments(
+                contentsOf: await Self.comments(
                     item: child,
                     depth: depth + 1,
                     filterService: filterService

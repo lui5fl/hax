@@ -5,23 +5,20 @@
 //  Created by Luis Fariña on 20/12/22.
 //
 
-import Combine
-import XCTest
+import Testing
 @testable import Hax
 
 @MainActor
-final class FeedViewModelTests: XCTestCase {
+struct FeedViewModelTests {
 
     // MARK: Properties
 
-    private var sut: FeedViewModel!
-    private var hackerNewsServiceMock: HackerNewsServiceMock!
+    private let sut: FeedViewModel
+    private let hackerNewsServiceMock: HackerNewsServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         hackerNewsServiceMock = HackerNewsServiceMock()
         sut = FeedViewModel(
             feed: .top,
@@ -29,35 +26,28 @@ final class FeedViewModelTests: XCTestCase {
         )
     }
 
-    override func tearDownWithError() throws {
-        sut = nil
-        hackerNewsServiceMock = nil
-
-        try super.tearDownWithError()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertEqual(sut.feed, .top)
-        XCTAssert(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.items, [])
-        XCTAssertNil(sut.url)
+    @Test func initialize() {
+        #expect(sut.feed == .top)
+        #expect(sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.items.isEmpty)
+        #expect(sut.url == nil)
     }
 
-    func testOnViewAppear_givenItemsRequestFails() async {
+    @Test func onViewAppear_givenItemsRequestFails() async {
         // When
         await sut.onViewAppear()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.items, [])
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error != nil)
+        #expect(sut.items.isEmpty)
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 
-    func testOnViewAppear_givenItemsRequestDoesNotFail() async {
+    @Test func onViewAppear_givenItemsRequestDoesNotFail() async {
         // Given
         hackerNewsServiceMock.itemsStub = [.example]
 
@@ -65,22 +55,22 @@ final class FeedViewModelTests: XCTestCase {
         await sut.onViewAppear()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.items, [.example])
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.items == [.example])
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 
-    func testOnViewAppear_whenCalledTwice() async {
+    @Test func onViewAppear_whenCalledTwice() async {
         // When
         await sut.onViewAppear()
         await sut.onViewAppear()
 
         // Then
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 
-    func testOnItemAppear_givenItemsRequestFails() async {
+    @Test func onItemAppear_givenItemsRequestFails() async {
         // Given
         sut.items = [.example]
 
@@ -88,13 +78,13 @@ final class FeedViewModelTests: XCTestCase {
         await sut.onItemAppear(item: .example)
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.items, [.example])
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error != nil)
+        #expect(sut.items == [.example])
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 
-    func testOnItemAppear_givenItemsRequestDoesNotFail() async {
+    @Test func onItemAppear_givenItemsRequestDoesNotFail() async {
         // Given
         sut.items = [.example]
         hackerNewsServiceMock.itemsStub = [.example]
@@ -103,15 +93,15 @@ final class FeedViewModelTests: XCTestCase {
         await sut.onItemAppear(item: .example)
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.items, [.example, .example])
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.items == [.example, .example])
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 
-    func testOnItemAppear_whenCalledForEveryItemButTheLastOne() async {
+    @Test func onItemAppear_whenCalledForEveryItemButTheLastOne() async {
         // Given
-        sut.items = (0...9).map {
+        sut.items = (.zero ... 9).map {
             .example(id: $0)
         }
 
@@ -121,10 +111,10 @@ final class FeedViewModelTests: XCTestCase {
         }
 
         // Then
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 0)
+        #expect(hackerNewsServiceMock.itemsCallCount == .zero)
     }
 
-    func testOnRefreshRequest_givenItemsRequestFails() async {
+    @Test func onRefreshRequest_givenItemsRequestFails() async {
         // Given
         sut.items = [.example, .example]
 
@@ -132,13 +122,13 @@ final class FeedViewModelTests: XCTestCase {
         await sut.onRefreshRequest()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.items, [.example, .example])
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error != nil)
+        #expect(sut.items == [.example, .example])
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 
-    func testOnRefreshRequest_givenItemsRequestDoesNotFail() async {
+    @Test func onRefreshRequest_givenItemsRequestDoesNotFail() async {
         // Given
         sut.items = [.example, .example]
         hackerNewsServiceMock.itemsStub = [.example]
@@ -147,9 +137,9 @@ final class FeedViewModelTests: XCTestCase {
         await sut.onRefreshRequest()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.items, [.example])
-        XCTAssertEqual(hackerNewsServiceMock.itemsCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.items == [.example])
+        #expect(hackerNewsServiceMock.itemsCallCount == 1)
     }
 }

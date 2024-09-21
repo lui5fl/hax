@@ -5,18 +5,19 @@
 //  Created by Luis Fariña on 22/12/22.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-final class CommentRowViewModelTests: XCTestCase {
+struct CommentRowViewModelTests {
 
     // MARK: Tests
 
-    func testInit() throws {
+    @Test func initialize() throws {
         // Given
         var onUserTapCallCount = Int.zero
         var onLinkTapCallCount = Int.zero
-        let url = try XCTUnwrap(URL(string: "luisfl.me"))
+        let url = try #require(URL(string: "luisfl.me"))
 
         // When
         let sut = CommentRowViewModel(
@@ -35,13 +36,13 @@ final class CommentRowViewModelTests: XCTestCase {
         _ = sut.onLinkTap?(url)
 
         // Then
-        XCTAssertEqual(sut.comment, .example)
-        XCTAssertEqual(onUserTapCallCount, 1)
-        XCTAssertEqual(onLinkTapCallCount, 1)
-        XCTAssertFalse(sut.shouldHighlightAuthor)
+        #expect(sut.comment == .example)
+        #expect(onUserTapCallCount == 1)
+        #expect(onLinkTapCallCount == 1)
+        #expect(!sut.shouldHighlightAuthor)
     }
 
-    func testShouldHighlightAuthor_givenCommentAuthorIsEqualToItemAuthor() {
+    @Test func shouldHighlightAuthor_givenCommentAuthorIsEqualToItemAuthor() {
         // Given
         let author = "example"
         let comment = Comment(item: Item(author: author))
@@ -52,6 +53,6 @@ final class CommentRowViewModelTests: XCTestCase {
         let shouldHighlightAuthor = sut.shouldHighlightAuthor
 
         // Then
-        XCTAssert(shouldHighlightAuthor)
+        #expect(shouldHighlightAuthor)
     }
 }

@@ -5,14 +5,15 @@
 //  Created by Luis Fariña on 9/5/24.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Networking
 
-final class RequestTests: XCTestCase {
+struct RequestTests {
 
     // MARK: Tests
 
-    func testURLRequest_givenHTTPMethodIsGETAndURLIsNotValid() {
+    @Test func urlRequest_givenHTTPMethodIsGETAndURLIsNotValid() {
         // Given
         let api = APIMock(scheme: "https", host: "/")
         let sut = Request<APIMock>.get(
@@ -30,15 +31,13 @@ final class RequestTests: XCTestCase {
         }
 
         // Then
-        try XCTAssertThrowsError(urlRequest()) { error in
-            XCTAssertEqual(
-                error as? Request<APIMock>.Error,
-                .invalidURL
-            )
-        }
+        #expect(
+            throws: Request<APIMock>.Error.invalidURL,
+            performing: urlRequest
+        )
     }
 
-    func testURLRequest_givenHTTPMethodIsGETAndURLIsValid() throws {
+    @Test func urlRequest_givenHTTPMethodIsGETAndURLIsValid() throws {
         // Given
         let api = APIMock(scheme: "https", host: "luisfl.me")
         let sut = Request<APIMock>.get(
@@ -54,10 +53,10 @@ final class RequestTests: XCTestCase {
         let urlRequest = try sut.urlRequest(api: api)
 
         // Then
-        XCTAssertEqual(
-            urlRequest.url,
+        #expect(
+            urlRequest.url ==
             URL(string: "https://luisfl.me/?name=value")
         )
-        XCTAssertEqual(urlRequest.httpMethod, "GET")
+        #expect(urlRequest.httpMethod == "GET")
     }
 }

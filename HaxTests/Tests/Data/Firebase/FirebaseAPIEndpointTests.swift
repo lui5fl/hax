@@ -5,14 +5,14 @@
 //  Created by Luis Fariña on 12/5/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class FirebaseAPIEndpointTests: XCTestCase {
+struct FirebaseAPIEndpointTests {
 
     // MARK: Tests
 
-    func testPath_givenFeedEndpoint() {
+    @Test func path_givenFeedEndpoint() {
         // Given
         let resource = "topstories"
         let sut = FirebaseAPI.Endpoint.feed(resource: resource)
@@ -21,10 +21,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let path = sut.path
 
         // Then
-        XCTAssertEqual(path, "/v0/\(resource).json")
+        #expect(path == "/v0/\(resource).json")
     }
 
-    func testPath_givenItemEndpoint() {
+    @Test func path_givenItemEndpoint() {
         // Given
         let id = 42
         let sut = FirebaseAPI.Endpoint.item(id: id)
@@ -33,10 +33,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let path = sut.path
 
         // Then
-        XCTAssertEqual(path, "/v0/item/\(id).json")
+        #expect(path == "/v0/item/\(id).json")
     }
 
-    func testPath_givenMaxitemEndpoint() {
+    @Test func path_givenMaxitemEndpoint() {
         // Given
         let sut = FirebaseAPI.Endpoint.maxitem
 
@@ -44,10 +44,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let path = sut.path
 
         // Then
-        XCTAssertEqual(path, "/v0/maxitem.json")
+        #expect(path == "/v0/maxitem.json")
     }
 
-    func testPath_givenUserEndpoint() {
+    @Test func path_givenUserEndpoint() {
         // Given
         let id = "pg"
         let sut = FirebaseAPI.Endpoint.user(id: id)
@@ -56,10 +56,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let path = sut.path
 
         // Then
-        XCTAssertEqual(path, "/v0/user/\(id).json")
+        #expect(path == "/v0/user/\(id).json")
     }
 
-    func testQueryItems_givenFeedEndpoint() {
+    @Test func queryItems_givenFeedEndpoint() {
         // Given
         let sut = FirebaseAPI.Endpoint.feed(resource: "topstories")
 
@@ -67,10 +67,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let queryItems = sut.queryItems
 
         // Then
-        XCTAssertNil(queryItems)
+        #expect(queryItems == nil)
     }
 
-    func testQueryItems_givenItemEndpoint() {
+    @Test func queryItems_givenItemEndpoint() {
         // Given
         let sut = FirebaseAPI.Endpoint.item(id: 42)
 
@@ -78,10 +78,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let queryItems = sut.queryItems
 
         // Then
-        XCTAssertNil(queryItems)
+        #expect(queryItems == nil)
     }
 
-    func testQueryItems_givenMaxitemEndpoint() {
+    @Test func queryItems_givenMaxitemEndpoint() {
         // Given
         let sut = FirebaseAPI.Endpoint.maxitem
 
@@ -89,10 +89,10 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let queryItems = sut.queryItems
 
         // Then
-        XCTAssertNil(queryItems)
+        #expect(queryItems == nil)
     }
 
-    func testQueryItems_givenUserEndpoint() {
+    @Test func queryItems_givenUserEndpoint() {
         // Given
         let sut = FirebaseAPI.Endpoint.user(id: "pg")
 
@@ -100,6 +100,6 @@ final class FirebaseAPIEndpointTests: XCTestCase {
         let queryItems = sut.queryItems
 
         // Then
-        XCTAssertNil(queryItems)
+        #expect(queryItems == nil)
     }
 }

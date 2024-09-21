@@ -5,8 +5,9 @@
 //  Created by Luis Fariña on 17/5/24.
 //
 
+import Foundation
 import Networking
-import XCTest
+import Testing
 
 final class URLSessionMock: URLSessionProtocol {
 
@@ -27,6 +28,6 @@ final class URLSessionMock: URLSessionProtocol {
     ) async throws -> (Data, URLResponse) {
         dataCallCount += 1
 
-        return try await (XCTUnwrap(dataStub))(request, delegate)
+        return try await (#require(dataStub))(request, delegate)
     }
 }

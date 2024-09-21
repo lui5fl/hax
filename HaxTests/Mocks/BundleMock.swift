@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class BundleMock: Bundle {
+final class BundleMock: Bundle, @unchecked Sendable {
 
     // MARK: Properties
 
     var infoDictionaryStub: [String: Any]?
-    private(set) var objectCallCount = 0
+    private(set) var objectCallCount = Int.zero
 
     // MARK: Methods
 

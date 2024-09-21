@@ -1,15 +1,19 @@
 //
-//  XCTestCaseExtension.swift
+//  JSONHelper.swift
 //  HaxTests
 //
-//  Created by Luis Fariña on 22/12/22.
+//  Created by Luis Fariña on 20/9/24.
 //
 
-import Combine
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
-extension XCTestCase {
+final class JSONHelper {
+
+    // MARK: Initialization
+
+    private init() {}
 
     // MARK: Methods
 
@@ -18,7 +22,7 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func algoliaItemDTO(
+    static func algoliaItemDTO(
         jsonResourceName: String
     ) throws -> AlgoliaItemDTO {
         try snakeCaseJSONDecoder().decode(
@@ -32,7 +36,7 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func algoliaSearchResponseDTO(
+    static func algoliaSearchResponseDTO(
         jsonResourceName: String
     ) throws -> AlgoliaSearchResponseDTO {
         try snakeCaseJSONDecoder().decode(
@@ -46,7 +50,7 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func algoliaSearchResultDTO(
+    static func algoliaSearchResultDTO(
         jsonResourceName: String
     ) throws -> AlgoliaSearchResultDTO {
         try snakeCaseJSONDecoder().decode(
@@ -60,7 +64,7 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func firebaseItemDTO(
+    static func firebaseItemDTO(
         jsonResourceName: String
     ) throws -> FirebaseItemDTO {
         try JSONDecoder().decode(
@@ -74,7 +78,7 @@ extension XCTestCase {
     ///
     /// - Parameters:
     ///   - jsonResourceName: The name of the JSON resource without the extension
-    func firebaseUserDTO(
+    static func firebaseUserDTO(
         jsonResourceName: String
     ) throws -> FirebaseUserDTO {
         try JSONDecoder().decode(
@@ -86,7 +90,7 @@ extension XCTestCase {
 
 // MARK: - Private extension
 
-private extension XCTestCase {
+private extension JSONHelper {
 
     // MARK: Methods
 
@@ -95,8 +99,8 @@ private extension XCTestCase {
     ///
     /// - Parameters:
     ///   - resourceName: The name of the JSON resource without the extension
-    func jsonData(resourceName: String) throws -> Data {
-        let path = try XCTUnwrap(
+    static func jsonData(resourceName: String) throws -> Data {
+        let path = try #require(
             Bundle(for: Self.self)
                 .path(
                     forResource: resourceName,
@@ -105,12 +109,12 @@ private extension XCTestCase {
         )
         let string = try String(contentsOfFile: path)
 
-        return try XCTUnwrap(string.data(using: .utf8))
+        return try #require(string.data(using: .utf8))
     }
 
     /// Creates and returns a `JSONDecoder` instance configured to convert snake case
     /// keys to camel case.
-    func snakeCaseJSONDecoder() -> JSONDecoder {
+    static func snakeCaseJSONDecoder() -> JSONDecoder {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 

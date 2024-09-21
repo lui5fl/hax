@@ -59,7 +59,7 @@ struct FeedView_Previews: PreviewProvider {
     private final class Model: FeedViewModel {
 
         override func onViewAppear() async {
-            items = (0...2).map { _ in
+            items = (.zero ... 2).map { _ in
                 .example
             }
             isLoading = false

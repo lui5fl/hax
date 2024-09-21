@@ -5,54 +5,40 @@
 //  Created by Luis Fariña on 21/12/22.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class CommentTests: XCTestCase {
+struct CommentTests {
 
     // MARK: Properties
 
-    private var sut: Comment!
-
-    // MARK: Set up and tear down
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
-        sut = Comment(item: .example, depth: 0)
-    }
-
-    override func tearDownWithError() throws {
-        sut = nil
-
-        try super.tearDownWithError()
-    }
+    private let sut = Comment(item: .example)
 
     // MARK: Tests
 
-    func testInit() {
-        XCTAssertEqual(sut.item, .example)
-        XCTAssertEqual(sut.depth, 0)
-        XCTAssertFalse(sut.isCollapsed)
-        XCTAssertFalse(sut.isHidden)
+    @Test func initialize() {
+        #expect(sut.item == .example)
+        #expect(sut.depth == .zero)
+        #expect(!sut.isCollapsed)
+        #expect(!sut.isHidden)
     }
 
-    func testEqualToOperator() {
+    @Test func equalToOperator() {
         // Given
-        let equalComment = Comment(item: .example, depth: 0)
+        let equalComment = Comment(item: .example)
 
         // When
         let equal = sut == equalComment
 
         // Then
-        XCTAssert(equal)
+        #expect(equal)
     }
 
-    func testId() {
+    @Test func id() {
         // When
         let id = sut.id
 
         // Then
-        XCTAssertEqual(id, sut.item.id)
+        #expect(id == sut.item.id)
     }
 }

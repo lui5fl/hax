@@ -5,24 +5,22 @@
 //  Created by Luis Fariña on 22/12/22.
 //
 
-import Combine
-import XCTest
+import Foundation
+import Testing
 @testable import Hax
 
 @MainActor
-final class ItemViewModelTests: XCTestCase {
+struct ItemViewModelTests {
 
     // MARK: Properties
 
-    private var sut: ItemViewModel!
-    private var hackerNewsServiceMock: HackerNewsServiceMock!
-    private var regexServiceMock: RegexServiceMock!
+    private var sut: ItemViewModel
+    private let hackerNewsServiceMock: HackerNewsServiceMock
+    private let regexServiceMock: RegexServiceMock
 
-    // MARK: Set up and tear down
+    // MARK: Initialization
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
+    init() {
         hackerNewsServiceMock = HackerNewsServiceMock()
         regexServiceMock = RegexServiceMock()
         sut = ItemViewModel(
@@ -32,41 +30,34 @@ final class ItemViewModelTests: XCTestCase {
         )
     }
 
-    override func tearDownWithError() throws {
-        sut = nil
-        hackerNewsServiceMock = nil
-
-        try super.tearDownWithError()
-    }
-
     // MARK: Tests
 
-    func testInit() {
-        XCTAssert(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.item, .example)
-        XCTAssertNil(sut.secondaryItem)
-        XCTAssertEqual(sut.comments, [])
-        XCTAssertNil(sut.url)
-        XCTAssertNil(sut.user)
-        XCTAssertNil(sut.highlightedCommentId)
-        XCTAssertEqual(sut.title, "98 comments")
+    @Test func initialize() {
+        #expect(sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.item == .example)
+        #expect(sut.secondaryItem == nil)
+        #expect(sut.comments.isEmpty)
+        #expect(sut.url == nil)
+        #expect(sut.user == nil)
+        #expect(sut.highlightedCommentId == nil)
+        #expect(sut.title == "98 comments")
     }
 
-    func testOnViewAppear_givenItemRequestFails() async {
+    @Test func onViewAppear_givenItemRequestFails() async {
         // When
         await sut.onViewAppear()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.item, .example)
-        XCTAssertEqual(sut.comments, [])
-        XCTAssertNil(sut.highlightedCommentId)
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error != nil)
+        #expect(sut.item == .example)
+        #expect(sut.comments.isEmpty)
+        #expect(sut.highlightedCommentId == nil)
+        #expect(hackerNewsServiceMock.itemCallCount == 1)
     }
 
-    func testOnViewAppear_givenItemRequestDoesNotFail() async {
+    @Test func onViewAppear_givenItemRequestDoesNotFail() async {
         // Given
         let item = Item(id: 1, comments: [.example])
         hackerNewsServiceMock.itemStub = { _, _ in
@@ -77,24 +68,24 @@ final class ItemViewModelTests: XCTestCase {
         await sut.onViewAppear()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.item, item)
-        XCTAssertEqual(sut.comments, [.example])
-        XCTAssertNil(sut.highlightedCommentId)
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.item == item)
+        #expect(sut.comments == [.example])
+        #expect(sut.highlightedCommentId == nil)
+        #expect(hackerNewsServiceMock.itemCallCount == 1)
     }
 
-    func testOnViewAppear_whenCalledTwice() async {
+    @Test func onViewAppear_whenCalledTwice() async {
         // When
         await sut.onViewAppear()
         await sut.onViewAppear()
 
         // Then
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        #expect(hackerNewsServiceMock.itemCallCount == 1)
     }
 
-    func testOnViewAppear_givenCommentShouldBeHighlighted() async {
+    @Test mutating func onViewAppear_givenCommentShouldBeHighlighted() async {
         // Given
         let item = Item(
             id: 1,
@@ -122,21 +113,21 @@ final class ItemViewModelTests: XCTestCase {
         await sut.onViewAppear()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.item, storyItem)
-        XCTAssertEqual(
-            sut.comments,
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.item == storyItem)
+        #expect(
+            sut.comments ==
             [
                 Comment(item: item),
                 Comment(item: Item(id: 2), depth: 1)
             ]
         )
-        XCTAssertEqual(sut.highlightedCommentId, 1)
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 2)
+        #expect(sut.highlightedCommentId == 1)
+        #expect(hackerNewsServiceMock.itemCallCount == 2)
     }
 
-    func testOnViewAppear_givenShouldFetchItemIsFalse() async {
+    @Test mutating func onViewAppear_givenShouldFetchItemIsFalse() async {
         // Given
         let item = Item(comments: [Comment(item: Item(id: 1))])
         sut = ItemViewModel(
@@ -150,14 +141,14 @@ final class ItemViewModelTests: XCTestCase {
         await sut.onViewAppear()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.item, item)
-        XCTAssertEqual(sut.comments, item.comments)
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, .zero)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.item == item)
+        #expect(sut.comments == item.comments)
+        #expect(hackerNewsServiceMock.itemCallCount == .zero)
     }
 
-    func testOnUserTap() {
+    @Test func onUserTap() {
         // Given
         let author = "pg"
         let item = Item(author: author)
@@ -166,10 +157,10 @@ final class ItemViewModelTests: XCTestCase {
         sut.onUserTap(item: item)
 
         // Then
-        XCTAssertEqual(sut.user?.string, author)
+        #expect(sut.user?.string == author)
     }
 
-    func testOnCommentTap_givenCommentIsNotInComments() async {
+    @Test func onCommentTap_givenCommentIsNotInComments() async {
         // Given
         hackerNewsServiceMock.itemStub = { _, _ in
             Item(
@@ -187,8 +178,8 @@ final class ItemViewModelTests: XCTestCase {
         sut.onCommentTap(comment: .example(id: 4))
 
         // Then
-        XCTAssertEqual(
-            sut.comments,
+        #expect(
+            sut.comments ==
             [
                 .example,
                 .example(id: 1, depth: 1),
@@ -198,7 +189,7 @@ final class ItemViewModelTests: XCTestCase {
         )
     }
 
-    func testOnCommentTap_givenCommentIsInComments() async {
+    @Test func onCommentTap_givenCommentIsInComments() async {
         // Given
         hackerNewsServiceMock.itemStub = { _, _ in
             Item(
@@ -216,8 +207,8 @@ final class ItemViewModelTests: XCTestCase {
         sut.onCommentTap(comment: .example(id: 1, depth: 1))
 
         // Then
-        XCTAssertEqual(
-            sut.comments,
+        #expect(
+            sut.comments ==
             [
                 .example,
                 .example(id: 1, depth: 1, isCollapsed: true),
@@ -226,37 +217,38 @@ final class ItemViewModelTests: XCTestCase {
         )
     }
 
-    func testOnCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifierAndSchemeDoesNotStartWithHTTP() throws {
+    @Test(.bug("https://github.com/lui5fl/hax/issues/62", id: 62))
+    func onCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifierAndSchemeDoesNotStartWithHTTP() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "example@example.com"))
+        let url = try #require(URL(string: "example@example.com"))
 
         // When
         _ = sut.onCommentLinkTap(url: url)
 
         // Then
-        XCTAssertNil(sut.secondaryItem)
-        XCTAssertNil(sut.url)
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        #expect(sut.secondaryItem == nil)
+        #expect(sut.url == nil)
+        #expect(regexServiceMock.itemIDCallCount == 1)
     }
 
-    func testOnCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifierAndSchemeStartsWithHTTP() throws {
+    @Test func onCommentLinkTap_givenLinkDoesNotContainHackerNewsItemIdentifierAndSchemeStartsWithHTTP() throws {
         // Given
-        let url = try XCTUnwrap(URL(string: "https://luisfl.me"))
+        let url = try #require(URL(string: "https://luisfl.me"))
 
         // When
         _ = sut.onCommentLinkTap(url: url)
 
         // Then
-        XCTAssertNil(sut.secondaryItem)
-        XCTAssertEqual(sut.url?.url, url)
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
+        #expect(sut.secondaryItem == nil)
+        #expect(sut.url?.url == url)
+        #expect(regexServiceMock.itemIDCallCount == 1)
     }
 
-    func testOnCommentLinkTap_givenLinkContainsHackerNewsUserIdentifier() throws {
+    @Test func onCommentLinkTap_givenLinkContainsHackerNewsUserIdentifier() throws {
         // Given
         let userID = "pg"
         regexServiceMock.userIDStub = userID
-        let url = try XCTUnwrap(
+        let url = try #require(
             URL(string: "news.ycombinator.com/user?id=pg")
         )
 
@@ -264,18 +256,18 @@ final class ItemViewModelTests: XCTestCase {
         _ = sut.onCommentLinkTap(url: url)
 
         // Then
-        XCTAssertNil(sut.secondaryItem)
-        XCTAssertNil(sut.url)
-        XCTAssertEqual(sut.user?.string, userID)
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
-        XCTAssertEqual(regexServiceMock.userIDCallCount, 1)
+        #expect(sut.secondaryItem == nil)
+        #expect(sut.url == nil)
+        #expect(sut.user?.string == userID)
+        #expect(regexServiceMock.itemIDCallCount == 1)
+        #expect(regexServiceMock.userIDCallCount == 1)
     }
 
-    func testOnCommentLinkTap_givenLinkContainsHackerNewsItemIdentifier() throws {
+    @Test func onCommentLinkTap_givenLinkContainsHackerNewsItemIdentifier() throws {
         // Given
         let itemID = 1
         regexServiceMock.itemIDStub = itemID
-        let url = try XCTUnwrap(
+        let url = try #require(
             URL(string: "news.ycombinator.com/item?id=1")
         )
 
@@ -283,14 +275,14 @@ final class ItemViewModelTests: XCTestCase {
         _ = sut.onCommentLinkTap(url: url)
 
         // Then
-        XCTAssertEqual(sut.secondaryItem?.id, itemID)
-        XCTAssertNil(sut.url)
-        XCTAssertNil(sut.user)
-        XCTAssertEqual(regexServiceMock.itemIDCallCount, 1)
-        XCTAssertEqual(regexServiceMock.userIDCallCount, .zero)
+        #expect(sut.secondaryItem?.id == itemID)
+        #expect(sut.url == nil)
+        #expect(sut.user == nil)
+        #expect(regexServiceMock.itemIDCallCount == 1)
+        #expect(regexServiceMock.userIDCallCount == .zero)
     }
 
-    func testOnRefreshRequest_givenItemRequestFails() async {
+    @Test func onRefreshRequest_givenItemRequestFails() async {
         // Given
         sut.comments = [.example]
 
@@ -298,14 +290,14 @@ final class ItemViewModelTests: XCTestCase {
         await sut.onRefreshRequest()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNotNil(sut.error)
-        XCTAssertEqual(sut.item, .example)
-        XCTAssertEqual(sut.comments, [.example])
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error != nil)
+        #expect(sut.item == .example)
+        #expect(sut.comments == [.example])
+        #expect(hackerNewsServiceMock.itemCallCount == 1)
     }
 
-    func testOnRefreshRequest_givenItemRequestDoesNotFail() async {
+    @Test func onRefreshRequest_givenItemRequestDoesNotFail() async {
         // Given
         sut.comments = [.example]
         let item = Item(id: 1, comments: [.example, .example])
@@ -317,14 +309,14 @@ final class ItemViewModelTests: XCTestCase {
         await sut.onRefreshRequest()
 
         // Then
-        XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
-        XCTAssertEqual(sut.item, item)
-        XCTAssertEqual(sut.comments, [.example, .example])
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        #expect(!sut.isLoading)
+        #expect(sut.error == nil)
+        #expect(sut.item == item)
+        #expect(sut.comments == [.example, .example])
+        #expect(hackerNewsServiceMock.itemCallCount == 1)
     }
 
-    func testOnRefreshRequest_givenShouldFetchItemIsFalse() async {
+    @Test mutating func onRefreshRequest_givenShouldFetchItemIsFalse() async {
         // Given
         sut = ItemViewModel(
             item: .example,
@@ -337,6 +329,6 @@ final class ItemViewModelTests: XCTestCase {
         await sut.onRefreshRequest()
 
         // Then
-        XCTAssertEqual(hackerNewsServiceMock.itemCallCount, 1)
+        #expect(hackerNewsServiceMock.itemCallCount == 1)
     }
 }

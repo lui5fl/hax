@@ -5,14 +5,14 @@
 //  Created by Luis Fariña on 25/4/24.
 //
 
-import XCTest
+import Testing
 @testable import Hax
 
-final class StringExtensionTests: XCTestCase {
+struct StringExtensionTests {
 
     // MARK: Tests
 
-    func testContainsWord_givenStringDoesNotContainWord() {
+    @Test func containsWord_givenStringDoesNotContainWord() {
         // Given
         let sut = "Thisstringdoesnotcontaintheword."
 
@@ -20,10 +20,10 @@ final class StringExtensionTests: XCTestCase {
         let containsWord = sut.contains(word: "word")
 
         // Then
-        XCTAssertFalse(containsWord)
+        #expect(!containsWord)
     }
 
-    func testContainsWord_givenStringContainsWord() {
+    @Test func containsWord_givenStringContainsWord() {
         // Given
         let sut = "This string contains the word."
 
@@ -31,6 +31,6 @@ final class StringExtensionTests: XCTestCase {
         let containsWord = sut.contains(word: "word")
 
         // Then
-        XCTAssert(containsWord)
+        #expect(containsWord)
     }
 }
