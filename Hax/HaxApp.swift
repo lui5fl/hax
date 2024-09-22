@@ -5,7 +5,6 @@
 //  Created by Luis Fariña on 8/5/22.
 //
 
-import StoreKit
 import SwiftUI
 
 @MainActor
@@ -23,13 +22,6 @@ struct HaxApp: App {
     // MARK: Initialization
 
     init() {
-        Task(priority: .background) {
-            for await verificationResult in Transaction.updates {
-                if case .verified(let transaction) = verificationResult {
-                    await transaction.finish()
-                }
-            }
-        }
         numberOfLaunches += 1
     }
 

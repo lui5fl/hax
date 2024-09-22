@@ -114,7 +114,6 @@
 		A096CE0F2AB9E775002B70BE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DAFC28D4EA25006CD8E7 /* DateExtension.swift */; };
 		A096CE102AB9E781002B70BE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064ABDA28D3C0CC00572ADD /* ArrayExtension.swift */; };
 		A096CE112AB9E8C6002B70BE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4DB0728D4EA3F006CD8E7 /* Feed.swift */; };
-		A0999DFC2C6518B6008B62B6 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0999DFB2C6518B6008B62B6 /* TipJarView.swift */; };
 		A09DE87D2C8F57F300146418 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */; };
 		A0A2881829521A0500CF1484 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */; };
 		A0A9F2AB2CB0832800D2A54E /* PadContentMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F2AA2CB0832800D2A54E /* PadContentMargins.swift */; };
@@ -155,7 +154,6 @@
 		A0BB8A672C35A5310015F163 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BB8A652C35A5310015F163 /* ErrorView.swift */; };
 		A0BD1E822C7B697F0081ED0C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD1E812C7B697F0081ED0C /* SearchView.swift */; };
 		A0C19F2E2AFC22BE00D294C3 /* WidgetFamilyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */; };
-		A0C7AB7C2C6D19B3003B130A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C7AB7B2C6D19B3003B130A /* StoreKit.framework */; };
 		A0CB86E62C08C3A2002C6353 /* FirebaseUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CB86E52C08C3A2002C6353 /* FirebaseUserDTO.swift */; };
 		A0CB86E82C08C59C002C6353 /* FirebaseUserDTOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CB86E72C08C59C002C6353 /* FirebaseUserDTOTests.swift */; };
 		A0CB86EB2C08C6D6002C6353 /* FirebaseUserDTO_SomeNilProperties.json in Resources */ = {isa = PBXBuildFile; fileRef = A0CB86E92C08C6D6002C6353 /* FirebaseUserDTO_SomeNilProperties.json */; };
@@ -274,7 +272,6 @@
 		A003D07C2C0B62A000FB6030 /* IdentifiableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableString.swift; sourceTree = "<group>"; };
 		A005D0472C8DFF5100438BA2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		A014B20D2CAAF053007A2C3D /* HaxWCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaxWCSessionDelegate.swift; sourceTree = "<group>"; };
-		A0162E142C6D0F050072F919 /* SyncedProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SyncedProducts.storekit; sourceTree = "<group>"; };
 		A01F70E3295204DD00395B2A /* DefaultFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeedService.swift; sourceTree = "<group>"; };
 		A01F70E62952051D00395B2A /* DefaultFeedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeedServiceTests.swift; sourceTree = "<group>"; };
 		A01F70E92952054200395B2A /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
@@ -359,7 +356,6 @@
 		A08FDE3D2BEF811300FB0265 /* FirebaseItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseItemDTO.swift; sourceTree = "<group>"; };
 		A092AD642954B8AC00B76D68 /* CommentRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModelTests.swift; sourceTree = "<group>"; };
 		A092AD662954BE9400B76D68 /* ItemRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowViewModelTests.swift; sourceTree = "<group>"; };
-		A0999DFB2C6518B6008B62B6 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
 		A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		A0A9F2AA2CB0832800D2A54E /* PadContentMargins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadContentMargins.swift; sourceTree = "<group>"; };
@@ -378,7 +374,6 @@
 		A0BC91BD2BED1ECA00E4F4A7 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 		A0BD1E812C7B697F0081ED0C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		A0C19F2D2AFC22BE00D294C3 /* WidgetFamilyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetFamilyExtension.swift; sourceTree = "<group>"; };
-		A0C7AB7B2C6D19B3003B130A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A0CB86E52C08C3A2002C6353 /* FirebaseUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserDTO.swift; sourceTree = "<group>"; };
 		A0CB86E72C08C59C002C6353 /* FirebaseUserDTOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserDTOTests.swift; sourceTree = "<group>"; };
 		A0CB86E92C08C6D6002C6353 /* FirebaseUserDTO_SomeNilProperties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FirebaseUserDTO_SomeNilProperties.json; sourceTree = "<group>"; };
@@ -442,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A037DC0E2BED200E0050E794 /* Networking in Frameworks */,
-				A0C7AB7C2C6D19B3003B130A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +544,6 @@
 		A03FDF652AB74E5A00127AB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0C7AB7B2C6D19B3003B130A /* StoreKit.framework */,
 				A03FDF682AB74E5A00127AB6 /* SwiftUI.framework */,
 				A03FDF662AB74E5A00127AB6 /* WidgetKit.framework */,
 			);
@@ -1046,7 +1039,6 @@
 				A0F4DB1028D4EA3F006CD8E7 /* SafariView.swift */,
 				A0BD1E812C7B697F0081ED0C /* SearchView.swift */,
 				A0F4DB1228D4EA3F006CD8E7 /* SettingsView.swift */,
-				A0999DFB2C6518B6008B62B6 /* TipJarView.swift */,
 				A06B0CCB2C0A198300292A36 /* UserView.swift */,
 			);
 			path = Views;
@@ -1069,7 +1061,6 @@
 			children = (
 				A064ABB228D3ADA600572ADD /* Hax.entitlements */,
 				A07FF27A2BB7306D0067B652 /* Info.plist */,
-				A0162E142C6D0F050072F919 /* SyncedProducts.storekit */,
 				A064ABB028D3ADA600572ADD /* Assets.xcassets */,
 				A086E4672BA7755D0075B0AD /* PrivacyInfo.xcprivacy */,
 				A068D6B02BC57D740061E192 /* Localizable.xcstrings */,
@@ -1398,7 +1389,6 @@
 				A0F4DB2C28D4EA3F006CD8E7 /* FeedView.swift in Sources */,
 				A0CB86E62C08C3A2002C6353 /* FirebaseUserDTO.swift in Sources */,
 				A0F4DB1E28D4EA3F006CD8E7 /* Feed.swift in Sources */,
-				A0999DFC2C6518B6008B62B6 /* TipJarView.swift in Sources */,
 				A0F4DB2E28D4EA3F006CD8E7 /* HackerNewsService.swift in Sources */,
 				A06B0CCC2C0A198300292A36 /* UserView.swift in Sources */,
 				A0F4DB2628D4EA3F006CD8E7 /* ItemView.swift in Sources */,
@@ -1591,7 +1581,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = HaxWidget/Resources/HaxWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HaxWidget/Resources/Info.plist;
@@ -1625,7 +1615,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = HaxWidget/Resources/HaxWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HaxWidget/Resources/Info.plist;
@@ -1773,7 +1763,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Hax/Resources/Hax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hax/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
@@ -1817,7 +1807,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Hax/Resources/Hax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hax/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
@@ -1960,7 +1950,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HaxWatch/Resources/HaxWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"HaxWatch/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				ENABLE_PREVIEWS = YES;
@@ -1997,7 +1987,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HaxWatch/Resources/HaxWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"HaxWatch/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				ENABLE_PREVIEWS = YES;
@@ -2031,7 +2021,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2070,7 +2060,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = B2NJF5A6ZC;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -49,13 +49,6 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 }
             }
             Section("Other") {
-                if AppStore.canMakePayments {
-                    NavigationLink(
-                        value: NavigationDestination.tipJar
-                    ) {
-                        Label("Tip Jar", systemImage: "dollarsign")
-                    }
-                }
                 Link(
                     destination: URL(
                         string: "\(Constant.appStoreURLString)?action=write-review"
@@ -91,8 +84,6 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
             switch navigationDestination {
             case .filters:
                 FilterView()
-            case .tipJar:
-                TipJarView()
             }
         }
         .navigationTitle("Settings")
@@ -121,7 +112,7 @@ private extension SettingsView {
 
         // MARK: Cases
 
-        case filters, tipJar
+        case filters
     }
 }
 

@@ -141,16 +141,6 @@
         }
       }
     },
-    "All features of Hax are free, but if you want to support the development of the app, you can leave a tip." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Todas las funcionalidades de Hax son gratuitas, pero si quieres apoyar el desarrollo de la app, puedes dejar una propina."
-          }
-        }
-      }
-    },
     "Ask" : {
       "localizations" : {
         "es" : {
@@ -197,16 +187,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muestra las últimas historias del feed especificado."
-          }
-        }
-      }
-    },
-    "Error" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error"
           }
         }
       }
@@ -277,16 +257,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inicio"
-          }
-        }
-      }
-    },
-    "I'm very happy that you like Hax!" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Me alegro mucho de que te guste Hax!"
           }
         }
       }
@@ -581,16 +551,6 @@
         }
       }
     },
-    "Thank you very much!" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Muchas gracias!"
-          }
-        }
-      }
-    },
     "The link should be similar to the following one:" : {
       "localizations" : {
         "es" : {
@@ -607,26 +567,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Se produjo un error al obtener los ítems."
-          }
-        }
-      }
-    },
-    "There was an error making the purchase." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se produjo un error al hacer la compra."
-          }
-        }
-      }
-    },
-    "Tip Jar" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tarro de propinas"
           }
         }
       }
