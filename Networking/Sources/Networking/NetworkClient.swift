@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol NetworkClientProtocol {
+public protocol NetworkClientProtocol: Sendable {
 
     // MARK: Types
 

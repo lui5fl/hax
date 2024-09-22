@@ -54,13 +54,13 @@ struct ItemViewModelTests {
         #expect(sut.item == .example)
         #expect(sut.comments.isEmpty)
         #expect(sut.highlightedCommentId == nil)
-        #expect(hackerNewsServiceMock.itemCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemCallCount == 1)
     }
 
     @Test func onViewAppear_givenItemRequestDoesNotFail() async {
         // Given
         let item = Item(id: 1, comments: [.example])
-        hackerNewsServiceMock.itemStub = { _, _ in
+        await hackerNewsServiceMock.itemStub { _, _ in
             item
         }
 
@@ -73,7 +73,7 @@ struct ItemViewModelTests {
         #expect(sut.item == item)
         #expect(sut.comments == [.example])
         #expect(sut.highlightedCommentId == nil)
-        #expect(hackerNewsServiceMock.itemCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemCallCount == 1)
     }
 
     @Test func onViewAppear_whenCalledTwice() async {
@@ -82,7 +82,7 @@ struct ItemViewModelTests {
         await sut.onViewAppear()
 
         // Then
-        #expect(hackerNewsServiceMock.itemCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemCallCount == 1)
     }
 
     @Test mutating func onViewAppear_givenCommentShouldBeHighlighted() async {
@@ -93,7 +93,7 @@ struct ItemViewModelTests {
             storyId: .zero
         )
         let storyItem = Item(id: .zero)
-        hackerNewsServiceMock.itemStub = { id, _ in
+        await hackerNewsServiceMock.itemStub { id, _ in
             switch id {
             case .zero:
                 storyItem
@@ -124,7 +124,7 @@ struct ItemViewModelTests {
             ]
         )
         #expect(sut.highlightedCommentId == 1)
-        #expect(hackerNewsServiceMock.itemCallCount == 2)
+        #expect(await hackerNewsServiceMock.itemCallCount == 2)
     }
 
     @Test mutating func onViewAppear_givenShouldFetchItemIsFalse() async {
@@ -145,7 +145,7 @@ struct ItemViewModelTests {
         #expect(sut.error == nil)
         #expect(sut.item == item)
         #expect(sut.comments == item.comments)
-        #expect(hackerNewsServiceMock.itemCallCount == .zero)
+        #expect(await hackerNewsServiceMock.itemCallCount == .zero)
     }
 
     @Test func onUserTap() {
@@ -162,7 +162,7 @@ struct ItemViewModelTests {
 
     @Test func onCommentTap_givenCommentIsNotInComments() async {
         // Given
-        hackerNewsServiceMock.itemStub = { _, _ in
+        await hackerNewsServiceMock.itemStub { _, _ in
             Item(
                 comments: [
                     .example,
@@ -191,7 +191,7 @@ struct ItemViewModelTests {
 
     @Test func onCommentTap_givenCommentIsInComments() async {
         // Given
-        hackerNewsServiceMock.itemStub = { _, _ in
+        await hackerNewsServiceMock.itemStub { _, _ in
             Item(
                 comments: [
                     .example,
@@ -294,14 +294,14 @@ struct ItemViewModelTests {
         #expect(sut.error != nil)
         #expect(sut.item == .example)
         #expect(sut.comments == [.example])
-        #expect(hackerNewsServiceMock.itemCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemCallCount == 1)
     }
 
     @Test func onRefreshRequest_givenItemRequestDoesNotFail() async {
         // Given
         sut.comments = [.example]
         let item = Item(id: 1, comments: [.example, .example])
-        hackerNewsServiceMock.itemStub = { _, _ in
+        await hackerNewsServiceMock.itemStub { _, _ in
             item
         }
 
@@ -313,7 +313,7 @@ struct ItemViewModelTests {
         #expect(sut.error == nil)
         #expect(sut.item == item)
         #expect(sut.comments == [.example, .example])
-        #expect(hackerNewsServiceMock.itemCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemCallCount == 1)
     }
 
     @Test mutating func onRefreshRequest_givenShouldFetchItemIsFalse() async {
@@ -329,6 +329,6 @@ struct ItemViewModelTests {
         await sut.onRefreshRequest()
 
         // Then
-        #expect(hackerNewsServiceMock.itemCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemCallCount == 1)
     }
 }

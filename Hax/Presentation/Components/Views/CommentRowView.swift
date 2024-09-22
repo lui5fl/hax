@@ -119,6 +119,7 @@ private struct PreviewCommentRowViewModel: CommentRowViewModelProtocol {
 
 // MARK: Properties
 
+@MainActor
 private let fixedLayoutPreviewTrait = PreviewTrait.fixedLayout(
     width: 400,
     height: 50

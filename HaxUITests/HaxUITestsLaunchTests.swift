@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class HaxUITestsLaunchTests: XCTestCase {
 
     override static var runsForEachTargetApplicationUIConfiguration: Bool {

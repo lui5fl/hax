@@ -39,7 +39,7 @@ enum HackerNewsServiceError: LocalizedError {
     }
 }
 
-protocol HackerNewsServiceProtocol {
+protocol HackerNewsServiceProtocol: Sendable {
 
     // MARK: Methods
 
@@ -81,7 +81,7 @@ protocol HackerNewsServiceProtocol {
     func user(id: String) async throws -> User
 }
 
-final class HackerNewsService: HackerNewsServiceProtocol {
+actor HackerNewsService: HackerNewsServiceProtocol {
 
     // MARK: Properties
 
@@ -109,7 +109,7 @@ final class HackerNewsService: HackerNewsServiceProtocol {
     private var maximumItemID: Int?
 
     /// The service to use to filter items and comments.
-    var filterService: FilterServiceProtocol?
+    private var filterService: FilterServiceProtocol?
 
     // MARK: Methods
 
@@ -204,6 +204,10 @@ final class HackerNewsService: HackerNewsServiceProtocol {
             )
         )
     }
+
+    func setFilterService(_ filterService: FilterServiceProtocol?) {
+        self.filterService = filterService
+    }
 }
 
 // MARK: - Private extension
@@ -245,7 +249,7 @@ private extension HackerNewsService {
         return identifiers
     }
 
-    func perform<T: Decodable, API: APIProtocol>(
+    func perform<T: Decodable & Sendable, API: APIProtocol>(
         _ request: Request<API>,
         with networkClient: NetworkClient<API>
     ) async throws -> T {

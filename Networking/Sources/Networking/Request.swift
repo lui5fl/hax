@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Request<API: APIProtocol> {
+public enum Request<API: APIProtocol>: Sendable {
 
     // MARK: Types
 

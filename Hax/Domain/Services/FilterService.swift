@@ -7,7 +7,7 @@
 
 import SwiftData
 
-protocol FilterServiceProtocol {
+protocol FilterServiceProtocol: Sendable {
 
     // MARK: Methods
 

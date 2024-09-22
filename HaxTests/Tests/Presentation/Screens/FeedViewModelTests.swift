@@ -44,12 +44,12 @@ struct FeedViewModelTests {
         #expect(!sut.isLoading)
         #expect(sut.error != nil)
         #expect(sut.items.isEmpty)
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 
     @Test func onViewAppear_givenItemsRequestDoesNotFail() async {
         // Given
-        hackerNewsServiceMock.itemsStub = [.example]
+        await hackerNewsServiceMock.itemsStub([.example])
 
         // When
         await sut.onViewAppear()
@@ -58,7 +58,7 @@ struct FeedViewModelTests {
         #expect(!sut.isLoading)
         #expect(sut.error == nil)
         #expect(sut.items == [.example])
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 
     @Test func onViewAppear_whenCalledTwice() async {
@@ -67,7 +67,7 @@ struct FeedViewModelTests {
         await sut.onViewAppear()
 
         // Then
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 
     @Test func onItemAppear_givenItemsRequestFails() async {
@@ -81,13 +81,13 @@ struct FeedViewModelTests {
         #expect(!sut.isLoading)
         #expect(sut.error != nil)
         #expect(sut.items == [.example])
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 
     @Test func onItemAppear_givenItemsRequestDoesNotFail() async {
         // Given
         sut.items = [.example]
-        hackerNewsServiceMock.itemsStub = [.example]
+        await hackerNewsServiceMock.itemsStub([.example])
 
         // When
         await sut.onItemAppear(item: .example)
@@ -96,7 +96,7 @@ struct FeedViewModelTests {
         #expect(!sut.isLoading)
         #expect(sut.error == nil)
         #expect(sut.items == [.example, .example])
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 
     @Test func onItemAppear_whenCalledForEveryItemButTheLastOne() async {
@@ -111,7 +111,7 @@ struct FeedViewModelTests {
         }
 
         // Then
-        #expect(hackerNewsServiceMock.itemsCallCount == .zero)
+        #expect(await hackerNewsServiceMock.itemsCallCount == .zero)
     }
 
     @Test func onRefreshRequest_givenItemsRequestFails() async {
@@ -125,13 +125,13 @@ struct FeedViewModelTests {
         #expect(!sut.isLoading)
         #expect(sut.error != nil)
         #expect(sut.items == [.example, .example])
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 
     @Test func onRefreshRequest_givenItemsRequestDoesNotFail() async {
         // Given
         sut.items = [.example, .example]
-        hackerNewsServiceMock.itemsStub = [.example]
+        await hackerNewsServiceMock.itemsStub([.example])
 
         // When
         await sut.onRefreshRequest()
@@ -140,6 +140,6 @@ struct FeedViewModelTests {
         #expect(!sut.isLoading)
         #expect(sut.error == nil)
         #expect(sut.items == [.example])
-        #expect(hackerNewsServiceMock.itemsCallCount == 1)
+        #expect(await hackerNewsServiceMock.itemsCallCount == 1)
     }
 }

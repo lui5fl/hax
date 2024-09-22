@@ -7,21 +7,28 @@
 
 @testable import Hax
 
-final class HackerNewsServiceMock: HackerNewsServiceProtocol {
+actor HackerNewsServiceMock: HackerNewsServiceProtocol {
+
+    // MARK: Types
+
+    typealias ItemStub = @Sendable (
+        _ id: Int,
+        _ shouldFetchComments: Bool
+    ) -> Item?
+    typealias ItemsStub = [Item]
+    typealias SearchStub = @Sendable (_ query: String) -> [Item]
+    typealias UserStub = User
 
     // MARK: Properties
-
-    var itemStub: (
-        (_ id: Int, _ shouldFetchComments: Bool) -> Item?
-    )?
-    var itemsStub: [Item]?
-    var searchStub: ((_ query: String) -> [Item])?
-    var userStub: User?
 
     private(set) var itemCallCount = Int.zero
     private(set) var itemsCallCount = Int.zero
     private(set) var searchCallCount = Int.zero
     private(set) var userCallCount = Int.zero
+    private var _itemStub: ItemStub?
+    private var _itemsStub: ItemsStub?
+    private var _searchStub: SearchStub?
+    private var _userStub: UserStub?
 
     // MARK: Methods
 
@@ -31,7 +38,7 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
     ) async throws -> Item {
         itemCallCount += 1
 
-        if let item = itemStub?(id, shouldFetchComments) {
+        if let item = _itemStub?(id, shouldFetchComments) {
             return item
         } else {
             throw HackerNewsServiceError.network
@@ -46,13 +53,13 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
     ) async throws -> [Item] {
         itemsCallCount += 1
 
-        return try stubOrError(itemsStub)
+        return try stubOrError(_itemsStub)
     }
 
     func search(query: String) async throws -> [Item] {
         searchCallCount += 1
 
-        if let items = searchStub?(query) {
+        if let items = _searchStub?(query) {
             return items
         } else {
             throw HackerNewsServiceError.network
@@ -62,7 +69,23 @@ final class HackerNewsServiceMock: HackerNewsServiceProtocol {
     func user(id: String) async throws -> User {
         userCallCount += 1
 
-        return try stubOrError(userStub)
+        return try stubOrError(_userStub)
+    }
+
+    func itemStub(_ itemStub: ItemStub?) {
+        _itemStub = itemStub
+    }
+
+    func itemsStub(_ itemsStub: ItemsStub?) {
+        _itemsStub = itemsStub
+    }
+
+    func searchStub(_ searchStub: SearchStub?) {
+        _searchStub = searchStub
+    }
+
+    func userStub(_ userStub: UserStub?) {
+        _userStub = userStub
     }
 }
 

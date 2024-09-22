@@ -7,7 +7,7 @@
 
 @testable import Hax
 
-final class FilterServiceMock: FilterServiceProtocol {
+actor FilterServiceMock: FilterServiceProtocol {
 
     // MARK: Properties
 

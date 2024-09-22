@@ -153,7 +153,7 @@ struct ItemTests {
             sut.hackerNewsURL ==
             URL(string: "https://news.ycombinator.com/item?id=1")
         )
-        #expect(filterServiceMock.filteredItemsCallCount == 2)
+        #expect(await filterServiceMock.filteredItemsCallCount == 2)
     }
 }
 

@@ -47,6 +47,7 @@ struct FilterView: View {
         ) { keyword in
             if !keyword.isEmpty {
                 modelContext.insert(KeywordFilter(keyword: keyword.localizedLowercase))
+                try? modelContext.save()
             }
         }
         .textFieldAlert(
@@ -57,6 +58,7 @@ struct FilterView: View {
         ) { user in
             if !user.isEmpty {
                 modelContext.insert(UserFilter(user: user))
+                try? modelContext.save()
             }
         }
     }
@@ -99,6 +101,8 @@ private extension FilterView {
         for index in indexSet {
             modelContext.delete(models[index])
         }
+
+        try? modelContext.save()
     }
 }
 
