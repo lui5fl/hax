@@ -5,7 +5,6 @@
 //  Created by Luis Fariña on 8/5/22.
 //
 
-import StoreKit
 import SwiftUI
 
 @MainActor
@@ -16,18 +15,6 @@ struct HaxApp: App {
 
     @State private var mainViewModel = MainViewModel()
     @AppStorage(UserDefaults.Key.url) private var urlString: String?
-
-    // MARK: Initialization
-
-    init() {
-        Task(priority: .background) {
-            for await verificationResult in Transaction.updates {
-                if case .verified(let transaction) = verificationResult {
-                    await transaction.finish()
-                }
-            }
-        }
-    }
 
     // MARK: Body
 

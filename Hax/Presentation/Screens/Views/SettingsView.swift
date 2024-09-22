@@ -5,7 +5,6 @@
 //  Created by Luis Fariña on 23/5/22.
 //
 
-import StoreKit
 import SwiftUI
 
 struct SettingsView<Model: SettingsViewModelProtocol>: View {
@@ -41,15 +40,6 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                     model.onSafariExtensionButtonTrigger()
                 }
             }
-            if AppStore.canMakePayments {
-                Section("Other") {
-                    NavigationLink(
-                        value: NavigationDestination.tipJar
-                    ) {
-                        Label("Tip Jar", systemImage: "dollarsign")
-                    }
-                }
-            }
             Section("About") {
                 Button("Privacy Policy") {
                     model.onPrivacyPolicyButtonTrigger()
@@ -70,8 +60,6 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
             switch navigationDestination {
             case .filters:
                 FilterView()
-            case .tipJar:
-                TipJarView()
             }
         }
         .navigationTitle("Settings")
@@ -89,7 +77,7 @@ private extension SettingsView {
 
         // MARK: Cases
 
-        case filters, tipJar
+        case filters
     }
 }
 
