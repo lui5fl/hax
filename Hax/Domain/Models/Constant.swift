@@ -12,4 +12,5 @@ enum Constant {
     static let hackerNewsFeedURLString = "hax://feed/"
     static let hackerNewsItemURLString = "news.ycombinator.com/item?id="
     static let hackerNewsUserURLString = "news.ycombinator.com/user?id="
+    static let readItemUserActivity = "com.luisfl.Hax.UserActivity.ReadItem"
 }

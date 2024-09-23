@@ -431,6 +431,16 @@
         }
       }
     },
+    "Open Hax on your iPhone to read it." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre Hax en tu iPhone para leerla."
+          }
+        }
+      }
+    },
     "Opens the specified feed." : {
       "localizations" : {
         "es" : {
@@ -537,6 +547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enlace de la historia"
+          }
+        }
+      }
+    },
+    "Story sent to your iPhone" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historia enviada a tu iPhone"
           }
         }
       }

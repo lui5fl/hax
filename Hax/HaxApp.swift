@@ -34,6 +34,13 @@ struct HaxApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(model: mainViewModel)
+                .onContinueUserActivity(
+                    Constant.readItemUserActivity
+                ) { userActivity in
+                    if let id = userActivity.userInfo?["id"] as? Int {
+                        mainViewModel.presentedItem = Item(id: id)
+                    }
+                }
                 .onOpenURL(perform: handleURL)
         }
         .modelContainer(

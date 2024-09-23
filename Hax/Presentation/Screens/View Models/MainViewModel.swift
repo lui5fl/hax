@@ -45,10 +45,23 @@ final class MainViewModel: MainViewModelProtocol {
     var selectedItem: Item?
     var presentedItem: Item?
     var presentedUser: IdentifiableString?
+    private let haxWCSessionDelegate = HaxWCSessionDelegate()
 
     // MARK: Initialization
 
     init(defaultFeedService: some DefaultFeedServiceProtocol = DefaultFeedService()) {
         selectedFeed = defaultFeedService.defaultFeed()
+        haxWCSessionDelegate.didReceiveApplicationContext = { [weak self] applicationContext in
+            guard
+                let self,
+                let id = applicationContext["id"] as? Int
+            else {
+                return
+            }
+
+            Task { @MainActor in
+                presentedItem = Item(id: id)
+            }
+        }
     }
 }
