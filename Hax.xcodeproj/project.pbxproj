@@ -117,6 +117,7 @@
 		A0999DFC2C6518B6008B62B6 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0999DFB2C6518B6008B62B6 /* TipJarView.swift */; };
 		A09DE87D2C8F57F300146418 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */; };
 		A0A2881829521A0500CF1484 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */; };
+		A0A9F2AB2CB0832800D2A54E /* PadContentMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F2AA2CB0832800D2A54E /* PadContentMargins.swift */; };
 		A0AC532A2CA1DC9A00872903 /* HaxWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A0AC531D2CA1DC9900872903 /* HaxWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0AC53352CA1DCBF00872903 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0AC532F2CA1DCBF00872903 /* Preview Assets.xcassets */; };
 		A0AC53362CA1DCBF00872903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0AC53312CA1DCBF00872903 /* Assets.xcassets */; };
@@ -361,6 +362,7 @@
 		A0999DFB2C6518B6008B62B6 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
 		A09DE87C2C8F57F300146418 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		A0A2881729521A0500CF1484 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
+		A0A9F2AA2CB0832800D2A54E /* PadContentMargins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadContentMargins.swift; sourceTree = "<group>"; };
 		A0AC531D2CA1DC9900872903 /* HaxWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaxWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AC532F2CA1DCBF00872903 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A0AC53312CA1DCBF00872903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 			children = (
 				A08FDE2F2BEF7DBC00FB0265 /* Components */,
 				A08FDE302BEF7DC000FB0265 /* Screens */,
+				A0A9F2A92CB0831700D2A54E /* View Modifiers */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -875,6 +878,14 @@
 				A003D07A2C0B471E00FB6030 /* UserViewModelTests.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		A0A9F2A92CB0831700D2A54E /* View Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				A0A9F2AA2CB0832800D2A54E /* PadContentMargins.swift */,
+			);
+			path = "View Modifiers";
 			sourceTree = "<group>";
 		};
 		A0AC53302CA1DCBF00872903 /* Preview Content */ = {
@@ -1414,6 +1425,7 @@
 				A05938222BCA97E10042802D /* KeywordFilter.swift in Sources */,
 				A03739C92C7F75A400DEE078 /* AlgoliaSearchResultDTO.swift in Sources */,
 				A0F4DB2928D4EA3F006CD8E7 /* ItemRowView.swift in Sources */,
+				A0A9F2AB2CB0832800D2A54E /* PadContentMargins.swift in Sources */,
 				A0F4DB0028D4EA25006CD8E7 /* UserDefaultsExtension.swift in Sources */,
 				A03389602BEE9B810019F782 /* AlgoliaAPI.swift in Sources */,
 				A0DD98142C82129E00CBFC7F /* ItemList.swift in Sources */,
@@ -1591,7 +1603,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.debug.HaxWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1625,7 +1637,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.HaxWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1784,7 +1796,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1794,7 +1806,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1828,7 +1840,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1838,7 +1850,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1956,14 +1968,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Hax;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.luisfl.Hax.debug;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(WK_COMPANION_APP_BUNDLE_IDENTIFIER)";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.debug.HaxWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1973,6 +1985,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WK_COMPANION_APP_BUNDLE_IDENTIFIER = com.luisfl.Hax.debug;
 			};
 			name = Debug;
 		};
@@ -1992,14 +2005,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Hax;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.luisfl.Hax.debug;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(WK_COMPANION_APP_BUNDLE_IDENTIFIER)";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luisfl.Hax.HaxWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2009,6 +2022,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WK_COMPANION_APP_BUNDLE_IDENTIFIER = com.luisfl.Hax;
 			};
 			name = Release;
 		};
@@ -2031,7 +2045,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -2070,7 +2084,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,

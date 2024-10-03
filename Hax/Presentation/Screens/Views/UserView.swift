@@ -88,6 +88,7 @@ struct UserView<Model: UserViewModelProtocol>: View {
                 ActivityIndicatorView()
             }
         }
+        .contentMargins(.horizontal, nil, for: .scrollContent)
         .onAppear {
             Task {
                 await model.onViewAppear()

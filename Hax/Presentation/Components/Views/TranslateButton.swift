@@ -19,17 +19,16 @@ struct TranslateButton: View {
     // MARK: Body
 
     var body: some View {
-        Group {
-            if let text {
-                Button {
-                    translationPopoverIsPresented = true
-                    textToBeTranslated = text
-                } label: {
-                    Label(
-                        "Translate…",
-                        systemImage: "arrow.left.arrow.right"
-                    )
-                }
+        if UIDevice.current.userInterfaceIdiom == .phone,
+           let text {
+            Button {
+                translationPopoverIsPresented = true
+                textToBeTranslated = text
+            } label: {
+                Label(
+                    "Translate…",
+                    systemImage: "arrow.left.arrow.right"
+                )
             }
         }
     }

@@ -61,6 +61,7 @@ struct MainView<Model: MainViewModelProtocol>: View {
                 .presentationDetents([.medium, .large])
                 .id(user.string)
         }
+        .modifier(PadContentMargins())
     }
 }
 

@@ -81,6 +81,9 @@ struct HaxWidget: Widget {
         }
         .configurationDisplayName("Feed")
         .description("Displays the latest stories from the specified feed.")
+        .supportedFamilies(
+            [.systemSmall, .systemMedium, .systemLarge]
+        )
     }
 }
 

@@ -39,6 +39,7 @@ struct SearchView: View {
         .searchable(
             text: $model.text,
             isPresented: $searchBarIsPresented,
+            placement: .navigationBarDrawer,
             prompt: "Title"
         )
         .translationPresentation(
