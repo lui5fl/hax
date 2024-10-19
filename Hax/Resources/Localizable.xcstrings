@@ -471,6 +471,16 @@
         }
       }
     },
+    "Rate Hax on the App Store" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valora Hax en la App Store"
+          }
+        }
+      }
+    },
     "Safari Extension" : {
       "localizations" : {
         "es" : {

@@ -17,6 +17,9 @@ struct HaxApp: App {
     @State private var mainViewModel = MainViewModel()
     @AppStorage(UserDefaults.Key.url) private var urlString: String?
 
+    @AppStorage(UserDefaults.Key.numberOfLaunches)
+    private var numberOfLaunches = Int.zero
+
     // MARK: Initialization
 
     init() {
@@ -27,6 +30,7 @@ struct HaxApp: App {
                 }
             }
         }
+        numberOfLaunches += 1
     }
 
     // MARK: Body

@@ -14,6 +14,13 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
 
     @StateObject var model: Model
     @Binding var navigationPath: NavigationPath
+    @Environment(\.requestReview) private var requestReview
+
+    @AppStorage(UserDefaults.Key.numberOfLaunches)
+    private var numberOfLaunches = Int.zero
+
+    @AppStorage(UserDefaults.Key.reviewHasBeenRequested)
+    private var reviewHasBeenRequested = false
 
     // MARK: Body
 
@@ -41,13 +48,23 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                     model.onSafariExtensionButtonTrigger()
                 }
             }
-            if AppStore.canMakePayments {
-                Section("Other") {
+            Section("Other") {
+                if AppStore.canMakePayments {
                     NavigationLink(
                         value: NavigationDestination.tipJar
                     ) {
                         Label("Tip Jar", systemImage: "dollarsign")
                     }
+                }
+                Link(
+                    destination: URL(
+                        string: "https://apps.apple.com/app/id1635164814?action=write-review"
+                    )!
+                ) {
+                    Label(
+                        "Rate Hax on the App Store",
+                        systemImage: "star"
+                    )
                 }
             }
             Section("About") {
@@ -75,6 +92,17 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
             }
         }
         .navigationTitle("Settings")
+        .onAppear {
+            guard
+                numberOfLaunches > 4,
+                !reviewHasBeenRequested
+            else {
+                return
+            }
+
+            requestReview()
+            reviewHasBeenRequested = true
+        }
         .safari(url: $model.url)
     }
 }
