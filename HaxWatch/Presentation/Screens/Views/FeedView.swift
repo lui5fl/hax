@@ -12,7 +12,7 @@ struct FeedView: View {
 
     // MARK: Properties
 
-    let model: FeedViewModel
+    @State var model: FeedViewModel
     @State private var alertIsPresented = false
 
     // MARK: Body
