@@ -531,6 +531,16 @@
         }
       }
     },
+    "Share Hax" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir Hax"
+          }
+        }
+      }
+    },
     "Share…" : {
       "localizations" : {
         "es" : {

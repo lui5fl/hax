@@ -58,7 +58,7 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 }
                 Link(
                     destination: URL(
-                        string: "https://apps.apple.com/app/id1635164814?action=write-review"
+                        string: "\(Constant.appStoreURLString)?action=write-review"
                     )!
                 ) {
                     Label(
@@ -66,6 +66,10 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                         systemImage: "star"
                     )
                 }
+                ShareLink(
+                    "Share Hax",
+                    item: URL(string: Constant.appStoreURLString)!
+                )
             }
             Section("About") {
                 Button("Privacy Policy") {
