@@ -135,6 +135,8 @@
 				Data/Firebase/FirebaseAPI.swift,
 				Data/Firebase/FirebaseItemDTO.swift,
 				Data/Firebase/FirebaseUserDTO.swift,
+				Debug/LoggedRequests.swift,
+				Debug/URLSessionDebug.swift,
 				Domain/Delegates/HaxWCSessionDelegate.swift,
 				Domain/Models/Comment.swift,
 				Domain/Models/Constant.swift,
@@ -166,6 +168,8 @@
 				Data/Firebase/FirebaseAPI.swift,
 				Data/Firebase/FirebaseItemDTO.swift,
 				Data/Firebase/FirebaseUserDTO.swift,
+				Debug/LoggedRequests.swift,
+				Debug/URLSessionDebug.swift,
 				Domain/Models/Comment.swift,
 				Domain/Models/Constant.swift,
 				Domain/Models/Feed.swift,
@@ -435,7 +439,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					A03FDF632AB74E5A00127AB6 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -697,6 +701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -757,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

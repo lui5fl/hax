@@ -20,6 +20,10 @@ struct HaxApp: App {
     @AppStorage(UserDefaults.Key.numberOfLaunches)
     private var numberOfLaunches = Int.zero
 
+#if DEBUG
+    @State private var debugViewIsPresented = false
+#endif
+
     // MARK: Initialization
 
     init() {
@@ -46,6 +50,19 @@ struct HaxApp: App {
                     }
                 }
                 .onOpenURL(perform: handleURL)
+#if DEBUG
+                .onShake {
+                    mainViewModel.presentedItem = nil
+                    mainViewModel.presentedUser = nil
+                    debugViewIsPresented = true
+                }
+                .sheet(isPresented: $debugViewIsPresented) {
+                    DebugView()
+                        .presentationDetents([.medium, .large])
+                        .presentationDragIndicator(.hidden)
+                }
+                .environment(LoggedRequests.shared)
+#endif
         }
         .modelContainer(
             for: [KeywordFilter.self, UserFilter.self]
