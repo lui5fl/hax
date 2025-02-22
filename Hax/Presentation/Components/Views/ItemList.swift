@@ -18,6 +18,7 @@ struct ItemList: View {
     @Binding var selectedItem: Item?
     @Binding var translationPopoverIsPresented: Bool
     @Binding var textToBeTranslated: String
+    @Environment(ReadItems.self) private var readItems
 
     // MARK: Body
 
@@ -33,6 +34,8 @@ struct ItemList: View {
                         } else {
                             selectedItem = item
                         }
+
+                        readItems.add(item.id)
                     } label: {
                         ItemRowView(
                             model: ItemRowViewModel(
@@ -41,7 +44,8 @@ struct ItemList: View {
                                 item: item,
                                 onNumberOfCommentsTap: {
                                     selectedItem = item
-                                }
+                                },
+                                isRead: readItems.contains(item.id)
                             )
                         )
                     }

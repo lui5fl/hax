@@ -42,6 +42,7 @@ struct HaxApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(model: mainViewModel)
+                .environment(ReadItems.shared)
                 .onContinueUserActivity(
                     Constant.readItemUserActivity
                 ) { userActivity in

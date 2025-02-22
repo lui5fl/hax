@@ -125,6 +125,8 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
             Task {
                 await model.onViewAppear()
             }
+
+            ReadItems.shared.add(model.item.id)
         }
         .refreshable {
             await model.onRefreshRequest()
