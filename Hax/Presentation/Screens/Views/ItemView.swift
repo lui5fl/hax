@@ -20,76 +20,103 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
 
     var body: some View {
         VStack(spacing: .zero) {
-            List {
-                Button {
-                    model.url = IdentifiableURL(model.item.url)
-                } label: {
-                    ItemRowView(
-                        model: ItemRowViewModel(
-                            in: .item,
-                            item: model.item,
-                            onUserTap: {
-                                model.onUserTap(item: model.item)
-                            },
-                            onLinkTap: { url in
-                                model.onCommentLinkTap(url: url)
-                            },
-                            commentIsHighlighted: model.highlightedCommentId != nil
-                        )
-                    )
-                }
-                .contextMenu {
-                    TranslateButton(
-                        text: [
-                            model.item.title,
-                            model.item.markdownBody
-                        ]
-                            .compacted()
-                            .joined(separator: "\n\n"),
-                        translationPopoverIsPresented: $translationPopoverIsPresented,
-                        textToBeTranslated: $textToBeTranslated
-                    )
-                }
-                if model.isLoading {
-                    HStack {
-                        Spacer()
-                        ActivityIndicatorView()
-                        Spacer()
-                    }
-                    .padding()
-                } else {
-                    ForEach(model.comments) { comment in
-                        CommentRowView(
-                            model: CommentRowViewModel(
-                                comment: comment,
+            ScrollViewReader { proxy in
+                List {
+                    Button {
+                        model.url = IdentifiableURL(model.item.url)
+                    } label: {
+                        ItemRowView(
+                            model: ItemRowViewModel(
+                                in: .item,
                                 item: model.item,
                                 onUserTap: {
-                                    model.onUserTap(item: comment.item)
+                                    model.onUserTap(item: model.item)
                                 },
                                 onLinkTap: { url in
                                     model.onCommentLinkTap(url: url)
-                                }
+                                },
+                                commentIsHighlighted: model
+                                    .highlightedCommentId != nil
                             )
                         )
-                        .contextMenu {
-                            ShareView(
-                                url: comment.item.url,
-                                hackerNewsURL: comment.item.hackerNewsURL
-                            )
-                            TranslateButton(
-                                text: comment.item.markdownBody,
-                                translationPopoverIsPresented: $translationPopoverIsPresented,
-                                textToBeTranslated: $textToBeTranslated
-                            )
+                    }
+                    .contextMenu {
+                        TranslateButton(
+                            text: [
+                                model.item.title,
+                                model.item.markdownBody
+                            ]
+                                .compacted()
+                                .joined(separator: "\n\n"),
+                            translationPopoverIsPresented:
+                                $translationPopoverIsPresented,
+                            textToBeTranslated: $textToBeTranslated
+                        )
+                    }
+                    if model.isLoading {
+                        HStack {
+                            Spacer()
+                            ActivityIndicatorView()
+                            Spacer()
                         }
-                        .id(comment)
-                        .listRowBackground(
-                            comment.id == model.highlightedCommentId
-                            ? highlightedCommentColor
-                            : nil
-                        )
-                        .onTapGesture {
-                            model.onCommentTap(comment: comment)
+                        .padding()
+                    } else {
+                        ForEach(model.comments) { comment in
+                            CommentRowView(
+                                model: CommentRowViewModel(
+                                    comment: comment,
+                                    item: model.item,
+                                    onUserTap: {
+                                        model.onUserTap(
+                                            item: comment.item
+                                        )
+                                    },
+                                    onLinkTap: { url in
+                                        model.onCommentLinkTap(
+                                            url: url
+                                        )
+                                    }
+                                )
+                            )
+                            .contextMenu {
+                                ShareView(
+                                    url: comment.item.url,
+                                    hackerNewsURL: comment.item
+                                        .hackerNewsURL
+                                )
+                                TranslateButton(
+                                    text: comment.item.markdownBody,
+                                    translationPopoverIsPresented:
+                                        $translationPopoverIsPresented,
+                                    textToBeTranslated:
+                                        $textToBeTranslated
+                                )
+                            }
+                            .id(comment)
+                            .listRowBackground(
+                                comment.id == model
+                                    .highlightedCommentId
+                                ? highlightedCommentColor
+                                : nil
+                            )
+                            .onTapGesture {
+                                withAnimation {
+                                    model.onCommentTap(
+                                        comment: comment
+                                    )
+                                }
+                            }
+                            .swipeActions(edge: .leading) {
+                                collapseButton(comment: comment) {
+                                    let comment = model
+                                        .onCommentSwipe(
+                                            comment: comment
+                                        )
+                                    withAnimation {
+                                        proxy.scrollTo(comment)
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -157,6 +184,22 @@ private extension ItemView {
 
     var highlightedCommentColor: Color {
         Color.accentColor.opacity(colorScheme == .dark ? 0.15 : 0.1)
+    }
+
+    // MARK: Methods
+
+    func collapseButton(
+        comment: Comment,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Label(
+                String("Collapse"),
+                systemImage: "arrow.up.to.line"
+            )
+        }
+        .labelStyle(.iconOnly)
+        .tint(.accentColor)
     }
 }
 

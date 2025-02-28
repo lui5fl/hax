@@ -50,6 +50,9 @@ protocol ItemViewModelProtocol: ObservableObject {
     /// Called when a comment is tapped.
     func onCommentTap(comment: Comment)
 
+    /// Called when a comment is swipped.
+    func onCommentSwipe(comment: Comment) -> Comment?
+
     /// Called when a link in a comment is tapped.
     func onCommentLinkTap(url: URL) -> OpenURLAction.Result
 
@@ -149,6 +152,23 @@ class ItemViewModel: ItemViewModelProtocol {
         comments = allComments.filter {
             !$0.isHidden
         }
+    }
+
+    func onCommentSwipe(comment: Comment) -> Comment? {
+        guard
+            let index = allComments.firstIndex(of: comment),
+            let comment = allComments[...index].last(
+                where: {
+                    $0.depth == .zero
+                }
+            )
+        else {
+            return nil
+        }
+
+        onCommentTap(comment: comment)
+
+        return comment
     }
 
     func onCommentLinkTap(url: URL) -> OpenURLAction.Result {
