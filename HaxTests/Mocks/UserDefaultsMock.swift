@@ -11,12 +11,14 @@ final class UserDefaultsMock: UserDefaults {
 
     // MARK: Properties
 
-    private var dictionary: [String: Any] = [:]
+    private(set) var setCallCount = Int.zero
     private(set) var stringCallCount = Int.zero
+    private var dictionary: [String: Any] = [:]
 
     // MARK: Methods
 
     override func set(_ value: Any?, forKey defaultName: String) {
+        setCallCount += 1
         dictionary[defaultName] = value
     }
 
@@ -24,5 +26,9 @@ final class UserDefaultsMock: UserDefaults {
         stringCallCount += 1
 
         return dictionary[defaultName] as? String
+    }
+
+    override func array(forKey defaultName: String) -> [Any]? {
+        dictionary[defaultName] as? [Any]
     }
 }

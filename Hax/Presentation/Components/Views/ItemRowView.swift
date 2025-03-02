@@ -32,6 +32,9 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
                         Text(title)
                             .font(titleFont)
                             .fontWeight(titleFontWeight)
+                            .foregroundStyle(
+                                model.isRead ? .secondary : .primary
+                            )
                     }
                     if model.shouldDisplayBody,
                        let body = model.item.markdownBody {
@@ -88,6 +91,7 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
                 }
             }
         }
+        .opacity(model.isRead ? 0.7 : 1)
         .padding(.vertical, 5)
     }
 }

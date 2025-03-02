@@ -57,6 +57,9 @@ protocol ItemRowViewModelProtocol {
     /// The action to be carried out when tapping a link in the body of the item.
     var onLinkTap: OnLinkTap? { get }
 
+    /// Whether the item has been read before.
+    var isRead: Bool { get }
+
     /// Whether the index of the item should be displayed.
     var shouldDisplayIndex: Bool { get }
 
@@ -83,6 +86,7 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
     let onUserTap: OnUserTap?
     let onNumberOfCommentsTap: OnNumberOfCommentsTap?
     let onLinkTap: OnLinkTap?
+    let isRead: Bool
 
     var shouldDisplayIndex: Bool {
         view == .feed
@@ -120,6 +124,7 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         onUserTap: OnUserTap? = nil,
         onNumberOfCommentsTap: OnNumberOfCommentsTap? = nil,
         onLinkTap: OnLinkTap? = nil,
+        isRead: Bool = false,
         commentIsHighlighted: Bool = false
     ) {
         self.view = view
@@ -128,6 +133,7 @@ struct ItemRowViewModel: ItemRowViewModelProtocol {
         self.onUserTap = onUserTap
         self.onNumberOfCommentsTap = onNumberOfCommentsTap
         self.onLinkTap = onLinkTap
+        self.isRead = isRead
         self.commentIsHighlighted = commentIsHighlighted
     }
 }
