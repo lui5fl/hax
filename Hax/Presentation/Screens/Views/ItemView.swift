@@ -114,11 +114,20 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
             }
         }
         .alert(error: $model.error)
+        .background(Color(.systemBackground))
         .listStyle(.plain)
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(item: $model.secondaryItem) { item in
             ItemView<ItemViewModel>(model: ItemViewModel(item: item))
-                .toolbarRole(.editor)
+                .toolbarRole(
+                    {
+                        if #available(iOS 26.0, *) {
+                            .navigationStack
+                        } else {
+                            .editor
+                        }
+                    }()
+                )
         }
         .navigationTitle(model.title)
         .onAppear {

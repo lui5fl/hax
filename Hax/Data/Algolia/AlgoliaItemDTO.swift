@@ -6,7 +6,7 @@
 //
 
 /// [Source](https://hn.algolia.com/api)
-struct AlgoliaItemDTO: Decodable {
+struct AlgoliaItemDTO: Decodable, Sendable {
 
     // MARK: Properties
 

@@ -92,7 +92,16 @@ struct ItemRowView<Model: ItemRowViewModelProtocol>: View {
             }
         }
         .opacity(model.isRead ? 0.7 : 1)
-        .padding(.vertical, 5)
+        .padding(
+            .vertical,
+            {
+                if #available(iOS 26.0, *) {
+                    .zero
+                } else {
+                    5
+                }
+            }()
+        )
     }
 }
 
