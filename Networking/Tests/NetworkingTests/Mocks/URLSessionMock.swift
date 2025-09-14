@@ -30,8 +30,9 @@ actor URLSessionMock: URLSessionProtocol {
         delegate: (any URLSessionTaskDelegate)?
     ) async throws -> (Data, URLResponse) {
         dataCallCount += 1
+        let _dataStub = try #require(_dataStub)
 
-        return try await (#require(_dataStub))(request, delegate)
+        return try await _dataStub(request, delegate)
     }
 
     func dataStub(_ dataStub: DataStub?) {

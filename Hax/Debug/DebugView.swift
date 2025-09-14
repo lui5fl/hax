@@ -54,12 +54,7 @@ struct DebugView: View {
                             }
                         }
                     }
-                    .searchable(
-                        text: $text,
-                        placement: .navigationBarDrawer(
-                            displayMode: .always
-                        )
-                    )
+                    .searchable(text: $text)
                 }
             }
             .navigationTitle(String("Requests"))

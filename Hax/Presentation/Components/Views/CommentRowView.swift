@@ -22,7 +22,16 @@ struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
                     .cornerRadius(1.5)
                     .foregroundColor(lineColor)
                     .frame(width: 3)
-                    .padding(.vertical, 5)
+                    .padding(
+                        .vertical,
+                        {
+                            if #available(iOS 26.0, *) {
+                                .zero
+                            } else {
+                                5
+                            }
+                        }()
+                    )
             }
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
@@ -56,7 +65,16 @@ struct CommentRowView<Model: CommentRowViewModelProtocol>: View {
         .contentShape(Rectangle())
         .opacity(opacity)
         .padding(.leading, leadingPadding)
-        .padding(.vertical, 5)
+        .padding(
+            .vertical,
+            {
+                if #available(iOS 26.0, *) {
+                    .zero
+                } else {
+                    5
+                }
+            }()
+        )
     }
 }
 
