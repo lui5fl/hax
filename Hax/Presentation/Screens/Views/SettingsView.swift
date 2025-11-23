@@ -58,6 +58,13 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 }
                 Link(
                     destination: URL(
+                        string: "mailto:contact@luisfl.me?subject=Hax"
+                    )!
+                ) {
+                    Label("Send Feedback", systemImage: "envelope")
+                }
+                Link(
+                    destination: URL(
                         string: "\(Constant.appStoreURLString)?action=write-review"
                     )!
                 ) {
