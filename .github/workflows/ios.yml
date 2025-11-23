@@ -40,7 +40,7 @@ jobs:
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
-          OS: ${{ '26.0' }}
+          OS: ${{ '26.0.1' }}
           name: ${{ 'iPhone 17' }}
         run: |
           # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
@@ -52,7 +52,7 @@ jobs:
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
-          OS: ${{ '26.0' }}
+          OS: ${{ '26.0.1' }}
           name: ${{ 'iPhone 17' }}
         run: |
           # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
