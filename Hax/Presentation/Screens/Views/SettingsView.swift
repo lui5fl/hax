@@ -42,6 +42,18 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
                 ) {
                     Label("Filters", systemImage: "eye.slash")
                 }
+
+                if #available(iOS 26.0, *) {
+                    NavigationLink(
+                        value: NavigationDestination
+                            .appleIntelligence
+                    ) {
+                        Label(
+                            "Apple Intelligence",
+                            systemImage: "apple.intelligence"
+                        )
+                    }
+                }
             }
             Section("Help") {
                 Button("Safari Extension") {
@@ -96,6 +108,10 @@ struct SettingsView<Model: SettingsViewModelProtocol>: View {
             for: NavigationDestination.self
         ) { navigationDestination in
             switch navigationDestination {
+            case .appleIntelligence:
+                if #available(iOS 26.0, *) {
+                    AppleIntelligenceView()
+                }
             case .filters:
                 FilterView()
             case .tipJar:
@@ -128,7 +144,7 @@ private extension SettingsView {
 
         // MARK: Cases
 
-        case filters, tipJar
+        case appleIntelligence, filters, tipJar
     }
 }
 

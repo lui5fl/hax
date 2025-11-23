@@ -151,12 +151,52 @@
         }
       }
     },
+    "Apple Intelligence" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence"
+          }
+        }
+      }
+    },
+    "Apple Intelligence models are not available yet because they are downloading or due to other system reasons." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los modelos de Apple Intelligence no están disponibles todavía porque se están descargando o debido a otros motivos del sistema."
+          }
+        }
+      }
+    },
+    "Apple Intelligence models are unavailable for an unknown reason." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los modelos de Apple Intelligence no están disponibles por un motivo desconocido."
+          }
+        }
+      }
+    },
     "Ask" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ask"
+          }
+        }
+      }
+    },
+    "Available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disponible"
           }
         }
       }
@@ -187,6 +227,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Feed predeterminado"
+          }
+        }
+      }
+    },
+    "Discussion at a glance" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discusión de un vistazo"
           }
         }
       }
@@ -251,12 +301,42 @@
         }
       }
     },
+    "Generate a summary of a story’s top comments." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genera un resumen de los comentarios principales de una historia."
+          }
+        }
+      }
+    },
+    "Generating summary…" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generando resumen…"
+          }
+        }
+      }
+    },
     "Hacker News Link" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enlace de Hacker News"
+          }
+        }
+      }
+    },
+    "Hax features using Apple Intelligence are available." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las funcionalidades de Hax que usan Apple Intelligence están disponibles."
           }
         }
       }
@@ -591,6 +671,16 @@
         }
       }
     },
+    "Tap to generate a summary of the story's top comments" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulsa para generar un resumen de los comentarios principales de la historia"
+          }
+        }
+      }
+    },
     "Thank you very much!" : {
       "localizations" : {
         "es" : {
@@ -621,12 +711,32 @@
         }
       }
     },
+    "There was an error generating the summary." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se produjo un error al generar el resumen."
+          }
+        }
+      }
+    },
     "There was an error making the purchase." : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Se produjo un error al hacer la compra."
+          }
+        }
+      }
+    },
+    "This device does not support Apple Intelligence." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo no es compatible con Apple Intelligence."
           }
         }
       }
@@ -677,6 +787,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inténtalo de nuevo más tarde."
+          }
+        }
+      }
+    },
+    "Turn on Apple Intelligence." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activa Apple Intelligence."
+          }
+        }
+      }
+    },
+    "Unavailable" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No disponible"
           }
         }
       }

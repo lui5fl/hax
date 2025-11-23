@@ -16,6 +16,9 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
     @State private var translationPopoverIsPresented = false
     @State private var textToBeTranslated = ""
 
+    @AppStorage(UserDefaults.Key.discussionAtAGlanceIsEnabled)
+    private var discussionAtAGlanceIsEnabled = true
+
     // MARK: Body
 
     var body: some View {
@@ -50,6 +53,9 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
                         textToBeTranslated: $textToBeTranslated
                     )
                 }
+
+                discussionAtAGlanceView
+
                 if model.isLoading {
                     HStack {
                         Spacer()
@@ -163,6 +169,17 @@ struct ItemView<Model: ItemViewModelProtocol>: View {
 private extension ItemView {
 
     // MARK: Properties
+
+    @ViewBuilder
+    var discussionAtAGlanceView: some View {
+        if discussionAtAGlanceIsEnabled,
+           let discussionAtAGlanceViewModel = model.discussionAtAGlanceViewModel {
+            DiscussionAtAGlanceView(
+                model: discussionAtAGlanceViewModel
+            )
+            .id(discussionAtAGlanceViewModel.id)
+        }
+    }
 
     var highlightedCommentColor: Color {
         Color.accentColor.opacity(colorScheme == .dark ? 0.15 : 0.1)
