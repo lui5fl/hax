@@ -36,6 +36,9 @@ protocol ItemViewModelProtocol: ObservableObject {
     /// The identifier of the comment to be highlighted.
     var highlightedCommentId: Int? { get }
 
+    /// The model of the "discussion at a glance" view.
+    var discussionAtAGlanceViewModel: DiscussionAtAGlanceViewModel? { get }
+
     /// The title for the view.
     var title: String { get }
 
@@ -69,6 +72,7 @@ class ItemViewModel: ItemViewModelProtocol {
     @Published var url: IdentifiableURL?
     @Published var user: IdentifiableString?
     @Published private(set) var highlightedCommentId: Int?
+    @Published private(set) var discussionAtAGlanceViewModel: DiscussionAtAGlanceViewModel?
 
     var title: String {
         guard let descendants = item.descendants else {
@@ -211,6 +215,9 @@ private extension ItemViewModel {
             } else {
                 self.item = item
                 comments = item.comments
+                discussionAtAGlanceViewModel = DiscussionAtAGlanceViewModel(
+                    item: item
+                )
             }
 
             self.comments = comments
